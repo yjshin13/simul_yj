@@ -4,7 +4,9 @@ import resampled_mvo
 from datetime import datetime
 
 file = st.file_uploader("파일_선택(CSV)", type=['xlsx', 'xls', 'csv'])
-
+tickers = pd.read_excel(file, sheet_name="Daily_price",
+								   names=None, dtype={'Date': datetime}, index_col=0, header=4).dropna()
+assets = ('select', tickers.item())
 number1 = st.number_input('Efficient Frontier Points')
 st.write(number1)
 
