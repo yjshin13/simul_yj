@@ -10,7 +10,7 @@ if file is not None:
     assets = pd.read_excel(file, sheet_name="Daily_price",
                            names=None, dtype={'Date': datetime}, index_col=0, header=4).dropna()
 
-    tickers = st.multiselect('select', assets.columns, default=assets.columns)
+    tickers = st.multiselect('select', assets.columns, label_visibility = "visible")
 
     number1 = st.number_input('Efficient Frontier Points')
     st.write(number1)
