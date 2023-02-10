@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import resampled_mvo
+#import resampled_mvo
 import warnings
 warnings.filterwarnings("ignore")
 
