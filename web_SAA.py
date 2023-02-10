@@ -19,7 +19,7 @@ if file is not None:
 
    # my_expander = st.expander("", expanded=True)
 
-    with st.form("Resampling Parameters"):
+    with st.form("Resampling Parameters", clear_on_submit=True):
 
         st.subheader("Resampling Parameters:")
 
@@ -45,8 +45,3 @@ if file is not None:
         if submit is not None:
 
             EF = resampled_mvo.simulation(assets, nSim, nPort)
-
-
-            EF_csv = EF.to_csv().encode('utf-8')
-            st.download_button(label = "Efficient Frontier", data = EF_csv, file_name= "Efficient Frontier.xlsx", mime='text/csv' )
-
