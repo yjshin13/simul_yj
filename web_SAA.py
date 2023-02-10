@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import resampled_mvo
 from datetime import datetime
-from io import BytesIO
+#from io import BytesIO
 
 st.set_page_config(layout="wide")
 # st.warning('혜린이 안녕')
@@ -47,18 +47,18 @@ if file is not None:
             EF = resampled_mvo.simulation(assets, nSim, nPort)
 
 
-            def to_excel(df):
-                output = BytesIO()
-                writer = pd.ExcelWriter(output, engine='xlsxwriter')
-                df.to_excel(writer, index=False, sheet_name='Sheet1')
-                workbook = writer.book
-                worksheet = writer.sheets['Sheet1']
-                format1 = workbook.add_format({'num_format': '0.00'})
-                worksheet.set_column('A:A', None, format1)
-                writer.save()
-                processed_data = output.getvalue()
-                return processed_data
+#             def to_excel(df):
+#                 output = BytesIO()
+#                 writer = pd.ExcelWriter(output, engine='xlsxwriter')
+#                 df.to_excel(writer, index=False, sheet_name='Sheet1')
+#                 workbook = writer.book
+#                 worksheet = writer.sheets['Sheet1']
+#                 format1 = workbook.add_format({'num_format': '0.00'})
+#                 worksheet.set_column('A:A', None, format1)
+#                 writer.save()
+#                 processed_data = output.getvalue()
+#                 return processed_data
 
-            EF_excel = to_excel(EF)
-            st.download_button("Efficient Frontier", EF_excel, "Efficient Frontier.xlsx", )
+#             EF_excel = to_excel(EF)
+#             st.download_button("Efficient Frontier", EF_excel, "Efficient Frontier.xlsx", )
 
