@@ -18,7 +18,7 @@ if file is not None:
 
     my_expander = st.expander("", expanded=True)
 
-    with st.form():
+    with st.form("Resampling Parameters"):
 
         st.subheader('Resampling Parameters:')
         col1, col2, col3 = st.columns([1, 1, 1])
