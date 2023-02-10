@@ -4,7 +4,7 @@ import resampled_mvo
 from datetime import datetime
 
 st.set_page_config(layout="wide")
-#st.warning('혜린이 안녕')
+# st.warning('혜린이 안녕')
 
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
@@ -18,19 +18,17 @@ if file is not None:
     st.subheader('Resampling Parameters:')
     col1, col2, col3 = st.columns([1, 1, 1])
 
-    #my_expander = st.expander("Expand", expanded=True)
+    my_expander = st.expander("Expand", expanded=True)
 
-    with st.container():
-        
+    with my_expander():
+
         with col1:
             Growth = st.slider('Growth', 0, 100, (0, 30), 1)
             port_num = st.number_input('Efficient Frontier Points', value=200)
 
-
         with col2:
             Inflation = st.slider('Inflation', 0, 100, (0, 10), 1)
             nSim = st.number_input('Number of Simulations', value=200)
-
 
         with col3:
             Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
