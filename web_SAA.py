@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import resampled_mvo
 from datetime import datetime
-from io import BytesIO
+import io
 
 st.set_page_config(layout="wide")
 # st.warning('혜린이 안녕')
