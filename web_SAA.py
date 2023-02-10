@@ -20,7 +20,7 @@ if file is not None:
 
     my_expander = st.expander("Expand", expanded=True)
 
-    with my_expander():
+    with my_expander:
 
         with col1:
             Growth = st.slider('Growth', 0, 100, (0, 30), 1)
