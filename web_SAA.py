@@ -23,7 +23,7 @@ if file is not None:
         col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:
-            Growth = st.slider('Growth', 0, 100, (0, 30), 1)
+            Growth = st.slider('Equity', 0, 100, (0, 30), 1)
             port_num = st.number_input('Efficient Frontier Points', value=200)
 
         with col2:
@@ -37,5 +37,5 @@ if file is not None:
         # if st.button("Summit"):
         #     st.text("혜린아 오늘 뭐하구놀까")
 
-        st.form_submit_button("login")
+        st.form_submit_button("Summit")
 
