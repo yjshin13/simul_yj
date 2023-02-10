@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import resampled_mvo
 from datetime import datetime
-
+import io
 
 st.set_page_config(layout="wide")
 # st.warning('혜린이 안녕')
@@ -45,4 +45,8 @@ if file is not None:
         if submit is not None:
 
             EF = resampled_mvo.simulation(assets, nSim, nPort)
+
+
+            EF_csv = EF.to_csv().encode('utf-8')
+            st.download_button(label = "Efficient Frontier", data = EF_csv, file_name= "Efficient Frontier.xlsx", mime='text/csv' )
 
