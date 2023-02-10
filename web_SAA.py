@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
-from webSAA import resampled_mvo
-import pandas as pd
+import resampled_mvo
 import warnings
 warnings.filterwarnings("ignore")
 
