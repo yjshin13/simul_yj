@@ -4,7 +4,7 @@ import resampled_mvo
 from datetime import datetime
 
 st.set_page_config(layout="wide")
-st.warning('혜린이 안녕. 사랑해!')
+st.warning('혜린이 안녕')
 
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
@@ -31,4 +31,7 @@ if file is not None:
     with col3:
         Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
         Target = st.number_input('Select Target Return(%)', value=4.00)
+
+    if st.button("Summit"):
+        st.text("혜린아 오늘 뭐하구놀까")
 
