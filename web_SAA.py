@@ -34,6 +34,8 @@ if file is not None:
             Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
 
-        if st.button("Summit"):
-            st.text("혜린아 오늘 뭐하구놀까")
+        # if st.button("Summit"):
+        #     st.text("혜린아 오늘 뭐하구놀까")
+
+        st.form_submit_button("login")
 
