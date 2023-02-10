@@ -3,6 +3,7 @@ import pandas as pd
 import resampled_mvo
 from datetime import datetime
 
+st.set_page_config(layout="wide")
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
 if file is not None:
