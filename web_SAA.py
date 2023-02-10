@@ -16,7 +16,7 @@ if file is not None:
     tickers = st.multiselect('Input Assets', assets.columns, list(assets.columns))
 
 
-    my_expander = st.expander("Expand", expanded=True)
+    my_expander = st.expander(expanded=True)
 
     with my_expander:
         
