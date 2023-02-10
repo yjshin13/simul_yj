@@ -1,8 +1,5 @@
 import streamlit as st
 import pandas as pd
-#import resampled_mvo
-import warnings
-warnings.filterwarnings("ignore")
 
 number1 = st.number_input('Efficient Frontier Points')
 st.write(number1)
