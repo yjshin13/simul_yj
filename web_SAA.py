@@ -15,12 +15,13 @@ if file is not None:
 
     tickers = st.multiselect('Input Assets', assets.columns, list(assets.columns))
 
-    st.subheader('Resampling Parameters:')
-    col1, col2, col3 = st.columns([1, 1, 1])
 
     my_expander = st.expander("Expand", expanded=True)
 
     with my_expander:
+        
+        st.subheader('Resampling Parameters:')
+        col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:
             Growth = st.slider('Growth', 0, 100, (0, 30), 1)
