@@ -2,8 +2,7 @@ import numpy as np
 import pandas as pd
 from cvxpy import *
 from tqdm import tqdm
-# plt.show()
-
+from stqdm import stqdm
 
 def optimal_portfolio(returns, nPort):
 
@@ -67,7 +66,7 @@ def simulation(index_data, sims=10, nPort=200):
     stdev = []
     exp_ret = []
 
-    for i in tqdm(range(0, sims)):
+    for i in stqdm(range(0, sims)):
 
         try:
 
