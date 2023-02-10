@@ -18,7 +18,8 @@ if file is not None:
 
    # my_expander = st.expander("", expanded=True)
 
-    with st.form("Resampling Parameters"):
+    with st.form(label = "Resampling Parameters"):
+        #st.subheader("")
 
         col1, col2, col3 = st.columns([1, 1, 1])
 
@@ -37,5 +38,4 @@ if file is not None:
         # if st.button("Summit"):
         #     st.text("혜린아 오늘 뭐하구놀까")
 
-        st.form_submit_button("Summit")
-
+        submit = st.form_submit_button("Summit")
