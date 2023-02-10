@@ -2,7 +2,8 @@ import numpy as np
 import pandas as pd
 from cvxpy import *
 from tqdm import tqdm
-from stqdm import stqdm
+from stqdm import stqdm 
+
 
 def optimal_portfolio(returns, nPort):
 

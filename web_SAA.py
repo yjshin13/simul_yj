@@ -19,13 +19,14 @@ if file is not None:
    # my_expander = st.expander("", expanded=True)
 
     with st.form("Resampling Parameters"):
+
         st.subheader("Resampling Parameters:")
 
         col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:
             Growth = st.slider('Equity', 0, 100, (0, 30), 1)
-            port_num = st.number_input('Efficient Frontier Points', value=200)
+            nPort = st.number_input('Efficient Frontier Points', value=200)
 
         with col2:
             Inflation = st.slider('Inflation', 0, 100, (0, 10), 1)
@@ -40,5 +41,10 @@ if file is not None:
 
         submit = st.form_submit_button("Summit")
 
-    #f submit
+        if submit is not None:
+
+            EF = resampled_mvo.simulation(assets, nSim, nPort)
+
+
+
 
