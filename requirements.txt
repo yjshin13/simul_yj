@@ -2,4 +2,3 @@ streamlit
 numpy
 panda
 cvxpy
-warnings
