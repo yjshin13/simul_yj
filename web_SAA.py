@@ -14,7 +14,7 @@ if file is not None:
 
     tickers = st.multiselect('Input Assets', assets.columns, list(assets.columns))
 
-    st.header('Resampling Parameters')
+    st.subheader('Resampling Parameters:')
     col1, col2, col3 = st.columns([1, 1, 1])
 
     with col1:
