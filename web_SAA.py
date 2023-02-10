@@ -12,8 +12,9 @@ if file is not None:
     assets = pd.read_excel(file, sheet_name="Daily_price",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
 
-    tickers = st.multiselect('', assets.columns, list(assets.columns))
-    
+    tickers = st.multiselect('Input Assets', assets.columns, list(assets.columns))
+
+    st.title('here is column1')
     col1, col2, col3 = st.columns([1, 1, 1])
 
     with col1:
