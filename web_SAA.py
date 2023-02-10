@@ -13,12 +13,9 @@ if file is not None:
 
     tickers = st.multiselect('', assets.columns, list(assets.columns))
 
-    number1 = st.number_input('Efficient Frontier Points')
-    st.write(number1)
-
-    number2 = st.number_input('Number of Simulations')
-    st.write(number2)
-
-    number3 = st.number_input('Select Target Return(%)')
-    st.write(number3)
-
+    port_num = st.number_input('Efficient Frontier Points')
+    nSim = st.number_input('Number of Simulations')
+    Target = st.number_input('Select Target Return(%)')
+    Growth = st.slider('Growth', 1, 120, 30, 5)
+    Inflation = st.slider('Inflation', 1, 120, 30, 5)
+    Fixed_Income = st.slider('Fixed_Income', 1, 120, 30, 5)
