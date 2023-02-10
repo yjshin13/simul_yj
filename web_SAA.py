@@ -18,13 +18,16 @@ if file is not None:
     col1, col2, col3 = st.columns([1, 1, 1])
 
     with col1:
-        port_num = st.number_input('Efficient Frontier Points', value=200)
         Growth = st.slider('Growth', 0, 100, (0, 30), 1)
+        port_num = st.number_input('Efficient Frontier Points', value=200)
+
 
     with col2:
-        nSim = st.number_input('Number of Simulations', value=200)
         Inflation = st.slider('Inflation', 0, 100, (0, 10), 1)
+        nSim = st.number_input('Number of Simulations', value=200)
+
 
     with col3:
+        Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
         Target = st.number_input('Select Target Return(%)', value=4.00)
-        Fixed_Income = st.slider('Fixed_Income', 0, 100, (60,100), 1)
+
