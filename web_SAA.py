@@ -11,8 +11,8 @@ def data(file):
     return assets
 
 file = st.file_uploader("파일_선택(CSV)", type=['xlsx', 'xls', 'csv'])
+tickers = ('select', data(file).columns)
 
-tickers = ('select', data(file).keys())
 number1 = st.number_input('Efficient Frontier Points')
 st.write(number1)
 
