@@ -16,11 +16,10 @@ if file is not None:
     tickers = st.multiselect('Input Assets', assets.columns, list(assets.columns))
 
 
-    my_expander = st.expander("", expanded=True)
+   # my_expander = st.expander("", expanded=True)
 
     with st.form("Resampling Parameters"):
 
-        st.subheader('Resampling Parameters:')
         col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:
