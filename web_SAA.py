@@ -40,8 +40,13 @@ if file is not None:
         # if st.button("Summit"):
         #     st.text("혜린아 오늘 뭐하구놀까")
 
-        submit = st.form_submit_button("Summit")
+        submit = st.form_submit_button("Summit", on_click=True)
 
         if submit is not None:
 
             EF = resampled_mvo.simulation(assets, nSim, nPort)
+
+
+            # EF_csv = EF.to_csv().encode('utf-8')
+            # st.download_button(label = "Efficient Frontier", data = EF_csv, file_name= "Efficient Frontier.xlsx", mime='text/csv' )
+
