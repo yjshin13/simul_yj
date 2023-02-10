@@ -3,10 +3,16 @@ import pandas as pd
 import resampled_mvo
 from datetime import datetime
 
-file = st.file_uploader("파일_선택(CSV)", type=['xlsx', 'xls', 'csv'])
-assets = pd.read_excel(file, sheet_name="Daily_price", names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
+def data(file):
 
-#tickers = ('select', assets.item())
+    assets = pd.read_excel(file, sheet_name="Daily_price",
+                           names=None, dtype={'Date': datetime}, index_col=0, header=4).dropna()
+
+    return assets
+
+file = st.file_uploader("파일_선택(CSV)", type=['xlsx', 'xls', 'csv'])
+
+tickers = ('select', data(file).columns.item())
 number1 = st.number_input('Efficient Frontier Points')
 st.write(number1)
 
