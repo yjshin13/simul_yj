@@ -45,7 +45,6 @@ if file is not None:
 
             EF = resampled_mvo.simulation(assets, nSim, nPort)
             Result = EF.to_excel()
-            st.download_button("Efficient Frontier", Result, "Efficient Frontier.xlsx",)
-
+            #st.download_button("Efficient Frontier", Result, "Efficient Frontier.xlsx",)
 
 
