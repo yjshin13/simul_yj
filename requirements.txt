@@ -5,3 +5,4 @@ cvxpy
 tqdm
 datetime
 openpyxl
+stqdm
