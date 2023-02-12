@@ -45,6 +45,10 @@ if file is not None:
             EF = EF.applymap('{:.6%}'.format)
             # csv = EF.to_csv(index=False).encode('utf-8')
 
+            fig, ax = plt.subplots()
+            sns.heatmap(EF.drop(['EXP_RET', 'STDEV'], axis=1).corr(), ax=ax)
+            st.write(fig)
+
     if EF.empty==False:
 
         st.download_button(
@@ -53,6 +57,3 @@ if file is not None:
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
 
-        fig, ax = plt.subplots()
-        sns.heatmap(EF.drop(['EXP_RET', 'STDEV'], axis=1).corr(), ax=ax)
-        st.write(fig)
