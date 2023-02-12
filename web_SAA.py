@@ -5,7 +5,7 @@ from datetime import datetime
 import io
 
 st.set_page_config(layout="wide")
-st.warning('혜린이 안녕 아이러븅')
+#st.warning('혜린이 안녕 아이러븅')
 
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
