@@ -45,7 +45,7 @@ if file is not None:
             EF = EF.applymap('{:.6%}'.format)
             # csv = EF.to_csv(index=False).encode('utf-8')
 
-            fig, ax = assets.subplots()
+            fig, ax = plt.plot()
             sns.heatmap(assets.corr(), ax=ax)
             st.write(fig)
 
