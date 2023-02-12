@@ -4,7 +4,7 @@ import resampled_mvo
 from datetime import datetime
 
 st.set_page_config(layout="wide")
-# st.warning('혜린이 안녕')
+
 
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
@@ -36,8 +36,8 @@ if file is not None:
             Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
 
-        summited = st.form_submit_button("Summit", on_click=True)
+        summit = st.form_submit_button("Summit", on_click=True)
 
-        if summited is not None:
+        if summit is not None:
 
             EF = resampled_mvo.simulation(assets, nSim, nPort)
