@@ -46,5 +46,4 @@ if file is not None:
         st.download_button(
             label="Download data as CSV",
             data=EF.to_csv(),
-            mime='text/csv',
-        )
+            mime='text/csv',)
