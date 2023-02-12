@@ -14,7 +14,7 @@ st.set_page_config(layout="wide")
 #         mime='text/csv',
 #         file_name='Efficient Frontier.csv')
 
-EF = pd.Dataframe()
+EF = pd.DataFrame()
 
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
