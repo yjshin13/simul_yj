@@ -4,6 +4,7 @@ import resampled_mvo
 from datetime import datetime
 
 st.set_page_config(layout="wide")
+# st.warning('혜린이 안녕')
 
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
@@ -40,3 +41,11 @@ if file is not None:
         if summit:
 
             EF = resampled_mvo.simulation(assets, nSim, nPort)
+            csv = EF.to_csv(index=False).encode('utf-8')
+
+            st.download_button(
+                label="Download data as CSV",
+                data=csv,
+                file_name='large_df.csv',
+                mime='text/csv',
+            )
