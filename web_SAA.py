@@ -18,7 +18,7 @@ if file is not None:
 
    # my_expander = st.expander("", expanded=True)
 
-    with st.form("Resampling Parameters", clear_on_submit=True):
+    with st.form("Resampling Parameters", clear_on_submit=False):
 
         st.subheader("Resampling Parameters:")
 
@@ -39,5 +39,5 @@ if file is not None:
         summit = st.form_submit_button("Summit")
 
         if summit:
-            
+
             EF = resampled_mvo.simulation(assets, nSim, nPort)
