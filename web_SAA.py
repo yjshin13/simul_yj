@@ -50,7 +50,5 @@ if file is not None:
 
             EF = resampled_mvo.simulation(assets, nSim, nPort)
             # csv = EF.to_csv(index=False).encode('utf-8')
-
-    if EF is not None:
         
         download_df(EF)
