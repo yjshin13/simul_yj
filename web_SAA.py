@@ -49,4 +49,4 @@ if file is not None:
                 label="Efficient Frontier",
                 data=EF.to_csv(),
                 mime='text/csv',
-                file_name='Efficient Frontier')
+                file_name='Efficient Frontier.csv')
