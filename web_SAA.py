@@ -43,8 +43,8 @@ if file is not None:
             EF = resampled_mvo.simulation(assets, nSim, nPort)
             # csv = EF.to_csv(index=False).encode('utf-8')
 
-            st.download_button(
-                label="Download data as CSV",
-                data=EF.to_csv(),
-                mime='text/csv',
-            )
+        st.download_button(
+            label="Download data as CSV",
+            data=EF.to_csv(),
+            mime='text/csv',
+        )
