@@ -7,13 +7,13 @@ st.set_page_config(layout="wide")
 # st.warning('혜린이 안녕')
 
 def download_df(data):
-    
+
     st.download_button(
         label="Download data as CSV",
         data=data.to_csv(),
         mime='text/csv',
         file_name='Efficient Frontier.csv')
-    
+
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
 if file is not None:
@@ -50,5 +50,7 @@ if file is not None:
 
             EF = resampled_mvo.simulation(assets, nSim, nPort)
             # csv = EF.to_csv(index=False).encode('utf-8')
-        
+            
+    if EF:
+
         download_df(EF)
