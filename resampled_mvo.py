@@ -1,91 +1,52 @@
-import numpy as np
+import streamlit as st
 import pandas as pd
-from cvxpy import *
-from tqdm import tqdm
-from stqdm import stqdm 
+import resampled_mvo
+from datetime import datetime
+import io
+
+st.set_page_config(layout="wide")
+# st.warning('혜린이 안녕')
+
+file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
+
+if file is not None:
+
+    assets = pd.read_excel(file, sheet_name="Daily_price",
+                           names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
+
+    tickers = st.multiselect('Input Assets', assets.columns, list(assets.columns))
 
 
-def optimal_portfolio(returns, nPort):
+   # my_expander = st.expander("", expanded=True)
 
-    n = len(returns.columns)
-    w = Variable(n)
-    mu = returns.mean() * 252
-    Sigma = returns.cov() * 252
-    gamma = Parameter(nonneg=True)
-    ret = mu.values.T * w
-    risk = quad_form(w, Sigma.values)
-    prob = Problem(Maximize(ret - gamma * risk),
-                   [sum(w) == 1, w >= 0.0,
-                    sum(w[0:5]) <= 0.4,  # Equity Weight Constraint
-                    sum(w[6:14]) <= 0.2,  # Inflation Protection Constraint
-                    sum(w[15:25]) >= 0.5])  # Fixed Income Constraint
+    with st.form("Resampling Parameters", clear_on_submit=True):
 
-    risk_data = np.zeros(nPort)
-    ret_data = np.zeros(nPort)
-    gamma_vals = np.logspace(-2, 3, num=nPort)
-    weights = []
+        st.subheader("Resampling Parameters:")
 
-    for i in range(nPort):
+        col1, col2, col3 = st.columns([1, 1, 1])
 
+        with col1:
+            Growth = st.slider('Equity', 0, 100, (0, 30), 1)
+            nPort = st.number_input('Efficient Frontier Points', value=200)
 
-        gamma.value = gamma_vals[i]
-        prob.solve()
-        # prob.solve(verbose=True)
-        risk_data[i] = sqrt(risk).value
-        ret_data[i] = ret.value
-        weights.append(np.squeeze(np.asarray(w.value)))
+        with col2:
+            Inflation = st.slider('Inflation', 0, 100, (0, 10), 1)
+            nSim = st.number_input('Number of Simulations', value=200)
 
+        with col3:
+            Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
+            Target = st.number_input('Select Target Return(%)', value=4.00)
 
-    weight = pd.DataFrame(data=weights, columns=returns.columns)
-    return weight, ret_data, risk_data
+        # if st.button("Summit"):
+        #     st.text("혜린아 오늘 뭐하구놀까")
+
+        submit = st.form_submit_button("Summit", on_click=False)
+
+        if submit is not None:
+
+            EF = resampled_mvo.simulation(assets, nSim, nPort)
 
 
-def simulation(index_data, sims=10, nPort=200):
-    # period=int(period/2)+1
-    # create date index
+            # EF_csv = EF.to_csv().encode('utf-8')
+            # st.download_button(label = "Efficient Frontier", data = EF_csv, file_name= "Efficient Frontier.xlsx", mime='text/csv' )
 
-    input_returns = index_data.pct_change().dropna()
-    period = len(input_returns)
-    input_returns = np.log(input_returns+1)
-    er = input_returns.mean()
-    cov = input_returns.cov()
-    corr = input_returns.corr()
-
-    dates = pd.date_range(start='2022-08-20', periods=period, freq='D')
-    data = []
-    # generate 10 years of daily data
-
-    for i in range(0, sims):
-        data.append(pd.DataFrame(columns=cov.columns, index=dates,
-                                data=np.random.multivariate_normal(er.values, cov.values, period)))
-                                #data = resample_returns(input_data, period, 3)))
-
-    #data = bootstrapping(input_returns, n_sim=sims)
-
-    # store values from simulation
-    weights = []
-    stdev = []
-    exp_ret = []
-
-    for i in stqdm(range(0, sims)):
-
-        try:
-
-            # optimize over every simulation
-            w, r, std = optimal_portfolio(data[i], nPort)
-            weights.append(w)
-            stdev.append(std)
-            exp_ret.append(r)
-
-        except SolverError:
-
-            pass
-
-    w = np.mean(weights, axis=0)
-    s = np.mean(stdev, axis=0)
-    r = np.mean(exp_ret, axis=0)
-    concat = np.hstack([a.reshape(nPort, -1) for a in [r, s, w]])
-    column_names = list(input_returns.columns)
-    Resampled_EF = pd.DataFrame(concat, columns=["EXP_RET", "STDEV"] + column_names)
-
-    return Resampled_EF
