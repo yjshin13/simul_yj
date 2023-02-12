@@ -43,10 +43,10 @@ if file is not None:
             EF = resampled_mvo.simulation(assets, nSim, nPort)
             # csv = EF.to_csv(index=False).encode('utf-8')
 
-        if EF:
+    if EF:
 
-            st.download_button(
-                label="Download data as CSV",
-                data=EF.to_csv(),
-                mime='text/csv',
-                file_name='Efficient Frontier.csv' )
+        st.download_button(
+            label="Download data as CSV",
+            data=EF.to_csv(),
+            mime='text/csv',
+            file_name='Efficient Frontier.csv' )
