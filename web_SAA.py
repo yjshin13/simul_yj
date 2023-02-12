@@ -36,17 +36,17 @@ if file is not None:
             Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
 
-        summit = st.form_submit_button("Summit")
+        summit = st.form_submit_button("Summit", on_click=True)
 
         if summit:
 
             EF = resampled_mvo.simulation(assets, nSim, nPort)
             # csv = EF.to_csv(index=False).encode('utf-8')
-
-    if EF is not None:
-
-        st.download_button(
-            label="Download data as CSV",
-            data=EF.to_csv(),
-            mime='text/csv',
-            file_name='Efficient Frontier.csv' )
+    # 
+    # if EF is not None:
+    # 
+    #     st.download_button(
+    #         label="Download data as CSV",
+    #         data=EF.to_csv(),
+    #         mime='text/csv',
+    #         file_name='Efficient Frontier.csv' )
