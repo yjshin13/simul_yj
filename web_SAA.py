@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import resampled_mvo
 from datetime import datetime
-#import io
 
 st.set_page_config(layout="wide")
 # st.warning('혜린이 안녕')
@@ -37,16 +36,9 @@ if file is not None:
             Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
 
-        # if st.button("Summit"):
-        #     st.text("혜린아 오늘 뭐하구놀까")
+        summit = st.form_submit_button("Summit")
 
-        submit = st.form_submit_button("Summit", on_click=True)
-
-        if submit is not None:
-
-            EF = resampled_mvo.simulation(assets, nSim, nPort)
-
-
-            # EF_csv = EF.to_csv().encode('utf-8')
-            # st.download_button(label = "Efficient Frontier", data = EF_csv, file_name= "Efficient Frontier.xlsx", mime='text/csv' )
-
+        # if summit:
+        #
+        #
+        #     EF = resampled_mvo.simulation(assets, nSim, nPort)
