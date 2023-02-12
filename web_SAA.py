@@ -38,7 +38,6 @@ if file is not None:
 
         summit = st.form_submit_button("Summit")
 
-        # if summit:
-        #
-        #
-        #     EF = resampled_mvo.simulation(assets, nSim, nPort)
+        if summit:
+            
+            EF = resampled_mvo.simulation(assets, nSim, nPort)
