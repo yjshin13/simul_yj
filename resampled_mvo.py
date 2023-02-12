@@ -40,9 +40,9 @@ if file is not None:
         # if st.button("Summit"):
         #     st.text("혜린아 오늘 뭐하구놀까")
 
-        submit = st.form_submit_button("Summit", on_click=False)
+        submit = st.form_submit_button("Summit")
 
-        if submit is not None:
+        if submit:
 
             EF = resampled_mvo.simulation(assets, nSim, nPort)
 
