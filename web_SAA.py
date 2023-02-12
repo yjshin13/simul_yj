@@ -4,7 +4,6 @@ import resampled_mvo
 from datetime import datetime
 
 st.set_page_config(layout="wide")
-# st.warning('혜린이 안녕')
 #
 # def download_df(data):
 #
@@ -53,7 +52,7 @@ if file is not None:
             EF = resampled_mvo.simulation(assets, nSim, nPort)
             # csv = EF.to_csv(index=False).encode('utf-8')
 
-    if len(EF)>0:
+    if EF.empty:
 
         st.download_button(
                 label="Download data as CSV",
