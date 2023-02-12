@@ -46,7 +46,7 @@ if file is not None:
             # csv = EF.to_csv(index=False).encode('utf-8')
 
             fig, ax = plt.subplot()
-            sns.heatmap(assets.corr(), ax=ax)
+            sns.heatmap(assets.pct_change().dropna().corr(), ax=ax)
             st.write(fig)
 
     if EF.empty==False:
