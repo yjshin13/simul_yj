@@ -4,7 +4,6 @@ import resampled_mvo
 from datetime import datetime
 
 st.set_page_config(layout="wide")
-# st.warning('혜린이 안녕')
 
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
