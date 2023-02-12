@@ -4,22 +4,11 @@ import resampled_mvo
 from datetime import datetime
 
 st.set_page_config(layout="wide")
-# st.warning('혜린이 안녕')
-#
-# def download_df(data):
-#
-#     st.download_button(
-#         label="Download data as CSV",
-#         data=data.to_csv(),
-#         mime='text/csv',
-#         file_name='Efficient Frontier.csv')
-
-EF = pd.DataFrame()
 
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
 if file is not None:
-
+    EF = pd.DataFrame()
     assets = pd.read_excel(file, sheet_name="Daily_price",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
 
