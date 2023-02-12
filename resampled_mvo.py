@@ -19,7 +19,7 @@ if file is not None:
 
    # my_expander = st.expander("", expanded=True)
 
-    with st.form("Resampling Parameters", clear_on_submit=True):
+    with st.form("Resampling Parameters"):
 
         st.subheader("Resampling Parameters:")
 
@@ -36,15 +36,13 @@ if file is not None:
         with col3:
             Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
+       summited = st.form_submit_button("Summit", on_click=True)
 
-        # if st.button("Summit"):
-        #     st.text("혜린아 오늘 뭐하구놀까")
+    if summited:
 
-        if st.form_submit_button("Summit", on_click=True):
-
-            EF = resampled_mvo.simulation(assets, nSim, nPort)
+        EF = resampled_mvo.simulation(assets, nSim, nPort)
 
 
-            # EF_csv = EF.to_csv().encode('utf-8')
-            # st.download_button(label = "Efficient Frontier", data = EF_csv, file_name= "Efficient Frontier.xlsx", mime='text/csv' )
+        # EF_csv = EF.to_csv().encode('utf-8')
+        # st.download_button(label = "Efficient Frontier", data = EF_csv, file_name= "Efficient Frontier.xlsx", mime='text/csv' )
 
