@@ -38,9 +38,9 @@ if file is not None:
             Target = st.number_input('Select Target Return(%)', value=4.00)
         summited = st.form_submit_button("Summit", on_click=True)
 
-    if summited:
+        if summited:
 
-        EF = resampled_mvo.simulation(assets, nSim, nPort)
+            EF = resampled_mvo.simulation(assets, nSim, nPort)
 
 
             # EF_csv = EF.to_csv().encode('utf-8')
