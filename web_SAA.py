@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import resampled_mvo
 from datetime import datetime
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 st.set_page_config(layout="wide")
 
@@ -50,3 +52,7 @@ if file is not None:
                 data=EF.to_csv(),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
+
+        fig, ax = plt.subplots()
+        sns.heatmap(EF.drop(['EXP_RET', 'STDEV'], axis=1).corr(), ax=ax)
+        st.write(fig)
