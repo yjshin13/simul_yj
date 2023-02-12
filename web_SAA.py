@@ -41,11 +41,10 @@ if file is not None:
         if summit:
 
             EF = resampled_mvo.simulation(assets, nSim, nPort)
-#             csv = EF.to_csv(index=False).encode('utf-8')
+            # csv = EF.to_csv(index=False).encode('utf-8')
 
-#             st.download_button(
-#                 label="Download data as CSV",
-#                 data=csv,
-#                 file_name='large_df.csv',
-#                 mime='text/csv',
-#             )
+            st.download_button(
+                label="Download data as CSV",
+                data=EF.to_csv(),
+                mime='text/csv',
+            )
