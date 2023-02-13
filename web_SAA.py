@@ -15,10 +15,14 @@ if file is not None:
     price = pd.read_excel(file, sheet_name="price",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
 
+
+
     universe = pd.read_excel(file, sheet_name="universe",
                              names=None, dtype={'Date': datetime}, header=0)
-
     tickers = st.multiselect('Input Assets', price.columns, list(price.columns))
+
+    input_price = price[list(tickers)]
+    input_universe = universe[universe['symbol'].isin(list(tickers))]
 
 
 
@@ -48,12 +52,10 @@ if file is not None:
         summit = st.form_submit_button("Summit")
 
         if summit:
-            
-            input_price = price[list(tickers)]
-            input_universe = universe[universe['symbol'].isin(list(tickers))]
+
+
             EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe)
             EF = EF.applymap('{:.6%}'.format)
-            # csv = EF.to_csv(index=False).encode('utf-8')
 
             # fig, ax = plt.subplots()
             # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
