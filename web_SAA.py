@@ -6,7 +6,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 st.set_page_config(layout="wide")
-    
+
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
 if file is not None:
@@ -36,15 +36,15 @@ if file is not None:
         col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:
-            Growth_cons = st.slider('Equity', 0, 100, (0, 30), 1)
+            Growth = st.slider('Equity', 0, 100, (0, 30), 1)
             nPort = st.number_input('Efficient Frontier Points', value=200)
 
         with col2:
-            Inflation_cons = st.slider('Inflation', 0, 100, (0, 10), 1)
+            Inflation = st.slider('Inflation', 0, 100, (0, 10), 1)
             nSim = st.number_input('Number of Simulations', value=200)
 
         with col3:
-            Fixed_Income_cons = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
+            Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
 
         summit = st.form_submit_button("Summit")
