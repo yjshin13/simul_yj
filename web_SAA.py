@@ -58,8 +58,8 @@ if file is not None:
             A = input_universe.copy()
             A.index = input_universe['symbol']
             Result = pd.concat([A.drop(['symbol'], axis=1).T, EF], axis=0, join='outer')
-            col1 = Result.columns[-2:].to_list()
-            col2 = Result.columns[:-2].to_list()
+            col1 = Result.columns[-2:]
+            col2 = Result.columns[:-2]
             new_col = col1 + col2
             Result = Result[new_col]
 
