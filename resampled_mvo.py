@@ -1,11 +1,8 @@
 import numpy as np
 import pandas as pd
 from cvxpy import *
-import warnings
-import arch.bootstrap as bs
-warnings.filterwarnings("ignore")
 from tqdm import tqdm
-# plt.show()
+from stqdm import stqdm
 
 
 def optimal_portfolio(returns, nPort, cons1, cons2, cons3):
@@ -74,7 +71,7 @@ def simulation(index_data, sims, nPort, universe):
     stdev = []
     exp_ret = []
 
-    for i in tqdm(range(0, sims)):
+    for i in stqdm(range(0, sims)):
 
         try:
 
