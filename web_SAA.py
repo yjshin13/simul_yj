@@ -21,6 +21,7 @@ if file is not None:
     tickers = st.multiselect('Input Assets', price.columns, list(price.columns))
 
     input_price = price[list(tickers)]
+    input_universe= universe[universe['symbol'].isin(list(tickers))]
 
 
    # my_expander = st.expander("", expanded=True)
