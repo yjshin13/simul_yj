@@ -19,6 +19,8 @@ if file is not None:
                              names=None, dtype={'Date': datetime}, header=0)
 
     tickers = st.multiselect('Input Assets', price.columns, list(price.columns))
+    
+    st.write(tickers)
 
 
    # my_expander = st.expander("", expanded=True)
