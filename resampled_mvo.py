@@ -5,7 +5,7 @@ from tqdm import tqdm
 from stqdm import stqdm
 
 
-def optimal_portfolio(returns, nPort, cons1, cons2, cons3, cons_range1, cons_range2, cons_range3):
+def optimal_portfolio(returns, nPort, cons1, cons2, cons3):
 
     n = len(returns.columns)
     w = Variable(n)
