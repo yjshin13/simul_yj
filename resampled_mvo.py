@@ -17,12 +17,12 @@ def optimal_portfolio(returns, nPort, cons1, cons2, cons3,
     risk = quad_form(w, Sigma.values)
     prob = Problem(Maximize(ret - gamma * risk),
                    [sum(w) == 1, w >= 0.0,
-                    sum(w[cons1]) >= float(cons_range1[0]),
-                    sum(w[cons1]) <= float(cons_range1[1]),
-                    sum(w[cons2]) >= float(cons_range2[0]),
-                    sum(w[cons2]) <= float(cons_range2[1]),
-                    sum(w[cons3]) >= float(cons_range3[0]),
-                    sum(w[cons3]) <= float(cons_range3[1])])
+                    sum(w[cons1]) >= cons_range1[0]/100,
+                    sum(w[cons1]) <= cons_range1[1]/100,
+                    sum(w[cons2]) >= cons_range2[0]/100,
+                    sum(w[cons2]) <= cons_range2[1]/100,
+                    sum(w[cons3]) >= cons_range3[0]/100,
+                    sum(w[cons3]) <= cons_range3[1]/100])
 
     risk_data = np.zeros(nPort)
     ret_data = np.zeros(nPort)
