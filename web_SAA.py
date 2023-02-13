@@ -15,16 +15,12 @@ if file is not None:
     price = pd.read_excel(file, sheet_name="price",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
 
-
-
     universe = pd.read_excel(file, sheet_name="universe",
                              names=None, dtype={'Date': datetime}, header=0)
-    tickers = st.multiselect('Input Assets', price.columns, list(price.columns))
+    tickers = st.multiselect('Input Assets', price.columns, list(price.columns + " - "))
 
     input_price = price[list(tickers)]
     input_universe = universe[universe['symbol'].isin(list(tickers))]
-
-
 
 
    # my_expander = st.expander("", expanded=True)
