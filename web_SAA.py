@@ -24,7 +24,7 @@ if file is not None:
     assets = universe['symbol'][universe['key'].isin(list(select))]
 
     input_price = price[list(assets)]
-    input_universe = universe[universe['symbol'].isin(list(assets))]
+    input_universe = universe[universe['symbol'].isin(list(assets))].drop(['key'], axis=1)
 
 
    # my_expander = st.expander("", expanded=True)
