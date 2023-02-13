@@ -71,7 +71,7 @@ if file is not None:
 
         st.download_button(
                 label="Efficient Frontier",
-                data=Result.to_csv(),
+                data=Result.to_csv(index=False),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
 
