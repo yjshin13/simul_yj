@@ -51,9 +51,9 @@ if file is not None:
             EF = EF.applymap('{:.6%}'.format)
             # csv = EF.to_csv(index=False).encode('utf-8')
 
-            fig, ax = plt.subplots()
-            sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
-            st.write(fig)
+            # fig, ax = plt.subplots()
+            # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
+            # st.write(fig)
 
     if EF.empty==False:
 
