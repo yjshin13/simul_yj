@@ -5,7 +5,8 @@ from tqdm import tqdm
 from stqdm import stqdm
 
 
-def optimal_portfolio(returns, nPort, cons1, cons2, cons3):
+def optimal_portfolio(returns, nPort, cons1, cons2, cons3,
+                      cons_range1, cons_range2, cons_range3):
 
     n = len(returns.columns)
     w = Variable(n)
@@ -16,9 +17,12 @@ def optimal_portfolio(returns, nPort, cons1, cons2, cons3):
     risk = quad_form(w, Sigma.values)
     prob = Problem(Maximize(ret - gamma * risk),
                    [sum(w) == 1, w >= 0.0,
-                    sum(w[cons1]) <= 0,  # Equity Weight Constraint
-                    sum(w[cons2]) <= 0.2,  # Inflation Protection Constraint
-                    sum(w[cons3]) >= 0.8])  # Fixed Income Constraint
+                    sum(w[cons1]) >= cons_range1[0],
+                    sum(w[cons1]) <= cons_range1[1],
+                    sum(w[cons2]) >= cons_range2[0],
+                    sum(w[cons2]) <= cons_range2[1],
+                    sum(w[cons3]) >= cons_range3[0],
+                    sum(w[cons3]) <= cons_range3[1]])
 
     risk_data = np.zeros(nPort)
     ret_data = np.zeros(nPort)
@@ -40,7 +44,7 @@ def optimal_portfolio(returns, nPort, cons1, cons2, cons3):
     return weight, ret_data, risk_data
 
 
-def simulation(index_data, sims, nPort, universe):
+def simulation(index_data, sims, nPort, universe, cons_range1, cons_range2, cons_range3):
     # period=int(period/2)+1
     # create date index
 
@@ -76,7 +80,8 @@ def simulation(index_data, sims, nPort, universe):
         try:
 
             # optimize over every simulation
-            w, r, std = optimal_portfolio(data[i], nPort, growth, inflation, fixed_income)
+            w, r, std = optimal_portfolio(data[i], nPort, growth, inflation, fixed_income,
+                                          cons_range1, cons_range2, cons_range3)
             weights.append(w)
             stdev.append(std)
             exp_ret.append(r)
