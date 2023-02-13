@@ -5,7 +5,7 @@ from tqdm import tqdm
 from stqdm import stqdm
 
 
-def optimal_portfolio(returns, nPort, cons1, cons2, cons3,
+def optimal_portfolio(returns, nPort, assets1, assets2, assets3,
                       constraint_range):
 
     n = len(returns.columns)
@@ -17,12 +17,12 @@ def optimal_portfolio(returns, nPort, cons1, cons2, cons3,
     risk = quad_form(w, Sigma.values)
     prob = Problem(Maximize(ret - gamma * risk),
                    [sum(w) == 1, w >= 0.0,
-                    sum(w[cons1]) >= constraint_range[0][0]/100,
-                    sum(w[cons1]) <= constraint_range[0][1]/100,
-                    sum(w[cons2]) >= constraint_range[1][0]/100,
-                    sum(w[cons2]) <= constraint_range[1][1]/100,
-                    sum(w[cons3]) >= constraint_range[2][0]/100,
-                    sum(w[cons3]) <= constraint_range[2][1]/100])
+                    sum(w[assets1]) >= constraint_range[0][0]/100,
+                    sum(w[assets1]) <= constraint_range[0][1]/100,
+                    sum(w[assets2]) >= constraint_range[1][0]/100,
+                    sum(w[assets2]) <= constraint_range[1][1]/100,
+                    sum(w[assets3]) >= constraint_range[2][0]/100,
+                    sum(w[assets3]) <= constraint_range[2][1]/100])
 
     risk_data = np.zeros(nPort)
     ret_data = np.zeros(nPort)
@@ -48,9 +48,9 @@ def simulation(index_data, sims, nPort, universe, constraint_range):
     # period=int(period/2)+1
     # create date index
 
-    growth = universe.index[universe['asset_class'] == 'equity']
-    inflation = universe.index[universe['asset_class'] == 'inflation_protection']
-    fixed_income = universe.index[universe['asset_class'] == 'fixed_income']
+    growth_assets = universe.index[universe['asset_class'] == 'equity']
+    inflation_assets = universe.index[universe['asset_class'] == 'inflation_protection']
+    fixed_income_assets = universe.index[universe['asset_class'] == 'fixed_income']
 
     input_returns = index_data.pct_change().dropna()
     period = len(input_returns)
@@ -59,7 +59,7 @@ def simulation(index_data, sims, nPort, universe, constraint_range):
     cov = input_returns.cov()
     corr = input_returns.corr()
 
-    dates = pd.date_range(start='2022-08-20', periods=period, freq='D')
+    dates = pd.date_range(start='2023-03-20', periods=period, freq='D')
     data = []
     # generate 10 years of daily data
 
@@ -80,8 +80,8 @@ def simulation(index_data, sims, nPort, universe, constraint_range):
         try:
 
             # optimize over every simulation
-            w, r, std = optimal_portfolio(data[i], nPort, growth, inflation, fixed_income,
-                                          constraint_range)
+            w, r, std = optimal_portfolio(data[i], nPort, growth_assets, inflation_assets,
+                                          fixed_income_assets, constraint_range)
             weights.append(w)
             stdev.append(std)
             exp_ret.append(r)
