@@ -47,7 +47,7 @@ if file is not None:
 
         if summit:
 
-            EF = resampled_mvo.simulation(price, nSim, nPort)
+            EF = resampled_mvo.simulation(price, nSim, nPort, universe)
             EF = EF.applymap('{:.6%}'.format)
             # csv = EF.to_csv(index=False).encode('utf-8')
 
