@@ -79,8 +79,7 @@ def simulation(index_data, sims, nPort, universe, cons_range1, cons_range2, cons
         try:
 
             # optimize over every simulation
-            w, r, std = optimal_portfolio(data[i], nPort, growth, inflation, fixed_income,
-                                          cons_range1, cons_range2, cons_range3)
+            w, r, std = optimal_portfolio(data[i], nPort, growth, inflation, fixed_income)
             weights.append(w)
             stdev.append(std)
             exp_ret.append(r)
