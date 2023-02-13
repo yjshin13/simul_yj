@@ -57,7 +57,6 @@ def simulation(index_data, sims, nPort, universe, constraint_range):
     input_returns = np.log(input_returns+1)
     er = input_returns.mean()
     cov = input_returns.cov()
-    corr = input_returns.corr()
 
     dates = pd.date_range(start='2023-03-20', periods=period, freq='D')
     data = []
