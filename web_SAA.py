@@ -47,7 +47,7 @@ if file is not None:
             Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
 
-            st.write(Fixed_Income)
+            st.write(Fixed_Income[1])
 
         summit = st.form_submit_button("Summit")
 
