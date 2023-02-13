@@ -43,7 +43,7 @@ def optimal_portfolio(returns, nPort, cons1, cons2, cons3):
     return weight, ret_data, risk_data
 
 
-def simulation(index_data, sims, nPort, universe, cons_range1, cons_range2, cons_range3):
+def simulation(index_data, sims, nPort, universe):
     # period=int(period/2)+1
     # create date index
 
