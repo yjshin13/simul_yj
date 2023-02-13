@@ -16,12 +16,12 @@ def optimal_portfolio(returns, nPort, cons1, cons2, cons3, cons_range1, cons_ran
     risk = quad_form(w, Sigma.values)
     prob = Problem(Maximize(ret - gamma * risk),
                    [sum(w) == 1, w >= 0.0,
-                    sum(w[cons1]) >= cons_range1[0],
-                    sum(w[cons1]) <= cons_range1[1],  # Equity Weight Constraint
-                    sum(w[cons2]) >= cons_range2[0],  # Inflation Protection Constraint
-                    sum(w[cons2]) <= cons_range2[1],
-                    sum(w[cons3]) >= cons_range3[0],
-                    sum(w[cons3]) <= cons_range3[1],])  # Fixed Income Constraint
+                    sum(w[cons1]) >= 0.5,
+                    sum(w[cons1]) <= 0.5,  # Equity Weight Constraint
+                    sum(w[cons2]) >= 0.5,  # Inflation Protection Constraint
+                    sum(w[cons2]) <= 0.5,
+                    sum(w[cons3]) >= 0.5,
+                    sum(w[cons3]) <= 0.5])  # Fixed Income Constraint
 
     risk_data = np.zeros(nPort)
     ret_data = np.zeros(nPort)
