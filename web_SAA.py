@@ -19,8 +19,8 @@ if file is not None:
                              names=None, dtype={'Date': datetime}, header=0)
 
     tickers = st.multiselect('Input Assets', price.columns, list(price.columns))
-    
-    st.write(tickers)
+
+    input_price = price[list(tickers)]
 
 
    # my_expander = st.expander("", expanded=True)
@@ -49,7 +49,7 @@ if file is not None:
 
         if summit:
 
-            EF = resampled_mvo.simulation(price, nSim, nPort, universe)
+            EF = resampled_mvo.simulation(input_price, nSim, nPort, universe)
             EF = EF.applymap('{:.6%}'.format)
             # csv = EF.to_csv(index=False).encode('utf-8')
 
