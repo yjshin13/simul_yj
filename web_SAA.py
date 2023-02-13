@@ -20,8 +20,7 @@ if file is not None:
 
     tickers = st.multiselect('Input Assets', price.columns, list(price.columns))
 
-    input_price = price[list(tickers)]
-    input_universe= universe[universe['symbol'].isin(list(tickers))]
+
 
 
    # my_expander = st.expander("", expanded=True)
@@ -49,8 +48,10 @@ if file is not None:
         summit = st.form_submit_button("Summit")
 
         if summit:
-
-            EF = resampled_mvo.simulation(input_price, nSim, nPort, universe)
+            
+            input_price = price[list(tickers)]
+            input_universe = universe[universe['symbol'].isin(list(tickers))]
+            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe)
             EF = EF.applymap('{:.6%}'.format)
             # csv = EF.to_csv(index=False).encode('utf-8')
 
