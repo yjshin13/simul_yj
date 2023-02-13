@@ -46,13 +46,14 @@ if file is not None:
         with col3:
             Fixed_Income_range = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
-            st.write(type(Fixed_Income_range))
+
+            constraint_range=[Growth_range,Inflation_range,Fixed_Income_range]
 
         summit = st.form_submit_button("Summit")
 
         if summit:
 
-            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, Growth_range, Inflation_range, Fixed_Income_range)
+            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             EF = EF.applymap('{:.6%}'.format)
 
             # fig, ax = plt.subplots()
