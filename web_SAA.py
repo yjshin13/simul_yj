@@ -10,11 +10,15 @@ st.set_page_config(layout="wide")
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
 if file is not None:
+
     EF = pd.DataFrame()
-    assets = pd.read_excel(file, sheet_name="Daily_price",
+    price = pd.read_excel(file, sheet_name="price",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
 
-    tickers = st.multiselect('Input Assets', assets.columns, list(assets.columns))
+    universe = pd.read_excel(file, sheet_name="universe",
+                             names=None, dtype={'Date': datetime}, header=0)
+
+    tickers = st.multiselect('Input Assets', price.columns, list(price.columns))
 
 
    # my_expander = st.expander("", expanded=True)
@@ -36,18 +40,19 @@ if file is not None:
         with col3:
             Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
-            #st.write(Fixed_Income)
+
+            st.write(Fixed_Income)
 
         summit = st.form_submit_button("Summit")
 
         if summit:
 
-            EF = resampled_mvo.simulation(assets, nSim, nPort)
+            EF = resampled_mvo.simulation(price, nSim, nPort)
             EF = EF.applymap('{:.6%}'.format)
             # csv = EF.to_csv(index=False).encode('utf-8')
 
             fig, ax = plt.subplots()
-            sns.heatmap(assets.pct_change().dropna().corr(), ax=ax)
+            sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
             st.write(fig)
 
     if EF.empty==False:
