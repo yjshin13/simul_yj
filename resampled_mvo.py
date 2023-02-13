@@ -1,11 +1,14 @@
 import numpy as np
 import pandas as pd
 from cvxpy import *
+import warnings
+import arch.bootstrap as bs
+warnings.filterwarnings("ignore")
 from tqdm import tqdm
-from stqdm import stqdm
+# plt.show()
 
 
-def optimal_portfolio(returns, nPort):
+def optimal_portfolio(returns, nPort, cons1, cons2, cons3):
 
     n = len(returns.columns)
     w = Variable(n)
@@ -16,9 +19,9 @@ def optimal_portfolio(returns, nPort):
     risk = quad_form(w, Sigma.values)
     prob = Problem(Maximize(ret - gamma * risk),
                    [sum(w) == 1, w >= 0.0,
-                    sum(w[0:5]) <= 0.4,  # Equity Weight Constraint
-                    sum(w[6:14]) <= 0.2,  # Inflation Protection Constraint
-                    sum(w[15:25]) >= 0.5])  # Fixed Income Constraint
+                    sum(w[cons1]) <= 0,  # Equity Weight Constraint
+                    sum(w[cons2]) <= 0.2,  # Inflation Protection Constraint
+                    sum(w[cons3]) >= 0.8])  # Fixed Income Constraint
 
     risk_data = np.zeros(nPort)
     ret_data = np.zeros(nPort)
@@ -40,9 +43,13 @@ def optimal_portfolio(returns, nPort):
     return weight, ret_data, risk_data
 
 
-def simulation(index_data, sims=10, nPort=200):
+def simulation(index_data, sims, nPort, universe):
     # period=int(period/2)+1
     # create date index
+
+    growth = universe.index[universe['asset_class'] == 'equity']
+    inflation = universe.index[universe['asset_class'] == 'inflation_protection']
+    fixed_income = universe.index[universe['asset_class'] == 'fixed_income']
 
     input_returns = index_data.pct_change().dropna()
     period = len(input_returns)
@@ -67,12 +74,12 @@ def simulation(index_data, sims=10, nPort=200):
     stdev = []
     exp_ret = []
 
-    for i in stqdm(range(0, sims)):
+    for i in tqdm(range(0, sims)):
 
         try:
 
             # optimize over every simulation
-            w, r, std = optimal_portfolio(data[i], nPort)
+            w, r, std = optimal_portfolio(data[i], nPort, growth, inflation, fixed_income)
             weights.append(w)
             stdev.append(std)
             exp_ret.append(r)
