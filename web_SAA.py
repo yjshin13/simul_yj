@@ -20,11 +20,11 @@ if file is not None:
 
     universe['key'] = universe['symbol'] + " - " + universe['name']
 
-    tickers = st.multiselect('Input Assets', universe['key'], universe['key'])
-    price_tickers = universe['symbol'][universe['key'].isin(list(tickers))]
+    select = st.multiselect('Input Assets', universe['key'], universe['key'])
+    assets = universe['symbol'][universe['key'].isin(list(select))]
 
-    input_price = price[list(price_tickers)]
-    input_universe = universe[universe['symbol'].isin(list(price_tickers))]
+    input_price = price[list(assets)]
+    input_universe = universe[universe['symbol'].isin(list(assets))]
 
 
    # my_expander = st.expander("", expanded=True)
