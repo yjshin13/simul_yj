@@ -18,7 +18,8 @@ if file is not None:
     universe = pd.read_excel(file, sheet_name="universe",
                              names=None, dtype={'Date': datetime}, header=0)
 
-    tickers = st.multiselect('Input Assets', price.columns, list(price.columns))
+
+    tickers = st.multiselect('Input Assets', price.columns + " - " + universe['name'], list(price.columns))
 
 
    # my_expander = st.expander("", expanded=True)
