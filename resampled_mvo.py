@@ -20,8 +20,8 @@ def optimal_portfolio(returns, nPort, cons1, cons2, cons3, cons_range1, cons_ran
                     sum(w[cons1]) <= cons_range1[1],  # Equity Weight Constraint
                     sum(w[cons2]) >= cons_range2[0],  # Inflation Protection Constraint
                     sum(w[cons2]) <= cons_range2[1],
-                    sum(w[cons2]) >= cons_range3[0],
-                    sum(w[cons2]) <= cons_range3[1],])  # Fixed Income Constraint
+                    sum(w[cons3]) >= cons_range3[0],
+                    sum(w[cons3]) <= cons_range3[1],])  # Fixed Income Constraint
 
     risk_data = np.zeros(nPort)
     ret_data = np.zeros(nPort)
@@ -79,8 +79,8 @@ def simulation(index_data, sims, nPort, universe, cons_range1, cons_range2, cons
         try:
 
             # optimize over every simulation
-            w, r, std = optimal_portfolio(data[i], nPort, growth, inflation, fixed_income
-                                          ,cons_range1, cons_range2, cons_range3)
+            w, r, std = optimal_portfolio(data[i], nPort, growth, inflation, fixed_income,
+                                          cons_range1, cons_range2, cons_range3)
             weights.append(w)
             stdev.append(std)
             exp_ret.append(r)
