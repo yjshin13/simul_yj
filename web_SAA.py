@@ -36,24 +36,23 @@ if file is not None:
         col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:
-            Growth = st.slider('Equity', 0, 100, (0, 30), 1)
+            Growth_cons = st.slider('Equity', 0, 100, (0, 30), 1)
             nPort = st.number_input('Efficient Frontier Points', value=200)
 
         with col2:
-            Inflation = st.slider('Inflation', 0, 100, (0, 10), 1)
+            Inflation_cons = st.slider('Inflation', 0, 100, (0, 10), 1)
             nSim = st.number_input('Number of Simulations', value=200)
 
         with col3:
-            Fixed_Income = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
+            Fixed_Income_cons = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
-
-            st.write(Fixed_Income[1])
 
         summit = st.form_submit_button("Summit")
 
         if summit:
 
-            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe)
+            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe,
+                                          Growth_cons, Inflation_cons, Fixed_Income_cons)
             EF = EF.applymap('{:.6%}'.format)
 
             # fig, ax = plt.subplots()
