@@ -1,99 +1,68 @@
-import numpy as np
+import streamlit as st
 import pandas as pd
-from cvxpy import *
-from tqdm import tqdm
-from stqdm import stqdm
+import resampled_mvo
+from datetime import datetime
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+st.set_page_config(layout="wide")
+
+file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
+
+if file is not None:
+
+    EF = pd.DataFrame()
+    price = pd.read_excel(file, sheet_name="price",
+                           names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
+
+    universe = pd.read_excel(file, sheet_name="universe",
+                             names=None, dtype={'Date': datetime}, header=0)
+
+    universe['key'] = universe['symbol'] + " - " + universe['name']
+
+    select = st.multiselect('Input Assets', universe['key'], universe['key'])
+    assets = universe['symbol'][universe['key'].isin(list(select))]
+
+    input_price = price[list(assets)]
+    input_universe = universe[universe['symbol'].isin(list(assets))]
 
 
-def optimal_portfolio(returns, nPort, cons1, cons2, cons3, cons_range1, cons_range2, cons_range3):
+   # my_expander = st.expander("", expanded=True)
 
-    n = len(returns.columns)
-    w = Variable(n)
-    mu = returns.mean() * 252
-    Sigma = returns.cov() * 252
-    gamma = Parameter(nonneg=True)
-    ret = mu.values.T * w
-    risk = quad_form(w, Sigma.values)
-    prob = Problem(Maximize(ret - gamma * risk),
-                   [sum(w) == 1, w >= 0.0,
-                    sum(w[cons1]) >= 0.5,
-                    sum(w[cons1]) <= 0.5,  # Equity Weight Constraint
-                    sum(w[cons2]) >= 0.5,  # Inflation Protection Constraint
-                    sum(w[cons2]) <= 0.5,
-                    sum(w[cons3]) >= 0.5,
-                    sum(w[cons3]) <= 0.5])  # Fixed Income Constraint
+    with st.form("Resampling Parameters", clear_on_submit=False):
 
-    risk_data = np.zeros(nPort)
-    ret_data = np.zeros(nPort)
-    gamma_vals = np.logspace(-2, 3, num=nPort)
-    weights = []
+        st.subheader("Resampling Parameters:")
 
-    for i in range(nPort):
+        col1, col2, col3 = st.columns([1, 1, 1])
 
+        with col1:
+            Growth_cons = st.slider('Equity', 0, 100, (0, 30), 1)
+            nPort = st.number_input('Efficient Frontier Points', value=200)
 
-        gamma.value = gamma_vals[i]
-        prob.solve()
-        # prob.solve(verbose=True)
-        risk_data[i] = sqrt(risk).value
-        ret_data[i] = ret.value
-        weights.append(np.squeeze(np.asarray(w.value)))
+        with col2:
+            Inflation_cons = st.slider('Inflation', 0, 100, (0, 10), 1)
+            nSim = st.number_input('Number of Simulations', value=200)
 
+        with col3:
+            Fixed_Income_cons = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
+            Target = st.number_input('Select Target Return(%)', value=4.00)
 
-    weight = pd.DataFrame(data=weights, columns=returns.columns)
-    return weight, ret_data, risk_data
+        summit = st.form_submit_button("Summit")
 
+        if summit:
 
-def simulation(index_data, sims, nPort, universe, cons_range1, cons_range2, cons_range3):
-    # period=int(period/2)+1
-    # create date index
+            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe)
+            EF = EF.applymap('{:.6%}'.format)
 
-    growth = universe.index[universe['asset_class'] == 'equity']
-    inflation = universe.index[universe['asset_class'] == 'inflation_protection']
-    fixed_income = universe.index[universe['asset_class'] == 'fixed_income']
+            # fig, ax = plt.subplots()
+            # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
+            # st.write(fig)
 
-    input_returns = index_data.pct_change().dropna()
-    period = len(input_returns)
-    input_returns = np.log(input_returns+1)
-    er = input_returns.mean()
-    cov = input_returns.cov()
-    corr = input_returns.corr()
+    if EF.empty==False:
 
-    dates = pd.date_range(start='2022-08-20', periods=period, freq='D')
-    data = []
-    # generate 10 years of daily data
+        st.download_button(
+                label="Efficient Frontier",
+                data=EF.to_csv(),
+                mime='text/csv',
+                file_name='Efficient Frontier.csv')
 
-    for i in range(0, sims):
-        data.append(pd.DataFrame(columns=cov.columns, index=dates,
-                                data=np.random.multivariate_normal(er.values, cov.values, period)))
-                                #data = resample_returns(input_data, period, 3)))
-
-    #data = bootstrapping(input_returns, n_sim=sims)
-
-    # store values from simulation
-    weights = []
-    stdev = []
-    exp_ret = []
-
-    for i in stqdm(range(0, sims)):
-
-        try:
-
-            # optimize over every simulation
-            w, r, std = optimal_portfolio(data[i], nPort, growth, inflation, fixed_income,
-                                          cons_range1, cons_range2, cons_range3)
-            weights.append(w)
-            stdev.append(std)
-            exp_ret.append(r)
-
-        except SolverError:
-
-            pass
-
-    w = np.mean(weights, axis=0)
-    s = np.mean(stdev, axis=0)
-    r = np.mean(exp_ret, axis=0)
-    concat = np.hstack([a.reshape(nPort, -1) for a in [r, s, w]])
-    column_names = list(input_returns.columns)
-    Resampled_EF = pd.DataFrame(concat, columns=["EXP_RET", "STDEV"] + column_names)
-
-    return Resampled_EF
