@@ -53,8 +53,11 @@ if file is not None:
 
         if summit:
 
-            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
-            EF = EF.applymap('{:.6%}'.format)
+            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)\
+                .applymap('{:.6%}'.format)
+            A = input_universe.copy()
+            A.index = input_universe['symbol']
+            Result = pd.concat([A.drop(['symbol'], axis=1).T, EF], axis=0, join='outer')
 
             # fig, ax = plt.subplots()
             # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
@@ -64,7 +67,7 @@ if file is not None:
 
         st.download_button(
                 label="Efficient Frontier",
-                data=EF.to_csv(),
+                data=Result.to_csv(),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
 
