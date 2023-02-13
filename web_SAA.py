@@ -17,10 +17,14 @@ if file is not None:
 
     universe = pd.read_excel(file, sheet_name="universe",
                              names=None, dtype={'Date': datetime}, header=0)
-    tickers = st.multiselect('Input Assets', price.columns, list(price.columns))
 
-    input_price = price[list(tickers)]
-    input_universe = universe[universe['symbol'].isin(list(tickers))]
+    universe['key'] = universe['symbol'] + " - " + universe['name']
+
+    tickers = st.multiselect('Input Assets', universe['key'], universe['key'])
+    price_tickers = universe['symbol'][universe['key'].isin(list(tickers))]
+
+    input_price = price[list(price_tickers)]
+    input_universe = universe[universe['symbol'].isin(list(price_tickers))]
 
 
    # my_expander = st.expander("", expanded=True)
@@ -48,7 +52,6 @@ if file is not None:
         summit = st.form_submit_button("Summit")
 
         if summit:
-
 
             EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe)
             EF = EF.applymap('{:.6%}'.format)
