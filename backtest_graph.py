@@ -10,7 +10,7 @@ def line_chart(x, title):
     columns = x.columns
 
     # Draw Plot
-    plt.style.use('seaborn-darkgrid')
+    plt.style.use('seaborn-whitegrid')
     fig, ax = plt.subplots(1, 1, figsize=(20, 8), dpi=100)
     # length = np.arange(after_nav.index[0],after_nav.index[-1] + pd.DateOffset(years=1),
     #                         dtype='datetime64[Y]')
@@ -36,6 +36,7 @@ def line_chart(x, title):
     ax.set_xticks(length)
     ax.set_xticklabels(length)
     ax.tick_params(labelsize=16)
+    plt.title(title, loc='left', pad=20, size=20)
     plt.xticks(rotation=0)
     plt.legend(loc='upper left')
 
