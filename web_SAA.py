@@ -67,9 +67,8 @@ if file is not None:
             # st.write(fig)
 
     if EF.empty==False:
-        
-        str = "Target Return " + Target + "%"
-        st.expander(str)
+
+        st.expander("Target Return " + str(Target) + "%")
         Target_Weight = EF.loc[(EF['EXP_RET'] - Target / 100).abs().idxmin()]\
                         .drop(["EXP_RET", "STDEV"])
         Rebalancing_Wegiht =  pd.DataFrame(Target_Weight,
