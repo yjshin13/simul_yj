@@ -56,7 +56,7 @@ if file is not None:
 
         summit = st.form_submit_button("Summit")
 
-        if summit:
+        if summit and ('EF' not in st.session_state):
 
             EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             A = input_universe.copy()
@@ -69,7 +69,7 @@ if file is not None:
             # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
             # st.write(fig)
 
-    if EF not in locals():
+    if 'EF' in st.session_state:
 
         with st.expander("Target Return " + str(Target) + "%") :
 
