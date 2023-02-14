@@ -60,7 +60,7 @@ if file is not None:
 
         if summit and (EF not in st.session_state):
 
-            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
+            st.session_state.EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             A = input_universe.copy()
             A.index = input_universe['symbol']
             Result = pd.concat([A.drop(['symbol'], axis=1).T, EF.applymap('{:.6%}'.format)], axis=0, join='outer')
@@ -71,7 +71,7 @@ if file is not None:
             # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
             # st.write(fig)
 
-    if Result not in locals():
+    if EF not in locals():
 
         with st.expander("Target Return " + str(Target) + "%") :
 
