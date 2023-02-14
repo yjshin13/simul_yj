@@ -61,7 +61,7 @@ if file is not None:
 
         if summit and EF.empty==True:
 
-            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
+            st.session_state.EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             A = input_universe.copy()
             A.index = input_universe['symbol']
             Result = pd.concat([A.drop(['symbol'], axis=1).T, EF.applymap('{:.6%}'.format)], axis=0, join='outer')
@@ -111,3 +111,6 @@ if file is not None:
                 data=Result.to_csv(index=False),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
+
+
+
