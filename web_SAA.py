@@ -112,7 +112,7 @@ if file is not None:
                 st.info("Annual Return: "+str(round(float(((res.prices.iloc[-1]/100)**(365/(len(res.prices)-1))-1)*100),2))+"%")
 
             with col7:
-                st.info("Annual vol: " + str(round(float(res.stats[res.stats.index=='yearly_vol'].values),2))  + "%")
+                st.info("Annual vol: " + str(round(float(res.stats[res.stats.index=='yearly_vol'].values*100),2))  + "%")
 
             with col8:
                 st.info("Annual sharpe: " + str(round(float(res.stats[res.stats.index == 'yearly_sharpe'].values), 2)) + "%")
