@@ -74,7 +74,7 @@ if file is not None:
             # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
             # st.write(fig)
 
-    if EF.empty==False:
+    if st.session_state.EF.empty==False:
 
         with st.expander("Target Return " + str(Target) + "%") :
 
