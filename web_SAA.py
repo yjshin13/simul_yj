@@ -52,22 +52,23 @@ if file is not None:
 
             constraint_range=[Growth_range,Inflation_range,Fixed_Income_range]
 
-            count = 0
 
         summit = st.form_submit_button("Summit")
 
-        if summit and ('EF' not in st.session_state):
+        if summit:
 
-            st.session_state.EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
-            A = input_universe.copy()
-            A.index = input_universe['symbol']
-            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
-            new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
-            st.session_state.Result = Result[new_col]
+            if 'EF' not in st.session_state:
 
-            # fig, ax = plt.subplots()
-            # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
-            # st.write(fig)
+                st.session_state.EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
+                A = input_universe.copy()
+                A.index = input_universe['symbol']
+                Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
+                new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
+                st.session_state.Result = Result[new_col]
+
+                # fig, ax = plt.subplots()
+                # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
+                # st.write(fig)
 
     if 'EF' in st.session_state:
 
