@@ -10,7 +10,6 @@ import bt
 st.set_page_config(layout="wide")
 
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
-#EF = pd.DataFrame()
 
 if file is not None:
 
@@ -39,15 +38,15 @@ if file is not None:
         col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:
-            Growth_range = st.slider('Equity', 0, 100, (0, 30), 1)
+            Growth_range = st.slider('Equity Weight Constraint', 0, 100, (0, 30), 1)
             nPort = st.number_input('Efficient Frontier Points', value=200)
 
         with col2:
-            Inflation_range = st.slider('Inflation', 0, 100, (0, 10), 1)
+            Inflation_range = st.slider('Inflation Weight Constraint', 0, 100, (0, 10), 1)
             nSim = st.number_input('Number of Simulations', value=200)
 
         with col3:
-            Fixed_Income_range = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
+            Fixed_Income_range = st.slider('Fixed_Income Weight Constraint', 0, 100, (60, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
 
             constraint_range = [Growth_range,Inflation_range,Fixed_Income_range]
