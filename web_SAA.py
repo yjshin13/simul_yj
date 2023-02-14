@@ -90,6 +90,13 @@ if file is not None:
             res = bt.run(bt_SAA)
             st.line_chart(res.prices)
 
+            col4, col5 = st.columns([1, 1])
+
+            with col4:
+                st.line_chart(res.prices)
+            with col5:
+                st.line_chart(res.backtests['s1'].stats.drawdown)
+
 
         st.download_button(
                 label="Efficient Frontier",
