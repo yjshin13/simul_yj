@@ -59,7 +59,7 @@ if file is not None:
         #
         #    summit= False
 
-        if summit and EF.empty==False:
+        if summit and EF.empty==True:
 
             EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             A = input_universe.copy()
@@ -111,6 +111,3 @@ if file is not None:
                 data=Result.to_csv(index=False),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
-
-
-
