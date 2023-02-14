@@ -107,6 +107,8 @@ if file is not None:
             bt_SAA = bt.Backtest(SAA_strategy, input_price)
             res = bt.run(bt_SAA)
 
+            st.info("Backtesting Result")
+
             col6, col7, col8, col9 = st.columns([1, 1, 1, 1])
             with col6:
                 st.info("Annual Return: "+str(round(float(((res.prices.iloc[-1]/100)**(365/(len(res.prices)-1))-1)*100),2))+"%")
