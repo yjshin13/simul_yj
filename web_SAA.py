@@ -93,9 +93,9 @@ if file is not None:
             col4, col5 = st.columns([1, 1])
 
             with col4:
-                st.pyplot(backtest_graph.line_chart(res.prices, "Net Asset Value"))
+                st.line_chart(backtest_graph.line_chart(res.prices, "Net Asset Value"))
             with col5:
-                st.pyplot(backtest_graph.line_chart(
+                st.line_chart(backtest_graph.line_chart(
                 res.backtests['s1'].stats.drawdown, "Drawdown"))
 
         st.download_button(
