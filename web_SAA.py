@@ -43,7 +43,7 @@ if file is not None:
 
         with col2:
             Inflation_range = st.slider('Inflation', 0, 100, (0, 10), 1)
-            nSim = st.number_input('Number of Simulations', value=200)
+            st.session_state.nSim = st.number_input('Number of Simulations', value=200)
 
         with col3:
             Fixed_Income_range = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
