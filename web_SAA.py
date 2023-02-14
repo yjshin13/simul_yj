@@ -55,10 +55,10 @@ if file is not None:
 
         if st.session_state.summit:
 
-            st.session_state.summit.EF = resampled_mvo.simulation(input_price, st.session_state.nSim, st.session_state.nPort, input_universe, constraint_range)
+            st.session_state.EF = resampled_mvo.simulation(input_price, st.session_state.nSim, st.session_state.nPort, input_universe, constraint_range)
             A = input_universe.copy()
             A.index = input_universe['symbol']
-            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.summit.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
+            Result = pd.concat([A.drop(['symbol'], axis=1).T, EF.applymap('{:.6%}'.format)], axis=0, join='outer')
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             Result = Result[new_col]
 
@@ -66,11 +66,11 @@ if file is not None:
             # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
             # st.write(fig)
 
-    if st.session_state.summit.EF.empty==False:
+    if EF.empty==False:
 
         with st.expander("Target Return " + str(st.session_state.Target) + "%") :
 
-            Target_Weight = st.session_state.summit.EF.loc[(st.session_state.summit.EF['EXP_RET'] - st.session_state.Target / 100).abs().idxmin()]\
+            Target_Weight = EF.loc[(EF['EXP_RET'] - st.session_state.Target / 100).abs().idxmin()]\
                             .drop(["EXP_RET", "STDEV"])
 
             Target_Weight_T = pd.DataFrame(Target_Weight).T
