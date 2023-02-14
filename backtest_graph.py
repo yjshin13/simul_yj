@@ -9,7 +9,7 @@ def line_chart(x, title):
 
     # Draw Plot
     plt.style.use('seaborn-darkgrid')
-    fig, ax = plt.subplots(1, 1, figsize=(13, 5), dpi=100)
+    fig, ax = plt.subplots(1, 1, figsize=(20, 8), dpi=100)
     # length = np.arange(after_nav.index[0],after_nav.index[-1] + pd.DateOffset(years=1),
     #                         dtype='datetime64[Y]')
     length = np.arange(x.index[0], x.index[-1] + pd.DateOffset(years=1),
