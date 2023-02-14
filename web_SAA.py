@@ -61,7 +61,7 @@ if file is not None:
         #    summit= False
 
 
-        if summit and (EF.empty not in st.session_state):
+        if summit and (EF not in st.session_state):
 
             st.session_state.EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             A = input_universe.copy()
