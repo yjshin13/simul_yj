@@ -29,7 +29,7 @@ def line_chart(x, title):
 
     # ax.set_title('Portfolio NAV', fontsize=18)
     ax.set_xlabel('Time', size=15, labelpad=20)
-    ax.set_ylabel('Tndex', size=15, labelpad=20)
+    ax.set_ylabel('Index', size=15, labelpad=20)
     ax.tick_params(labelsize=16)
 
     ax.set_xticks(length)
