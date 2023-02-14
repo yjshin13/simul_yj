@@ -55,15 +55,12 @@ if file is not None:
             count = 0
 
         summit = st.form_submit_button("Summit")
-        #
-        # if summit not in st.session_state:
-        #
-        #    summit= False
+
 
 
         if summit and (EF not in st.session_state):
 
-            st.session_state.EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
+            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             A = input_universe.copy()
             A.index = input_universe['symbol']
             Result = pd.concat([A.drop(['symbol'], axis=1).T, EF.applymap('{:.6%}'.format)], axis=0, join='outer')
@@ -74,11 +71,11 @@ if file is not None:
             # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
             # st.write(fig)
 
-    if st.session_state.EF.empty==False:
+    if Result not in locals():
 
         with st.expander("Target Return " + str(Target) + "%") :
 
-            Target_Weight = st.session_state.EF.loc[(st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()]\
+            Target_Weight = EF.loc[(EF['EXP_RET'] - Target / 100).abs().idxmin()]\
                             .drop(["EXP_RET", "STDEV"])
 
             Target_Weight_T = pd.DataFrame(Target_Weight).T
