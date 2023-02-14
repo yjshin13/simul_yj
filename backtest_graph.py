@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def line_chart(x, title):
+    
+    x = pd.DataFrame(x)
     mycolors = ['tab:red', 'tab:blue', 'tab:green', 'tab:orange', 'tab:brown', 'tab:grey', 'tab:pink',
                 'tab:olive', 'tab:purple']
     columns = x.columns
@@ -22,7 +24,7 @@ def line_chart(x, title):
                         color=mycolors[0], linewidth=2)
 
     else:
-        ax.fill_between(x.index, y1=x.squeeze().values, y2=0, alpha=0.3, color=mycolors[1],
+        ax.fill_between(x.index, y1=x.squeeze().values, y2=0, label=columns, alpha=0.3, color=mycolors[1],
                         linewidth=2)
 
     # ax.set_title('Portfolio NAV', fontsize=18)
