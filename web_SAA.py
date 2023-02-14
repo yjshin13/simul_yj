@@ -94,9 +94,9 @@ if file is not None:
 
             with col4:
                 st.pyplot(backtest_graph.line_chart(res.prices, "nav"))
-            with col5:
-                st.pyplot(res.backtests['s1'].stats.drawdown, "drawdown")
-
+            # with col5:
+            #     st.pyplot(res.backtests['s1'].stats.drawdown, "drawdown")
+            # 
 
         st.download_button(
                 label="Efficient Frontier",
