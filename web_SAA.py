@@ -24,7 +24,7 @@ if file is not None:
     universe['key'] = universe['symbol'] + " - " + universe['name']
 
     select = st.multiselect('Input Assets', universe['key'], universe['key'])
-    assets = universe['symbol'][universe['key'].isin(list(select))]
+    assets = universe['symbol'][universe['key'].isin(select)]
 
     input_price = price[list(assets)]
     input_universe = universe[universe['symbol'].isin(list(assets))].drop(['key'], axis=1)
@@ -111,12 +111,19 @@ if file is not None:
             st.empty()
 
 
+
+
+
+            st.write("Backtest")
+
+
+            col10, col11, col12, col13 = st.columns([1, 1, 1, 1])
+
             start_date = input_price.index[0].strftime("%Y-%m-%d")
             end_date = input_price.index[-1].strftime("%Y-%m-%d")
 
-
-            st.write("Backtest: " + str(start_date) + " ~ " + str(end_date) )
-
+            with col10:
+                st.info("Period: "+str(start_date)+" ~ "+str(end_date))
 
 
             col6, col7, col8, col9 = st.columns([1, 1, 1, 1])
