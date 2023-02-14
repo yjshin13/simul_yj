@@ -13,7 +13,7 @@ file = st.file_uploader("Upload investment universe & price data", type=['xlsx',
 
 if file is not None:
 
-    EF = pd.DataFrame()
+    st.session_state.EF = pd.DataFrame()
     price = pd.read_excel(file, sheet_name="price",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
 
