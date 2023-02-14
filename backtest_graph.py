@@ -1,55 +1,127 @@
-import numpy as np
+import streamlit as st
 import pandas as pd
+import resampled_mvo
+from datetime import datetime
+import backtest_graph
+import seaborn as sns
 import matplotlib.pyplot as plt
+import bt
 
-def line_chart(x, title):
+st.set_page_config(layout="wide")
 
-    x = pd.DataFrame(x)
-    mycolors = ['tab:red', 'tab:blue', 'tab:green', 'tab:orange', 'tab:brown', 'tab:grey', 'tab:pink',
-                'tab:olive', 'tab:purple']
-    columns = x.columns
+file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 
-    # Draw Plot
-    plt.style.use('seaborn-whitegrid')
-    fig, ax = plt.subplots(1, 1, figsize=(20, 10), dpi=100)
-    # length = np.arange(after_nav.index[0],after_nav.index[-1] + pd.DateOffset(years=1),
-    #                         dtype='datetime64[Y]')
-    length = np.arange(x.index[0], x.index[-1] + pd.DateOffset(years=1),
-                       dtype='datetime64[Y]')
-    if len(x.columns) >= 2:
+if file is not None:
 
-        ax.fill_between(x.index, y1=x.iloc[:, 0].squeeze().values, y2=0, label=columns[0], alpha=0.3,
-                        color=mycolors[1], linewidth=2)
-        ax.fill_between(x.index, y1=x.iloc[:, 1].squeeze().values, y2=0, label=columns[1], alpha=0.3,
-                        color=mycolors[0], linewidth=2)
 
-    else:
-        ax.fill_between(x.index, y1=x.squeeze().values, y2=0, label=columns, alpha=0.3, color=mycolors[1],
-                        linewidth=2)
+    price = pd.read_excel(file, sheet_name="price",
+                           names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
 
-    # ax.set_title('Portfolio NAV', fontsize=18)
-    ax.set_xlabel('Time', size=15, labelpad=20)
-    ax.set_ylabel('Index', size=15, labelpad=20)
-    ax.tick_params(labelsize=16)
+    universe = pd.read_excel(file, sheet_name="universe",
+                             names=None, dtype={'Date': datetime}, header=0)
 
-    ax.set_xticks(length)
-    ax.set_xticklabels(length)
-    ax.tick_params(labelsize=16)
-    plt.title(title, loc='left', pad=30, size=25)
-    plt.xticks(rotation=0)
-    plt.legend(loc='upper left')
+    universe['key'] = universe['symbol'] + " - " + universe['name']
 
-    plt.ylim(x.min().min() - abs(x.max().max() - x.min().min()) * 0.1,
-             x.max().max() + abs(x.max().max() - x.min().min()) * 0.05)
+    select = st.multiselect('Input Assets', universe['key'], universe['key'])
+    assets = universe['symbol'][universe['key'].isin(list(select))]
 
-    plt.gca().spines["top"].set_alpha(0)
-    plt.gca().spines["bottom"].set_alpha(.3)
-    plt.gca().spines["right"].set_alpha(0)
-    plt.gca().spines["left"].set_alpha(.3)
-    ax.get_legend().remove()
+    input_price = price[list(assets)]
+    input_universe = universe[universe['symbol'].isin(list(assets))].drop(['key'], axis=1)
 
-    ax.margins(x=0, y=0)
 
-    #########################[Graph Insert]#####################################
+   # my_expander = st.expander("", expanded=True)
 
-    return ax.figure
+    with st.form("Resampling Parameters", clear_on_submit=False):
+
+        st.subheader("Resampling Parameters:")
+
+        col1, col2, col3 = st.columns([1, 1, 1])
+
+        with col1:
+            Growth_range = st.slider('Equity Weight Constraint', 0, 100, (0, 30), 1)
+            nPort = st.number_input('Efficient Frontier Points', value=200)
+
+        with col2:
+            Inflation_range = st.slider('Inflation Weight Constraint', 0, 100, (0, 10), 1)
+            nSim = st.number_input('Number of Simulations', value=200)
+
+        with col3:
+            Fixed_Income_range = st.slider('Fixed_Income Weight Constraint', 0, 100, (60, 100), 1)
+            Target = st.number_input('Select Target Return(%)', value=4.00)
+
+            constraint_range = [Growth_range,Inflation_range,Fixed_Income_range]
+
+        summit = st.form_submit_button("Summit")
+
+        if summit and ('EF' not in st.session_state):
+
+            st.session_state.nPort = nPort
+            st.session_state.nSim = nSim
+            st.session_state.constraint_range = constraint_range
+
+            st.session_state.EF = resampled_mvo.simulation(input_price, st.session_state.nSim, st.session_state.nPort,
+                                                           input_universe, st.session_state.constraint_range)
+            A = input_universe.copy()
+            A.index = input_universe['symbol']
+            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
+            new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
+            st.session_state.Result = Result[new_col]
+
+        if summit and [st.session_state.nPort, st.session_state.nSim, st.session_state.constraint_range] != \
+                        [nPort, nSim, constraint_range]:
+
+            st.session_state.nPort = nPort
+            st.session_state.nSim = nSim
+            st.session_state.constraint_range = constraint_range
+
+            st.session_state.EF = resampled_mvo.simulation(input_price, st.session_state.nSim, st.session_state.nPort,
+                                                           input_universe, st.session_state.constraint_range)
+            A = input_universe.copy()
+            A.index = input_universe['symbol']
+            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
+            new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
+            st.session_state.Result = Result[new_col]
+
+
+    if 'EF' in st.session_state:
+
+        with st.expander("Target Return " + str(Target) + "%", expanded=True) :
+
+            Target_Weight = st.session_state.EF.loc[(st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()]\
+                            .drop(["EXP_RET", "STDEV"])
+
+            Target_Weight_T = pd.DataFrame(Target_Weight).T
+
+            Rebalancing_Wegiht =  pd.DataFrame(Target_Weight_T,
+                                    index=pd.date_range(start=input_price.index[0],
+                                    end=input_price.index[-1], freq='D')).fillna(method='bfill')
+
+            Rebalancing_Wegiht.iloc[:,:] = Target_Weight_T
+
+            SAA_strategy = bt.Strategy('s1', [bt.algos.RunMonthly(run_on_first_date=True),
+                                              # bt.algos.RunAfterDate('2000-01-01'),
+                                              bt.algos.SelectAll(),
+                                              bt.algos.WeighTarget(Rebalancing_Wegiht),
+                                              bt.algos.Rebalance()])
+
+            bt_SAA = bt.Backtest(SAA_strategy, input_price)
+            res = bt.run(bt_SAA)
+
+            col4, col5 = st.columns([1, 1])
+
+            with col4:
+                st.write("Net Asset Value")
+                st.pyplot(backtest_graph.line_chart(res.prices, ""))
+            with col5:
+                st.write("Drawdown")
+                st.pyplot(backtest_graph.line_chart(
+                res.backtests['s1'].stats.drawdown, ""))
+
+        st.download_button(
+                label="Efficient Frontier",
+                data=st.session_state.Result.to_csv(index=False),
+                mime='text/csv',
+                file_name='Efficient Frontier.csv')
+
+
+
