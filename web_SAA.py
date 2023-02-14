@@ -61,7 +61,6 @@ if file is not None:
         #    summit= False
 
 
-
         if summit and EF.empty==True:
 
             st.session_state.EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
@@ -75,7 +74,7 @@ if file is not None:
             # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
             # st.write(fig)
 
-    if st.session_state.EF.empty==False:
+    if EF.empty==False:
 
         with st.expander("Target Return " + str(Target) + "%") :
 
