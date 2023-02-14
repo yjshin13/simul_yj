@@ -107,9 +107,15 @@ if file is not None:
             bt_SAA = bt.Backtest(SAA_strategy, input_price)
             res = bt.run(bt_SAA)
 
-            col6, col7 = st.columns([1, 1])
+            col6, col7, col8, col9 = st.columns([1, 1, 1, 1])
             with col6:
-                st.info("Yearly Return: "+str(round(float(((res.prices.iloc[-1]/100)**(365/(len(res.prices)-1))-1)*100),2))+"%")
+                st.info("Annual Return: "+str(round(float(((res.prices.iloc[-1]/100)**(365/(len(res.prices)-1))-1)*100),2))+"%")
+
+            with col7:
+                st.info("Annual vol: " + str(round(float(res.stats[res.stats.index=='yearly_vol'].values),2))  + "%")
+
+            with col7:
+                st.info("Annual sharpe: " + str(round(float(res.stats[res.stats.index == 'yearly_sharpe'].values), 2)) + "%")
 
             with col7:
                 st.info("Max Drawdown: "+str(round(float(res.stats[res.stats.index=='max_drawdown'].values*100),2)) + "%")
