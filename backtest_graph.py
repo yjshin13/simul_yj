@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def line_chart(x, title):
-    
+
     x = pd.DataFrame(x)
     mycolors = ['tab:red', 'tab:blue', 'tab:green', 'tab:orange', 'tab:brown', 'tab:grey', 'tab:pink',
                 'tab:olive', 'tab:purple']
@@ -39,14 +39,16 @@ def line_chart(x, title):
     plt.xticks(rotation=45)
     plt.legend(loc='upper left')
 
+    plt.ylim(x.min().min() - abs(x.max().max() - x.min().min()) * 0.1,
+             x.max().max() + abs(x.max().max() - x.min().min()) * 0.05)
+
     plt.gca().spines["top"].set_alpha(0)
     plt.gca().spines["bottom"].set_alpha(.3)
     plt.gca().spines["right"].set_alpha(0)
     plt.gca().spines["left"].set_alpha(.3)
 
     ax.margins(x=0, y=0)
-    plt.ylim(x.min().min() - abs(x.max().max() - x.min().min()) * 0.1,
-             x.max().max() + abs(x.max().max() - x.min().min()) * 0.05)
+
     #########################[Graph Insert]#####################################
 
     return ax.figure
