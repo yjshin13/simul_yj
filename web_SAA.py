@@ -106,8 +106,8 @@ if file is not None:
 
             bt_SAA = bt.Backtest(SAA_strategy, input_price)
             res = bt.run(bt_SAA)
-            
-            st.emply()
+
+            st.empty()
 
             st.write("Backtesting Result")
 
