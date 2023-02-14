@@ -76,7 +76,7 @@ if file is not None:
 
         with st.expander("Target Return " + str(Target) + "%") :
 
-            Target_Weight = EF.loc[(EF['EXP_RET'] - Target / 100).abs().idxmin()]\
+            Target_Weight = st.session_state.EF.loc[(st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()]\
                             .drop(["EXP_RET", "STDEV"])
 
             Target_Weight_T = pd.DataFrame(Target_Weight).T
