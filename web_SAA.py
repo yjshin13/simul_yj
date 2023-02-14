@@ -88,7 +88,6 @@ if file is not None:
 
             bt_SAA = bt.Backtest(SAA_strategy, input_price)
             res = bt.run(bt_SAA)
-            st.line_chart(res.prices)
 
             col4, col5 = st.columns([1, 1])
 
