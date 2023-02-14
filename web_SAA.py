@@ -69,7 +69,8 @@ if file is not None:
 
         with st.expander("Target Return " + str(Target) + "%") :
 
-            Target_Weight = EF.loc[(EF['EXP_RET'] - Target / 100).abs().idxmin()]
+            Target_Weight = EF.loc[(EF['EXP_RET'] - Target / 100).abs().idxmin()]\
+                            .drop(["EXP_RET", "STDEV"])
 
             Rebalancing_Wegiht =  pd.DataFrame(Target_Weight,
                                     index=pd.date_range(start=input_price.index[0],
