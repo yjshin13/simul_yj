@@ -86,7 +86,7 @@ if file is not None:
 
     if 'EF' in st.session_state:
 
-        with st.expander("Target Return " + str(Target) + "%") :
+        with st.expander("Target Return " + str(Target) + "%", expanded=True) :
 
             Target_Weight = st.session_state.EF.loc[(st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()]\
                             .drop(["EXP_RET", "STDEV"])
