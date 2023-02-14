@@ -112,7 +112,7 @@ if file is not None:
                 st.info("Yearly Return: "+str((((res.prices.iloc[-1]/100)**(365/(len(res.prices)-1))-1)*100).round(2))+"%")
 
             with col7:
-                st.write("Max Drawdown: "+str((res.stats[res.stats.index=='max_drawdown']*100).round(2).values) + "%")
+                st.info("Max Drawdown: "+str((res.stats[res.stats.index=='max_drawdown']*100).round(2).values) + "%")
 
             # st.sidebar()
 
