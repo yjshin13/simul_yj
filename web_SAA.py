@@ -59,7 +59,7 @@ if file is not None:
         #
         #    summit= False
 
-        if summit and (EF is None):
+        if summit and EF.empty==False:
 
             EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             A = input_universe.copy()
