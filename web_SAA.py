@@ -107,7 +107,7 @@ if file is not None:
             bt_SAA = bt.Backtest(SAA_strategy, input_price)
             res = bt.run(bt_SAA)
 
-            st.info("Backtesting Result")
+            st.write("Backtesting Result")
 
             col6, col7, col8, col9 = st.columns([1, 1, 1, 1])
             with col6:
