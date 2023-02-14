@@ -11,7 +11,7 @@ def line_chart(x, title):
 
     # Draw Plot
     plt.style.use('seaborn-whitegrid')
-    fig, ax = plt.subplots(1, 1, figsize=(20, 8), dpi=100)
+    fig, ax = plt.subplots(1, 1, figsize=(20, 13), dpi=100)
     # length = np.arange(after_nav.index[0],after_nav.index[-1] + pd.DateOffset(years=1),
     #                         dtype='datetime64[Y]')
     length = np.arange(x.index[0], x.index[-1] + pd.DateOffset(years=1),
@@ -28,9 +28,9 @@ def line_chart(x, title):
                         linewidth=2)
 
     # ax.set_title('Portfolio NAV', fontsize=18)
-    ax.set_xlabel('time', size=20)
-    ax.set_ylabel('index', size=20)
-    #ax.set_title(title, size=36)
+    ax.set_xlabel('Time', size=20, labelpad=10)
+    ax.set_ylabel('Tndex', size=20, labelpad=10)
+    ax.set_title(title, size=36)
     ax.tick_params(labelsize=16)
 
     ax.set_xticks(length)
@@ -47,6 +47,7 @@ def line_chart(x, title):
     plt.gca().spines["bottom"].set_alpha(.3)
     plt.gca().spines["right"].set_alpha(0)
     plt.gca().spines["left"].set_alpha(.3)
+    ax.get_legend().remove()
 
     ax.margins(x=0, y=0)
 
