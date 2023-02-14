@@ -110,7 +110,14 @@ if file is not None:
 
             st.empty()
 
-            st.write("Backtesting Result")
+
+            start_date = input_price.index[0].strftime("%Y-%m-%d")
+            end_date = input_price.index[-1].strftime("%Y-%m-%d")
+
+
+            st.write("Backtest: " + str(start_date) + " ~ " + str(end_date) )
+
+
 
             col6, col7, col8, col9 = st.columns([1, 1, 1, 1])
 
@@ -127,10 +134,11 @@ if file is not None:
                 st.info("Annual vol: " + str(Anuuual_Vol)+"%")
 
             with col8:
-                st.info("Annual sharpe: " + str(Anuuual_Sharpe) + "%")
+                st.info("Sharpe: " + str(Anuuual_Sharpe))
 
             with col9:
                 st.info("Max Drawdown: "+str(MDD) + "%")
+
 
             # st.sidebar()
 
