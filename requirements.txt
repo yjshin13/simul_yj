@@ -8,3 +8,4 @@ openpyxl
 stqdm
 matplotlib
 seaborn
+bt
