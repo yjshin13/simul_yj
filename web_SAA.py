@@ -93,10 +93,12 @@ if file is not None:
             col4, col5 = st.columns([1, 1])
 
             with col4:
-                st.pyplot(backtest_graph.line_chart(res.prices, "Net Asset Value"))
+                st.write("Net Asset Value")
+                st.pyplot(backtest_graph.line_chart(res.prices, ""))
             with col5:
+                st.write("Drawdown")
                 st.pyplot(backtest_graph.line_chart(
-                res.backtests['s1'].stats.drawdown, "Drawdown"))
+                res.backtests['s1'].stats.drawdown, ""))
 
         st.download_button(
                 label="Efficient Frontier",
