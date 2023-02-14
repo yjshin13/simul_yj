@@ -35,7 +35,7 @@ def line_chart(x, title):
     ax.set_xticks(length)
     ax.set_xticklabels(length)
     ax.tick_params(labelsize=16)
-    plt.title(title, loc='left', pad=20, size=25)
+    plt.title(title, loc='left', pad=30, size=25)
     plt.xticks(rotation=0)
     plt.legend(loc='upper left')
 
