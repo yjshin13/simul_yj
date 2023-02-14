@@ -58,7 +58,7 @@ if file is not None:
 
         if summit and ('EF' not in st.session_state):
 
-            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
+            st.session_state.EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             A = input_universe.copy()
             A.index = input_universe['symbol']
             Result = pd.concat([A.drop(['symbol'], axis=1).T, EF.applymap('{:.6%}'.format)], axis=0, join='outer')
@@ -73,7 +73,7 @@ if file is not None:
 
         with st.expander("Target Return " + str(Target) + "%") :
 
-            Target_Weight = EF.loc[(EF['EXP_RET'] - Target / 100).abs().idxmin()]\
+            Target_Weight = st.session_state.EF.loc[(st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()]\
                             .drop(["EXP_RET", "STDEV"])
 
             Target_Weight_T = pd.DataFrame(Target_Weight).T
