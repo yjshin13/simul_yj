@@ -68,21 +68,7 @@ if file is not None:
 
     if EF.empty==False:
 
-        Target_Weight = EF.loc[(EF['EXP_RET'] - Target / 100).abs().idxmin()]\
-                        .drop(["EXP_RET", "STDEV"])
-        Rebalancing_Wegiht =  pd.DataFrame(Target_Weight,
-                                index=pd.date_range(start=input_price.index[0],
-                                end=input_price.index[-1], freq='D')).fillna(method='bfill')
-
-        SAA_strategy = bt.Strategy('s1', [bt.algos.RunMonthly(run_on_first_date=True),
-                                          # bt.algos.RunAfterDate('2000-01-01'),
-                                          bt.algos.SelectAll(),
-                                          bt.algos.WeighTarget(Rebalancing_Wegiht),
-                                          bt.algos.Rebalance()])
-
-        bt_SAA = bt.Backtest(SAA_strategy, input_price)
-        res = bt.run(bt_SAA)
-        st.line_chart(res.prices)
+        with st.expander("Target Return " + str(Target) + "%") : 
 
 
         st.download_button(
