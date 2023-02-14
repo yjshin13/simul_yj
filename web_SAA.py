@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import resampled_mvo
 from datetime import datetime
+import backtest_graph
 import seaborn as sns
 import matplotlib.pyplot as plt
 import bt
@@ -92,9 +93,9 @@ if file is not None:
             col4, col5 = st.columns([1, 1])
 
             with col4:
-                st.line_chart(res.prices)
+                st.pyplot(backtest_graph.line_chart(res.prices, "nav"))
             with col5:
-                st.line_chart(res.backtests['s1'].stats.drawdown)
+                st.pyplot(res.backtests['s1'].stats.drawdown, "drawdown")
 
 
         st.download_button(
@@ -102,3 +103,5 @@ if file is not None:
                 data=Result.to_csv(index=False),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
+
+
