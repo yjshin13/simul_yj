@@ -114,10 +114,10 @@ if file is not None:
             with col7:
                 st.info("Annual vol: " + str(round(float(res.stats[res.stats.index=='yearly_vol'].values),2))  + "%")
 
-            with col7:
+            with col8:
                 st.info("Annual sharpe: " + str(round(float(res.stats[res.stats.index == 'yearly_sharpe'].values), 2)) + "%")
 
-            with col7:
+            with col9:
                 st.info("Max Drawdown: "+str(round(float(res.stats[res.stats.index=='max_drawdown'].values*100),2)) + "%")
 
             # st.sidebar()
