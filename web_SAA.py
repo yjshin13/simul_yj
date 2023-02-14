@@ -51,9 +51,9 @@ if file is not None:
 
             constraint_range=[Growth_range,Inflation_range,Fixed_Income_range]
 
-        st.session_state.summit = st.form_submit_button("Summit")
+        summit = st.form_submit_button("Summit")
 
-        if st.session_state.summit:
+        if summit:
             st.session_state.summit = True
 
             st.session_state.EF = resampled_mvo.simulation(input_price, st.session_state.nSim, st.session_state.nPort, input_universe, constraint_range)
