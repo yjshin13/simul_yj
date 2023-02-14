@@ -106,6 +106,6 @@ if file is not None:
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
 
-        st.session_state.summit = False
+        st.session_state.summit = True
 
 
