@@ -54,10 +54,10 @@ if file is not None:
             st.session_state.count = 0
 
         summit = st.form_submit_button("Summit")
-
-        if summit not in st.session_state:
-
-           summit= False
+        # 
+        # if summit not in st.session_state:
+        # 
+        #    summit= False
 
         if summit:
 
