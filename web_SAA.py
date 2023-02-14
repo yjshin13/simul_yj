@@ -107,6 +107,15 @@ if file is not None:
             bt_SAA = bt.Backtest(SAA_strategy, input_price)
             res = bt.run(bt_SAA)
 
+            col6, col7 = st.columns([1, 1])
+            with col6:
+                st.info((res.prices.iloc[-1]/100)**(365/(len(res.prices)-1))-1)
+
+            with col7:
+                st.info(res.stats[res.stats.index=='max_drawdown'])
+
+            # st.sidebar()
+
             col4, col5 = st.columns([1, 1])
 
             with col4:
