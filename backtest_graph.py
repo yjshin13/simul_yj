@@ -28,15 +28,15 @@ def line_chart(x, title):
                         linewidth=2)
 
     # ax.set_title('Portfolio NAV', fontsize=18)
-    ax.set_xlabel('time', size=10)
-    ax.set_ylabel('index', size=10)
-    ax.set_title(title, size=18)
-    ax.tick_params(labelsize=8)
+    ax.set_xlabel('time', size=20)
+    ax.set_ylabel('index', size=20)
+    ax.set_title(title, size=36)
+    ax.tick_params(labelsize=16)
 
     ax.set_xticks(length)
     ax.set_xticklabels(length)
-    ax.tick_params(labelsize=8)
-    plt.xticks(rotation=45)
+    ax.tick_params(labelsize=16)
+    plt.xticks(rotation=0)
     plt.legend(loc='upper left')
 
     plt.ylim(x.min().min() - abs(x.max().max() - x.min().min()) * 0.1,
