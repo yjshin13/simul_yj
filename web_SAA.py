@@ -10,10 +10,11 @@ import bt
 st.set_page_config(layout="wide")
 
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
+EF = pd.DataFrame()
 
 if file is not None:
 
-    EF = pd.DataFrame()
+
     price = pd.read_excel(file, sheet_name="price",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
 
@@ -59,6 +60,8 @@ if file is not None:
         #
         #    summit= False
 
+
+
         if summit and EF.empty==True:
 
             st.session_state.EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
@@ -66,7 +69,7 @@ if file is not None:
             A.index = input_universe['symbol']
             Result = pd.concat([A.drop(['symbol'], axis=1).T, EF.applymap('{:.6%}'.format)], axis=0, join='outer')
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
-            Result = Result[new_col]
+            st.session_state.Result = Result[new_col]
 
             # fig, ax = plt.subplots()
             # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
@@ -108,7 +111,7 @@ if file is not None:
 
         st.download_button(
                 label="Efficient Frontier",
-                data=Result.to_csv(index=False),
+                data=st.session_state.Result.to_csv(index=False),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
 
