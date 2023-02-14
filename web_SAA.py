@@ -54,6 +54,7 @@ if file is not None:
         st.session_state.summit = st.form_submit_button("Summit")
 
         if st.session_state.summit:
+            st.session_state.summit = True
 
             st.session_state.EF = resampled_mvo.simulation(input_price, st.session_state.nSim, st.session_state.nPort, input_universe, constraint_range)
             A = input_universe.copy()
