@@ -54,11 +54,10 @@ if file is not None:
 
         if summit:
 
-            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)\
-                .applymap('{:.6%}'.format)
+            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             A = input_universe.copy()
             A.index = input_universe['symbol']
-            Result = pd.concat([A.drop(['symbol'], axis=1).T, EF], axis=0, join='outer')
+            Result = pd.concat([A.drop(['symbol'], axis=1).T, EF.applymap('{:.6%}'.format)], axis=0, join='outer')
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             Result = Result[new_col]
 
