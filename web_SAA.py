@@ -53,7 +53,7 @@ if file is not None:
 
         summit = st.form_submit_button("Summit")
 
-        if summit:
+        if st.session_state.summit:
 
             EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             A = input_universe.copy()
