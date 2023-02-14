@@ -50,25 +50,39 @@ if file is not None:
             Fixed_Income_range = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
 
-            constraint_range=[Growth_range,Inflation_range,Fixed_Income_range]
-
+            constraint_range = [Growth_range,Inflation_range,Fixed_Income_range]
 
         summit = st.form_submit_button("Summit")
 
-        if summit:
+        if summit and ('EF' not in st.session_state):
 
-            if 'EF' not in st.session_state:
+            st.session_state.nPort = nPort
+            st.session_state.nSim = nSim
+            st.session_state.constraint_range = constraint_range
 
-                st.session_state.EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
-                A = input_universe.copy()
-                A.index = input_universe['symbol']
-                Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
-                new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
-                st.session_state.Result = Result[new_col]
+            st.session_state.EF = resampled_mvo.simulation(input_price, st.session_state.nSim, st.session_state.nPort,
+                                                           input_universe, st.session_state.constraint_range)
+            A = input_universe.copy()
+            A.index = input_universe['symbol']
+            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
+            new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
+            st.session_state.Result = Result[new_col]
 
-                # fig, ax = plt.subplots()
-                # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
-                # st.write(fig)
+        if summit and [st.session_state.nPort, st.session_state.nSim, st.session_state.constraint_range] != \
+                        [nPort, nSim, constraint_range]:
+
+            st.session_state.nPort = nPort
+            st.session_state.nSim = nSim
+            st.session_state.constraint_range = constraint_range
+
+            st.session_state.EF = resampled_mvo.simulation(input_price, st.session_state.nSim, st.session_state.nPort,
+                                                           input_universe, st.session_state.constraint_range)
+            A = input_universe.copy()
+            A.index = input_universe['symbol']
+            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
+            new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
+            st.session_state.Result = Result[new_col]
+
 
     if 'EF' in st.session_state:
 
