@@ -61,9 +61,9 @@ if file is not None:
             st.session_state.EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             A = input_universe.copy()
             A.index = input_universe['symbol']
-            Result = pd.concat([A.drop(['symbol'], axis=1).T, EF.applymap('{:.6%}'.format)], axis=0, join='outer')
+            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
-            Result = Result[new_col]
+            st.session_state.Result = Result[new_col]
 
             # fig, ax = plt.subplots()
             # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
@@ -105,7 +105,7 @@ if file is not None:
 
         st.download_button(
                 label="Efficient Frontier",
-                data=Result.to_csv(index=False),
+                data=st.session_state.Result.to_csv(index=False),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
 
