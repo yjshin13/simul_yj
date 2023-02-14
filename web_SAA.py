@@ -81,10 +81,10 @@ if file is not None:
             #                                   bt.algos.SelectAll(),
             #                                   bt.algos.WeighTarget(Rebalancing_Wegiht),
             #                                   bt.algos.Rebalance()])
-
-            bt_SAA = bt.Backtest(SAA_strategy, input_price)
-            res = bt.run(bt_SAA)
-            st.line_chart(res.prices)
+            # 
+            # bt_SAA = bt.Backtest(SAA_strategy, input_price)
+            # res = bt.run(bt_SAA)
+            # st.line_chart(res.prices)
 
 
         st.download_button(
