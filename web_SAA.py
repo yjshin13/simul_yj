@@ -13,7 +13,7 @@ file = st.file_uploader("Upload investment universe & price data", type=['xlsx',
 
 if file is not None:
 
-    st.session_state.EF = pd.DataFrame()
+    EF = pd.DataFrame()
     price = pd.read_excel(file, sheet_name="price",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
 
@@ -39,32 +39,32 @@ if file is not None:
 
         with col1:
             Growth_range = st.slider('Equity', 0, 100, (0, 30), 1)
-            st.session_state.nPort = st.number_input('Efficient Frontier Points', value=200)
+            nPort = st.number_input('Efficient Frontier Points', value=200)
 
         with col2:
             Inflation_range = st.slider('Inflation', 0, 100, (0, 10), 1)
-            st.session_state.nSim = st.number_input('Number of Simulations', value=200)
+            nSim = st.number_input('Number of Simulations', value=200)
 
         with col3:
             Fixed_Income_range = st.slider('Fixed_Income', 0, 100, (60, 100), 1)
-            st.session_state.Target = st.number_input('Select Target Return(%)', value=4.00)
+            Target = st.number_input('Select Target Return(%)', value=4.00)
 
             constraint_range=[Growth_range,Inflation_range,Fixed_Income_range]
 
-            st.session_state.count = 0
+            count = 0
 
         summit = st.form_submit_button("Summit")
-        # 
+        #
         # if summit not in st.session_state:
-        # 
+        #
         #    summit= False
 
         if summit:
 
-            st.session_state.EF = resampled_mvo.simulation(input_price, st.session_state.nSim, st.session_state.nPort, input_universe, constraint_range)
+            EF = resampled_mvo.simulation(input_price, nSim, nPort, input_universe, constraint_range)
             A = input_universe.copy()
             A.index = input_universe['symbol']
-            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
+            Result = pd.concat([A.drop(['symbol'], axis=1).T, EF.applymap('{:.6%}'.format)], axis=0, join='outer')
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             Result = Result[new_col]
 
@@ -72,11 +72,11 @@ if file is not None:
             # sns.heatmap(price.pct_change().dropna().corr(), ax=ax)
             # st.write(fig)
 
-    if st.session_state.EF.empty==False:
+    if EF.empty==False:
 
-        with st.expander("Target Return " + str(st.session_state.Target) + "%") :
+        with st.expander("Target Return " + str(Target) + "%") :
 
-            Target_Weight = st.session_state.EF.loc[(st.session_state.EF['EXP_RET'] - st.session_state.Target / 100).abs().idxmin()]\
+            Target_Weight = EF.loc[(EF['EXP_RET'] - Target / 100).abs().idxmin()]\
                             .drop(["EXP_RET", "STDEV"])
 
             Target_Weight_T = pd.DataFrame(Target_Weight).T
@@ -94,17 +94,17 @@ if file is not None:
                                               bt.algos.Rebalance()])
 
             bt_SAA = bt.Backtest(SAA_strategy, input_price)
-            st.session_state.res = bt.run(bt_SAA)
+            res = bt.run(bt_SAA)
 
             col4, col5 = st.columns([1, 1])
 
             with col4:
                 st.write("Net Asset Value")
-                st.pyplot(backtest_graph.line_chart(st.session_state.res.prices, ""))
+                st.pyplot(backtest_graph.line_chart(res.prices, ""))
             with col5:
                 st.write("Drawdown")
                 st.pyplot(backtest_graph.line_chart(
-                st.session_state.res.backtests['s1'].stats.drawdown, ""))
+                res.backtests['s1'].stats.drawdown, ""))
 
         st.download_button(
                 label="Efficient Frontier",
