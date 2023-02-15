@@ -95,7 +95,9 @@ if file is not None:
 
         with st.expander("Target Return " + str(Target) + "%", expanded=True) :
 
-            Target_Weight = st.session_state.EF.loc[(st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()]\
+            Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
+
+            Target_Weight = st.session_state.EF.loc[Target_index]\
                             .drop(["EXP_RET", "STDEV"])
 
             Target_Weight_T = pd.DataFrame(Target_Weight).T
@@ -180,14 +182,20 @@ if file is not None:
 
                 st.write("Efficient Frontier")
                 EF_point = plt.figure(figsize=(20, 10))
+
+                Point = np.full(len(st.session_state.EF),0.3)
+                Point[Target_index] = 0.7
+
                 plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
                             marker='o',
                             s=100,
-                            c=[st.session_state.EF.index==st.session_state.EF.index[Target_Weight.name]],
-                            cmap='bwr',
+                            c=Point,
+                            cmap='lightblue',
                             edgecolors='black')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
+
+                np.full()
 
                 plt.xlabel('stdev(%)', fontsize=15, labelpad=20)
                 plt.ylabel('return(%)', fontsize=15, labelpad=20)
