@@ -173,11 +173,55 @@ if file is not None:
                 st.pyplot(backtest_graph.line_chart(
                 res.backtests['s1'].stats.drawdown, ""))
 
+
+            col_a, col_b, col_c = st.columns([1, 1, 1])
+
+            with col_a:
+
+                EF_point = plt.figure(figsize=(10, 5))
+                plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
+                            marker='o',
+                            s=30,
+                            c='lightblue',
+                            edgecolors='black')
+
+                plt.title('Efficent Frontier')
+                plt.xlabel('stdev(%)', fontsize=15)
+                plt.ylabel('return(%)', fontsize=15)
+
+                st.pyplot(EF_point)
+
+            with col_b:
+
+                Weight_RET, ax = plt.subplots()
+                ax.stackplot(st.session_state.EF['EXP_RET'], Target_Weight, labels=list(Target_Weight.columns), alpha=0.8)
+                ax.legend(loc='lower left')
+                ax.set_title('Strategic Asset Allocation', fontsize=20)
+                ax.set_xlabel('STDEV', fontsize=15)
+                ax.set_ylabel('Weights', fontsize=15)
+                Weight_RET.set_size_inches(5, 5)
+
+                st.pyplot(Weight_RET)
+
+            with col_c:
+
+                Weight_STDEV, ax = plt.subplots()
+                ax.stackplot(st.session_state.EF['STDEV'],Target_Weight, labels=list(Target_Weight.columns), alpha=0.8)
+                ax.legend(loc='lower left')
+                ax.set_title('Strategic Asset Allocation', fontsize=20)
+                ax.set_xlabel('EXP_RET', fontsize=15)
+                ax.set_ylabel('Weights', fontsize=15)
+                Weight_STDEV.set_size_inches(5, 5)
+
+                st.pyplot(Weight_STDEV)
+
+
         st.download_button(
                 label="Efficient Frontier",
                 data=st.session_state.Result.to_csv(index=False),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
+
 
         st.download_button(
                 label="Simulation Result",
