@@ -179,7 +179,7 @@ if file is not None:
             with col_a:
 
                 st.write("Efficient Frontier")
-                EF_point, ax = plt.figure(figsize=(20, 10))
+                EF_point = plt.figure(figsize=(20, 10))
                 plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
                             marker='o',
                             s=100,
