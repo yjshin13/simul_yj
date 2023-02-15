@@ -183,8 +183,8 @@ if file is not None:
                 st.write("Efficient Frontier")
                 EF_point = plt.figure(figsize=(20, 10))
 
-                Point = np.full(len(st.session_state.EF),0.3)
-                Point[Target_index] =0.3
+                Point = np.full(len(st.session_state.EF),0.01)
+                Point[Target_index] =0.01
 
                 plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
                             marker='o',
