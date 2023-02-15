@@ -28,6 +28,7 @@ if file is not None:
 
     input_price = price[list(assets)]
     input_universe = universe[universe['symbol'].isin(list(assets))].drop(['key'], axis=1)
+    input_universe = input_universe.reset_index(drop=True) #index 깨지면 Optimization시 배열 범위 초과 오류 발생
 
 
    # my_expander = st.expander("", expanded=True)
