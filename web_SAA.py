@@ -129,9 +129,10 @@ if file is not None:
 
             with col10:
                 st.info("Period : ["+str(start_date)+" ~ "+str(end_date) + "]")
+                st.info("Annual RET: [" + str(Anuuual_RET) + "%]")
 
             with col11:
-                st.info("Annual vol: [" + str(Anuuual_RET)+"%]")
+                st.info("Annual RET: [" + str(Anuuual_RET)+"%]")
 
             with col12:
                 st.info("")
@@ -148,10 +149,10 @@ if file is not None:
 
 
             with col6:
-                st.info("Annual vol: [" + str(Anuuual_Vol)+"%]")
+                st.info("Sharpe: [" + str(Anuuual_Sharpe) + "]")
 
             with col7:
-                st.info("Sharpe: [" + str(Anuuual_Sharpe) +"]")
+                st.info("Annual vol: [" + str(Anuuual_Vol) + "%]")
 
             with col8:
                 st.info("")
