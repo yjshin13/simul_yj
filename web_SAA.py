@@ -181,6 +181,6 @@ if file is not None:
 
         st.download_button(
                 label="Simulation Result",
-                data=st.session_state.Result2.to_csv(index=False),
+                data=st.session_state.Result2.to_csv(index=True),
                 mime='text/csv',
                 file_name='Simulation Result.csv')
