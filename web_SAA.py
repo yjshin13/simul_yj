@@ -123,20 +123,32 @@ if file is not None:
             start_date = input_price.index[0].strftime("%Y-%m-%d")
             end_date = input_price.index[-1].strftime("%Y-%m-%d")
 
+            Anuuual_RET = round(float(((res.prices.iloc[-1]/100)**(365/(len(res.prices)-1))-1)*100),2)
+            Anuuual_Vol = round(float(np.std(res.prices.pct_change().dropna())*np.sqrt(365)*100),2)
+            Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
+
             with col10:
                 st.info("Period : ["+str(start_date)+" ~ "+str(end_date) + "]")
+
+            with col11:
+                st.info("Annual vol: [" + str(Anuuual_RET)+"%]")
+
+            with col12:
+                st.info("Sharpe: [" + str(Anuuual_Vol) +"%]")
+
+            with col13:
+                st.info("Max Drawdown: [" + str(Anuuual_Sharpe) + "]")
+
 
 
             col6, col7, col8, col9 = st.columns([1, 1, 1, 1])
 
-            Anuuual_RET = round(float(((res.prices.iloc[-1]/100)**(365/(len(res.prices)-1))-1)*100),2)
-            Anuuual_Vol = round(float(np.std(res.prices.pct_change().dropna())*np.sqrt(365)*100),2)
-            Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
+
             MDD = round(float(res.stats[res.stats.index == 'max_drawdown'].values * 100), 2)
 
 
             with col6:
-                st.info("Annual Return: ["+str(Anuuual_RET)+"%]")
+                st.info("Annual Return: ["+str(MDD)+"%]")
 
             with col7:
                 st.info("Annual vol: [" + str(Anuuual_Vol)+"%]")
@@ -165,6 +177,4 @@ if file is not None:
                 data=st.session_state.Result.to_csv(index=False),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
-
-
 
