@@ -174,7 +174,7 @@ if file is not None:
                 res.backtests['s1'].stats.drawdown, ""))
 
 
-            col_a, col_b, col_c = st.columns([1, 1, 1])
+            col_a, col_b = st.columns([1, 1])
 
             with col_a:
 
@@ -186,36 +186,10 @@ if file is not None:
                             edgecolors='black')
 
                 plt.title('Efficent Frontier')
-                plt.xlabel('stdev(%)', fontsize=15)
-                plt.ylabel('return(%)', fontsize=15)
+                plt.xlabel('stdev(%)', fontsize=15, labelpad=20)
+                plt.ylabel('return(%)', fontsize=15, labelpad=20)
 
                 st.pyplot(EF_point)
-
-            with col_b:
-
-                Weight_RET, ax = plt.subplots()
-                ax.stackplot(st.session_state.EF['EXP_RET'], Target_Weight_T,
-                             labels=list(st.session_state.Rebalancing_Wegiht.columns), alpha=0.8)
-                ax.legend(loc='lower left')
-                ax.set_title('Strategic Asset Allocation', fontsize=20)
-                ax.set_xlabel('STDEV', fontsize=15)
-                ax.set_ylabel('Weights', fontsize=15)
-                Weight_RET.set_size_inches(20, 10)
-
-                st.pyplot(Weight_RET)
-
-            with col_c:
-
-                Weight_STDEV, ax = plt.subplots()
-                ax.stackplot(st.session_state.EF['STDEV'],Target_Weight_T,
-                             labels=list(st.session_state.Rebalancing_Wegiht.columns), alpha=0.8)
-                ax.legend(loc='lower left')
-                ax.set_title('Strategic Asset Allocation', fontsize=20)
-                ax.set_xlabel('EXP_RET', fontsize=15)
-                ax.set_ylabel('Weights', fontsize=15)
-                Weight_STDEV.set_size_inches(20, 10)
-
-                st.pyplot(Weight_STDEV)
 
 
         st.download_button(
