@@ -205,10 +205,6 @@ if file is not None:
             with col_b:
 
                 st.write("Optimal Weight")
-                fig2, ax2 = plt.subplots(figsize=(20, 6))
-                ax2.pie(Target_Weight, labels=Target_Weight.index, startangle=30)
-                st.pyplot(fig2)
-
 
 
         st.download_button(
