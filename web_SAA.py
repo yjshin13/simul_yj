@@ -23,26 +23,12 @@ if file is not None:
 
     universe['key'] = universe['symbol'] + " - " + universe['name']
 
-    with st.form("Input Asset", clear_on_submit=False):
+    select = st.multiselect('Input Assets', universe['key'], universe['key'])
+    assets = universe['symbol'][universe['key'].isin(select)]
 
-        select = st.multiselect('Input Assets', universe['key'], universe['key'])
-        assets = universe['symbol'][universe['key'].isin(select)]
-
-        input_price = price[list(assets)]
-        input_universe = universe[universe['symbol'].isin(list(assets))].drop(['key'], axis=1)
-        input_universe = input_universe.reset_index(drop=True) #index 깨지면 Optimization 배열 범위 초과 오류 발생
-
-        summit0 = st.form_submit_button("Select")
-
-        if summit0 and ('input_price' not in st.session_state):
-
-            st.session_state.input_price = input_price
-            st.session_state.input_universe = input_universe
-
-        if summit0 and (len(st.session_state.input_price.columns)!=len(input_price.columns)):
-
-            st.session_state.input_price = input_price
-            st.session_state.input_universe = input_universe
+    input_price = price[list(assets)]
+    input_universe = universe[universe['symbol'].isin(list(assets))].drop(['key'], axis=1)
+    input_universe = input_universe.reset_index(drop=True) #index 깨지면 Optimization 배열 범위 초과 오류 발생
 
     with st.form("Resampling Parameters", clear_on_submit=False):
 
@@ -68,8 +54,8 @@ if file is not None:
 
         if summit and ('EF' not in st.session_state):
 
-            # st.session_state.input_price = input_price
-            # st.session_state.input_universe = input_universe
+            st.session_state.input_price = input_price
+            st.session_state.input_universe = input_universe
             st.session_state.nPort = nPort
             st.session_state.nSim = nSim
             st.session_state.constraint_range = constraint_range
@@ -85,11 +71,11 @@ if file is not None:
             st.session_state.Result = Result[new_col]
 
         if summit and ([st.session_state.nPort, st.session_state.nSim,
-                       st.session_state.constraint_range] \
-                       != [nPort, nSim, constraint_range]):
+                       st.session_state.constraint_range, len(st.session_state.input_price.columns)] \
+                       != [nPort, nSim, constraint_range, len(input_price.columns)]):
 
-            # st.session_state.input_price = input_price
-            # st.session_state.input_universe = input_universe
+            st.session_state.input_price = input_price
+            st.session_state.input_universe = input_universe
             st.session_state.nPort = nPort
             st.session_state.nSim = nSim
             st.session_state.constraint_range = constraint_range
