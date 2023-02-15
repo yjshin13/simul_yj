@@ -176,12 +176,12 @@ if file is not None:
                 res.backtests['s1'].stats.drawdown, ""))
 
 
-            col_a, col_b = st.columns([2, 1])
+            col_a, col_b = st.columns([1, 1])
 
             with col_a:
 
                 st.write("Efficient Frontier")
-                EF_point = plt.subplots(1,1,figsize=(20, 8), dpi=100)
+                EF_point = plt.figure(figsize=(20, 10))
 
                 Point = np.full(len(st.session_state.EF),0)
                 Point[Target_index] =2
