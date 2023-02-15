@@ -71,9 +71,9 @@ if file is not None:
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             st.session_state.Result = Result[new_col]
 
-        if summit and [st.session_state.nPort, st.session_state.nSim,
+        if summit and ([st.session_state.nPort, st.session_state.nSim,
                        st.session_state.constraint_range, len(st.session_state.input_price.columns)] \
-                       != [nPort, nSim, constraint_range, len(input_price.columns)]:
+                       != [nPort, nSim, constraint_range, len(input_price.columns)]):
 
             st.session_state.input_price = input_price
             st.session_state.nPort = nPort
