@@ -34,11 +34,16 @@ if file is not None:
 
         summit0 = st.form_submit_button("Select")
 
+        if summit0 and ('input_price' not in st.session_state):
+
+            st.session_state.input_price = input_price
+            st.session_state.input_universe = input_universe
+
         if summit0 and (len(st.session_state.input_price.columns)!=len(input_price.columns)):
 
             st.session_state.input_price = input_price
             st.session_state.input_universe = input_universe
-        
+
     with st.form("Resampling Parameters", clear_on_submit=False):
 
         st.subheader("Resampling Parameters:")
