@@ -204,7 +204,7 @@ if file is not None:
 
             with col_b:
 
-                fig2, ax2 = plt.subplots(figsize=(10, 7), facecolor='#e8f4f0')
+                fig2, ax2 = plt.subplots(figsize=(20, 10), facecolor='#e8f4f0')
                 ax2.pie(Target_Weight, labels=Target_Weight.index, startangle=30)
                 st.pyplot(fig2)
 
