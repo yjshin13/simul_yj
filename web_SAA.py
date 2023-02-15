@@ -179,15 +179,17 @@ if file is not None:
             with col_a:
 
                 st.write("Efficient Frontier")
-                EF_point = plt.figure(figsize=(20, 10))
+                EF_point, ax = plt.figure(figsize=(20, 10))
                 plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
                             marker='o',
                             s=100,
                             c='lightblue',
                             edgecolors='black')
+                plt.xticks(fontsize= 20)
+                plt.yticks(fontsize=20)
 
-                plt.xlabel('stdev(%)', size=25, fontsize=15, labelpad=20)
-                plt.ylabel('return(%)', size=25,  fontsize=15, labelpad=20)
+                plt.xlabel('stdev(%)', fontsize=15, labelpad=20)
+                plt.ylabel('return(%)', fontsize=15, labelpad=20)
 
                 st.pyplot(EF_point)
 
