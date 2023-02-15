@@ -194,7 +194,8 @@ if file is not None:
             with col_b:
 
                 Weight_RET, ax = plt.subplots()
-                ax.stackplot(st.session_state.EF['EXP_RET'], Target_Weight, labels=list(st.session_state.Rebalancing_Wegiht.columns), alpha=0.8)
+                ax.stackplot(st.session_state.EF['EXP_RET'], Target_Weight_T,
+                             labels=list(st.session_state.Rebalancing_Wegiht.columns), alpha=0.8)
                 ax.legend(loc='lower left')
                 ax.set_title('Strategic Asset Allocation', fontsize=20)
                 ax.set_xlabel('STDEV', fontsize=15)
@@ -206,7 +207,8 @@ if file is not None:
             with col_c:
 
                 Weight_STDEV, ax = plt.subplots()
-                ax.stackplot(st.session_state.EF['STDEV'],Target_Weight, labels=list(st.session_state.Rebalancing_Wegiht.columns), alpha=0.8)
+                ax.stackplot(st.session_state.EF['STDEV'],Target_Weight_T,
+                             labels=list(st.session_state.Rebalancing_Wegiht.columns), alpha=0.8)
                 ax.legend(loc='lower left')
                 ax.set_title('Strategic Asset Allocation', fontsize=20)
                 ax.set_xlabel('EXP_RET', fontsize=15)
