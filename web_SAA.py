@@ -183,7 +183,8 @@ if file is not None:
                 plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
                             marker='o',
                             s=100,
-                            c='lightblue',
+                            c=[st.session_state.EF.index==st.session_state.EF.index[Target_Weight.name]],
+                            cmap='coolwarm',
                             edgecolors='black')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
