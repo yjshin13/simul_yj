@@ -132,7 +132,7 @@ if file is not None:
 
 
             with col11:
-                st.info("Annual RET: [" + str(Anuuual_RET) + "%]")
+                st.info("Annual Return: [" + str(Anuuual_RET) + "%]")
 
             with col12:
                 st.info("")
