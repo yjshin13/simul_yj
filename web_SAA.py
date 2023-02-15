@@ -64,8 +64,8 @@ if file is not None:
                                                            st.session_state.nSim, st.session_state.nPort,
                                                            st.session_state.input_universe,
                                                            st.session_state.constraint_range)
-            A = input_universe.copy()
-            A.index = input_universe['symbol']
+            A = st.session_state.input_universe.copy()
+            A.index = st.session_state.input_universe['symbol']
             Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             st.session_state.Result = Result[new_col]
@@ -84,8 +84,8 @@ if file is not None:
                                                            st.session_state.nSim, st.session_state.nPort,
                                                            st.session_state.input_universe,
                                                            st.session_state.constraint_range)
-            A = input_universe.copy()
-            A.index = input_universe['symbol']
+            A = st.session_state.input_universe.copy()
+            A.index = st.session_state.input_universe['symbol']
             Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             st.session_state.Result = Result[new_col]
