@@ -71,7 +71,7 @@ if file is not None:
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             st.session_state.Result = Result[new_col]
 
-        if summit and [st.session_state.nPort, st.session_state.nSim, st.session_state.constraint_range,
+        if summit & [st.session_state.nPort, st.session_state.nSim, st.session_state.constraint_range,
                        st.session_state.input_price] != [nPort, nSim, constraint_range, input_price]:
 
             st.session_state.input_price = input_price
@@ -145,10 +145,6 @@ if file is not None:
             with col7:
                 st.info("Annual vol: " + str(Anuuual_Vol)+"%")
 
-
-
-
-            # st.sidebar()
 
             col4, col5 = st.columns([1, 1])
 
