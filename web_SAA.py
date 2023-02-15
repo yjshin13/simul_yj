@@ -192,7 +192,7 @@ if file is not None:
                             c=Point,
                            # alpha=0.7,
                             cmap='tab20',
-                            alpha = 0.3,
+                            alpha = 0.5,
                             edgecolors='black')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
