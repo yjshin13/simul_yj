@@ -125,6 +125,7 @@ if file is not None:
             Anuuual_Vol = round(float(np.std(res.prices.pct_change().dropna())*np.sqrt(365)*100),2)
             Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
             MDD = round(float(res.stats[res.stats.index == 'max_drawdown'].values * 100), 2)
+            Total_Return = round(float(res.stats[res.stats.index == 'total_return'].values * 100), 2)
 
             col10, col11, col12, col13 = st.columns([1, 1, 1, 1])
 
@@ -132,7 +133,7 @@ if file is not None:
                 st.info("Period: " + str(start_date) + " ~ " + str(end_date))
 
             with col11:
-                st.info("Annual Return: "+str(Anuuual_RET)+"%")
+                st.info("Total Return: "+str(Total_Return)+"%")
 
             with col12:
                 st.info("Max Drawdown: "+str(MDD) + "%")
@@ -142,10 +143,13 @@ if file is not None:
 
 
             with col6:
-                st.info("Sharpe: " + str(Anuuual_Sharpe))
+                st.info("Annual Return: " + str(Anuuual_RET) + "%")
 
             with col7:
                 st.info("Annual vol: " + str(Anuuual_Vol)+"%")
+
+            with col8:
+                st.info("Sharpe: " + str(Anuuual_Sharpe))
 
 
             col4, col5 = st.columns([1, 1])
