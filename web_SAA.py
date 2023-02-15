@@ -188,7 +188,7 @@ if file is not None:
 
                 plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
                             marker='o',
-                            s=70,
+                            s=85,
                             c=Point,
                            # alpha=0.7,
                             cmap='Paired',
