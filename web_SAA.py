@@ -134,10 +134,10 @@ if file is not None:
                 st.info("Annual vol: [" + str(Anuuual_RET)+"%]")
 
             with col12:
-                st.info("Sharpe: [" + str(Anuuual_Vol) +"%]")
+                st.info("")
 
             with col13:
-                st.info("Max Drawdown: [" + str(Anuuual_Sharpe) + "]")
+                st.info("")
 
 
 
@@ -148,16 +148,16 @@ if file is not None:
 
 
             with col6:
-                st.info("Annual Return: ["+str(MDD)+"%]")
-
-            with col7:
                 st.info("Annual vol: [" + str(Anuuual_Vol)+"%]")
 
-            with col8:
+            with col7:
                 st.info("Sharpe: [" + str(Anuuual_Sharpe) +"]")
 
+            with col8:
+                st.info("")
+
             with col9:
-                st.info("Max Drawdown: ["+str(MDD) + "%]")
+                st.info("")
 
 
             # st.sidebar()
