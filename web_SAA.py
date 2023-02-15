@@ -99,8 +99,8 @@ if file is not None:
             Target_Weight_T = pd.DataFrame(Target_Weight).T
 
             Rebalancing_Wegiht =  pd.DataFrame(Target_Weight_T,
-                                    index=pd.date_range(start=st.input_price.index[0],
-                                    end=st.input_price.index[-1], freq='D')).fillna(method='bfill')
+                                    index=pd.date_range(start=st.session_state.input_price.index[0],
+                                    end=st.session_state.input_price.index[-1], freq='D')).fillna(method='bfill')
 
             Rebalancing_Wegiht.iloc[:,:] = Target_Weight_T
 
@@ -169,6 +169,3 @@ if file is not None:
                 data=st.session_state.Result.to_csv(index=False),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
-
-
-
