@@ -190,8 +190,8 @@ if file is not None:
                             marker='o',
                             s=100,
                             c=Point,
-                            cmap='Blues',
-                            alpha=0.5,
+                            cmap='coolwarm',
+                            alpha=0.8,
                             edgecolors='black')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
