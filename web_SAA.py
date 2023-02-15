@@ -115,8 +115,7 @@ if file is not None:
             bt_SAA = bt.Backtest(SAA_strategy, st.session_state.input_price)
             res = bt.run(bt_SAA)
 
-            st.session_state.Result2 = pd.concat([res.prices, res.backtests['s1'].stats.drawdown], axis=1)
-            st.session_state.Result2
+            st.session_state.Result2 = pd.concat([res.prices.iloc[1:], res.backtests['s1'].stats.drawdown.iloc[1:]], axis=1)
             st.session_state.Result2.columns = ['NAV', 'Drawdown']
 
             st.empty()
@@ -162,8 +161,6 @@ if file is not None:
 
             with col9:
                 st.info("Worst Year: " + str(worst_year) + "%")
-
-
 
 
             col4, col5 = st.columns([1, 1])
