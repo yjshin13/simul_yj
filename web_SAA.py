@@ -57,11 +57,13 @@ if file is not None:
 
         if summit and ('EF' not in st.session_state):
 
+            st.session_state.input_price = input_price
             st.session_state.nPort = nPort
             st.session_state.nSim = nSim
             st.session_state.constraint_range = constraint_range
 
-            st.session_state.EF = resampled_mvo.simulation(input_price, st.session_state.nSim, st.session_state.nPort,
+            st.session_state.EF = resampled_mvo.simulation(st.session_state.input_price,
+                                                           st.session_state.nSim, st.session_state.nPort,
                                                            input_universe, st.session_state.constraint_range)
             A = input_universe.copy()
             A.index = input_universe['symbol']
@@ -69,14 +71,16 @@ if file is not None:
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             st.session_state.Result = Result[new_col]
 
-        if summit and [st.session_state.nPort, st.session_state.nSim, st.session_state.constraint_range] != \
-                        [nPort, nSim, constraint_range]:
+        if summit and [st.session_state.nPort, st.session_state.nSim, st.session_state.constraint_range,
+                       st.session_state.select] != [nPort, nSim, constraint_range, select]:
 
+            st.session_state.input_price = input_price
             st.session_state.nPort = nPort
             st.session_state.nSim = nSim
             st.session_state.constraint_range = constraint_range
 
-            st.session_state.EF = resampled_mvo.simulation(input_price, st.session_state.nSim, st.session_state.nPort,
+            st.session_state.EF = resampled_mvo.simulation(st.session_state.input_price,
+                                                           st.session_state.nSim, st.session_state.nPort,
                                                            input_universe, st.session_state.constraint_range)
             A = input_universe.copy()
             A.index = input_universe['symbol']
@@ -95,8 +99,8 @@ if file is not None:
             Target_Weight_T = pd.DataFrame(Target_Weight).T
 
             Rebalancing_Wegiht =  pd.DataFrame(Target_Weight_T,
-                                    index=pd.date_range(start=input_price.index[0],
-                                    end=input_price.index[-1], freq='D')).fillna(method='bfill')
+                                    index=pd.date_range(start=st.session_state.input_price.index[0],
+                                    end=st.session_state.input_price.index[-1], freq='D')).fillna(method='bfill')
 
             Rebalancing_Wegiht.iloc[:,:] = Target_Weight_T
 
@@ -106,7 +110,7 @@ if file is not None:
                                               bt.algos.WeighTarget(Rebalancing_Wegiht),
                                               bt.algos.Rebalance()])
 
-            bt_SAA = bt.Backtest(SAA_strategy, input_price)
+            bt_SAA = bt.Backtest(SAA_strategy, st.session_state.input_price)
             res = bt.run(bt_SAA)
 
             st.empty()
@@ -120,8 +124,8 @@ if file is not None:
 
             col10, col11, col12, col13 = st.columns([1, 1, 1, 1])
 
-            start_date = input_price.index[0].strftime("%Y-%m-%d")
-            end_date = input_price.index[-1].strftime("%Y-%m-%d")
+            start_date = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
+            end_date = st.session_state.input_price.index[-1].strftime("%Y-%m-%d")
 
             with col10:
                 st.info("Period: "+str(start_date)+" ~ "+str(end_date))
