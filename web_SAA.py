@@ -202,6 +202,13 @@ if file is not None:
 
                 st.pyplot(EF_point)
 
+            with col_b:
+
+                fig2, ax2 = plt.subplots(figsize=(10, 7), facecolor='#e8f4f0')
+                ax2.pie(Target_Weight, labels=list(st.session_state.EF.columns), startangle=30)
+                st.pyplot(fig2)
+
+
 
         st.download_button(
                 label="Efficient Frontier",
