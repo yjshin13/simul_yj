@@ -174,7 +174,7 @@ if file is not None:
                 res.backtests['s1'].stats.drawdown, ""))
 
 
-            col_a, col_b = st.columns([1, 1])
+            col_a = st.columns([1])
 
             with col_a:
 
@@ -184,7 +184,7 @@ if file is not None:
                             marker='o',
                             s=100,
                             c=[st.session_state.EF.index==st.session_state.EF.index[Target_Weight.name]],
-                            cmap='terrain',
+                            cmap='Blues',
                             edgecolors='black')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
