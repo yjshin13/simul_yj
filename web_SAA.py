@@ -184,7 +184,7 @@ if file is not None:
                             marker='o',
                             s=100,
                             c=[st.session_state.EF.index==st.session_state.EF.index[Target_Weight.name]],
-                            cmap='plasma',
+                            cmap='tab20c',
                             edgecolors='black')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
