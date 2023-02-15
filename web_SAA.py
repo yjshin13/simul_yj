@@ -192,7 +192,7 @@ if file is not None:
                             c=Point,
                            # alpha=0.7,
                             cmap='Paired',
-                            alpha = 0.8,
+                            alpha = 0.9,
                             edgecolors='black')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
