@@ -72,7 +72,7 @@ if file is not None:
             st.session_state.Result = Result[new_col]
 
         if summit and [st.session_state.nPort, st.session_state.nSim, st.session_state.constraint_range,
-                       st.session_state.select] != [nPort, nSim, constraint_range, select]:
+                       st.session_state.input_price] != [nPort, nSim, constraint_range, input_price]:
 
             st.session_state.input_price = input_price
             st.session_state.nPort = nPort
