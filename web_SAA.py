@@ -124,7 +124,7 @@ if file is not None:
             end_date = input_price.index[-1].strftime("%Y-%m-%d")
 
             with col10:
-                st.info("Period: "+str(start_date)+" ~ "+str(end_date))
+                st.info("Period [: "+str(start_date)+" ~ "+str(end_date) + "]")
 
 
             col6, col7, col8, col9 = st.columns([1, 1, 1, 1])
