@@ -100,20 +100,22 @@ if file is not None:
 
             Target_Weight_T = pd.DataFrame(Target_Weight).T
 
-            Rebalancing_Wegiht =  pd.DataFrame(Target_Weight_T,
+            st.session_state.Rebalancing_Wegiht =  pd.DataFrame(Target_Weight_T,
                                     index=pd.date_range(start=st.session_state.input_price.index[0],
                                     end=st.session_state.input_price.index[-1], freq='D')).fillna(method='bfill')
 
-            Rebalancing_Wegiht.iloc[:,:] = Target_Weight_T
+            st.session_state.Rebalancing_Wegiht.iloc[:,:] = Target_Weight_T
 
-            SAA_strategy = bt.Strategy('s1', [bt.algos.RunMonthly(run_on_first_date=True),
-                                              # bt.algos.RunAfterDate('2000-01-01'),
-                                              bt.algos.SelectAll(),
-                                              bt.algos.WeighTarget(Rebalancing_Wegiht),
-                                              bt.algos.Rebalance()])
+            if  st.session_state.Rebalancing_Wegiht.columns == st.session_state.input_price.columns:
 
-            bt_SAA = bt.Backtest(SAA_strategy, st.session_state.input_price)
-            res = bt.run(bt_SAA)
+                SAA_strategy = bt.Strategy('s1', [bt.algos.RunMonthly(run_on_first_date=True),
+                                                  # bt.algos.RunAfterDate('2000-01-01'),
+                                                  bt.algos.SelectAll(),
+                                                  bt.algos.WeighTarget( st.session_state.Rebalancing_Wegiht),
+                                                  bt.algos.Rebalance()])
+
+                bt_SAA = bt.Backtest(SAA_strategy, st.session_state.input_price)
+                res = bt.run(bt_SAA)
 
             st.empty()
 
