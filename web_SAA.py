@@ -129,7 +129,6 @@ if file is not None:
 
             with col10:
                 st.info("Period : ["+str(start_date)+" ~ "+str(end_date) + "]")
-                st.info("Annual RET: [" + str(Anuuual_RET) + "%]")
 
             with col11:
                 st.info("Annual RET: [" + str(Anuuual_RET)+"%]")
