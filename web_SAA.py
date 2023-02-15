@@ -178,7 +178,7 @@ if file is not None:
 
             with col_a:
 
-                EF_point = plt.figure(figsize=(10, 5))
+                EF_point = plt.figure(figsize=(20, 10))
                 plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
                             marker='o',
                             s=30,
@@ -194,24 +194,24 @@ if file is not None:
             with col_b:
 
                 Weight_RET, ax = plt.subplots()
-                ax.stackplot(st.session_state.EF['EXP_RET'], Target_Weight, labels=list(Target_Weight.columns), alpha=0.8)
+                ax.stackplot(st.session_state.EF['EXP_RET'], Target_Weight, labels=list(st.session_state.Rebalancing_Wegiht.columns), alpha=0.8)
                 ax.legend(loc='lower left')
                 ax.set_title('Strategic Asset Allocation', fontsize=20)
                 ax.set_xlabel('STDEV', fontsize=15)
                 ax.set_ylabel('Weights', fontsize=15)
-                Weight_RET.set_size_inches(5, 5)
+                Weight_RET.set_size_inches(20, 10)
 
                 st.pyplot(Weight_RET)
 
             with col_c:
 
                 Weight_STDEV, ax = plt.subplots()
-                ax.stackplot(st.session_state.EF['STDEV'],Target_Weight, labels=list(Target_Weight.columns), alpha=0.8)
+                ax.stackplot(st.session_state.EF['STDEV'],Target_Weight, labels=list(st.session_state.Rebalancing_Wegiht.columns), alpha=0.8)
                 ax.legend(loc='lower left')
                 ax.set_title('Strategic Asset Allocation', fontsize=20)
                 ax.set_xlabel('EXP_RET', fontsize=15)
                 ax.set_ylabel('Weights', fontsize=15)
-                Weight_STDEV.set_size_inches(5, 5)
+                Weight_STDEV.set_size_inches(20, 10)
 
                 st.pyplot(Weight_STDEV)
 
