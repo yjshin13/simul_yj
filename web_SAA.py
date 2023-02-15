@@ -28,7 +28,7 @@ if file is not None:
 
     input_price = price[list(assets)]
     input_universe = universe[universe['symbol'].isin(list(assets))].drop(['key'], axis=1)
-    input_universe = input_universe.reset_index(drop=True) #index 깨지면 Optimization시 배열 범위 초과 오류 발생
+    input_universe = input_universe.reset_index(drop=True) #index 깨지면 Optimization 배열 범위 초과 오류 발생
 
 
    # my_expander = st.expander("", expanded=True)
@@ -123,42 +123,29 @@ if file is not None:
             start_date = input_price.index[0].strftime("%Y-%m-%d")
             end_date = input_price.index[-1].strftime("%Y-%m-%d")
 
-            Anuuual_RET = round(float(((res.prices.iloc[-1]/100)**(365/(len(res.prices)-1))-1)*100),2)
-            Anuuual_Vol = round(float(np.std(res.prices.pct_change().dropna())*np.sqrt(365)*100),2)
-            Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
-
             with col10:
-                st.info("Period : ["+str(start_date)+" ~ "+str(end_date) + "]")
-
-
-            with col11:
-                st.info("Annual Return: [" + str(Anuuual_RET) + "%]")
-
-            with col12:
-                st.info("")
-
-            with col13:
-                st.info("")
-
+                st.info("Period: "+str(start_date)+" ~ "+str(end_date))
 
 
             col6, col7, col8, col9 = st.columns([1, 1, 1, 1])
 
-
+            Anuuual_RET = round(float(((res.prices.iloc[-1]/100)**(365/(len(res.prices)-1))-1)*100),2)
+            Anuuual_Vol = round(float(np.std(res.prices.pct_change().dropna())*np.sqrt(365)*100),2)
+            Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
             MDD = round(float(res.stats[res.stats.index == 'max_drawdown'].values * 100), 2)
 
 
             with col6:
-                st.info("Sharpe: [" + str(Anuuual_Sharpe) +"]")
+                st.info("Annual Return: "+str(Anuuual_RET)+"%")
 
             with col7:
-                st.info("Annual vol: [" + str(Anuuual_Vol) + "%]")
+                st.info("Annual vol: " + str(Anuuual_Vol)+"%")
 
             with col8:
-                st.info("")
+                st.info("Sharpe: " + str(Anuuual_Sharpe))
 
             with col9:
-                st.info("")
+                st.info("Max Drawdown: "+str(MDD) + "%")
 
 
             # st.sidebar()
@@ -178,4 +165,6 @@ if file is not None:
                 data=st.session_state.Result.to_csv(index=False),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
+
+
 
