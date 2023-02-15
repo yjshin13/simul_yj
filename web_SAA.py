@@ -184,7 +184,7 @@ if file is not None:
                 EF_point = plt.figure(figsize=(20, 7))
 
                 Point = np.full(len(st.session_state.EF),0)
-                Point[Target_index] =0.5
+                Point[Target_index] =1
 
                 plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
                             marker='o',
@@ -192,7 +192,7 @@ if file is not None:
                             c=Point,
                            # alpha=0.7,
                             cmap='Paired',
-                            alpha = 0.5,
+                            alpha = 0.7,
                             edgecolors='black')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
