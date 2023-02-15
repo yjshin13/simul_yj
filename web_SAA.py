@@ -193,6 +193,7 @@ if file is not None:
                            # alpha=0.7,
                             cmap='Paired',
                             alpha = 1,
+                            linewidths=1,
                             edgecolors='lightblue')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
