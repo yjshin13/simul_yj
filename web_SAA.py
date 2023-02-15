@@ -203,9 +203,9 @@ if file is not None:
                 st.pyplot(EF_point)
 
             with col_b:
-                
+
                 st.write("Optimal Weight")
-                fig2, ax2 = plt.subplots(figsize=(10, 5))
+                fig2, ax2 = plt.subplots(figsize=(10, 1))
                 ax2.pie(Target_Weight, labels=Target_Weight.index, startangle=30)
                 st.pyplot(fig2)
 
