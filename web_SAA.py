@@ -183,7 +183,7 @@ if file is not None:
                 st.write("Efficient Frontier")
                 EF_point = plt.figure(figsize=(20, 7))
 
-                Point = np.full(len(st.session_state.EF),0)
+                Point = np.full(len(st.session_state.EF),0.2)
                 Point[Target_index] =0.3
 
                 plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
@@ -191,7 +191,7 @@ if file is not None:
                             s=100,
                             c=Point,
                            # alpha=0.7,
-                            cmap='tab20',
+                            cmap='tab20c',
                             alpha = 0.5,
                             edgecolors='black')
                 plt.xticks(fontsize=15)
