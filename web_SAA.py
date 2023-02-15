@@ -188,12 +188,12 @@ if file is not None:
 
                 plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
                             marker='o',
-                            s=100,
+                            s=70,
                             c=Point,
                            # alpha=0.7,
                             cmap='Paired',
                             alpha = 0.9,
-                            edgecolors='blue')
+                            edgecolors='black')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
 
