@@ -106,7 +106,7 @@ if file is not None:
 
             st.session_state.Rebalancing_Wegiht.iloc[:,:] = Target_Weight_T
 
-            if  st.session_state.Rebalancing_Wegiht.columns == st.session_state.input_price.columns:
+            if st.session_state.Rebalancing_Wegiht.columns == st.session_state.input_price.columns:
 
                 SAA_strategy = bt.Strategy('s1', [bt.algos.RunMonthly(run_on_first_date=True),
                                                   # bt.algos.RunAfterDate('2000-01-01'),
