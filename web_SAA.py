@@ -195,8 +195,6 @@ if file is not None:
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
 
-                np.full()
-
                 plt.xlabel('stdev(%)', fontsize=15, labelpad=20)
                 plt.ylabel('return(%)', fontsize=15, labelpad=20)
 
