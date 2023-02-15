@@ -177,15 +177,15 @@ if file is not None:
             col_a, col_b = st.columns([1, 1])
 
             with col_a:
-
+                
+                st.write("Efficient Frontier")
                 EF_point = plt.figure(figsize=(20, 10))
                 plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
                             marker='o',
-                            s=30,
+                            s=100,
                             c='lightblue',
                             edgecolors='black')
 
-                plt.title('Efficent Frontier')
                 plt.xlabel('stdev(%)', fontsize=15, labelpad=20)
                 plt.ylabel('return(%)', fontsize=15, labelpad=20)
 
