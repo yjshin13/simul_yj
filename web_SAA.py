@@ -174,25 +174,25 @@ if file is not None:
                 res.backtests['s1'].stats.drawdown, ""))
 
 
-            col_a = st.columns([1])
+            # col_a = st.columns([1])
+            # 
+            # with col_a:
 
-            with col_a:
+            st.write("Efficient Frontier")
+            EF_point = plt.figure(figsize=(20, 10))
+            plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
+                        marker='o',
+                        s=100,
+                        c=[st.session_state.EF.index==st.session_state.EF.index[Target_Weight.name]],
+                        cmap='Blues',
+                        edgecolors='black')
+            plt.xticks(fontsize=15)
+            plt.yticks(fontsize=15)
 
-                st.write("Efficient Frontier")
-                EF_point = plt.figure(figsize=(20, 10))
-                plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
-                            marker='o',
-                            s=100,
-                            c=[st.session_state.EF.index==st.session_state.EF.index[Target_Weight.name]],
-                            cmap='Blues',
-                            edgecolors='black')
-                plt.xticks(fontsize=15)
-                plt.yticks(fontsize=15)
+            plt.xlabel('stdev(%)', fontsize=15, labelpad=20)
+            plt.ylabel('return(%)', fontsize=15, labelpad=20)
 
-                plt.xlabel('stdev(%)', fontsize=15, labelpad=20)
-                plt.ylabel('return(%)', fontsize=15, labelpad=20)
-
-                st.pyplot(EF_point)
+            st.pyplot(EF_point)
 
 
         st.download_button(
