@@ -126,6 +126,8 @@ if file is not None:
             Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
             MDD = round(float(res.stats[res.stats.index == 'max_drawdown'].values * 100), 2)
             Total_Return = round(float(res.stats[res.stats.index == 'total_return'].values * 100), 2)
+            best_year = round(float(res.stats[res.stats.index == 'best_year'].values * 100), 2)
+            worst_year = round(float(res.stats[res.stats.index == 'worst_year'].values * 100), 2)
 
             col10, col11, col12, col13 = st.columns([1, 1, 1, 1])
 
@@ -136,7 +138,10 @@ if file is not None:
                 st.info("Total Return: "+str(Total_Return)+"%")
 
             with col12:
-                st.info("Max Drawdown: "+str(MDD) + "%")
+                st.info("Sharpe: " + str(Anuuual_Sharpe))
+
+            with col13:
+                st.info("Best Year: " + str(best_year) + "%")
 
 
             col6, col7, col8, col9 = st.columns([1, 1, 1, 1])
@@ -149,7 +154,12 @@ if file is not None:
                 st.info("Annual vol: " + str(Anuuual_Vol)+"%")
 
             with col8:
-                st.info("Sharpe: " + str(Anuuual_Sharpe))
+                st.info("Max Drawdown: "+str(MDD) + "%")
+
+            with col9:
+                st.info("Worst Year: " + str(worst_year) + "%")
+
+
 
 
             col4, col5 = st.columns([1, 1])
