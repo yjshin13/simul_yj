@@ -23,71 +23,74 @@ if file is not None:
 
     universe['key'] = universe['symbol'] + " - " + universe['name']
 
-    select = st.multiselect('Input Assets', universe['key'], universe['key'])
-    assets = universe['symbol'][universe['key'].isin(select)]
+    with st.form("Input Asset", clear_on_submit=False):
 
-    input_price = price[list(assets)]
-    input_universe = universe[universe['symbol'].isin(list(assets))].drop(['key'], axis=1)
-    input_universe = input_universe.reset_index(drop=True) #index 깨지면 Optimization 배열 범위 초과 오류 발생
+        select = st.multiselect('Input Assets', universe['key'], universe['key'])
+        assets = universe['symbol'][universe['key'].isin(select)]
+    
+        input_price = price[list(assets)]
+        input_universe = universe[universe['symbol'].isin(list(assets))].drop(['key'], axis=1)
+        input_universe = input_universe.reset_index(drop=True) #index 깨지면 Optimization 배열 범위 초과 오류 발생
 
-
-   # my_expander = st.expander("", expanded=True)
-
-    with st.form("Resampling Parameters", clear_on_submit=False):
-
-        st.subheader("Resampling Parameters:")
-
-        col1, col2, col3 = st.columns([1, 1, 1])
-
-        with col1:
-            Growth_range = st.slider('Equity Weight Constraint', 0, 100, (0, 30), 1)
-            nPort = st.number_input('Efficient Frontier Points', value=200)
-
-        with col2:
-            Inflation_range = st.slider('Inflation Weight Constraint', 0, 100, (0, 10), 1)
-            nSim = st.number_input('Number of Simulations', value=200)
-
-        with col3:
-            Fixed_Income_range = st.slider('Fixed_Income Weight Constraint', 0, 100, (60, 100), 1)
-            Target = st.number_input('Select Target Return(%)', value=4.00)
-
-            constraint_range = [Growth_range,Inflation_range,Fixed_Income_range]
-
-        summit = st.form_submit_button("Summit")
-
-        if summit and ('EF' not in st.session_state):
-
-            st.session_state.input_price = input_price
-            st.session_state.nPort = nPort
-            st.session_state.nSim = nSim
-            st.session_state.constraint_range = constraint_range
-
-            st.session_state.EF = resampled_mvo.simulation(st.session_state.input_price,
-                                                           st.session_state.nSim, st.session_state.nPort,
-                                                           input_universe, st.session_state.constraint_range)
-            A = input_universe.copy()
-            A.index = input_universe['symbol']
-            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
-            new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
-            st.session_state.Result = Result[new_col]
-
-        if summit and ([st.session_state.nPort, st.session_state.nSim,
-                       st.session_state.constraint_range, len(st.session_state.input_price.columns)] \
-                       != [nPort, nSim, constraint_range, len(input_price.columns)]):
-
-            st.session_state.input_price = input_price
-            st.session_state.nPort = nPort
-            st.session_state.nSim = nSim
-            st.session_state.constraint_range = constraint_range
-
-            st.session_state.EF = resampled_mvo.simulation(st.session_state.input_price,
-                                                           st.session_state.nSim, st.session_state.nPort,
-                                                           input_universe, st.session_state.constraint_range)
-            A = input_universe.copy()
-            A.index = input_universe['symbol']
-            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
-            new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
-            st.session_state.Result = Result[new_col]
+        summit0 = st.form_submit_button("Select")
+        
+        if summit0:
+        
+            with st.form("Resampling Parameters", clear_on_submit=False):
+        
+                st.subheader("Resampling Parameters:")
+        
+                col1, col2, col3 = st.columns([1, 1, 1])
+        
+                with col1:
+                    Growth_range = st.slider('Equity Weight Constraint', 0, 100, (0, 30), 1)
+                    nPort = st.number_input('Efficient Frontier Points', value=200)
+        
+                with col2:
+                    Inflation_range = st.slider('Inflation Weight Constraint', 0, 100, (0, 10), 1)
+                    nSim = st.number_input('Number of Simulations', value=200)
+        
+                with col3:
+                    Fixed_Income_range = st.slider('Fixed_Income Weight Constraint', 0, 100, (60, 100), 1)
+                    Target = st.number_input('Select Target Return(%)', value=4.00)
+        
+                    constraint_range = [Growth_range,Inflation_range,Fixed_Income_range]
+        
+                summit = st.form_submit_button("Summit")
+        
+                if summit and ('EF' not in st.session_state):
+        
+                    st.session_state.input_price = input_price
+                    st.session_state.nPort = nPort
+                    st.session_state.nSim = nSim
+                    st.session_state.constraint_range = constraint_range
+        
+                    st.session_state.EF = resampled_mvo.simulation(st.session_state.input_price,
+                                                                   st.session_state.nSim, st.session_state.nPort,
+                                                                   input_universe, st.session_state.constraint_range)
+                    A = input_universe.copy()
+                    A.index = input_universe['symbol']
+                    Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
+                    new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
+                    st.session_state.Result = Result[new_col]
+        
+                if summit and ([st.session_state.nPort, st.session_state.nSim,
+                               st.session_state.constraint_range, len(st.session_state.input_price.columns)] \
+                               != [nPort, nSim, constraint_range, len(input_price.columns)]):
+        
+                    st.session_state.input_price = input_price
+                    st.session_state.nPort = nPort
+                    st.session_state.nSim = nSim
+                    st.session_state.constraint_range = constraint_range
+        
+                    st.session_state.EF = resampled_mvo.simulation(st.session_state.input_price,
+                                                                   st.session_state.nSim, st.session_state.nPort,
+                                                                   input_universe, st.session_state.constraint_range)
+                    A = input_universe.copy()
+                    A.index = input_universe['symbol']
+                    Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
+                    new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
+                    st.session_state.Result = Result[new_col]
 
 
     if 'EF' in st.session_state:
