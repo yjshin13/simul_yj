@@ -191,7 +191,7 @@ if file is not None:
                             s=100,
                             c=Point,
                            # alpha=0.7,
-                            cmap='coolwarm',
+                            cmap='bwr',
                             edgecolors='black')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
