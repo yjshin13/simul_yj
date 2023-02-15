@@ -176,7 +176,7 @@ if file is not None:
                 res.backtests['s1'].stats.drawdown, ""))
 
 
-            col_a, col_b = st.columns([1, 1])
+            col_a, col_b = st.columns([2, 1])
 
             with col_a:
 
