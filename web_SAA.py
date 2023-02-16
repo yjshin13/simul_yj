@@ -230,21 +230,21 @@ if file is not None:
                     ax_bar.margins(x=0.04, y=0.01)
 
                     st.pyplot(fig_bar)
-
+    
                 col_c, col_d = st.columns([1, 1])
-
+    
                 with col_c:
-
+    
                     fig_3, ax_3 = plt.subplots()
                     ax_3.stackplot(st.session_state.EF['STDEV'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axsi=1),
                                    labels = Target_Weight.index, alpha = 0.8)
-
+    
                     ax_3.legend(loc='lower left')
                     plt.xticks(fontsize=15)
                     plt.yticks(fontsize=15)
                     plt.xlabel('risk(%)', fontsize=15, labelpad=20)
                     plt.ylabel('Weight(%)', fontsize=15, labelpad=15)
-                    
+    
                     st.pyplot(fig_3)
 
 
