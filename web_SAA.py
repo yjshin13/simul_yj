@@ -218,7 +218,7 @@ if file is not None:
                     ax_bar.bar_label(bars)
 
                 plt.xticks(fontsize=15)
-                plt.yticks(fontsize=20)
+                plt.yticks(fontsize=15)
                 plt.xlabel('Weight', fontsize=15, labelpad=20)
                 plt.ylabel('Assets', fontsize=15, labelpad=20)
 
