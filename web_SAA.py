@@ -225,7 +225,7 @@ if file is not None:
                 plt.yticks(fontsize=15)
                 plt.xlabel('Weight(%)', fontsize=15, labelpad=20)
                 plt.ylabel('Assets', fontsize=15, labelpad=15)
-                ax_bar.margins(x=0, y=0.01)
+                ax_bar.margins(x=0.03, y=0.01)
 
                 st.pyplot(fig_bar)
 
