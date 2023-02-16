@@ -206,16 +206,18 @@ if file is not None:
 
             with col_b:
 
-                st.write("Weight")
+                st.write("Weight(%)")
                 x = (Target_Weight*100).values.round(2)
                 y = Target_Weight.index
 
                 fig_bar, ax_bar = plt.subplots(figsize=(20,10.5))
                 width = 0.75  # the width of the bars
-                ax_bar.barh(y, x, color="lightblue", height= 0.7, )
+                ax2 = ax_bar.barh(y, x, color="lightblue", height= 0.7, )
 
-                for bars in ax_bar.containers:
+                for bars in ax_bar:
+                    # width = bars
                     ax_bar.bar_label(bars)
+
 
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
