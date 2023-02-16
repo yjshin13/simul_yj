@@ -170,6 +170,7 @@ if file is not None:
             with col4:
                 st.write("Net Asset Value")
                 st.pyplot(backtest_graph.line_chart(res.prices, ""))
+
             with col5:
                 st.write("Drawdown")
                 st.pyplot(backtest_graph.line_chart(
@@ -210,15 +211,17 @@ if file is not None:
                 courses = data.index
                 values = data.values
 
-                fig_weight = plt.figure(figsize=(20, 10.3))
+                fig_weight = plt.figure(figsize=(20, 10.4))
 
                 # creating the bar plot
-                plt.barh(courses, values, color='lightblue')
+                barh = plt.barh(courses, values, color='lightblue')
 
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
                 plt.xlabel('Weight', fontsize=15, labelpad=20)
                 plt.ylabel('Assets', fontsize=15, labelpad=20)
+                for bars in barh.containers:
+                    barh.bar_label(bars)
 
                 st.pyplot(fig_weight)
 
