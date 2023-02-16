@@ -207,7 +207,7 @@ if file is not None:
             with col_b:
 
                 st.write("Weight")
-                x = Target_Weight.values
+                x = (Target_Weight*100).values.round(2)
                 y = Target_Weight.index
 
                 fig_bar, ax_bar = plt.subplots(figsize=(20,10.5))
