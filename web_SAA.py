@@ -136,8 +136,6 @@ if file is not None:
             worst_year = round(float(res.stats[res.stats.index == 'worst_year'].values * 100), 2)
 
 
-
-
             col10, col11, col12, col13 = st.columns([1, 1, 1, 1])
 
             with col10:
@@ -290,7 +288,7 @@ if file is not None:
 
         st.download_button(
                 label="Correlation Matrix",
-                data=st.session_state.input_price.corr().to_csv(index=True),
+                data=st.session_state.input_price.pct_change().dropna().corr().to_csv(index=True),
                 mime='text/csv',
                 file_name='Correlation Matrix.csv')
 
