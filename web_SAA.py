@@ -122,7 +122,7 @@ if file is not None:
 
             st.empty()
 
-            st.header("")
+            st.subheader("", anchor=True)
 
             st.write("Backtest")
 
