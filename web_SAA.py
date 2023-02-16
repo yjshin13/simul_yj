@@ -197,7 +197,7 @@ if file is not None:
                             linewidths=1.5,
                             edgecolors='lightblue')
                 plt.xticks(fontsize=15)
-                plt.yticks(fontsize=20)
+                plt.yticks(fontsize=15)
 
                 plt.xlabel('stdev(%)', fontsize=15, labelpad=20)
                 plt.ylabel('return(%)', fontsize=15, labelpad=20)
@@ -206,7 +206,7 @@ if file is not None:
 
             with col_b:
 
-                st.write("Weight(%)")
+                st.write("Weight")
                 x = (Target_Weight*100).values.round(2)
                 y = Target_Weight.index
 
@@ -223,7 +223,7 @@ if file is not None:
 
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
-                plt.xlabel('Weight', fontsize=15, labelpad=20)
+                plt.xlabel('Weight(%)', fontsize=15, labelpad=20)
                 plt.ylabel('Assets', fontsize=15, labelpad=20)
 
                 st.pyplot(fig_bar)
