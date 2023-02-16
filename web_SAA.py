@@ -255,7 +255,7 @@ if file is not None:
                 ax_3.stackplot(st.session_state.EF['STDEV'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).T,
                                labels = Target_Weight.index, alpha = 0.5, edgecolors="face", linewidths=2)
 
-                ax_3.legend(loc='lower left', fontsize=15)
+                ax_3.legend(loc='lower left', fontsize=13)
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
                 plt.xlabel('Volatility(%)', fontsize=15, labelpad=20)
