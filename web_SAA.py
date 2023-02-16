@@ -166,8 +166,8 @@ if file is not None:
             with col9:
                 st.info("Worst Year: " + str(worst_year) + "%")
 
-            st.empty()
-            st.empty()
+            st.subheader("")
+
             col4, col5 = st.columns([1, 1])
 
             with col4:
