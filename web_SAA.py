@@ -206,24 +206,19 @@ if file is not None:
 
             with col_b:
 
-                st.write("Optimal Weight")
-                data = Target_Weight
-                courses = data.index
-                values = data.values
+                st.write("Weight")
+                x = Target_Weight.values
+                y = Target_Weight.index
 
-                fig_weight = plt.figure(figsize=(20, 10.4))
-
-                # creating the bar plot
-                barh = plt.barh(courses, values, color='lightblue')
+                fig_bar, ax_bar = plt.subplots()
+                width = 0.75  # the width of the bars
+                ind = np.arange(len(y))  # the x locations for the groups
+                ax_bar.barh(ind, y, width, color="lightblue")
 
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
                 plt.xlabel('Weight', fontsize=15, labelpad=20)
                 plt.ylabel('Assets', fontsize=15, labelpad=20)
-                for bars in barh.containers:
-                    barh.bar_label(bars)
-
-                st.pyplot(fig_weight)
 
         st.download_button(
                 label="Efficient Frontier",
