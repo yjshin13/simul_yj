@@ -121,10 +121,8 @@ if file is not None:
             st.session_state.Result2.columns = ['NAV', 'Drawdown']
 
             st.empty()
-            st.subheader("")
-            
+
             st.write("Backtest")
-            st.subheader("")
 
             start_date = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
             end_date = st.session_state.input_price.index[-1].strftime("%Y-%m-%d")
