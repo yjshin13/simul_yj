@@ -122,9 +122,11 @@ if file is not None:
 
             st.empty()
 
-            st.subheader("", anchor=True)
+
 
             st.write("Backtest")
+
+            st.subheader("", anchor=None)
 
             start_date = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
             end_date = st.session_state.input_price.index[-1].strftime("%Y-%m-%d")
