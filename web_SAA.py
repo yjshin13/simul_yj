@@ -189,12 +189,12 @@ if file is not None:
 
                 plt.scatter(st.session_state.EF['STDEV']*100, (st.session_state.EF['EXP_RET']*100).T,
                             marker='o',
-                            s=90,
+                            s=100,
                             c=Point,
                            # alpha=0.7,
                             cmap='Paired',
                             alpha = 1,
-                            linewidths=1.5,
+                            linewidths=2,
                             edgecolors='lightblue')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
@@ -218,7 +218,7 @@ if file is not None:
                     width = bars.get_width()
                     posx = width + 0.5
                     posy = bars.get_y() + bars.get_height() * 0.5
-                    ax_bar.text(posx, posy, '{:.2%}' % width, rotation=0, ha='left', va='center', fontsize=13)
+                    ax_bar.text(posx, posy, '.1%' % width, rotation=0, ha='left', va='center', fontsize=13)
 
 
                 plt.xticks(fontsize=15)
