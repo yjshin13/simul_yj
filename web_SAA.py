@@ -212,10 +212,14 @@ if file is not None:
 
                 fig_bar, ax_bar = plt.subplots(figsize=(20,10.5))
                 width = 0.75  # the width of the bars
-                ax_bar.barh(y, x, color="lightblue", height= 0.5)
+                ax_bar.barh(y, x, color="lightblue", height= 0.7, )
 
-                for bars in ax_bar.containers:
-                    ax_bar.bar_label(bars)
+                for i, v in enumerate(x):
+                    plt.text(v, x[i], x[i],
+                             fontsize=9,
+                             color='blue',
+                             horizontalalignment='center',  # horizontalalignment (left, center, right)
+                             verticalalignment='bottom')  # verticalalignment (top, center, bottom)
 
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
