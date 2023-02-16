@@ -210,7 +210,7 @@ if file is not None:
                 x = Target_Weight.values
                 y = Target_Weight.index
 
-                fig_bar, ax_bar = plt.subplots(figsize=(20,10))
+                fig_bar, ax_bar = plt.subplots(figsize=(20,10.5))
                 width = 0.75  # the width of the bars
                 ax_bar.barh(y, x, color="lightblue")
 
