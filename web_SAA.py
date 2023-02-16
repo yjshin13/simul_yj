@@ -213,11 +213,13 @@ if file is not None:
                 fig_weight = plt.figure(figsize=(20, 10))
 
                 # creating the bar plot
-                plt.bar(courses, values, color='maroon',
+                plt.barh(courses, values, color='maroon',
                         width=0.4)
-
-                plt.xlabel("Weight")
-                plt.ylabel("Assets")
+                
+                plt.xticks(fontsize=15)
+                plt.yticks(fontsize=15)
+                plt.xlabel('Weight', fontsize=15, labelpad=20)
+                plt.ylabel('Assets', fontsize=15, labelpad=20)
 
                 st.pyplot(fig_weight)
 
