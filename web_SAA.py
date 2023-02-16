@@ -121,6 +121,8 @@ if file is not None:
             st.session_state.Result2.columns = ['NAV', 'Drawdown']
 
             st.empty()
+            
+            st.header()
 
             st.write("Backtest")
 
