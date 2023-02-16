@@ -11,7 +11,7 @@ import numpy as np
 st.set_page_config(layout="wide")
 
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
-st.warning("Upload data")
+st.warning("Upload data.")
 
 if file is not None:
 
