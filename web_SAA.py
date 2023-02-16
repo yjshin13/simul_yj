@@ -261,7 +261,7 @@ if file is not None:
                 plt.ylabel('Weight(%)', fontsize=15, labelpad=15)
                 ax_4.margins(x=0, y=0)
 
-                st.pyplot(fig_3)
+                st.pyplot(fig_4)
 
 
 
