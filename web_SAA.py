@@ -215,8 +215,8 @@ if file is not None:
                 ax_ = ax_bar.barh(y, x, color="lightblue", height= 0.7, )
 
                 for bars in ax_bar.containers:
-                
-                    ax_bar.bar_label(bars)
+
+                    ax_bar.text(bars)
 
 
                 plt.xticks(fontsize=15)
