@@ -210,16 +210,15 @@ if file is not None:
                 x = Target_Weight.values
                 y = Target_Weight.index
 
-                fig_bar, ax_bar = plt.subplots()
+                fig_bar, ax_bar = plt.subplots(figsize=(20,10))
                 width = 0.75  # the width of the bars
-                ind = np.arange(len(y))  # the x locations for the groups
-                ax_bar.barh(ind, y, width, color="lightblue")
+                ax_bar.barh(y, x, color="lightblue")
 
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
                 plt.xlabel('Weight', fontsize=15, labelpad=20)
                 plt.ylabel('Assets', fontsize=15, labelpad=20)
-                
+
                 st.pyplot(fig_bar)
 
         st.download_button(
