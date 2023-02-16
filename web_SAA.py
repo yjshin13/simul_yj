@@ -284,3 +284,10 @@ if file is not None:
                 data=st.session_state.Result2.to_csv(index=True),
                 mime='text/csv',
                 file_name='Simulation Result.csv')
+
+        st.download_button(
+                label="Correlation Matrix",
+                data=st.session_state.input_price.corr().to_csv(index=True),
+                mime='text/csv',
+                file_name='Correlation Matrix.csv')
+
