@@ -197,7 +197,7 @@ if file is not None:
                             linewidths=1.5,
                             edgecolors='lightblue')
                 plt.xticks(fontsize=15)
-                plt.yticks(fontsize=15)
+                plt.yticks(fontsize=20)
 
                 plt.xlabel('stdev(%)', fontsize=15, labelpad=20)
                 plt.ylabel('return(%)', fontsize=15, labelpad=20)
@@ -214,8 +214,11 @@ if file is not None:
                 width = 0.75  # the width of the bars
                 ax_bar.barh(y, x, color="lightblue")
 
+                for bars in ax_bar.containers:
+                    ax_bar.bar_label(bars)
+
                 plt.xticks(fontsize=15)
-                plt.yticks(fontsize=15)
+                plt.yticks(fontsize=20)
                 plt.xlabel('Weight', fontsize=15, labelpad=20)
                 plt.ylabel('Assets', fontsize=15, labelpad=20)
 
