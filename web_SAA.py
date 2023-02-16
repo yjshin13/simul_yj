@@ -219,6 +219,8 @@ if file is not None:
                 plt.yticks(fontsize=15)
                 plt.xlabel('Weight', fontsize=15, labelpad=20)
                 plt.ylabel('Assets', fontsize=15, labelpad=20)
+                
+                st.pyplot(fig_bar)
 
         st.download_button(
                 label="Efficient Frontier",
