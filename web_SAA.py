@@ -120,7 +120,8 @@ if file is not None:
             st.session_state.Result2 = pd.concat([res.prices.iloc[1:], res.backtests['s1'].stats.drawdown.iloc[1:]], axis=1)
             st.session_state.Result2.columns = ['NAV', 'Drawdown']
 
-            st.empty()
+            st.subheader("")
+            
             st.write("Backtest")
 
             start_date = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
