@@ -223,13 +223,13 @@ if file is not None:
                     ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
 
 
-                    plt.xticks(fontsize=15)
-                    plt.yticks(fontsize=15)
-                    plt.xlabel('Weight(%)', fontsize=15, labelpad=20)
-                    plt.ylabel('Assets', fontsize=15, labelpad=15)
-                    ax_bar.margins(x=0.04, y=0.01)
+                plt.xticks(fontsize=15)
+                plt.yticks(fontsize=15)
+                plt.xlabel('Weight(%)', fontsize=15, labelpad=20)
+                plt.ylabel('Assets', fontsize=15, labelpad=15)
+                ax_bar.margins(x=0.04, y=0.01)
 
-                    st.pyplot(fig_bar)
+                st.pyplot(fig_bar)
 
             col_c, col_d = st.columns([1, 1])
 
