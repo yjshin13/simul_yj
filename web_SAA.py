@@ -210,7 +210,7 @@ if file is not None:
                 x = (Target_Weight*100).values.round(2)
                 y = Target_Weight.index
 
-                fig_bar, ax_bar = plt.subplots(figsize=(20,10.8))
+                fig_bar, ax_bar = plt.subplots(figsize=(20,11))
                 width = 0.75  # the width of the bars
                 bar = ax_bar.barh(y, x, color="lightblue", height= 0.8, )
 
