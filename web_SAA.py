@@ -215,7 +215,7 @@ if file is not None:
                 ax_bar.barh(y, x, color="lightblue")
 
                 for bars in ax_bar.containers:
-                    ax_bar.bar_label(bars.applymap('{:.6%}'.format))
+                    ax_bar.bar_label(round(bars,2))
 
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
