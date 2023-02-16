@@ -235,18 +235,34 @@ if file is not None:
 
             with col_c:
 
-                fig_3, ax_3 = plt.subplots(figsize=(20,10.8))
+                fig_3, ax_3 = plt.subplots(figsize=(20,10))
                 ax_3.stackplot(st.session_state.EF['STDEV'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).T,
-                               labels = Target_Weight.index, alpha = 0.8)
+                               labels = Target_Weight.index, alpha = 0.5)
 
                 ax_3.legend(loc='lower left')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
-                plt.xlabel('risk(%)', fontsize=15, labelpad=20)
+                plt.xlabel('Volatility(%)', fontsize=15, labelpad=20)
                 plt.ylabel('Weight(%)', fontsize=15, labelpad=15)
-                ax_bar.margins(x=0, y=0)
+                ax_3.margins(x=0, y=0)
 
                 st.pyplot(fig_3)
+
+            with col_d:
+
+                fig_4, ax_4 = plt.subplots(figsize=(20,10))
+                ax_4.stackplot(st.session_state.EF['EXP_RET'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).T,
+                               labels = Target_Weight.index, alpha = 0.5)
+
+                ax_4.legend(loc='lower left', size=10)
+                plt.xticks(fontsize=15)
+                plt.yticks(fontsize=15)
+                plt.xlabel('Return(%)', fontsize=15, labelpad=20)
+                plt.ylabel('Weight(%)', fontsize=15, labelpad=15)
+                ax_4.margins(x=0, y=0)
+
+                st.pyplot(fig_3)
+
 
 
         st.download_button(
