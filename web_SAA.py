@@ -210,7 +210,7 @@ if file is not None:
                 courses = data.index
                 values = data.values
 
-                fig_weight = plt.figure(figsize=(20, 10))
+                fig_weight = plt.figure(figsize=(20, 11))
 
                 # creating the bar plot
                 plt.barh(courses, values, color='lightblue')
