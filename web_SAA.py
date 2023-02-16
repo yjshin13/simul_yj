@@ -122,7 +122,7 @@ if file is not None:
 
             st.empty()
             st.write("Backtest")
-            
+
             start_date = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
             end_date = st.session_state.input_price.index[-1].strftime("%Y-%m-%d")
             Anuuual_RET = round(float(((res.prices.iloc[-1] / 100) ** (365 / (len(res.prices) - 1)) - 1) * 100), 2)
@@ -223,13 +223,30 @@ if file is not None:
                     ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
 
 
-                plt.xticks(fontsize=15)
-                plt.yticks(fontsize=15)
-                plt.xlabel('Weight(%)', fontsize=15, labelpad=20)
-                plt.ylabel('Assets', fontsize=15, labelpad=15)
-                ax_bar.margins(x=0.04, y=0.01)
+                    plt.xticks(fontsize=15)
+                    plt.yticks(fontsize=15)
+                    plt.xlabel('Weight(%)', fontsize=15, labelpad=20)
+                    plt.ylabel('Assets', fontsize=15, labelpad=15)
+                    ax_bar.margins(x=0.04, y=0.01)
 
-                st.pyplot(fig_bar)
+                    st.pyplot(fig_bar)
+
+                col_c, col_d = st.columns([1, 1])
+
+                with col_c:
+
+                    fig_3, ax_3 = plt.subplots()
+                    ax_3.stackplot(st.session_state.EF['STDEV'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axsi=1),
+                                   labels = Target_Weight.index, alpha = 0.8)
+
+                    ax_3.legend(loc='lower left')
+                    plt.xticks(fontsize=15)
+                    plt.yticks(fontsize=15)
+                    plt.xlabel('risk(%)', fontsize=15, labelpad=20)
+                    plt.ylabel('Weight(%)', fontsize=15, labelpad=15)
+                    
+                    st.pyplot(fig_3)
+
 
         st.download_button(
                 label="Efficient Frontier",
