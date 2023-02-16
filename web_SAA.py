@@ -217,7 +217,7 @@ if file is not None:
                 for bars in bar:
                     width = bars.get_width()
                     posx = width + 0.5
-                    posy = bars.get_y() + bars.get_height() * 0.8
+                    posy = bars.get_y() + bars.get_height() * 0.5
                     ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
 
 
@@ -225,6 +225,7 @@ if file is not None:
                 plt.yticks(fontsize=15)
                 plt.xlabel('Weight(%)', fontsize=15, labelpad=20)
                 plt.ylabel('Assets', fontsize=15, labelpad=15)
+                ax_bar.margin(x=0, y=0)
 
                 st.pyplot(fig_bar)
 
