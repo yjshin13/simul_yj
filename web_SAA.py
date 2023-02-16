@@ -254,7 +254,7 @@ if file is not None:
                 ax_4.stackplot(st.session_state.EF['EXP_RET'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).T,
                                labels = Target_Weight.index, alpha = 0.5)
 
-                ax_4.legend(loc='lower left', size=10)
+                ax_4.legend(loc='lower left')
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
                 plt.xlabel('Return(%)', fontsize=15, labelpad=20)
