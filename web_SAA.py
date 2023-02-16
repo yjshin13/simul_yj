@@ -124,7 +124,7 @@ if file is not None:
 
 
 
-            st.write("Backtest")
+
 
             st.subheader("", anchor=None)
 
@@ -137,6 +137,8 @@ if file is not None:
             Total_Return = round(float(res.stats[res.stats.index == 'total_return'].values * 100), 2)
             best_year = round(float(res.stats[res.stats.index == 'best_year'].values * 100), 2)
             worst_year = round(float(res.stats[res.stats.index == 'worst_year'].values * 100), 2)
+
+            st.write("Backtest", anchor=True)
 
             col10, col11, col12, col13 = st.columns([1, 1, 1, 1])
 
