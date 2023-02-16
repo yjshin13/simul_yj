@@ -67,7 +67,8 @@ if file is not None:
                                                            st.session_state.constraint_range)
             A = st.session_state.input_universe.copy()
             A.index = st.session_state.input_universe['symbol']
-            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
+            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0)
+            #Result3 = pd.concat([universe.copy().drop(['symbol'], axis=1).T, price], axis=0, join='outer')
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             st.session_state.Result = Result[new_col]
 
