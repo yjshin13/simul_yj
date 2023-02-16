@@ -210,14 +210,16 @@ if file is not None:
                 courses = data.index
                 values = data.values
 
-                fig = plt.figure(figsize=(10, 5))
+                fig_weight = plt.figure(figsize=(20, 10))
 
                 # creating the bar plot
                 plt.bar(courses, values, color='maroon',
                         width=0.4)
-    
+
                 plt.xlabel("Weight")
                 plt.ylabel("Assets")
+
+                st.pyplot(fig_weight)
 
         st.download_button(
                 label="Efficient Frontier",
