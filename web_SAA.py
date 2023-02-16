@@ -238,7 +238,7 @@ if file is not None:
 
 
             with col_c:
-                st.write("Weight, Return")
+                st.write("Weight vs Return")
                 fig_4, ax_4 = plt.subplots(figsize=(20,10))
                 ax_4.stackplot(st.session_state.EF['EXP_RET']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T, cmap='gist_rainbow',
                                labels = Target_Weight.index, alpha = 0.5, edgecolors="face", linewidths=2)
@@ -254,7 +254,7 @@ if file is not None:
 
 
             with col_d:
-                st.write("Weight, Volatility")
+                st.write("Weight vs Volatility")
                 fig_3, ax_3 = plt.subplots(figsize=(20,10))
                 ax_3.stackplot(st.session_state.EF['STDEV']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T, cmap='gist_rainbow',
                                labels = Target_Weight.index, alpha = 0.5, edgecolors="face", linewidths=2)
