@@ -187,7 +187,7 @@ if file is not None:
                 Point = np.full(len(st.session_state.EF),0)
                 Point[Target_index] =2
 
-                plt.scatter(st.session_state.EF['STDEV'], st.session_state.EF['EXP_RET'].T,
+                plt.scatter(st.session_state.EF['STDEV']*100, (st.session_state.EF['EXP_RET']*100).T,
                             marker='o',
                             s=90,
                             c=Point,
@@ -207,7 +207,7 @@ if file is not None:
             with col_b:
 
                 st.write("Weight")
-                x = round(Target_Weight.values,2)
+                x = Target_Weight.values
                 y = Target_Weight.index
 
                 fig_bar, ax_bar = plt.subplots(figsize=(20,10.5))
