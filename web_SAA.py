@@ -235,7 +235,7 @@ if file is not None:
 
             with col_c:
 
-                fig_3, ax_3 = plt.subplots()
+                fig_3, ax_3 = plt.subplots(figsize=(20,10.8))
                 ax_3.stackplot(st.session_state.EF['STDEV'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).T,
                                labels = Target_Weight.index, alpha = 0.8)
 
