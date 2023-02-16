@@ -206,7 +206,18 @@ if file is not None:
             with col_b:
 
                 st.write("Optimal Weight")
+                data = Target_Weight
+                courses = data.index
+                values = data.values
 
+                fig = plt.figure(figsize=(10, 5))
+
+                # creating the bar plot
+                plt.bar(courses, values, color='maroon',
+                        width=0.4)
+    
+                plt.xlabel("Weight")
+                plt.ylabel("Assets")
 
         st.download_button(
                 label="Efficient Frontier",
