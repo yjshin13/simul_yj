@@ -207,7 +207,7 @@ if file is not None:
                 plt.yticks(fontsize=15)
 
                 plt.xlabel('Target Stdev(%)', fontsize=15, labelpad=20)
-                plt.ylabel('Target Return(%)', fontsize=15, labelpad=20)
+                plt.ylabel('Target Risk(%)', fontsize=15, labelpad=20)
 
                 st.pyplot(EF_point)
 
