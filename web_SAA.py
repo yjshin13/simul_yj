@@ -210,7 +210,7 @@ if file is not None:
                 x = (Target_Weight*100).values.round(2)
                 y = Target_Weight.index
 
-                fig_bar, ax_bar = plt.subplots(figsize=(20,11))
+                fig_bar, ax_bar = plt.subplots(figsize=(20,10.9))
                 width = 0.75  # the width of the bars
                 bar = ax_bar.barh(y, x, color="lightblue", height= 0.8, )
 
@@ -225,7 +225,7 @@ if file is not None:
                 plt.yticks(fontsize=15)
                 plt.xlabel('Weight(%)', fontsize=15, labelpad=20)
                 plt.ylabel('Assets', fontsize=15, labelpad=15)
-                ax_bar.margins(x=0.03, y=0.01)
+                ax_bar.margins(x=0.04, y=0.01)
 
                 st.pyplot(fig_bar)
 
