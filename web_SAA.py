@@ -212,11 +212,11 @@ if file is not None:
 
                 fig_bar, ax_bar = plt.subplots(figsize=(20,10.5))
                 width = 0.75  # the width of the bars
-                bar = ax_bar.barh(y, x, color="lightblue", height= 0.7, )
+                bar = ax_bar.barh(y, x, color="lightblue", height= 0.8, )
 
                 for bars in bar:
                     width = bars.get_width()
-                    posx = width * 1.02
+                    posx = width + 0.02
                     posy = bars.get_y() + bars.get_height() * 0.5
                     ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=10)
 
