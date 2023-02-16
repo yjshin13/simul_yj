@@ -213,8 +213,7 @@ if file is not None:
                 fig_weight = plt.figure(figsize=(20, 10))
 
                 # creating the bar plot
-                plt.barh(courses, values, color='maroon',
-                        width=(0.4,0.5))
+                plt.barh(courses, values, color='lightblue')
 
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
