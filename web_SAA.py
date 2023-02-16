@@ -121,7 +121,7 @@ if file is not None:
             st.session_state.Result2.columns = ['NAV', 'Drawdown']
 
             st.subheader("")
-            
+
             st.write("Backtest")
 
             start_date = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
@@ -195,7 +195,7 @@ if file is not None:
 
                 plt.scatter(st.session_state.EF['STDEV']*100, (st.session_state.EF['EXP_RET']*100).T,
                             marker='o',
-                            s=100,
+                            s=130,
                             c=Point,
                            # alpha=0.7,
                             cmap='Paired',
