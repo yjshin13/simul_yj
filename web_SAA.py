@@ -237,9 +237,9 @@ if file is not None:
 
                 fig_3, ax_3 = plt.subplots(figsize=(20,10))
                 ax_3.stackplot(st.session_state.EF['STDEV'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).T,
-                               labels = Target_Weight.index, alpha = 0.7)
+                               labels = Target_Weight.index, alpha = 0.5, edgecolors="face")
 
-                ax_3.legend(loc='lower left')
+                ax_3.legend(loc='lower left', fontsize=10)
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
                 plt.xlabel('Volatility(%)', fontsize=15, labelpad=20)
@@ -252,9 +252,9 @@ if file is not None:
 
                 fig_4, ax_4 = plt.subplots(figsize=(20,10))
                 ax_4.stackplot(st.session_state.EF['EXP_RET'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).T,
-                               labels = Target_Weight.index, alpha = 0.3, edgecolors="face")
+                               labels = Target_Weight.index, alpha = 0.5, edgecolors="face")
 
-                ax_4.legend(loc='lower left')
+                ax_4.legend(loc='lower left', fontsize=10)
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
                 plt.xlabel('Return(%)', fontsize=15, labelpad=20)
