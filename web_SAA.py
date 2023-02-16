@@ -237,7 +237,7 @@ if file is not None:
 
                 fig_3, ax_3 = plt.subplots(figsize=(20,10))
                 ax_3.stackplot(st.session_state.EF['STDEV'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).T,
-                               labels = Target_Weight.index, alpha = 0.5)
+                               labels = Target_Weight.index, alpha = 0.7)
 
                 ax_3.legend(loc='lower left')
                 plt.xticks(fontsize=15)
@@ -252,7 +252,7 @@ if file is not None:
 
                 fig_4, ax_4 = plt.subplots(figsize=(20,10))
                 ax_4.stackplot(st.session_state.EF['EXP_RET'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).T,
-                               labels = Target_Weight.index, alpha = 0.5)
+                               labels = Target_Weight.index, alpha = 0.7)
 
                 ax_4.legend(loc='lower left')
                 plt.xticks(fontsize=15)
