@@ -214,8 +214,8 @@ if file is not None:
 
                 # creating the bar plot
                 plt.barh(courses, values, color='maroon',
-                        width=0.4)
-                
+                        width=(0.4,0.5))
+
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
                 plt.xlabel('Weight', fontsize=15, labelpad=20)
