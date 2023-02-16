@@ -212,7 +212,7 @@ if file is not None:
 
                 fig_bar, ax_bar = plt.subplots(figsize=(20,10.5))
                 width = 0.75  # the width of the bars
-                ax_bar.barh(y, x, color="lightblue", height= 0.9)
+                ax_bar.barh(y, x, color="lightblue", height= 0.5)
 
                 for bars in ax_bar.containers:
                     ax_bar.bar_label(bars)
