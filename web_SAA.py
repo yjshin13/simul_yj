@@ -178,6 +178,8 @@ if file is not None:
                 st.pyplot(backtest_graph.line_chart(
                 res.backtests['s1'].stats.drawdown, ""))
 
+            st.empty()
+
 
             col_a, col_b = st.columns([1, 1])
 
@@ -232,9 +234,11 @@ if file is not None:
                 st.pyplot(fig_bar)
 
             col_c, col_d = st.columns([1, 1])
+            
+
 
             with col_c:
-
+                st.write("Weight, Return")
                 fig_4, ax_4 = plt.subplots(figsize=(20,10))
                 ax_4.stackplot(st.session_state.EF['EXP_RET'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).T, cmap='gist_rainbow',
                                labels = Target_Weight.index, alpha = 0.5, edgecolors="face", linewidths=2)
@@ -250,7 +254,7 @@ if file is not None:
 
 
             with col_d:
-
+                st.write("Weight, Volatility")
                 fig_3, ax_3 = plt.subplots(figsize=(20,10))
                 ax_3.stackplot(st.session_state.EF['STDEV'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).T,
                                labels = Target_Weight.index, alpha = 0.5, edgecolors="face", linewidths=2)
