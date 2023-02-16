@@ -235,7 +235,7 @@ if file is not None:
 
             with col_c:
 
-                fig_3, ax_3 = plt.subplots()
+                fig_3, ax_3 = plt.subplots(figsize=(20,10))
                 ax_3.stackplot(st.session_state.EF['STDEV'], st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).T,
                                labels = Target_Weight.index, alpha = 0.8)
 
@@ -244,6 +244,7 @@ if file is not None:
                 plt.yticks(fontsize=15)
                 plt.xlabel('risk(%)', fontsize=15, labelpad=20)
                 plt.ylabel('Weight(%)', fontsize=15, labelpad=15)
+                ax_bar.margins(x=0, y=0)
 
                 st.pyplot(fig_3)
 
