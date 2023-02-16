@@ -122,12 +122,6 @@ if file is not None:
 
             st.empty()
 
-
-
-
-
-            st.subheader("", anchor=None)
-
             start_date = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
             end_date = st.session_state.input_price.index[-1].strftime("%Y-%m-%d")
             Anuuual_RET = round(float(((res.prices.iloc[-1] / 100) ** (365 / (len(res.prices) - 1)) - 1) * 100), 2)
@@ -139,6 +133,7 @@ if file is not None:
             worst_year = round(float(res.stats[res.stats.index == 'worst_year'].values * 100), 2)
 
             st.write("Backtest", anchor=True)
+            st.subheader("Backtest", anchor=True)
 
             col10, col11, col12, col13 = st.columns([1, 1, 1, 1])
 
