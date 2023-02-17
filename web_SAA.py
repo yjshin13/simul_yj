@@ -287,21 +287,21 @@ if file is not None:
                 file_name='Simulation Result.csv')
 
         st.download_button(
-                label="Correlation Matrix(Asset)",
+                label="Correlation Matrix (asset)",
                 data=st.session_state.input_price.pct_change().dropna().corr().to_csv(index=True),
                 mime='text/csv',
-                file_name='Correlation Matrix(Factor).csv')
+                file_name='Correlation Matrix (asset).csv')
 
         F = st.session_state.input_universe['asset_category'].rename(st.session_state.input_universe['symbol'])
         corr_factor = pd.DataFrame()
-        factor_list = list(F.unique)
+        factor_list = list(F.unique())
         for factor in factor_list:
             B = st.session_state.input_price[F.index[F == factor]].pct_change().dropna().mean(axis=1)
             corr_factor = pd.concat([corr_factor, B], axis=1)
         corr_factor.columns = factor_list
 
         st.download_button(
-                label="Correlation Matrix(Factor)",
+                label="Correlation Matrix (factor)",
                 data=st.session_state.input_price.pct_change().dropna().corr().to_csv(index=True),
                 mime='text/csv',
-                file_name='Correlation Matrix(Factor).csv')
+                file_name='Correlation Matrix(factor).csv')
