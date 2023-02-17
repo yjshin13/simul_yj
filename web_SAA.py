@@ -283,7 +283,7 @@ if file is not None:
                 file_name='Simulation Result.csv')
 
         st.download_button(
-                label="Correlation Matrix(A)",
+                label="Correlation Matrix (A)",
                 data=st.session_state.input_price.pct_change().dropna().corr().to_csv(index=True),
                 mime='text/csv',
                 file_name='Correlation Matrix (A).csv')
@@ -297,7 +297,7 @@ if file is not None:
         corr_factor.columns = factor_list
 
         st.download_button(
-                label="Correlation Matrix(F)",
+                label="Correlation Matrix (F)",
                 data=corr_factor.corr().to_csv(index=True),
                 mime='text/csv',
                 file_name='Correlation Matrix (F).csv')
