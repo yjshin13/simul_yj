@@ -258,8 +258,10 @@ if file is not None:
                 fig_3, ax_3 = plt.subplots(figsize=(20,10))
                 ax_3.stackplot(st.session_state.EF['STDEV']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
                                labels = Target_Weight.index, alpha = 0.4, edgecolors="face", linewidths=2)
-
-                ax_3.legend(loc='lower left', fontsize=14)
+                
+                handles, labels = ax_3.get_legend_handles_labels()
+                ax_3.legend(reversed(handles), reversed(labels),loc='lower left', fontsize=14)
+                
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
                 plt.xlabel('Volatility(%)', fontsize=15, labelpad=20)
