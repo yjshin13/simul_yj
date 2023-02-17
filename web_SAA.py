@@ -67,8 +67,7 @@ if file is not None:
                                                            st.session_state.constraint_range)
             A = st.session_state.input_universe.copy()
             A.index = st.session_state.input_universe['symbol']
-            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0)
-            #Result3 = pd.concat([universe.copy().drop(['symbol'], axis=1).T, price], axis=0, join='outer')
+            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             st.session_state.Result = Result[new_col]
 
@@ -288,8 +287,21 @@ if file is not None:
                 file_name='Simulation Result.csv')
 
         st.download_button(
-                label="Correlation Matrix",
+                label="Correlation Matrix(Asset)",
                 data=st.session_state.input_price.pct_change().dropna().corr().to_csv(index=True),
                 mime='text/csv',
-                file_name='Correlation Matrix.csv')
+                file_name='Correlation Matrix(Factor).csv')
 
+        F = st.session_state.input_universe['asset_category'].rename(st.session_state.input_universe['symbol'])
+        corr_factor = pd.DataFrame()
+        factor_list = list(F.unique)
+        for factor in factor_list:
+            B = st.session_state.input_price[F.index[F == factor]].pct_change().dropna().mean(axis=1)
+            corr_factor = pd.concat([corr_factor, B], axis=1)
+        corr_factor.columns = factor_list
+
+        st.download_button(
+                label="Correlation Matrix(Factor)",
+                data=st.session_state.input_price.pct_change().dropna().corr().to_csv(index=True),
+                mime='text/csv',
+                file_name='Correlation Matrix(Factor).csv')
