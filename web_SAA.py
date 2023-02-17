@@ -241,8 +241,8 @@ if file is not None:
             with col_c:
                 st.write("Weight vs Return")
                 fig_4, ax_4 = plt.subplots(figsize=(20,10))
-                ax_4.stackplot(st.session_state.EF['EXP_RET']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T, cmap='jet',
-                               labels = Target_Weight.index, alpha = 0.5, edgecolors="face", linewidths=2)
+                ax_4.stackplot(st.session_state.EF['EXP_RET']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
+                               labels = Target_Weight.index, alpha = 0.4, edgecolors="face", linewidths=2)
 
                 ax_4.legend(loc='lower left', fontsize=14)
                 plt.xticks(fontsize=15)
@@ -258,8 +258,7 @@ if file is not None:
                 st.write("Weight vs Volatility")
                 fig_3, ax_3 = plt.subplots(figsize=(20,10))
                 ax_3.stackplot(st.session_state.EF['STDEV']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
-                               color=sns.color_palette('muted'),
-                               labels = Target_Weight.index, alpha = 0.5, edgecolors="face", linewidths=2)
+                               labels = Target_Weight.index, alpha = 0.4, edgecolors="face", linewidths=2)
 
                 ax_3.legend(loc='lower left', fontsize=14)
                 plt.xticks(fontsize=15)
