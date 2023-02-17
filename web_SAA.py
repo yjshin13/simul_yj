@@ -197,7 +197,7 @@ if file is not None:
                             s=130,
                             c=Point,
                            # alpha=0.7,
-                            cmap='rainbow',
+                            cmap='gist_rainbow',
                             alpha = 1,
                             linewidths=2,
                             edgecolors='lightblue')
