@@ -240,9 +240,10 @@ if file is not None:
                 st.write("Weight vs Return")
                 fig_4, ax_4 = plt.subplots(figsize=(20,10))
                 ax_4.stackplot(st.session_state.EF['EXP_RET']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
-                               labels = Target_Weight.index, alpha = 0.4, edgecolors="face", linewidths=2, legend='reverse')
+                               labels = Target_Weight.index, alpha = 0.4, edgecolors="face", linewidths=2)
 
-                ax_4.legend(loc='lower left', fontsize=14)
+                handles, labels = ax_4.get_legend_handles_labels()
+                ax_4.legend(reversed(handles), reversed(labels),loc='lower left', fontsize=14)
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
                 plt.xlabel('Return(%)', fontsize=15, labelpad=20)
@@ -256,7 +257,7 @@ if file is not None:
                 st.write("Weight vs Volatility")
                 fig_3, ax_3 = plt.subplots(figsize=(20,10))
                 ax_3.stackplot(st.session_state.EF['STDEV']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
-                               labels = Target_Weight.index, alpha = 0.4, edgecolors="face", linewidths=2, legend='reverse')
+                               labels = Target_Weight.index, alpha = 0.4, edgecolors="face", linewidths=2)
 
                 ax_3.legend(loc='lower left', fontsize=14)
                 plt.xticks(fontsize=15)
