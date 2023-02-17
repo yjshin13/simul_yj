@@ -197,7 +197,7 @@ if file is not None:
                             s=130,
                             c=Point,
                            # alpha=0.7,
-                            cmap='Paired',
+                            cmap='rainbow',
                             alpha = 1,
                             linewidths=2,
                             edgecolors='lightblue')
@@ -268,8 +268,6 @@ if file is not None:
                 ax_3.margins(x=0, y=0)
 
                 st.pyplot(fig_3)
-
-
 
 
 
