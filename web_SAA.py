@@ -257,7 +257,8 @@ if file is not None:
             with col_d:
                 st.write("Weight vs Volatility")
                 fig_3, ax_3 = plt.subplots(figsize=(20,10))
-                ax_3.stackplot(st.session_state.EF['STDEV']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T, cmap='jet',
+                ax_3.stackplot(st.session_state.EF['STDEV']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
+                               colormap='muted',
                                labels = Target_Weight.index, alpha = 0.5, edgecolors="face", linewidths=2)
 
                 ax_3.legend(loc='lower left', fontsize=14)
