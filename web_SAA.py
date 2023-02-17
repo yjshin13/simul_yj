@@ -236,8 +236,6 @@ if file is not None:
 
             col_c, col_d = st.columns([1, 1])
 
-
-
             with col_c:
                 st.write("Weight vs Return")
                 fig_4, ax_4 = plt.subplots(figsize=(20,10))
@@ -288,7 +286,7 @@ if file is not None:
                 label="Correlation Matrix(A)",
                 data=st.session_state.input_price.pct_change().dropna().corr().to_csv(index=True),
                 mime='text/csv',
-                file_name='Correlation Matrix(A).csv')
+                file_name='Correlation Matrix (A).csv')
 
         F = st.session_state.input_universe['asset_category'].rename(st.session_state.input_universe['symbol'])
         corr_factor = pd.DataFrame()
@@ -302,4 +300,4 @@ if file is not None:
                 label="Correlation Matrix(F)",
                 data=corr_factor.corr().to_csv(index=True),
                 mime='text/csv',
-                file_name='Correlation Matrix(F).csv')
+                file_name='Correlation Matrix (F).csv')
