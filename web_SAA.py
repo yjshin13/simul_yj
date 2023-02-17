@@ -197,7 +197,7 @@ if file is not None:
                             s=130,
                             c=Point,
                            # alpha=0.7,
-                            cmap='gist_rainbow',
+                            cmap='Paired',
                             alpha = 1,
                             linewidths=2,
                             edgecolors='lightblue')
@@ -241,7 +241,7 @@ if file is not None:
             with col_c:
                 st.write("Weight vs Return")
                 fig_4, ax_4 = plt.subplots(figsize=(20,10))
-                ax_4.stackplot(st.session_state.EF['EXP_RET']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T, cmap='gist_rainbow',
+                ax_4.stackplot(st.session_state.EF['EXP_RET']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T, cmap='jet',
                                labels = Target_Weight.index, alpha = 0.5, edgecolors="face", linewidths=2)
 
                 ax_4.legend(loc='lower left', fontsize=14)
@@ -257,7 +257,7 @@ if file is not None:
             with col_d:
                 st.write("Weight vs Volatility")
                 fig_3, ax_3 = plt.subplots(figsize=(20,10))
-                ax_3.stackplot(st.session_state.EF['STDEV']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T, cmap='gist_rainbow',
+                ax_3.stackplot(st.session_state.EF['STDEV']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T, cmap='jet',
                                labels = Target_Weight.index, alpha = 0.5, edgecolors="face", linewidths=2)
 
                 ax_3.legend(loc='lower left', fontsize=14)
@@ -285,10 +285,10 @@ if file is not None:
                 file_name='Simulation Result.csv')
 
         st.download_button(
-                label="Correlation Matrix (asset)",
+                label="Correlation Matrix(A)",
                 data=st.session_state.input_price.pct_change().dropna().corr().to_csv(index=True),
                 mime='text/csv',
-                file_name='Correlation Matrix (asset).csv')
+                file_name='Correlation Matrix(A).csv')
 
         F = st.session_state.input_universe['asset_category'].rename(st.session_state.input_universe['symbol'])
         corr_factor = pd.DataFrame()
@@ -299,7 +299,7 @@ if file is not None:
         corr_factor.columns = factor_list
 
         st.download_button(
-                label="Correlation Matrix (factor)",
+                label="Correlation Matrix(F)",
                 data=corr_factor.corr().to_csv(index=True),
                 mime='text/csv',
-                file_name='Correlation Matrix(factor).csv')
+                file_name='Correlation Matrix(F).csv')
