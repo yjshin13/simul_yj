@@ -302,6 +302,6 @@ if file is not None:
 
         st.download_button(
                 label="Correlation Matrix (factor)",
-                data=st.session_state.input_price.pct_change().dropna().corr().to_csv(index=True),
+                data=corr_factor.corr().to_csv(index=True),
                 mime='text/csv',
                 file_name='Correlation Matrix(factor).csv')
