@@ -94,7 +94,7 @@ if file is not None:
 
     if 'EF' in st.session_state:
 
-        with st.expander("Optimization (" + str(Target) + "%)", expanded=True) :
+        with st.expander("Optimization (Target: " + str(Target) + "%)", expanded=True) :
 
             Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
 
@@ -102,7 +102,7 @@ if file is not None:
 
             with col_x:
 
-                st.info("Target Return: " + str(round(st.session_state.EF.loc[Target_index]["EXP_RET"]*100,2)) + "%")
+                st.info("Expected Return: " + str(round(st.session_state.EF.loc[Target_index]["EXP_RET"]*100,2)) + "%")
 
             with col_y:
 
@@ -214,8 +214,8 @@ if file is not None:
                 plt.xticks(fontsize=15)
                 plt.yticks(fontsize=15)
 
-                plt.xlabel('Target Risk(%)', fontsize=15, labelpad=20)
-                plt.ylabel('Target Return(%)', fontsize=15, labelpad=20)
+                plt.xlabel('Expected Risk(%)', fontsize=15, labelpad=20)
+                plt.ylabel('Expected Return(%)', fontsize=15, labelpad=20)
 
                 st.pyplot(EF_point)
 
