@@ -98,8 +98,8 @@ if file is not None:
 
             Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
 
-            st.write("Expected Return: " + str(st.session_state.EF.loc[Target_index]["EXP_RET"]) + "            " +
-                     "Expected Risk: " + str(st.session_state.EF.loc[Target_index]["STDEV"]))
+            st.write("Expected Return: " + str(round(st.session_state.EF.loc[Target_index]["EXP_RET"].applymap('{:.6%}'.format),2)) + "            " +
+                     "Expected Risk: " + str(round(st.session_state.EF.loc[Target_index]["STDEV"]).applymap('{:.6%}'.format),2))
 
             Target_Weight = st.session_state.EF.loc[Target_index]\
                             .drop(["EXP_RET", "STDEV"])
