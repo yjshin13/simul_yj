@@ -102,11 +102,11 @@ if file is not None:
 
             with col_x:
 
-                st.write("Expected Return: " + str(round(st.session_state.EF.loc[Target_index]["EXP_RET"]*100,2)) + "%")
+                st.write("Return: " + str(round(st.session_state.EF.loc[Target_index]["EXP_RET"]*100,2)) + "%")
 
             with col_y:
 
-                st.write("Expected Risk: " + str(round(st.session_state.EF.loc[Target_index]["STDEV"]*100,2))+"%")
+                st.write("Risk: " + str(round(st.session_state.EF.loc[Target_index]["STDEV"]*100,2))+"%")
 
             Target_Weight = st.session_state.EF.loc[Target_index]\
                             .drop(["EXP_RET", "STDEV"])
