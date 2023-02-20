@@ -107,6 +107,8 @@ if file is not None:
             with col_y:
 
                 st.info("Target Risk: " + str(round(st.session_state.EF.loc[Target_index]["STDEV"]*100,2))+"%")
+                
+            st.write("")
 
             Target_Weight = st.session_state.EF.loc[Target_index]\
                             .drop(["EXP_RET", "STDEV"])
