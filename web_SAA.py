@@ -99,7 +99,7 @@ if file is not None:
             Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
 
             col_x, col_y, col_z = st.columns([1, 1, 4])
-            
+
             with col_x:
 
                 st.write("Expected Return: " + str(round(st.session_state.EF.loc[Target_index]["EXP_RET"]*100,2)) + "%")
@@ -131,7 +131,6 @@ if file is not None:
             st.session_state.Result2 = pd.concat([res.prices.iloc[1:], res.backtests['s1'].stats.drawdown.iloc[1:]], axis=1)
             st.session_state.Result2.columns = ['NAV', 'Drawdown']
 
-            st.subheader("")
 
             st.write("Backtest")
 
