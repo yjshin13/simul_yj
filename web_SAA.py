@@ -94,7 +94,7 @@ if file is not None:
 
     if 'EF' in st.session_state:
 
-        with st.expander("Result (" + str(Target) + "%)", expanded=True) :
+        with st.expander("Optimization Result (" + str(Target) + "%)", expanded=True) :
 
             Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
 
