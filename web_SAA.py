@@ -98,7 +98,7 @@ if file is not None:
 
             Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
 
-            col_x, col_y, col_z = st.columns([1, 1, 4])
+            col_x, col_y, col_z = st.columns([1, 1, 5])
 
             with col_x:
 
@@ -161,7 +161,6 @@ if file is not None:
 
 
             col6, col7, col8, col9 = st.columns([1, 1, 1, 1])
-
 
             with col6:
                 st.info("Annual Return: " + str(Anuuual_RET) + "%")
