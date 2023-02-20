@@ -94,19 +94,19 @@ if file is not None:
 
     if 'EF' in st.session_state:
 
-        with st.expander("Target Return " + str(Target) + "%", expanded=True) :
+        with st.expander("Selected Target Return " + str(Target) + "%", expanded=True) :
 
             Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
 
-            col_x, col_y, col_z = st.columns([1, 1, 5])
+            col_x, col_y, col_z, col_aa = st.columns([1, 1, 2])
 
             with col_x:
 
-                st.write("Return: " + str(round(st.session_state.EF.loc[Target_index]["EXP_RET"]*100,2)) + "%")
+                st.info("Target Return: " + str(round(st.session_state.EF.loc[Target_index]["EXP_RET"]*100,2)) + "%")
 
             with col_y:
 
-                st.write("Risk: " + str(round(st.session_state.EF.loc[Target_index]["STDEV"]*100,2))+"%")
+                st.info("Target Risk: " + str(round(st.session_state.EF.loc[Target_index]["STDEV"]*100,2))+"%")
 
             Target_Weight = st.session_state.EF.loc[Target_index]\
                             .drop(["EXP_RET", "STDEV"])
