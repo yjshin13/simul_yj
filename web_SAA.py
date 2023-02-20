@@ -98,7 +98,7 @@ if file is not None:
 
             Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
 
-            col_x, col_y, col_z, col_aa = st.columns([1, 1, 2])
+            col_x, col_y, col_z = st.columns([1, 1, 2])
 
             with col_x:
 
