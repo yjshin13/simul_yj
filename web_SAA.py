@@ -34,8 +34,8 @@ if file is not None:
 
     with st.form("Resampling Parameters", clear_on_submit=False):
 
-        # st.subheader("Resampling Parameters:")
-        #
+        st.subheader("Resampling Parameters:")
+
         # col20, col21, col22, col23 = st.columns([1,1,1,3])
         #
         # with col20:
