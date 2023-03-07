@@ -18,6 +18,8 @@ if file is not None:
     price = pd.read_excel(file, sheet_name="price",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
 
+    price = price[price.index.is_month_end == True]
+
     universe = pd.read_excel(file, sheet_name="universe",
                              names=None, dtype={'Date': datetime}, header=0)
 
@@ -32,14 +34,14 @@ if file is not None:
 
     with st.form("Resampling Parameters", clear_on_submit=False):
 
-        st.subheader("Resampling Parameters:")
-
-        col20, col21, col22, col23 = st.columns([1,1,1,3])
-
-        with col20:
-
-            if st.checkbox('monthly data', value=True):
-                input_price = input_price[input_price.index.is_month_end == True]
+        # st.subheader("Resampling Parameters:")
+        #
+        # col20, col21, col22, col23 = st.columns([1,1,1,3])
+        #
+        # with col20:
+        #
+        #     if st.checkbox('monthly data', value=True):
+        #         input_price = input_price[input_price.index.is_month_end == True]
         #
         # with col21:
         #
