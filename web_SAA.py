@@ -39,11 +39,11 @@ if file is not None:
 
         with col20:
 
-            start_date = st.date_input("start")
+            start_date = st.date_input("start", value = input_price.index[0])
 
         with col21:
 
-            end_date = st.date_input("end")
+            end_date = st.date_input("end", value = input_price.index[-1])
 
 
         col1, col2, col3 = st.columns([1, 1, 1])
