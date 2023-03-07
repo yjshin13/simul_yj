@@ -18,6 +18,8 @@ if file is not None:
     price = pd.read_excel(file, sheet_name="price",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
 
+    price = price[price.index.is_month_end=True]
+
     universe = pd.read_excel(file, sheet_name="universe",
                              names=None, dtype={'Date': datetime}, header=0)
 
@@ -26,7 +28,7 @@ if file is not None:
     select = st.multiselect('Input Assets', universe['key'], universe['key'])
     assets = universe['symbol'][universe['key'].isin(select)]
 
-    input_price = price[list(assets)][price.index.is_month_end==True]
+    input_price = price[list(assets)]
     input_universe = universe[universe['symbol'].isin(list(assets))].drop(['key'], axis=1)
     input_universe = input_universe.reset_index(drop=True) #index 깨지면 Optimization 배열 범위 초과 오류 발생
 
