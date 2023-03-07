@@ -44,7 +44,7 @@ if file is not None:
 
             end_date = st.date_input("end", value = input_price.index[-1])
 
-        with col22:
+        with col23:
 
             if st.checkbox('monthly data', value=True):
                 input_price = input_price[input_price.index.is_month_end == True]
