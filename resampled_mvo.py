@@ -10,8 +10,8 @@ def optimal_portfolio(returns, nPort, assets1, assets2, assets3,
 
     n = len(returns.columns)
     w = Variable(n)
-    mu = returns.mean() * 12
-    Sigma = returns.cov() * 12
+    mu = returns.mean() * 252
+    Sigma = returns.cov() * 252
     gamma = Parameter(nonneg=True)
     ret = mu.values.T * w
     risk = quad_form(w, Sigma.values)
