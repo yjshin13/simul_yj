@@ -36,13 +36,13 @@ if file is not None:
 
         col20, col21, col22, col23 = st.columns([1,1,1,3])
 
-        with col20:
-
-            start_date = st.date_input("start", value = input_price.index[0])
-
-        with col21:
-
-            end_date = st.date_input("end", value = input_price.index[-1])
+        # with col20:
+        #
+        #     start_date = st.date_input("start", value = input_price.index[0])
+        #
+        # with col21:
+        #
+        #     end_date = st.date_input("end", value = input_price.index[-1])
 
         with col23:
 
@@ -70,7 +70,7 @@ if file is not None:
 
         if summit and ('EF' not in st.session_state):
 
-            st.session_state.input_price = input_price[(input_price.index>=start_date) & input_price.index<=end_date]
+            st.session_state.input_price = input_price
             st.session_state.input_universe = input_universe
             st.session_state.nPort = nPort
             st.session_state.nSim = nSim
