@@ -35,7 +35,7 @@ if file is not None:
         st.subheader("Resampling Parameters:")
         if st.checkbox('monthly data', value=True):
             input_price = input_price[input_price.index.is_month_end == True]
-        col20, col21, col23 = st.columns([1, 1, 1])
+        col20, col21, col23 = st.columns([1,1,4])
 
         with col20:
 
