@@ -36,18 +36,19 @@ if file is not None:
 
         col20, col21, col22, col23 = st.columns([1,1,1,3])
 
-        # with col20:
-        #
-        #     start_date = st.date_input("start", value = input_price.index[0])
+        with col20:
+
+            if st.checkbox('monthly data', value=True):
+                input_price = input_price[input_price.index.is_month_end == True]
         #
         # with col21:
         #
         #     end_date = st.date_input("end", value = input_price.index[-1])
 
-        with col23:
-
-            if st.checkbox('monthly data', value=True):
-                input_price = input_price[input_price.index.is_month_end == True]
+        # with col23:
+        #
+        #     if st.checkbox('monthly data', value=True):
+        #         input_price = input_price[input_price.index.is_month_end == True]
 
 
         col1, col2, col3 = st.columns([1, 1, 1])
