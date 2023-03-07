@@ -18,7 +18,7 @@ if file is not None:
     price = pd.read_excel(file, sheet_name="price",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
 
-    price = price[price.index.is_month_end=True]
+    price = price[price.index.is_month_end==True]
 
     universe = pd.read_excel(file, sheet_name="universe",
                              names=None, dtype={'Date': datetime}, header=0)
