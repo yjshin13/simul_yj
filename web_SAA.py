@@ -50,6 +50,8 @@ if file is not None:
 
 
         with col22:
+            
+            st.write("sd")
 
             if st.checkbox('Daily', value=True):
 
