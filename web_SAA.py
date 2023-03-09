@@ -89,8 +89,8 @@ if file is not None:
             constraint_range = [Growth_range,Inflation_range,Fixed_Income_range]
 
         summit = st.form_submit_button("Summit")
-        
-        st.write(start_date)
+
+
 
         if summit and (('EF' not in st.session_state) or ([st.session_state.nPort, st.session_state.nSim,
                        st.session_state.constraint_range, list(st.session_state.input_price.columns)] \
@@ -103,6 +103,8 @@ if file is not None:
             if monthly==True:
 
                 st.session_state.input_price = input_price[(input_price.index>=start_date) & (input_price.index.is_month_end==True)]
+
+            st.write(st.session_state.input_price[0])
 
             st.session_state.input_universe = input_universe
             st.session_state.nPort = nPort
