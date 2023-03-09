@@ -69,9 +69,6 @@ if file is not None:
             end_date = datetime.combine(end_date, datetime.min.time())
 
 
-
-
-
         col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:
@@ -199,7 +196,7 @@ if file is not None:
 
 
             with col10:
-                st.info("Period: " + str(START_DATE) + " ~ " + str(END_DATE))
+                st.info("Simulation Period: " + str(START_DATE) + " ~ " + str(END_DATE))
 
             with col11:
                 st.info("Total Return: "+str(Total_Return)+"%")
