@@ -104,7 +104,7 @@ if file is not None:
 
                 st.session_state.input_price = input_price[(input_price.index>=start_date) & (input_price.index.is_month_end==True)]
 
-            st.write(st.session_state.input_price[0])
+            
 
             st.session_state.input_universe = input_universe
             st.session_state.nPort = nPort
@@ -184,8 +184,11 @@ if file is not None:
             best_year = round(float(res.stats[res.stats.index == 'best_year'].values * 100), 2)
             worst_year = round(float(res.stats[res.stats.index == 'worst_year'].values * 100), 2)
 
+            st.write(st.session_state.input_price[0])
+
 
             col10, col11, col12, col13 = st.columns([1, 1, 1, 1])
+            
 
             with col10:
                 st.info("Period: " + str(start_date) + " ~ " + str(end_date))
