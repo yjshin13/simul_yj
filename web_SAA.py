@@ -45,6 +45,7 @@ if file is not None:
 
                 daily = True
                 monthly = False
+                annualization = 365
 
 
         with col21:
@@ -53,6 +54,7 @@ if file is not None:
 
                 daily = False
                 monthly = True
+                annualization = 12
 
 
 
@@ -94,7 +96,8 @@ if file is not None:
             st.session_state.EF = resampled_mvo.simulation(st.session_state.input_price,
                                                            st.session_state.nSim, st.session_state.nPort,
                                                            st.session_state.input_universe,
-                                                           st.session_state.constraint_range)
+                                                           st.session_state.constraint_range,
+                                                           annualization)
             A = st.session_state.input_universe.copy()
             A.index = st.session_state.input_universe['symbol']
             Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
