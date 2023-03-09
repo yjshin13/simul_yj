@@ -105,7 +105,7 @@ if file is not None:
             Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             st.session_state.Result = Result[new_col]
-            freq_input = freq
+            st.session_state.freq_input = freq
 
 
     if 'EF' in st.session_state:
@@ -116,7 +116,7 @@ if file is not None:
         if monthly == True:
             st.session_state.input_price = input_price[input_price.index.is_month_end == True]
 
-        with st.expander("Optimization (Target: " + str(Target) + "%, " + freq_input + ")", expanded=True) :
+        with st.expander("Optimization (Target: " + str(Target) + "%, " + st.session_state.freq_input + ")", expanded=True) :
 
             Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
 
