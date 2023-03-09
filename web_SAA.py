@@ -36,7 +36,7 @@ if file is not None:
 
         st.subheader("Resampling Parameters:")
 
-        col20, col21, col22, col23 = st.columns([1,1,1,4])
+        col20, col21, col22, col23 = st.columns([1,1,1,3])
 
         with col20:
 
@@ -66,7 +66,6 @@ if file is not None:
                 monthly = True
                 annualization = 12
                 freq = "monthly"
-
 
 
         col1, col2, col3 = st.columns([1, 1, 1])
