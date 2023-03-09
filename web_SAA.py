@@ -61,7 +61,7 @@ if file is not None:
         with col22:
 
             start_date = st.date_input("Start", value = input_price.index[0])
-            start_date = datetime.datetime.timestamp(datetime.combine(start_date, datetime.min.time()))
+            start_date = datetime.timestamp(datetime.combine(start_date, datetime.min.time()))
 
         with col23:
 
