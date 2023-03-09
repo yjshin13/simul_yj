@@ -126,7 +126,7 @@ if file is not None:
     if 'EF' in st.session_state:
 
         if daily == True:
-            st.session_state.input_price = input_price
+            st.session_state.input_price = input_price[input_price.index>=start_date]
 
         if monthly == True:
             st.session_state.input_price = input_price[input_price.index.is_month_end == True]
