@@ -63,7 +63,7 @@ if file is not None:
 
         with col23:
 
-            st.write("")
+            st.write(" ")
 
             if st.checkbox('Monthly', value=False):
 
