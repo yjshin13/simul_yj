@@ -61,6 +61,8 @@ if file is not None:
         with col22:
 
             start_date = st.date_input("Start", value = input_price.index[0])
+            start_date = datetime.combine(start_date, datetime.min.time())
+            start_date = datetime(start_date.year, start_date.month, start_date.day, start_date.hour, start_date.minute, start_date.second)
 
         with col23:
 
@@ -94,11 +96,11 @@ if file is not None:
 
             if daily==True:
 
-                st.session_state.input_price = input_price[input_price.index>=start_date.to_datetime()]
+                st.session_state.input_price = input_price[input_price.index>=start_date]
 
             if monthly==True:
 
-                st.session_state.input_price = input_price[(input_price.index>=start_date.to_datetime()) & (input_price.index.is_month_end==True)]
+                st.session_state.input_price = input_price[(input_price.index>=start_date) & (input_price.index.is_month_end==True)]
 
             st.session_state.input_universe = input_universe
             st.session_state.nPort = nPort
