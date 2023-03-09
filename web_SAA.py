@@ -186,7 +186,7 @@ if file is not None:
             worst_year = round(float(res.stats[res.stats.index == 'worst_year'].values * 100), 2)
 
 
-            col10, col11, col12, col13 = st.columns([1, 1, 1, 1])
+            col10, col11, col12, col13 = st.columns([2, 2, 1, 7])
 
 
             with col10:
