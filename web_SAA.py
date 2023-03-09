@@ -50,8 +50,8 @@ if file is not None:
 
 
         with col22:
-            
-            st.write("sd")
+
+            st.write("Frequency")
 
             if st.checkbox('Daily', value=True):
 
@@ -62,6 +62,8 @@ if file is not None:
 
 
         with col23:
+
+            st.write("")
 
             if st.checkbox('Monthly', value=False):
 
