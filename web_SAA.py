@@ -51,7 +51,7 @@ if file is not None:
 
         with col22:
 
-            st.write("Data Frequency")
+            #st.write("Data Frequency")
 
             if st.checkbox('Daily', value=True):
 
@@ -59,7 +59,7 @@ if file is not None:
                 monthly = False
                 annualization = 365
                 freq = "daily"
-                
+
             if st.checkbox('Monthly', value=False):
 
                 daily = False
@@ -74,7 +74,7 @@ if file is not None:
             st.write("")
 
             # if st.checkbox('Monthly', value=False):
-            # 
+            #
             #     daily = False
             #     monthly = True
             #     annualization = 12
