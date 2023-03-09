@@ -36,12 +36,12 @@ if file is not None:
 
         st.subheader("Resampling Parameters:")
 
-        col20, col21, col22, = st.columns([1,1,6])
+        col20, col21, col22, col23 = st.columns([1,1,1,8])
 
 
         with col20:
 
-            if st.checkbox('Daily data', value=True):
+            if st.checkbox('Daily', value=True):
 
                 daily = True
                 monthly = False
@@ -50,7 +50,7 @@ if file is not None:
 
         with col21:
 
-            if st.checkbox('Monthly data', value=False):
+            if st.checkbox('Monthly', value=False):
 
                 daily = False
                 monthly = True
@@ -61,15 +61,15 @@ if file is not None:
         col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:
-            Growth_range = st.slider('Equity Weight Constraint', 0, 100, (0, 30), 1)
+            Growth_range = st.slider('Equity Weight Constraint', 0, 100, (0, 40), 1)
             nPort = st.number_input('Efficient Frontier Points', value=200)
 
         with col2:
-            Inflation_range = st.slider('Inflation Weight Constraint', 0, 100, (0, 10), 1)
+            Inflation_range = st.slider('Inflation Weight Constraint', 0, 100, (0, 30), 1)
             nSim = st.number_input('Number of Simulations', value=200)
 
         with col3:
-            Fixed_Income_range = st.slider('Fixed_Income Weight Constraint', 0, 100, (60, 100), 1)
+            Fixed_Income_range = st.slider('Fixed_Income Weight Constraint', 0, 100, (50, 100), 1)
             Target = st.number_input('Select Target Return(%)', value=4.00)
 
             constraint_range = [Growth_range,Inflation_range,Fixed_Income_range]
