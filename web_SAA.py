@@ -38,19 +38,23 @@ if file is not None:
 
         col20, col21, col22, col23 = st.columns([1,1,1,3])
 
-        # with col20:
-        #
-        #     if st.checkbox('monthly data', value=True):
-        #         input_price = input_price[input_price.index.is_month_end == True]
-        #
-        # with col21:
-        #
-        #     end_date = st.date_input("end", value = input_price.index[-1])
 
-        with col23:
+        with col20:
 
-            if st.checkbox('monthly data', value=True):
-                input_price = input_price[input_price.index.is_month_end == True]
+            if st.checkbox('Daily data', value=True):
+
+                monthly = True
+                daily = False
+
+
+        with col21:
+
+            if st.checkbox('Monthly data', value=False):
+
+                monthly = False
+                daily = True
+
+
 
 
         col1, col2, col3 = st.columns([1, 1, 1])
@@ -73,7 +77,14 @@ if file is not None:
 
         if summit and ('EF' not in st.session_state):
 
-            st.session_state.input_price = input_price
+            if daily==True:
+
+                st.session_state.input_price = input_price
+
+            if monthly==True:
+
+                st.session_state.input_price = input_price[input_price.index.is_month_end==True]
+
             st.session_state.input_universe = input_universe
             st.session_state.nPort = nPort
             st.session_state.nSim = nSim
@@ -93,7 +104,13 @@ if file is not None:
                        st.session_state.constraint_range, list(st.session_state.input_price.columns)] \
                        != [nPort, nSim, constraint_range, list(input_price.columns)]):
 
-            st.session_state.input_price = input_price
+            if daily == True:
+                st.session_state.input_price = input_price
+
+            if monthly == True:
+                st.session_state.input_price = input_price[input_price.index.is_month_end == True]
+
+
             st.session_state.input_universe = input_universe
             st.session_state.nPort = nPort
             st.session_state.nSim = nSim
@@ -111,6 +128,12 @@ if file is not None:
 
 
     if 'EF' in st.session_state:
+
+        if daily == True:
+            st.session_state.input_price = input_price
+
+        if monthly == True:
+            st.session_state.input_price = input_price[input_price.index.is_month_end == True]
 
         with st.expander("Optimization (Target: " + str(Target) + "%)", expanded=True) :
 
