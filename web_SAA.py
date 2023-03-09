@@ -183,8 +183,7 @@ if file is not None:
             Total_Return = round(float(res.stats[res.stats.index == 'total_return'].values * 100), 2)
             best_year = round(float(res.stats[res.stats.index == 'best_year'].values * 100), 2)
             worst_year = round(float(res.stats[res.stats.index == 'worst_year'].values * 100), 2)
-
-            st.write(st.session_state.input_price[0])
+            
 
 
             col10, col11, col12, col13 = st.columns([1, 1, 1, 1])
