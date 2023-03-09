@@ -61,7 +61,7 @@ if file is not None:
         with col22:
 
             start_date = st.date_input("Start", value = input_price.index[0])
-            start_date = datetime.timestamp(datetime.combine(start_date, datetime.min.time()))
+            start_date = datetime.combine(start_date, datetime.min.time())
 
         with col23:
 
@@ -173,8 +173,6 @@ if file is not None:
 
             st.write("Backtest" + " (" + freq + ")")
 
-            start_date = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
-            end_date = st.session_state.input_price.index[-1].strftime("%Y-%m-%d")
             Anuuual_RET = round(float(((res.prices.iloc[-1] / 100) ** (annualization / (len(res.prices) - 1)) - 1) * 100), 2)
             Anuuual_Vol = round(float(np.std(res.prices.pct_change().dropna())*np.sqrt(annualization)*100),2)
             Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
