@@ -41,6 +41,17 @@ if file is not None:
 
         with col20:
 
+            start_date = st.date_input("Start", value = input_price.index[0])
+            start_date = datetime.combine(start_date, datetime.min.time())
+
+        with col21:
+
+            end_date = st.date_input("End", value = input_price.index[-1])
+            end_date = datetime.combine(end_date, datetime.min.time())
+
+
+        with col22:
+
             if st.checkbox('Daily', value=True):
 
                 daily = True
@@ -49,7 +60,7 @@ if file is not None:
                 freq = "daily"
 
 
-        with col21:
+        with col23:
 
             if st.checkbox('Monthly', value=False):
 
@@ -58,15 +69,6 @@ if file is not None:
                 annualization = 12
                 freq = "monthly"
 
-        with col22:
-
-            start_date = st.date_input("Start", value = input_price.index[0])
-            start_date = datetime.combine(start_date, datetime.min.time())
-
-        with col23:
-
-            end_date = st.date_input("End", value = input_price.index[-1])
-            end_date = datetime.combine(end_date, datetime.min.time())
 
 
         col1, col2, col3 = st.columns([1, 1, 1])
