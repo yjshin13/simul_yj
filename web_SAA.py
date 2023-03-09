@@ -42,7 +42,7 @@ if file is not None:
         with col20:
 
             if st.checkbox('Daily data', value=True):
-                
+
                 daily = True
                 monthly = False
 
@@ -50,7 +50,7 @@ if file is not None:
         with col21:
 
             if st.checkbox('Monthly data', value=False):
-                
+
                 daily = False
                 monthly = True
 
@@ -74,7 +74,9 @@ if file is not None:
 
         summit = st.form_submit_button("Summit")
 
-        if summit and ('EF' not in st.session_state):
+        if summit and (('EF' not in st.session_state) or ([st.session_state.nPort, st.session_state.nSim,
+                       st.session_state.constraint_range, list(st.session_state.input_price.columns)] \
+                       != [nPort, nSim, constraint_range, list(input_price.columns)])):
 
             if daily==True:
 
@@ -98,32 +100,32 @@ if file is not None:
             Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             st.session_state.Result = Result[new_col]
-
-        if summit and ([st.session_state.nPort, st.session_state.nSim,
-                       st.session_state.constraint_range, list(st.session_state.input_price.columns)] \
-                       != [nPort, nSim, constraint_range, list(input_price.columns)]):
-
-            if daily == True:
-                st.session_state.input_price = input_price
-
-            if monthly == True:
-                st.session_state.input_price = input_price[input_price.index.is_month_end == True]
-
-
-            st.session_state.input_universe = input_universe
-            st.session_state.nPort = nPort
-            st.session_state.nSim = nSim
-            st.session_state.constraint_range = constraint_range
-
-            st.session_state.EF = resampled_mvo.simulation(st.session_state.input_price,
-                                                           st.session_state.nSim, st.session_state.nPort,
-                                                           st.session_state.input_universe,
-                                                           st.session_state.constraint_range)
-            A = st.session_state.input_universe.copy()
-            A.index = st.session_state.input_universe['symbol']
-            Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
-            new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
-            st.session_state.Result = Result[new_col]
+        #
+        # if summit and ([st.session_state.nPort, st.session_state.nSim,
+        #                st.session_state.constraint_range, list(st.session_state.input_price.columns)] \
+        #                != [nPort, nSim, constraint_range, list(input_price.columns)]):
+        #
+        #     if daily == True:
+        #         st.session_state.input_price = input_price
+        #
+        #     if monthly == True:
+        #         st.session_state.input_price = input_price[input_price.index.is_month_end == True]
+        #
+        #
+        #     st.session_state.input_universe = input_universe
+        #     st.session_state.nPort = nPort
+        #     st.session_state.nSim = nSim
+        #     st.session_state.constraint_range = constraint_range
+        #
+        #     st.session_state.EF = resampled_mvo.simulation(st.session_state.input_price,
+        #                                                    st.session_state.nSim, st.session_state.nPort,
+        #                                                    st.session_state.input_universe,
+        #                                                    st.session_state.constraint_range)
+        #     A = st.session_state.input_universe.copy()
+        #     A.index = st.session_state.input_universe['symbol']
+        #     Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
+        #     new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
+        #     st.session_state.Result = Result[new_col]
 
 
     if 'EF' in st.session_state:
