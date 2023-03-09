@@ -36,7 +36,7 @@ if file is not None:
 
         st.subheader("Resampling Parameters:")
 
-        col20, col21, col22, col23 = st.columns([1,1,1,3])
+        col20, col21, col22, = st.columns([1,1,5])
 
 
         with col20:
@@ -100,7 +100,6 @@ if file is not None:
             Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
             new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
             st.session_state.Result = Result[new_col]
-
 
 
     if 'EF' in st.session_state:
