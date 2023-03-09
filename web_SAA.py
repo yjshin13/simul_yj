@@ -184,7 +184,10 @@ if file is not None:
             best_year = round(float(res.stats[res.stats.index == 'best_year'].values * 100), 2)
             worst_year = round(float(res.stats[res.stats.index == 'worst_year'].values * 100), 2)
 
+            st.write(start_date)
+
             st.write(st.session_state.input_price.index[0])
+            
 
 
 
