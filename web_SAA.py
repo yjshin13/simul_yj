@@ -94,11 +94,11 @@ if file is not None:
 
             if daily==True:
 
-                st.session_state.input_price = input_price[input_price.index>=datetime.strptime(start_date)]
+                st.session_state.input_price = input_price[input_price.index>=start_date]
 
             if monthly==True:
 
-                st.session_state.input_price = input_price[(input_price.index>=datetime.strptime(start_date)) & (input_price.index.is_month_end==True)]
+                st.session_state.input_price = input_price[(input_price.index>=start_date) & (input_price.index.is_month_end==True)]
 
             st.session_state.input_universe = input_universe
             st.session_state.nPort = nPort
