@@ -66,6 +66,7 @@ if file is not None:
         with col23:
 
             end_date = st.date_input("End", value = input_price.index[-1])
+            end_date = datetime.combine(end_date, datetime.min.time())
 
 
 
@@ -97,11 +98,13 @@ if file is not None:
 
             if daily==True:
 
-                st.session_state.input_price = input_price[input_price.index>=start_date]
+                st.session_state.input_price = input_price[(input_price.index>=start_date) & (input_price.index<=end_date)]
 
             if monthly==True:
 
-                st.session_state.input_price = input_price[(input_price.index>=start_date) & (input_price.index.is_month_end==True)]
+                st.session_state.input_price = input_price[(input_price.index>=start_date)
+                                                           & (input_price.index<=end_date)
+                                                           & (input_price.index.is_month_end==True)]
 
 
 
@@ -126,10 +129,12 @@ if file is not None:
     if 'EF' in st.session_state:
 
         if daily == True:
-            st.session_state.input_price = input_price[input_price.index>=start_date]
+            st.session_state.input_price = input_price[(input_price.index>=start_date) & (input_price.index<=end_date)]
 
         if monthly == True:
-            st.session_state.input_price = input_price[input_price.index.is_month_end == True]
+            st.session_state.input_price = input_price[(input_price.index >= start_date)
+                                                       & (input_price.index <= end_date)
+                                                       & (input_price.index.is_month_end == True)]
 
         with st.expander("Optimization (Target: " + str(Target) + "%, " + st.session_state.freq_input + ")", expanded=True) :
 
