@@ -38,15 +38,14 @@ if file is not None:
 
         col20, col21, col22, col23, col24= st.columns([1,1,1,1,4])
 
-
         with col20:
 
-            start_date = st.date_input("Start", value = input_price.index[0])
+            start_date = st.date_input("Start", value = input_price.index[0], label_visibility="collapsed")
             start_date = datetime.combine(start_date, datetime.min.time())
 
         with col21:
 
-            end_date = st.date_input("End", value = input_price.index[-1])
+            end_date = st.date_input("End", value = input_price.index[-1], label_visibility="collapsed")
             end_date = datetime.combine(end_date, datetime.min.time())
 
 
