@@ -6,12 +6,12 @@ from stqdm import stqdm
 
 
 def optimal_portfolio(returns, nPort, assets1, assets2, assets3,
-                      constraint_range):
+                      constraint_range, annualization):
 
     n = len(returns.columns)
     w = Variable(n)
-    mu = returns.mean() * 252
-    Sigma = returns.cov() * 252
+    mu = returns.mean() * annualization
+    Sigma = returns.cov() * annualization
     gamma = Parameter(nonneg=True)
     ret = mu.values.T * w
     risk = quad_form(w, Sigma.values)
