@@ -41,7 +41,7 @@ if file is not None:
 
         with col20:
 
-            if st.checkbox('Daily data', value=True):
+            if st.checkbox('Daily', value=True):
 
                 daily = True
                 monthly = False
@@ -50,7 +50,7 @@ if file is not None:
 
         with col21:
 
-            if st.checkbox('Monthly data', value=False):
+            if st.checkbox('Monthly', value=False):
 
                 daily = False
                 monthly = True
