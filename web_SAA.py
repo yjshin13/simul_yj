@@ -116,7 +116,7 @@ if file is not None:
         if monthly == True:
             st.session_state.input_price = input_price[input_price.index.is_month_end == True]
 
-        with st.expander("Optimization (Target: " + str(Target) + "% " + freq_input, expanded=True) :
+        with st.expander("Optimization (Target: " + str(Target) + "%" + freq_input, expanded=True) :
 
             Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
 
