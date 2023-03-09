@@ -173,6 +173,8 @@ if file is not None:
 
             st.write("Backtest" + " (" + freq + ")")
 
+            START_DATE = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
+            END_DATE = st.session_state.input_price.index[-1].strftime("%Y-%m-%d")
             Anuuual_RET = round(float(((res.prices.iloc[-1] / 100) ** (annualization / (len(res.prices) - 1)) - 1) * 100), 2)
             Anuuual_Vol = round(float(np.std(res.prices.pct_change().dropna())*np.sqrt(annualization)*100),2)
             Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
@@ -192,7 +194,7 @@ if file is not None:
 
 
             with col10:
-                st.info("Period: " + str(start_date) + " ~ " + str(end_date))
+                st.info("Period: " + str(START_DATE) + " ~ " + str(END_DATE))
 
             with col11:
                 st.info("Total Return: "+str(Total_Return)+"%")
