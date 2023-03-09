@@ -36,7 +36,7 @@ if file is not None:
 
         st.subheader("Resampling Parameters:")
 
-        col20, col21, col22= st.columns([1,1,8])
+        col20, col21, col22, col23, col24= st.columns([1,1,1,1,4])
 
 
         with col20:
@@ -57,6 +57,16 @@ if file is not None:
                 monthly = True
                 annualization = 12
                 freq = "monthly"
+
+        with col22:
+
+            start_date = st.date_input("Start", value = input_price.index[0])
+
+        with col23:
+
+            end_date = st.date_input("End", value = input_price.index[-1])
+
+
 
 
 
@@ -84,11 +94,11 @@ if file is not None:
 
             if daily==True:
 
-                st.session_state.input_price = input_price
+                st.session_state.input_price = input_price[input_price.index>=datetime.strptime(start_date)]
 
             if monthly==True:
 
-                st.session_state.input_price = input_price[input_price.index.is_month_end==True]
+                st.session_state.input_price = input_price[(input_price.index>=datetime.strptime(start_date)) & (input_price.index.is_month_end==True)]
 
             st.session_state.input_universe = input_universe
             st.session_state.nPort = nPort
