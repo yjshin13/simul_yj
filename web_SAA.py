@@ -60,7 +60,7 @@ if file is not None:
 
         with col22:
 
-            start_date = st.date_input("Start", value = input_price.index[0])
+            start_date = st.date_input("Start", value = input_price.index[10])
             start_date = datetime.combine(start_date, datetime.min.time())
             start_date = datetime(start_date.year, start_date.month, start_date.day, start_date.hour, start_date.minute, start_date.second)
 
@@ -183,9 +183,9 @@ if file is not None:
             Total_Return = round(float(res.stats[res.stats.index == 'total_return'].values * 100), 2)
             best_year = round(float(res.stats[res.stats.index == 'best_year'].values * 100), 2)
             worst_year = round(float(res.stats[res.stats.index == 'worst_year'].values * 100), 2)
-            
+
             st.write(st.session_state.input_price.index[0])
-            
+
 
 
             col10, col11, col12, col13 = st.columns([1, 1, 1, 1])
