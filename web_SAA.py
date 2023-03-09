@@ -56,7 +56,7 @@ if file is not None:
                 daily = False
                 monthly = True
                 annualization = 12
-                freq = "montyly"
+                freq = "monthly"
 
 
 
@@ -155,7 +155,7 @@ if file is not None:
             st.session_state.Result2.columns = ['NAV', 'Drawdown']
 
 
-            st.write("Backtest" + "(" + freq + ")")
+            st.write("Backtest" + " (" + freq + ")")
 
             start_date = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
             end_date = st.session_state.input_price.index[-1].strftime("%Y-%m-%d")
