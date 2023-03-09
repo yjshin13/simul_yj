@@ -36,7 +36,7 @@ if file is not None:
 
         st.subheader("Resampling Parameters:")
 
-        col20, col21, col22, col23 = st.columns([1,1,1,8])
+        col20, col21, col22, col23 = st.columns([1,1,2,8])
 
 
         with col20:
