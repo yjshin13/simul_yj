@@ -59,18 +59,26 @@ if file is not None:
                 monthly = False
                 annualization = 365
                 freq = "daily"
-
-
-        with col23:
-
-            st.write(" ")
-
+                
             if st.checkbox('Monthly', value=False):
 
                 daily = False
                 monthly = True
                 annualization = 12
                 freq = "monthly"
+
+
+
+        with col23:
+
+            st.write("")
+
+            # if st.checkbox('Monthly', value=False):
+            # 
+            #     daily = False
+            #     monthly = True
+            #     annualization = 12
+            #     freq = "monthly"
 
 
 
