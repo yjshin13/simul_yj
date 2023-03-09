@@ -160,8 +160,8 @@ if file is not None:
 
             start_date = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
             end_date = st.session_state.input_price.index[-1].strftime("%Y-%m-%d")
-            Anuuual_RET = round(float(((res.prices.iloc[-1] / 100) ** (365 / (len(res.prices) - 1)) - 1) * 100), 2)
-            Anuuual_Vol = round(float(np.std(res.prices.pct_change().dropna())*np.sqrt(365)*100),2)
+            Anuuual_RET = round(float(((res.prices.iloc[-1] / 100) ** (annualization / (len(res.prices) - 1)) - 1) * 100), 2)
+            Anuuual_Vol = round(float(np.std(res.prices.pct_change().dropna())*np.sqrt(annualization)*100),2)
             Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
             MDD = round(float(res.stats[res.stats.index == 'max_drawdown'].values * 100), 2)
             Total_Return = round(float(res.stats[res.stats.index == 'total_return'].values * 100), 2)
