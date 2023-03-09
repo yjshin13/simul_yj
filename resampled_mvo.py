@@ -44,7 +44,7 @@ def optimal_portfolio(returns, nPort, assets1, assets2, assets3,
     return weight, ret_data, risk_data
 
 
-def simulation(index_data, sims, nPort, universe, constraint_range):
+def simulation(index_data, sims, nPort, universe, constraint_range, annualization):
     # period=int(period/2)+1
     # create date index
 
@@ -80,7 +80,8 @@ def simulation(index_data, sims, nPort, universe, constraint_range):
 
             # optimize over every simulation
             w, r, std = optimal_portfolio(data[i], nPort, growth_assets, inflation_assets,
-                                          fixed_income_assets, constraint_range)
+                                          fixed_income_assets, constraint_range,
+                                          annualization)
             weights.append(w)
             stdev.append(std)
             exp_ret.append(r)
