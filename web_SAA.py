@@ -127,53 +127,53 @@ if file is not None:
         #     new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
         #     st.session_state.Result = Result[new_col]
 
-
-    if 'EF' in st.session_state:
-
-        if daily == True:
-            st.session_state.input_price = input_price
-
-        if monthly == True:
-            st.session_state.input_price = input_price[input_price.index.is_month_end == True]
-
-        with st.expander("Optimization (Target: " + str(Target) + "%)", expanded=True) :
-
-            Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
-
-            col_x, col_y, col_z = st.columns([1, 1, 2])
-
-            with col_x:
-
-                st.info("Expected Return: " + str(round(st.session_state.EF.loc[Target_index]["EXP_RET"]*100,2)) + "%")
-
-            with col_y:
-
-                st.info("Expected Risk: " + str(round(st.session_state.EF.loc[Target_index]["STDEV"]*100,2))+"%")
-
-            st.write("")
-
-            Target_Weight = st.session_state.EF.loc[Target_index]\
-                            .drop(["EXP_RET", "STDEV"])
-
-            Target_Weight_T = pd.DataFrame(Target_Weight).T
-
-            st.session_state.Rebalancing_Wegiht =  pd.DataFrame(Target_Weight_T,
-                                    index=pd.date_range(start=st.session_state.input_price.index[0],
-                                    end=st.session_state.input_price.index[-1], freq='D')).fillna(method='bfill')
-
-            st.session_state.Rebalancing_Wegiht.iloc[:,:] = Target_Weight_T
-
-            SAA_strategy = bt.Strategy('s1', [bt.algos.RunMonthly(run_on_first_date=True),
-                                              # bt.algos.RunAfterDate('2000-01-01'),
-                                              bt.algos.SelectAll(),
-                                              bt.algos.WeighTarget( st.session_state.Rebalancing_Wegiht),
-                                              bt.algos.Rebalance()])
-
-            bt_SAA = bt.Backtest(SAA_strategy, st.session_state.input_price)
-            res = bt.run(bt_SAA)
-
-            st.session_state.Result2 = pd.concat([res.prices.iloc[1:], res.backtests['s1'].stats.drawdown.iloc[1:]], axis=1)
-            st.session_state.Result2.columns = ['NAV', 'Drawdown']
+    
+        if 'EF' in st.session_state:
+    
+            if daily == True:
+                st.session_state.input_price = input_price
+    
+            if monthly == True:
+                st.session_state.input_price = input_price[input_price.index.is_month_end == True]
+    
+            with st.expander("Optimization (Target: " + str(Target) + "%)", expanded=True) :
+    
+                Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
+    
+                col_x, col_y, col_z = st.columns([1, 1, 2])
+    
+                with col_x:
+    
+                    st.info("Expected Return: " + str(round(st.session_state.EF.loc[Target_index]["EXP_RET"]*100,2)) + "%")
+    
+                with col_y:
+    
+                    st.info("Expected Risk: " + str(round(st.session_state.EF.loc[Target_index]["STDEV"]*100,2))+"%")
+    
+                st.write("")
+    
+                Target_Weight = st.session_state.EF.loc[Target_index]\
+                                .drop(["EXP_RET", "STDEV"])
+    
+                Target_Weight_T = pd.DataFrame(Target_Weight).T
+    
+                st.session_state.Rebalancing_Wegiht =  pd.DataFrame(Target_Weight_T,
+                                        index=pd.date_range(start=st.session_state.input_price.index[0],
+                                        end=st.session_state.input_price.index[-1], freq='D')).fillna(method='bfill')
+    
+                st.session_state.Rebalancing_Wegiht.iloc[:,:] = Target_Weight_T
+    
+                SAA_strategy = bt.Strategy('s1', [bt.algos.RunMonthly(run_on_first_date=True),
+                                                  # bt.algos.RunAfterDate('2000-01-01'),
+                                                  bt.algos.SelectAll(),
+                                                  bt.algos.WeighTarget( st.session_state.Rebalancing_Wegiht),
+                                                  bt.algos.Rebalance()])
+    
+                bt_SAA = bt.Backtest(SAA_strategy, st.session_state.input_price)
+                res = bt.run(bt_SAA)
+    
+                st.session_state.Result2 = pd.concat([res.prices.iloc[1:], res.backtests['s1'].stats.drawdown.iloc[1:]], axis=1)
+                st.session_state.Result2.columns = ['NAV', 'Drawdown']
 
 
             st.write("Backtest")
