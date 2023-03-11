@@ -188,7 +188,7 @@ if file is not None:
 
 
             with col10:
-                st.info("Simulation Period: " + str(START_DATE) + " ~ " + str(END_DATE))
+                st.info("Period: " + str(START_DATE) + " ~ " + str(END_DATE))
 
             with col11:
                 st.info("Total Return: "+str(Total_Return)+"%")
