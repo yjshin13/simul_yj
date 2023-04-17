@@ -20,7 +20,7 @@ if file is not None:
 
     if st.button('Summit') or ('input_list' in st.session_state):
         st.session_state.input_list = input_list
-        st.session_state.input_price = input_price
+        st.session_state.input_price = input_price.dropna()
         st.write(st.session_state.input_price)
 
     #
