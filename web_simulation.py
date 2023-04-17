@@ -56,12 +56,12 @@ if file is not None:
     #     col1, col2, col3 = st.columns([1, 1, 1])
 
         slider = pd.Series(range(1, len(input_list)))
-
-        st.write(input_price.columns)
+        #
+        # st.write(input_price.columns)
 
         col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
-        for i, k in enumerate(input_price.columns):
+        for i, k in enumerate(st.session_state.input_list):
 
             if i % 4 == 1:
                 with col1:
