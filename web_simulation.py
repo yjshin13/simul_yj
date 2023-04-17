@@ -20,6 +20,8 @@ if file is not None:
     if st.button('Summit') or ('input_list' in st.session_state):
         st.session_state.input_list = input_list
         st.session_state.input_price = input_price
+        
+        st.write(input_price.columns)
 
     #
     # with st.form("Input Assets", clear_on_submit=False):
@@ -86,7 +88,7 @@ if file is not None:
             st.write(st.session_state.slider)
             portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
             st.write(portfolio_port)
-            # 
+            #
             # st.line_chart(portfolio_port)
 
 
