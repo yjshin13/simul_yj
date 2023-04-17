@@ -18,6 +18,9 @@ if file is not None:
     input_price = price[input_list]
 
     if st.button('적용'):
+        st.session_state.input_list = input_list
+        st.session_state.input_price = input_price
+        
     #
     # with st.form("Input Assets", clear_on_submit=False):
     #
