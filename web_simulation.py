@@ -48,5 +48,5 @@ if file is not None:
     #             freq = "monthly"
     #
     #     col1, col2, col3 = st.columns([1, 1, 1])
-
-    sliders = [st.slider(str(i), 0, 100) for i in range(price_list)]
+    for i in range(price_list):
+        sliders = st.slider(str(i), 0, 100)
