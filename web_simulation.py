@@ -55,7 +55,7 @@ if file is not None:
     #
     #     col1, col2, col3 = st.columns([1, 1, 1])
 
-        slider = pd.Series()
+        slider = pd.Series(keys = st.session_state.input_list )
         #
         # st.write(input_price.columns)
 
@@ -82,12 +82,12 @@ if file is not None:
         if st.button('Sumulation') or ('slider' in st.session_state):
 
 
-            st.session_state.slider = slider.tolist()
+            st.session_state.slider = (slider*0.01).tolist()
             st.write(st.session_state.slider)
             portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
-            st.write(portfolio_port)
+            # st.write(portfolio_port)
 
-            #st.line_chart(portfolio_port)
+            st.line_chart(portfolio_port)
 
 
 
