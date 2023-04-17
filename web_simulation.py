@@ -56,7 +56,7 @@ if file is not None:
 
             if i % 4 == 1:
                 with col1:
-                    sliders = st.slider(str(k), 0, 100)
+                    st.session_state.slider = st.slider(str(k), 0, 100)
 
             if i % 4 == 2:
                 with col2:
