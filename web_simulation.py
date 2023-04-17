@@ -21,8 +21,6 @@ if file is not None:
         st.session_state.input_list = input_list
         st.session_state.input_price = input_price
 
-        st.write(input_price.columns)
-
     #
     # with st.form("Input Assets", clear_on_submit=False):
     #
@@ -85,7 +83,7 @@ if file is not None:
 
 
             st.session_state.slider = (slider*0.01).tolist()
-            st.write(st.session_state.input_price.columns)
+            st.write(st.session_state.input_price)
             portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
             st.write(portfolio_port)
             #
