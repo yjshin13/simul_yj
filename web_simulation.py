@@ -77,4 +77,7 @@ if file is not None:
                 with col4:
                     slider[k] = st.slider(str(k), 0, 100)
 
+        if st.button('적용') or ('slider' in st.session_state):
+            st.session_state.slider = slider
+
 
