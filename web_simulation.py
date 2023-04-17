@@ -90,7 +90,7 @@ if file is not None:
 
             portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
             st.write(portfolio_port)
-            st.line_chart(portfolio_port.T)
+            st.line_chart(portfolio_port.T, x='date', y='nav')
 
 
 
