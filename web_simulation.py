@@ -55,7 +55,7 @@ if file is not None:
     #
     #     col1, col2, col3 = st.columns([1, 1, 1])
 
-        slider = pd.Series(keys = st.session_state.input_list )
+        slider = pd.DataFrame(index = st.session_state.input_list)
         #
         # st.write(input_price.columns)
 
