@@ -53,5 +53,8 @@ if file is not None:
     for i, k in enumerate(input_price.columns):
         with col1:
             sliders = st.slider(str(k), 0, 100)
-        
+
+        with col2:
+            sliders = st.slider(str(k), 0, 100)
+
 
