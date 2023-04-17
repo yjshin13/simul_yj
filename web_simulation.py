@@ -51,10 +51,21 @@ if file is not None:
 
     col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
     for i, k in enumerate(input_price.columns):
-        with col1:
-            sliders = st.slider(str(k), 0, 100)
 
-        with col2:
-            sliders = st.slider(str(k), 0, 100)
+        if i % 4 == 1:
+            with col1:
+                sliders = st.slider(str(k), 0, 100)
+
+        if i % 4 == 2:
+            with col2:
+                sliders = st.slider(str(k), 0, 100)
+
+        if i % 4 == 3:
+            with col3:
+                sliders = st.slider(str(k), 0, 100)
+
+        if i % 4 == 0:
+            with col4:
+                sliders = st.slider(str(k), 0, 100)
 
 
