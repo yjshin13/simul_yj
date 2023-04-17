@@ -13,7 +13,7 @@ if file is not None:
     price = pd.read_excel(file, sheet_name="sheet1",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
     select = st.multiselect('Input Assets', price.columns, str(price.columns))
-    assets = price[price.isin(select)]
+    #assets = price[price.isin(select)]
 
     with st.form("Input Assets", clear_on_submit=False):
 
