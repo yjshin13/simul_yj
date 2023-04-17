@@ -15,6 +15,8 @@ if file is not None:
     price_list = list(map(str, price.columns))
     select = st.multiselect('Input Assets', price_list, price_list)
     input_price = price[price.isin(select)]
+
+    if st.button('적용'):
     #
     # with st.form("Input Assets", clear_on_submit=False):
     #
@@ -49,23 +51,23 @@ if file is not None:
     #
     #     col1, col2, col3 = st.columns([1, 1, 1])
 
-    col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
-    for i, k in enumerate(input_price.columns):
+        col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+        for i, k in enumerate(input_price.columns):
 
-        if i % 4 == 1:
-            with col1:
-                sliders = st.slider(str(k), 0, 100)
+            if i % 4 == 1:
+                with col1:
+                    sliders = st.slider(str(k), 0, 100)
 
-        if i % 4 == 2:
-            with col2:
-                sliders = st.slider(str(k), 0, 100)
+            if i % 4 == 2:
+                with col2:
+                    sliders = st.slider(str(k), 0, 100)
 
-        if i % 4 == 3:
-            with col3:
-                sliders = st.slider(str(k), 0, 100)
+            if i % 4 == 3:
+                with col3:
+                    sliders = st.slider(str(k), 0, 100)
 
-        if i % 4 == 0:
-            with col4:
-                sliders = st.slider(str(k), 0, 100)
+            if i % 4 == 0:
+                with col4:
+                    sliders = st.slider(str(k), 0, 100)
 
 
