@@ -55,7 +55,7 @@ if file is not None:
     #
     #     col1, col2, col3 = st.columns([1, 1, 1])
 
-        slider = pd.Series(range(1, len(input_list)))
+        st.session_state.slider = pd.Series(range(1, len(input_list)))
 
         col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
@@ -63,18 +63,18 @@ if file is not None:
 
             if i % 4 == 1:
                 with col1:
-                    st.session_state.slider[k] = st.slider(str(k), 0, 100)
+                    slider[k] = st.slider(str(k), 0, 100)
 
             if i % 4 == 2:
                 with col2:
-                    st.session_state.slider[k] = st.slider(str(k), 0, 100)
+                    slider[k] = st.slider(str(k), 0, 100)
 
             if i % 4 == 3:
                 with col3:
-                    st.session_state.slider[k] = st.slider(str(k), 0, 100)
+                    slider[k] = st.slider(str(k), 0, 100)
 
             if i % 4 == 0:
                 with col4:
-                    st.session_state.slider[k] = st.slider(str(k), 0, 100)
+                    slider[k] = st.slider(str(k), 0, 100)
 
 
