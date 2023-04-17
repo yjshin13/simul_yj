@@ -85,9 +85,9 @@ if file is not None:
             st.session_state.slider = (slider*0.01).tolist()
             st.write(st.session_state.slider)
             portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
-            # st.write(portfolio_port)
-
-            st.line_chart(portfolio_port)
+            st.write(portfolio_port)
+            # 
+            # st.line_chart(portfolio_port)
 
 
 
