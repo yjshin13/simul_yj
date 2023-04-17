@@ -17,7 +17,7 @@ if file is not None:
     input_list = price.columns[price.columns.isin(select)]
     input_price = price[input_list]
 
-    if st.button('적용') or (input_list in st.session_state):
+    if st.button('적용') or ('input_list' in st.session_state):
         st.session_state.input_list = input_list
         st.session_state.input_price = input_price
 
