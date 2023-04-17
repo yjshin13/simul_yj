@@ -57,18 +57,18 @@ if file is not None:
 
             if i % 4 == 1:
                 with col1:
-                    st.session_state.slider = st.slider(str(k), 0, 100)
+                    st.session_state.slider[k] = st.slider(str(k), 0, 100)
 
             if i % 4 == 2:
                 with col2:
-                    st.session_state.slider = st.slider(str(k), 0, 100)
+                    st.session_state.slider[k] = st.slider(str(k), 0, 100)
 
             if i % 4 == 3:
                 with col3:
-                    st.session_state.slider = st.slider(str(k), 0, 100)
+                    st.session_state.slider[k] = st.slider(str(k), 0, 100)
 
             if i % 4 == 0:
                 with col4:
-                    st.session_state.slider = st.slider(str(k), 0, 100)
+                    st.session_state.slider[k] = st.slider(str(k), 0, 100)
 
 
