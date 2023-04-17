@@ -61,7 +61,7 @@ if file is not None:
 
         col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
-        for i, k in enumerate(st.session_state.input_list):
+        for i, k in enumerate(st.session_state.input_list, start=0):
 
             if i % 4 == 1:
                 with col1:
