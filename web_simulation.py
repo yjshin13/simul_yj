@@ -14,7 +14,7 @@ if file is not None:
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
     price_list = list(map(str, price.columns))
     select = st.multiselect('Input Assets', price_list, price_list)
-    input_list = price_list[price.columns.isin(select)]
+    input_list = price.columns[price.columns.isin(select)]
     input_price = price[input_list]
 
     if st.button('적용'):
