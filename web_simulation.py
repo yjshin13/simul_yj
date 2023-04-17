@@ -90,7 +90,7 @@ if file is not None:
 
             portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
             st.write(portfolio_port)
-            #
+            portfolio_port = portfolio_port[portfolio_port.index.is_month_end==True]
             st.line_chart(portfolio_port.iloc[:,0])
 
 
