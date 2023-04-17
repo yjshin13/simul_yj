@@ -57,29 +57,31 @@ if file is not None:
 
         slider = pd.Series(range(1, len(input_list)))
 
+        st.write(input_list)
+
         col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
         for i, k in enumerate(input_price.columns):
 
             if i % 4 == 1:
                 with col1:
-                    slider[k] = st.slider(str(k), 0, 100)
+                    slider[k] = st.slider(str(k), 0, 100, 0,1)
 
             if i % 4 == 2:
                 with col2:
-                    slider[k] = st.slider(str(k), 0, 100)
+                    slider[k] = st.slider(str(k), 0, 100, 0,1)
 
             if i % 4 == 3:
                 with col3:
-                    slider[k] = st.slider(str(k), 0, 100)
+                    slider[k] = st.slider(str(k), 0, 100, 0,1)
 
             if i % 4 == 0:
                 with col4:
-                    slider[k] = st.slider(str(k), 0, 100)
+                    slider[k] = st.slider(str(k), 0, 100, 0,1)
 
         if st.button('Sumulation') or ('slider' in st.session_state):
 
-            
+
             st.session_state.slider = slider.tolist()
             st.write(st.session_state.slider)
             # portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
