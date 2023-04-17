@@ -82,6 +82,8 @@ if file is not None:
                 with col4:
                     slider[k] = st.slider(str(k), 0, 100, 0,1)
 
+        st.write(str(slider.sum())+str("%"))
+
         st.write(st.session_state.input_price)
 
         if st.button('Sumulation') or ('slider' in st.session_state):
