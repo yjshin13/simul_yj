@@ -89,7 +89,7 @@ if file is not None:
             st.session_state.slider = (slider*0.01).tolist()
 
             portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
-            st.write(portfolio_port['nav'])
+            st.write(portfolio_port)
 
 
 
