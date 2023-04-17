@@ -79,8 +79,8 @@ if file is not None:
 
         if st.button('Sumulation') or ('slider' in st.session_state):
             st.session_state.slider = slider.tolist()
-            portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
-            st.line_chart(portfolio_port)
+            # portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
+            # st.line_chart(portfolio_port)
 
             
 
