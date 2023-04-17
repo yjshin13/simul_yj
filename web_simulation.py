@@ -14,7 +14,7 @@ if file is not None:
                            names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
     price_list = list(map(str, price.columns))
     select = st.multiselect('Input Assets', price_list, price_list)
-    assets = price[price.isin(select)]
+    input_price = price[price.isin(select)]
     #
     # with st.form("Input Assets", clear_on_submit=False):
     #
@@ -48,5 +48,6 @@ if file is not None:
     #             freq = "monthly"
     #
     #     col1, col2, col3 = st.columns([1, 1, 1])
-    for i in price_list:
-        sliders = st.slider(str(i), 0, 100)
+    for i, k in enumerate(input_price.columns):
+        sliders = st.slider(str(k), 0, 100)
+
