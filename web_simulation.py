@@ -15,9 +15,38 @@ if file is not None:
     price_list = list(map(str, price.columns))
     select = st.multiselect('Input Assets', price_list, price_list)
     assets = price[price.isin(select)]
+    #
+    # with st.form("Input Assets", clear_on_submit=False):
+    #
+    #     st.subheader("Input Assets:")
+    #     col20, col21, col22, col23 = st.columns([1, 1, 1, 3])
+    #
+    #     with col20:
+    #
+    #         start_date = st.date_input("Start", value=price.index[0])
+    #         start_date = datetime.combine(start_date, datetime.min.time())
+    #
+    #     with col21:
+    #
+    #         end_date = st.date_input("End", value=price.index[-1])
+    #         end_date = datetime.combine(end_date, datetime.min.time())
+    #
+    #     with col22:
+    #
+    #         # st.write("Data Frequency")
+    #
+    #         if st.checkbox('Daily', value=True):
+    #             daily = True
+    #             monthly = False
+    #             annualization = 252
+    #             freq = "daily"
+    #
+    #         if st.checkbox('Monthly', value=False):
+    #             daily = False
+    #             monthly = True
+    #             annualization = 12
+    #             freq = "monthly"
+    #
+    #     col1, col2, col3 = st.columns([1, 1, 1])
 
-    with st.form("Input Assets", clear_on_submit=False):
-
-        st.subheader("Input Assets:")
-
-        summit = st.form_submit_button("Summit")
+    sliders = [st.slider(f'Slider {i}', 0, 10) for i in range(assets.columns)]
