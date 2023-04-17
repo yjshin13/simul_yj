@@ -26,7 +26,7 @@ def line_chart(x, title):
     # else:
     #     ax.fill_between(x.index, y1=x.squeeze().values, y2=0, label=columns, alpha=0.3, color=mycolors[1],
     #                     linewidth=2)
-    ax = x.plot()
+    ax = x.plot(10,20)
     # ax.set_title('Portfolio NAV', fontsize=18)
     ax.set_xlabel('Time', size=15, labelpad=20)
     ax.set_ylabel('Index', size=15, labelpad=20)
