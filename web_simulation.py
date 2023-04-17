@@ -52,8 +52,6 @@ if file is not None:
     #
     #     col1, col2, col3 = st.columns([1, 1, 1])
 
-        slider = []
-
         col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
         for i, k in enumerate(input_price.columns):
