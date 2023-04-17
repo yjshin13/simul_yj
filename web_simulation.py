@@ -57,7 +57,7 @@ if file is not None:
 
         slider = pd.Series(range(1, len(input_list)))
 
-        st.write(input_list)
+        st.write(input_price.columns)
 
         col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
