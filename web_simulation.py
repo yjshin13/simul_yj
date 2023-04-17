@@ -49,4 +49,4 @@ if file is not None:
     #
     #     col1, col2, col3 = st.columns([1, 1, 1])
 
-    sliders = [st.slider(f'Slider {i}', 0, 10) for i in range(assets.columns)]
+    sliders = [st.slider(i, 0, 10) for i in range(assets.columns)]
