@@ -104,6 +104,7 @@ if file is not None:
 
             st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)
             st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
+            st.session_state.corr.columns = st.session_state.corr.index
             # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
 
             heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True,
@@ -118,16 +119,16 @@ if file is not None:
             #########################[Graph Insert]#####################################
 
         if st.button('Sumulation') or ('slider' in st.session_state):
-            
+
 
             st.session_state.slider = (slider*0.01).tolist()
             st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
             st.write(st.session_state.portfolio_port)
-            
+
             col33, col44 = st.columns([1,1])
-            
+
             with col33:
-            
+
                st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
 
 
