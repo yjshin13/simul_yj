@@ -128,8 +128,12 @@ if file is not None:
             st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
             st.write(st.session_state.portfolio_port)
 
-            col33, col44 = st.columns([1,1])
-
+            col33, col44,col55 = st.columns([1,4,4])
+            
             with col33:
+                
+                st.dataframe(st.session_state.portfolio_port)
+
+            with col44:
 
                st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
