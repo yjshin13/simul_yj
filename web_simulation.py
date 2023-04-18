@@ -89,7 +89,7 @@ if file is not None:
         col11, col22 = st.columns([3,2])
 
         with col11:
-            st.dataframe(st.session_state.input_price, height=100)
+            st.dataframe(st.session_state.input_price, height=1000)
 
 
         with col22:
@@ -130,11 +130,3 @@ if file is not None:
             with col33:
 
                st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
-
-
-
-
-
-
-
-
