@@ -1,9 +1,10 @@
 import backtest
-import pandas as pd
 import streamlit as st
 from datetime import datetime
 import backtest_graph2
-
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 st.set_page_config(layout="wide")
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 st.warning('Upload data.')
@@ -22,7 +23,6 @@ if file is not None:
     if st.button('Summit') or ('input_list' in st.session_state):
         st.session_state.input_list = input_list
         st.session_state.input_price = input_price.dropna()
-
 
     #
     # with st.form("Input Assets", clear_on_submit=False):
@@ -84,18 +84,34 @@ if file is not None:
 
         st.write(str("Total Weight:   ")+str(slider.sum())+str("%"))
 
-        st.write(st.session_state.input_price)
+        col11, col22 = st.columns(5,1)
+
+        with col11:
+            st.write(st.session_state.input_price)
+
+        with col22:
+
+            # Increase the size of the heatmap.
+            fig = plt.figure(figsize=(15, 10))
+
+            plt.rc('font', family='Malgun Gothic')
+            plt.rcParams['axes.unicode_minus'] = False
+
+            heatmap = sns.heatmap(input_price.pct_change().dropna().corr().round(2), vmin=-1, vmax=1, annot=True,
+                                  cmap='BrBG')
+            heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
+            st.pyplot(heatmap)
+
+            #########################[Graph Insert]#####################################
 
         if st.button('Sumulation') or ('slider' in st.session_state):
 
-
             st.session_state.slider = (slider*0.01).tolist()
+            st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
+            st.write(st.session_state.portfolio_port)
+            st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
 
-            portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
-            st.write(portfolio_port)
 
-            portfolio_port = portfolio_port.squeeze()
-            st.pyplot(backtest_graph2.line_chart(portfolio_port, ""))
 
 
 
