@@ -5,6 +5,8 @@ import backtest_graph2
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+
+
 st.set_page_config(layout="wide")
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 st.warning('Upload data.')
@@ -90,8 +92,10 @@ if file is not None:
 
             # Increase the size of the heatmap.
             fig = plt.figure(figsize=(15, 10))
-            plt.rc('font', family='Malgun Gothic')
+            # plt.rc('font', family='Malgun Gothic')
             plt.rcParams['axes.unicode_minus'] = False
+
+
             st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)
             st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
             # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
