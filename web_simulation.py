@@ -97,7 +97,8 @@ if file is not None:
             plt.rc('font', family='Malgun Gothic')
             plt.rcParams['axes.unicode_minus'] = False
 
-            heatmap = sns.heatmap(input_price.pct_change().dropna().corr().round(2), vmin=-1, vmax=1, annot=True,
+            heatmap = sns.heatmap(st.session_state.input_price.pct_change().
+                                  dropna().corr().round(2), vmin=-1, vmax=1, annot=True,
                                   cmap='BrBG')
             heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
             st.pyplot(heatmap)
