@@ -86,7 +86,7 @@ if file is not None:
 
         st.write(str("Total Weight:   ")+str(slider.sum())+str("%"))
 
-        col11, col22 = st.columns([2,1])
+        col11, col22 = st.columns([3,2])
 
         with col11:
             st.write(st.session_state.input_price)
@@ -95,7 +95,7 @@ if file is not None:
         with col22:
 
 
-            
+
             # Increase the size of the heatmap.
             fig = plt.figure(figsize=(10, 8))
             # plt.rc('font', family='Malgun Gothic')
