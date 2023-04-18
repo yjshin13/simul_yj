@@ -16,7 +16,7 @@ def cleansing(assets_data=pd.DataFrame(), alloc=list()):
     return assets_data, allocation
 
 
-def simulation(assets_data, allocation, date='1900-01-01'):
+def simulation(assets_data, allocation, date='1900-01-01', commission=0):
 
     assets_data = assets_data[assets_data.index>=date]
 
@@ -31,25 +31,41 @@ def simulation(assets_data, allocation, date='1900-01-01'):
     j_rebal = 0
     i_rebal=0
 
+    last_alloc = allocation.iloc[0]
+
     for i in range(0, len(portfolio)-1):
 
 
         if portfolio.index[i] in allocation.index:
+
+
+            # cost = (commission / 100) * x[i - 1] * transaction_weight[i - 1]
 
             j = assets_data.index.get_loc(portfolio.index[i + 1])
             k = allocation.index.get_loc(portfolio.index[i])
             i_rebal = portfolio.index.get_loc(portfolio.index[i])
             j_rebal = assets_data.index.get_loc(portfolio.index[i])
 
-            portfolio[i + 1] = portfolio[i_rebal]*\
+
+            transaction_weight = abs(allocation.iloc[k] - last_alloc).sum()
+            cost = commission * transaction_weight
+
+            print(transaction_weight)
+
+            portfolio[i + 1] = portfolio[i_rebal]*(1-cost)*\
                                (assets_data.iloc[j]/assets_data.iloc[j_rebal] * allocation.iloc[k]).sum()
+
+
+            last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
 
         else:
 
             j = assets_data.index.get_loc(portfolio.index[i + 1])
 
-            portfolio[i + 1] = portfolio[i_rebal]*\
+            portfolio[i + 1] = portfolio[i_rebal]*(1-cost)*\
                                (assets_data.iloc[j]/assets_data.iloc[j_rebal] * allocation.iloc[k]).sum()
 
-    return portfolio.astype('float64').round(2)
 
+            last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
+
+    return portfolio.astype('float64').round(3)
