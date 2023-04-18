@@ -2,7 +2,7 @@ import backtest
 import pandas as pd
 import streamlit as st
 from datetime import datetime
-import backtest_graph
+import backtest_graph2
 
 st.set_page_config(layout="wide")
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
@@ -94,7 +94,8 @@ if file is not None:
             portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
             st.write(portfolio_port)
 
-            st.pyplot(backtest_graph.line_chart(portfolio_port, ""))
+            portfolio_port = portfolio_port.squeeze()
+            st.pyplot(backtest_graph2.line_chart(portfolio_port, ""))
 
 
 
