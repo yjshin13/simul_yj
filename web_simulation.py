@@ -90,7 +90,7 @@ if file is not None:
 
         with col11:
             st.subheader("Input Data")
-            st.dataframe(st.session_state.input_price, height=600)
+            st.dataframe(st.session_state.input_price, height=500)
 
 
         with col22:
