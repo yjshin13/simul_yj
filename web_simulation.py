@@ -118,11 +118,17 @@ if file is not None:
             #########################[Graph Insert]#####################################
 
         if st.button('Sumulation') or ('slider' in st.session_state):
+            
 
             st.session_state.slider = (slider*0.01).tolist()
             st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
             st.write(st.session_state.portfolio_port)
-            st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
+            
+            col33, col44 = st.columns([1,1])
+            
+            with col33:
+            
+               st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
 
 
 
