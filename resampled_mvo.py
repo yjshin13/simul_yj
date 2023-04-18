@@ -1,100 +1,125 @@
-import numpy as np
+import backtest
+import streamlit as st
+from datetime import datetime
+import backtest_graph2
 import pandas as pd
-from cvxpy import *
-from tqdm import tqdm
-from stqdm import stqdm
+import seaborn as sns
+import matplotlib.pyplot as plt
+st.set_page_config(layout="wide")
+file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
+st.warning('Upload data.')
 
 
-def optimal_portfolio(returns, nPort, assets1, assets2, assets3,
-                      constraint_range, annualization):
+if file is not None:
 
-    n = len(returns.columns)
-    w = Variable(n)
-    mu = returns.mean() * annualization
-    Sigma = returns.cov() * annualization
-    gamma = Parameter(nonneg=True)
-    ret = mu.values.T * w
-    risk = quad_form(w, Sigma.values)
-    prob = Problem(Maximize(ret - gamma * risk),
-                   [sum(w) == 1, w >= 0.0,
-                    sum(w[assets1]) >= constraint_range[0][0]/100,
-                    sum(w[assets1]) <= constraint_range[0][1]/100,
-                    sum(w[assets2]) >= constraint_range[1][0]/100,
-                    sum(w[assets2]) <= constraint_range[1][1]/100,
-                    sum(w[assets3]) >= constraint_range[2][0]/100,
-                    sum(w[assets3]) <= constraint_range[2][1]/100])
+    price = pd.read_excel(file, sheet_name="sheet1",
+                           names=None, dtype={'Date': datetime}, index_col=0, header=0)
 
-    risk_data = np.zeros(nPort)
-    ret_data = np.zeros(nPort)
-    gamma_vals = np.logspace(-2, 3, num=nPort)
-    weights = []
+    price_list = list(map(str, price.columns))
+    select = st.multiselect('Input Assets', price_list, price_list)
+    input_list = price.columns[price.columns.isin(select)]
+    input_price = price[input_list]
 
-    for i in range(nPort):
+    if st.button('Summit') or ('input_list' in st.session_state):
+        st.session_state.input_list = input_list
+        st.session_state.input_price = input_price.dropna()
+
+    #
+    # with st.form("Input Assets", clear_on_submit=False):
+    #
+    #     st.subheader("Input Assets:")
+    #     col20, col21, col22, col23 = st.columns([1, 1, 1, 3])
+    #
+    #     with col20:
+    #
+    #         start_date = st.date_input("Start", value=price.index[0])
+    #         start_date = datetime.combine(start_date, datetime.min.time())
+    #
+    #     with col21:
+    #
+    #         end_date = st.date_input("End", value=price.index[-1])
+    #         end_date = datetime.combine(end_date, datetime.min.time())
+    #
+    #     with col22:
+    #
+    #         # st.write("Data Frequency")
+    #
+    #         if st.checkbox('Daily', value=True):
+    #             daily = True
+    #             monthly = False
+    #             annualization = 252
+    #             freq = "daily"
+    #
+    #         if st.checkbox('Monthly', value=False):
+    #             daily = False
+    #             monthly = True
+    #             annualization = 12
+    #             freq = "monthly"
+    #
+    #     col1, col2, col3 = st.columns([1, 1, 1])
+
+        slider = pd.Series()
+        #
+        # st.write(input_price.columns)
+
+        col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+
+        for i, k in enumerate(st.session_state.input_list, start=0):
+
+            if i % 4 == 1:
+                with col1:
+                    slider[k] = st.slider(str(k), 0, 100, 0,1)
+
+            if i % 4 == 2:
+                with col2:
+                    slider[k] = st.slider(str(k), 0, 100, 0,1)
+
+            if i % 4 == 3:
+                with col3:
+                    slider[k] = st.slider(str(k), 0, 100, 0,1)
+
+            if i % 4 == 0:
+                with col4:
+                    slider[k] = st.slider(str(k), 0, 100, 0,1)
+
+        st.write(str("Total Weight:   ")+str(slider.sum())+str("%"))
+
+        col11, col22 = st.columns([1,1])
+
+        with col11:
+            
+            # Increase the size of the heatmap.
+            fig = plt.figure(figsize=(15, 10))
+
+            plt.rc('font', family='Malgun Gothic')
+            plt.rcParams['axes.unicode_minus'] = False
+
+            heatmap = sns.heatmap(st.session_state.input_price.pct_change().
+                                  dropna().corr().round(2), vmin=-1, vmax=1, annot=True,
+                                  cmap='BrBG')
+            heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
+            st.pyplot(heatmap)
+           
+
+        with col22:
+
+            st.write(st.session_state.input_price)
 
 
-        gamma.value = gamma_vals[i]
-        prob.solve()
-        # prob.solve(verbose=True)
-        risk_data[i] = sqrt(risk).value
-        ret_data[i] = ret.value
-        weights.append(np.squeeze(np.asarray(w.value)))
+
+            #########################[Graph Insert]#####################################
+
+        if st.button('Sumulation') or ('slider' in st.session_state):
+
+            st.session_state.slider = (slider*0.01).tolist()
+            st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
+            st.write(st.session_state.portfolio_port)
+            st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
 
 
-    weight = pd.DataFrame(data=weights, columns=returns.columns)
-    return weight, ret_data, risk_data
 
 
-def simulation(index_data, sims, nPort, universe, constraint_range, annualization):
-    # period=int(period/2)+1
-    # create date index
 
-    growth_assets = universe.index[universe['asset_class'] == 'equity']
-    inflation_assets = universe.index[universe['asset_class'] == 'inflation_protection']
-    fixed_income_assets = universe.index[universe['asset_class'] == 'fixed_income']
 
-    input_returns = index_data.pct_change().dropna()
-    period = len(input_returns)
-    input_returns = np.log(input_returns+1)
-    er = input_returns.mean()
-    cov = input_returns.cov()
 
-    dates = pd.date_range(start='2023-03-20', periods=period, freq='D')
-    data = []
-    # generate 10 years of daily data
 
-    for i in range(0, sims):
-        data.append(pd.DataFrame(columns=cov.columns, index=dates,
-                                data=np.random.multivariate_normal(er.values, cov.values, period)))
-                                #data = resample_returns(input_data, period, 3)))
-
-    #data = bootstrapping(input_returns, n_sim=sims)
-
-    # store values from simulation
-    weights = []
-    stdev = []
-    exp_ret = []
-
-    for i in stqdm(range(0, sims)):
-
-        try:
-
-            # optimize over every simulation
-            w, r, std = optimal_portfolio(data[i], nPort, growth_assets, inflation_assets,
-                                          fixed_income_assets, constraint_range,
-                                          annualization)
-            weights.append(w)
-            stdev.append(std)
-            exp_ret.append(r)
-
-        except SolverError:
-
-            pass
-
-    w = np.mean(weights, axis=0)
-    s = np.mean(stdev, axis=0)
-    r = np.mean(exp_ret, axis=0)
-    concat = np.hstack([a.reshape(nPort, -1) for a in [r, s, w]])
-    column_names = list(input_returns.columns)
-    Resampled_EF = pd.DataFrame(concat, columns=["EXP_RET", "STDEV"] + column_names)
-
-    return Resampled_EF
