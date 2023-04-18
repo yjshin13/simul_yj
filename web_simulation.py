@@ -84,15 +84,12 @@ if file is not None:
 
         st.write(str("Total Weight:   ")+str(slider.sum())+str("%"))
 
-        col11, col22 = st.columns([5,1])
+        col11, col22 = st.columns([1,1])
 
         with col11:
-            st.write(st.session_state.input_price)
-
-        with col22:
 
             # Increase the size of the heatmap.
-            fig = plt.figure(figsize=(15, 10))
+            plt.figure(figsize=(15, 10))
 
             plt.rc('font', family='Malgun Gothic')
             plt.rcParams['axes.unicode_minus'] = False
@@ -102,6 +99,13 @@ if file is not None:
                                   cmap='BrBG')
             heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
             st.pyplot(heatmap)
+
+
+        with col22:
+
+            st.write(st.session_state.input_price)
+
+
 
             #########################[Graph Insert]#####################################
 
