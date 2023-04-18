@@ -89,8 +89,7 @@ if file is not None:
         with col11:
 
             # Increase the size of the heatmap.
-            fig_corr, ax_corr = plt.subplots(figsize=(20,10))
-
+            fig = plt.figure(figsize=(15, 10))
             plt.rc('font', family='Malgun Gothic')
             plt.rcParams['axes.unicode_minus'] = False
 
@@ -100,7 +99,7 @@ if file is not None:
             heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
 
 
-            st.pyplot(fig_corr)
+            st.pyplot(fig)
 
 
         with col22:
