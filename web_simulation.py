@@ -89,7 +89,7 @@ if file is not None:
         col11, col22 = st.columns([3,2])
 
         with col11:
-            st.dataframe(st.session_state.input_price, height=1000)
+            st.dataframe(st.session_state.input_price, height=700)
 
 
         with col22:
