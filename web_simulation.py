@@ -89,11 +89,13 @@ if file is not None:
         col11, col22 = st.columns([3,2])
 
         with col11:
-            st.subheader("Input Data")
-            st.dataframe(st.session_state.input_price, height=500)
+            st.write("Input Data")
+            st.dataframe(st.session_state.input_price, height=550)
 
 
         with col22:
+
+            st.write("Correlation Heatmap")
 
 
 
@@ -110,7 +112,7 @@ if file is not None:
 
             heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True,
                                   cmap='BrBG')
-            heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
+            #heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
 
 
             st.pyplot(fig)
