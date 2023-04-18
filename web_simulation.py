@@ -86,10 +86,10 @@ if file is not None:
 
         st.write(str("Total Weight:   ")+str(slider.sum())+str("%"))
 
-        col11, col22 = st.columns([4,2])
+        col11, col22 = st.columns([3,2])
 
         with col11:
-            st.dataframe(st.session_state.input_price, height=10)
+            st.dataframe(st.session_state.input_price, height=100)
 
 
         with col22:
