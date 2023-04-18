@@ -84,7 +84,7 @@ if file is not None:
 
         st.write(str("Total Weight:   ")+str(slider.sum())+str("%"))
 
-        col11, col22 = st.columns(5,1)
+        col11, col22 = st.columns([5,1])
 
         with col11:
             st.write(st.session_state.input_price)
