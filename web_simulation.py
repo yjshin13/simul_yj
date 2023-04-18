@@ -92,9 +92,11 @@ if file is not None:
             fig = plt.figure(figsize=(15, 10))
             plt.rc('font', family='Malgun Gothic')
             plt.rcParams['axes.unicode_minus'] = False
+            st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)
+            st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
+            st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
 
-            heatmap = sns.heatmap(st.session_state.input_price.pct_change().
-                                  dropna().corr().round(2), vmin=-1, vmax=1, annot=True,
+            heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True,
                                   cmap='BrBG')
             heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
 
