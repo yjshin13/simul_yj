@@ -89,7 +89,7 @@ if file is not None:
         with col11:
 
             # Increase the size of the heatmap.
-            plt.figure(figsize=(15, 10))
+            fig, ax = plt.subplots(figsize=(20,10))
 
             plt.rc('font', family='Malgun Gothic')
             plt.rcParams['axes.unicode_minus'] = False
