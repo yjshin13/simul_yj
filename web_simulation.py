@@ -98,7 +98,9 @@ if file is not None:
                                   dropna().corr().round(2), vmin=-1, vmax=1, annot=True,
                                   cmap='BrBG')
             heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
-            st.pyplot(heatmap)
+            
+            # 
+            # st.pyplot(heatmap)
 
 
         with col22:
