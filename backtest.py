@@ -51,6 +51,5 @@ def simulation(assets_data, allocation, date='1900-01-01'):
             portfolio[i + 1] = portfolio[i_rebal]*\
                                (assets_data.iloc[j]/assets_data.iloc[j_rebal] * allocation.iloc[k]).sum()
 
-    return portfolio
-
+    return portfolio.astype('float64').round(2)
 
