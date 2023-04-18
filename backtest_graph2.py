@@ -16,17 +16,17 @@ def line_chart(x, title):
     #                         dtype='datetime64[Y]')
     length = np.arange(x.index[0], x.index[-1] + pd.DateOffset(years=1),
                        dtype='datetime64[Y]')
-    if len(x.columns) >= 2:
-
-        ax.fill_between(x.index, y1=x.iloc[:, 0].squeeze().values, y2=0, label=columns[0], alpha=0.3,
-                        color=mycolors[1], linewidth=2)
-        ax.fill_between(x.index, y1=x.iloc[:, 1].squeeze().values, y2=0, label=columns[1], alpha=0.3,
-                        color=mycolors[0], linewidth=2)
-
-    else:
-        ax.fill_between(x.index, y1=x.squeeze().values, y2=0, label=columns, alpha=0.3, color=mycolors[1],
-                        linewidth=2)
-    # ax=x.plot(x.index, y1=x.iloc[:, 0].squeeze().values, y2=0, label=columns[0], color=mycolors[1], linewidth=2)
+    # if len(x.columns) >= 2:
+    #
+    #     ax.fill_between(x.index, y1=x.iloc[:, 0].squeeze().values, y2=0, label=columns[0], alpha=0.3,
+    #                     color=mycolors[1], linewidth=2)
+    #     ax.fill_between(x.index, y1=x.iloc[:, 1].squeeze().values, y2=0, label=columns[1], alpha=0.3,
+    #                     color=mycolors[0], linewidth=2)
+    #
+    # else:
+    #     ax.fill_between(x.index, y1=x.squeeze().values, y2=0, label=columns, alpha=0.3, color=mycolors[1],
+    #                     linewidth=2)
+    ax.plot(x.index, x.values, label=columns[0], color=mycolors[1], linewidth=2)
     # ax.set_title('Portfolio NAV', fontsize=18)
     ax.set_xlabel('Time', size=15, labelpad=20)
     ax.set_ylabel('Index', size=15, labelpad=20)
