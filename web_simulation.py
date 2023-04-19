@@ -98,14 +98,19 @@ if file is not None:
 
 
 
-            col11, col22 = st.columns([2, 8])
+            col21, col22, col23= st.columns([2, 2, 5])
 
-            with col11:
+            with col21:
 
                 st.write("Portfolio NAV")
                 st.dataframe(st.session_state.portfolio_port)
-
+                
             with col22:
+                
+                st.write("Portfolio Drawdown")
+                st.dataframe(st.session_state.drawdown)
+
+            with col23:
 
 
                 st.write("Input Assets")
