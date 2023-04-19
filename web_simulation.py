@@ -98,7 +98,7 @@ if file is not None:
             st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
 
 
-            col21, col22 = st.columns([8, 2])
+            col21, col22 = st.columns([1, 1])
 
             with col21:
 
@@ -107,18 +107,17 @@ if file is not None:
 
             with col22:
 
-                st.write("Portfolio NAV")
-                st.dataframe(st.session_state.portfolio_port)
-
-
-
-            col31, col32 = st.columns([8, 2])
-
-            with col31:
-
                 st.write("Portfolio Drawdown")
                 st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
 
+
+
+            col31, col32 = st.columns([1, 1])
+
+            with col31:
+
+                st.write("Portfolio NAV")
+                st.dataframe(st.session_state.portfolio_port)
 
             with col32:
 
