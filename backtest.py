@@ -69,3 +69,25 @@ def simulation(assets_data, allocation, date='1900-01-01', commission=0):
             last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
 
     return portfolio.astype('float64').round(3)
+
+def drawdown(nav: pd.Series):
+    """
+    주어진 NAV 데이터로부터 Drawdown을 계산합니다.
+
+    Parameters:
+        nav (pd.Series): NAV 데이터. 인덱스는 일자를 나타내며, 값은 해당 일자의 NAV입니다.
+
+    Returns:
+        pd.Series: 주어진 NAV 데이터로부터 계산된 Drawdown을 나타내는 Series입니다.
+            인덱스는 일자를 나타내며, 값은 해당 일자의 Drawdown입니다.
+    """
+    # 누적 최대값 계산
+    cummax = nav.cummax()
+
+    # 현재 값과 누적 최대값의 차이 계산
+    drawdown = nav - cummax
+
+    # Drawdown 비율 계산
+    drawdown_pct = drawdown / cummax
+
+    return drawdown_pct
