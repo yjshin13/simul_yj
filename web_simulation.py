@@ -113,7 +113,7 @@ if file is not None:
             with col23:
 
                 st.write("Portfolio Drawdown")
-                st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
+                st.dataframe(st.session_state.drawdown)
 
             with col24:
                 st.write("")
