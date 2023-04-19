@@ -91,20 +91,18 @@ if file is not None:
             #########################[Graph Insert]#####################################
 
         if st.button('Sumulation') or ('slider' in st.session_state):
-            col11, col22 = st.columns([3, 7])
+            col11, col22 = st.columns([2, 8])
 
             with col11:
-                
+
                 st.write("Portfolio NAV")
                 st.dataframe(st.session_state.portfolio_port)
 
             with col22:
 
-                
+
                 st.write("Input Assets")
                 st.dataframe(st.session_state.input_price)
-
-
 
 
                 # st.write("Correlation Heatmap")
