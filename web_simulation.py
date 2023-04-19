@@ -131,7 +131,7 @@ if file is not None:
 
 
 
-            col33, col44,col55 = st.columns([1,1])
+            col33, col44 = st.columns([1,1])
 
             with col33:
 
