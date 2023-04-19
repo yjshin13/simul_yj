@@ -103,12 +103,14 @@ if file is not None:
             with col21:
 
                 st.write("Portfolio NAV")
-                st.dataframe(st.session_state.portfolio_port)
+                st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
 
             with col22:
 
                 st.write("Portfolio NAV")
-                st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
+                st.dataframe(st.session_state.portfolio_port)
+
+
 
             col31, col32 = st.columns([2, 8])
 
