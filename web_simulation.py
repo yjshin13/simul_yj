@@ -91,15 +91,19 @@ if file is not None:
             #########################[Graph Insert]#####################################
 
         if st.button('Sumulation') or ('slider' in st.session_state):
-            col11, col22 = st.columns([9, 1])
+            col11, col22 = st.columns([3, 7])
 
             with col11:
+                
+                st.write("Portfolio NAV")
+                st.dataframe(st.session_state.portfolio_port)
+
+            with col22:
+
+                
                 st.write("Input Assets")
                 st.dataframe(st.session_state.input_price)
 
-            with col22:
-                st.write("Portfolio NAV")
-                st.dataframe(st.session_state.portfolio_port)
 
 
 
@@ -127,11 +131,11 @@ if file is not None:
             col33, col44,col55 = st.columns([1,4,4])
 
             with col33:
-                
+
                 st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
 
 
-            # 
+            #
             # with col44:
 
 
