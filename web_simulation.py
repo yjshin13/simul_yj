@@ -85,6 +85,7 @@ if file is not None:
                     slider[k] = st.slider(str(k), 0, 100, 0,1)
 
         st.write(str("Total Weight:   ")+str(slider.sum())+str("%"))
+        st.dataframe(st.session_state.input_price)
 
 
 
@@ -97,24 +98,31 @@ if file is not None:
             st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
 
 
-
-            col21, col22, col23= st.columns([2, 2, 5])
+            col21, col22 = st.columns([2, 8])
 
             with col21:
 
                 st.write("Portfolio NAV")
                 st.dataframe(st.session_state.portfolio_port)
-                
+
             with col22:
-                
+
+                st.write("Portfolio NAV")
+                st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
+
+            col31, col32 = st.columns([2, 8])
+
+            with col31:
+
+                st.write("Portfolio Drawdown")
+                st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
+
+
+            with col32:
+
                 st.write("Portfolio Drawdown")
                 st.dataframe(st.session_state.drawdown)
 
-            with col23:
-
-
-                st.write("Input Assets")
-                st.dataframe(st.session_state.input_price)
 
 
                 # st.write("Correlation Heatmap")
@@ -134,23 +142,4 @@ if file is not None:
                 # # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
                 #
                 # st.pyplot(fig)
-
-
-
-            col33, col44 = st.columns([1,1])
-
-            with col33:
-
-                st.write("Portfolio NAV")
-                st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
-
-            with col44:
-
-                st.write("Portfolio Drawdown")
-                st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
-
-
-            #
-            # with col44:
-
 
