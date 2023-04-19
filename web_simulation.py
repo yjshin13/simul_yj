@@ -98,32 +98,33 @@ if file is not None:
             st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
 
 
-            col21, col22 = st.columns([1, 1])
+            col21, col22, col23, col24 = st.columns([5, 1, 5, 1])
 
             with col21:
 
                 st.write("Portfolio NAV")
-                st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
+                st.dataframe(st.session_state.portfolio_port)
 
             with col22:
+                st.write("")
+                st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
+
+
+            with col23:
 
                 st.write("Portfolio Drawdown")
                 st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
+
+            with col24:
+                st.write("")
+                st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
+
+
 
 
 
             col31, col32, col33 = st.columns([2,2,6])
 
-            with col31:
-
-                st.write("Portfolio NAV")
-                st.dataframe(st.session_state.portfolio_port)
-
-            with col32:
-
-                st.write("Portfolio Drawdown")
-                st.dataframe(st.session_state.drawdown)
-            
             with col33:
 
                 st.write("Correlation Heatmap")
