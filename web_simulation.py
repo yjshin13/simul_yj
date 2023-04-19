@@ -123,9 +123,8 @@ if file is not None:
 
                 st.write("Portfolio Drawdown")
                 st.dataframe(st.session_state.drawdown)
+            
             with col33:
-
-
 
                 st.write("Correlation Heatmap")
 
