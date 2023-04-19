@@ -135,6 +135,7 @@ if file is not None:
 
             with col33:
 
+                st.write("Portfolio NAV")
                 st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
 
 
