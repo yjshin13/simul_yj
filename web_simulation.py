@@ -1,147 +1,55 @@
-import backtest
-import streamlit as st
-from datetime import datetime
-import backtest_graph2
+import numpy as np
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
 
+def line_chart(x, title):
+    x = pd.DataFrame(x)
+    mycolors = ['tab:red', 'tab:blue', 'tab:green', 'tab:orange', 'tab:brown', 'tab:grey', 'tab:pink',
+                'tab:olive', 'tab:purple']
+    columns = x.columns
 
-st.set_page_config(layout="wide")
-file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
-st.warning('Upload data.')
+    # Draw Plot
+    plt.style.use('seaborn-whitegrid')
+    fig, ax = plt.subplots(1, 1, figsize=(20,7), dpi=100)
+    # length = np.arange(after_nav.index[0],after_nav.index[-1] + pd.DateOffset(years=1),
+    #                         dtype='datetime64[Y]')
+    length = np.arange(x.index[0], x.index[-1] + pd.DateOffset(years=1),
+                       dtype='datetime64[Y]')
+    if len(x.columns) >= 2:
 
+        ax.fill_between(x.index, y1=x.iloc[:, 0].squeeze().values, y2=0, label=columns[0], alpha=0.3,
+                        color=mycolors[1], linewidth=2)
+        ax.fill_between(x.index, y1=x.iloc[:, 1].squeeze().values, y2=0, label=columns[1], alpha=0.3,
+                        color=mycolors[0], linewidth=2)
 
-if file is not None:
+    else:
+        ax.fill_between(x.index, y1=x.squeeze().values, y2=0, label=columns, alpha=0.3, color=mycolors[1],
+                        linewidth=2)
 
-    price = pd.read_excel(file, sheet_name="sheet1",
-                           names=None, dtype={'Date': datetime}, index_col=0, header=0)
+    # ax.plot(x.index, x.squeeze().values, label=columns, color=mycolors[1], linewidth=2)
+    # ax.set_title('Portfolio NAV', fontsize=18)
+    ax.set_xlabel('Time', size=15, labelpad=20)
+    ax.set_ylabel('Index', size=15, labelpad=20)
+    ax.tick_params(labelsize=16)
 
-    price_list = list(map(str, price.columns))
-    select = st.multiselect('Input Assets', price_list, price_list)
-    input_list = price.columns[price.columns.isin(select)]
-    input_price = price[input_list]
+    ax.set_xticks(length)
+    ax.set_xticklabels(length)
+    ax.tick_params(labelsize=16)
+    plt.title(title, loc='left', pad=30, size=25)
+    plt.xticks(rotation=0)
+    plt.legend(loc='upper left')
 
-    if st.button('Summit') or ('input_list' in st.session_state):
-        st.session_state.input_list = input_list
-        st.session_state.input_price = input_price.dropna()
+    plt.ylim(x.min().min() - abs(x.max().max() - x.min().min()) * 0.1,
+             x.max().max() + abs(x.max().max() - x.min().min()) * 0.05)
 
-    #
-    # with st.form("Input Assets", clear_on_submit=False):
-    #
-    #     st.subheader("Input Assets:")
-    #     col20, col21, col22, col23 = st.columns([1, 1, 1, 3])
-    #
-    #     with col20:
-    #
-    #         start_date = st.date_input("Start", value=price.index[0])
-    #         start_date = datetime.combine(start_date, datetime.min.time())
-    #
-    #     with col21:
-    #
-    #         end_date = st.date_input("End", value=price.index[-1])
-    #         end_date = datetime.combine(end_date, datetime.min.time())
-    #
-    #     with col22:
-    #
-    #         # st.write("Data Frequency")
-    #
-    #         if st.checkbox('Daily', value=True):
-    #             daily = True
-    #             monthly = False
-    #             annualization = 252
-    #             freq = "daily"
-    #
-    #         if st.checkbox('Monthly', value=False):
-    #             daily = False
-    #             monthly = True
-    #             annualization = 12
-    #             freq = "monthly"
-    #
-    #     col1, col2, col3 = st.columns([1, 1, 1])
+    plt.gca().spines["top"].set_alpha(0)
+    plt.gca().spines["bottom"].set_alpha(.3)
+    plt.gca().spines["right"].set_alpha(0)
+    plt.gca().spines["left"].set_alpha(.3)
+    ax.get_legend().remove()
 
-        slider = pd.Series()
-        #
-        # st.write(input_price.columns)
+    ax.margins(x=0, y=0)
 
-        col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+    #########################[Graph Insert]#####################################
 
-        for i, k in enumerate(st.session_state.input_list, start=0):
-
-            if i % 4 == 1:
-                with col1:
-                    slider[k] = st.slider(str(k), 0, 100, 0,1)
-
-            if i % 4 == 2:
-                with col2:
-                    slider[k] = st.slider(str(k), 0, 100, 0,1)
-
-            if i % 4 == 3:
-                with col3:
-                    slider[k] = st.slider(str(k), 0, 100, 0,1)
-
-            if i % 4 == 0:
-                with col4:
-                    slider[k] = st.slider(str(k), 0, 100, 0,1)
-
-        st.write(str("Total Weight:   ")+str(slider.sum())+str("%"))
-        st.dataframe(st.session_state.input_price)
-
-
-
-            #########################[Graph Insert]#####################################
-
-        if st.button('Sumulation') or ('slider' in st.session_state):
-
-            st.session_state.slider = (slider*0.01).tolist()
-            st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
-            st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
-
-
-            col21, col22 = st.columns([2, 8])
-
-            with col21:
-
-                st.write("Portfolio NAV")
-                st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
-
-            with col22:
-
-                st.write("Portfolio NAV")
-                st.dataframe(st.session_state.portfolio_port)
-
-
-
-            col31, col32 = st.columns([2, 8])
-
-            with col31:
-
-                st.write("Portfolio Drawdown")
-                st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
-
-
-            with col32:
-
-                st.write("Portfolio Drawdown")
-                st.dataframe(st.session_state.drawdown)
-
-
-
-                # st.write("Correlation Heatmap")
-                #
-                # # Increase the size of the heatmap.
-                # fig = plt.figure(figsize=(10, 8))
-                # # plt.rc('font', family='Malgun Gothic')
-                # plt.rcParams['axes.unicode_minus'] = False
-                #
-                # st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)
-                # st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
-                # st.session_state.corr.columns = st.session_state.corr.index
-                # # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
-                #
-                # heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True,
-                #                       cmap='BrBG')
-                # # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
-                #
-                # st.pyplot(fig)
-
+    return ax.figure
