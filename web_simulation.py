@@ -112,7 +112,7 @@ if file is not None:
 
 
 
-            col31, col32 = st.columns([1, 1])
+            col31, col32, col33 = st.columns([2,2,6])
 
             with col31:
 
@@ -123,6 +123,7 @@ if file is not None:
 
                 st.write("Portfolio Drawdown")
                 st.dataframe(st.session_state.drawdown)
+            with col33:
 
 
 
