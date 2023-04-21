@@ -25,6 +25,7 @@ def cleansing(assets_data=pd.DataFrame(), alloc=list(), rebal=2):
 
 def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
+    ''' commission is percent(%) scale '''
 
     if type(allocation)==list:
         assets_data ,allocation = cleansing(assets_data, allocation, rebal)
