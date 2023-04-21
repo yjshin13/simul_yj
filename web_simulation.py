@@ -46,40 +46,24 @@ if file is not None:
 
             option1 = st.selectbox(
                 'Data Frequency', ('Daily', 'Monthly'))
-               
+
 
         with col43:
 
-            if st.checkbox('Daily', value=True):
-                daily = True
-                monthly = False
-                annualization = 252
-                freq = 1
+            rebal = st.selectbox('Rebalancing', ('Daily', 'Monthly', 'Quarterly', 'Yearly'))
 
-            if st.checkbox('Monthly', value=False):
-                daily = False
-                monthly = True
-                annualization = 12
-                freq = 2
 
-        with col44:
+        if option1 == 'Daily':
+            daily = True
+            monthly = False
+            annualization = 252
+            freq = 1
 
-            st.write("Rebalancing: ")
-
-        with col45:
-
-            if st.checkbox('Daily', value=False):
-                rebal = 1
-            if st.checkbox('Monthly', value=True):
-                rebal = 2
-
-        with col46:
-
-            if st.checkbox('Quarterly', value=False):
-                rebal = 3
-
-            if st.checkbox('Yearly', value=False):
-                rebal = 4
+        if option1 == 'Monthly':
+            daily = False
+            monthly = True
+            annualization = 12
+            freq = 2
 
         st.session_state.input_list = input_list
 
