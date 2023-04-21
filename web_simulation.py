@@ -30,41 +30,55 @@ if file is not None:
 
         input_price = input_price.dropna()
 
+        col40, col41, col42, col43, col44 = st.columns([1, 1, 1, 1, 3])
 
-        col20, col21, col22, col23 = st.columns([1, 1, 1, 3])
-
-
-        with col20:
+        with col40:
 
             start_date = st.date_input("Start", value=input_price.index[0])
             start_date = datetime.combine(start_date, datetime.min.time())
 
-        with col21:
+        with col41:
 
             end_date = st.date_input("End", value=input_price.index[-1])
             end_date = datetime.combine(end_date, datetime.min.time())
 
-        with col22:
+        with col42:
 
             # st.write("Data Frequency")
 
-            if st.checkbox('Daily', value=True):
+            if st.checkbox('Daily Input', value=True):
                 daily = True
                 monthly = False
                 annualization = 252
                 freq = "daily"
 
-            if st.checkbox('Monthly', value=False):
+            if st.checkbox('Monthly Input', value=False):
                 daily = False
                 monthly = True
                 annualization = 12
                 freq = "monthly"
 
+        with col43:
+
+            # st.write("Data Frequency")
+
+            if st.checkbox('Daily Rebalancing', value=True):
+                rebal = "daily"
+
+            if st.checkbox('Monthly Rebalancing', value=False):
+                rebal = "monthly"
+
+            if st.checkbox('Monthly Quarterly', value=False):
+                rebal = "Quarterly"
+
+            if st.checkbox('Monthly Quarterly', value=False):
+                rebal = "Yearly"
+
         st.session_state.input_list = input_list
 
         if daily == True:
-            st.session_state.input_price = input_price[(input_price.index >= start_date) & (input_price.index <= end_date)]
-
+            st.session_state.input_price = input_price[
+                (input_price.index >= start_date) & (input_price.index <= end_date)]
 
         if monthly == True:
             st.session_state.input_price = input_price[(input_price.index >= start_date)
@@ -102,13 +116,11 @@ if file is not None:
         #########################[Graph Insert]#####################################
 
         if st.button('Simulation'):
-
             st.session_state.slider = (slider * 0.01).tolist()
-            st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
+            st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider, rebal)
             st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
 
         if 'slider' in st.session_state:
-
             col21, col22, col23 = st.columns([0.8, 0.8, 7])
 
             with col21:
@@ -145,9 +157,8 @@ if file is not None:
                 st.session_state.corr.columns = st.session_state.corr.index
                 # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
 
-                heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True,
-                                      cmap='BrBG')
+                heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True, cmap='BrBG')
+
                 # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
 
                 st.pyplot(fig)
-
