@@ -30,7 +30,7 @@ if file is not None:
 
         input_price = input_price.dropna()
 
-        col40, col41, col4_1, col42, col4_2, col43, col44, col45 = st.columns([1, 1, 1, 1, 1, 1, 1, 3])
+        col40, col41, col4_1, col42, col4_2, col43, col44, col45 = st.columns([1, 1, 0.5, 1, 0.5, 1, 1, 3])
 
         with col40:
 
@@ -72,7 +72,7 @@ if file is not None:
 
         with col44:
 
-            st.write(" d")
+            st.write(" ")
 
             if st.checkbox('Quarterly', value=False):
                 rebal = 3
