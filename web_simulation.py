@@ -30,7 +30,7 @@ if file is not None:
 
         input_price = input_price.dropna()
 
-        col40, col41, col42, col43, col44 = st.columns([1, 1, 1, 1, 3])
+        col40, col41, col42, col43, col44, col45 = st.columns([1, 1, 1, 1, 1, 3])
 
         with col40:
 
@@ -68,10 +68,14 @@ if file is not None:
             if st.checkbox('Monthly Rebalancing', value=False):
                 rebal = "monthly"
 
-            if st.checkbox('Monthly Quarterly', value=False):
+
+
+        with col44:
+
+            if st.checkbox('Quarterly Quarterly', value=False):
                 rebal = "Quarterly"
 
-            if st.checkbox('Monthly Quarterly', value=False):
+            if st.checkbox('Yearly Quarterly', value=False):
                 rebal = "Yearly"
 
         st.session_state.input_list = input_list
