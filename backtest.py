@@ -1,4 +1,5 @@
 import pandas as pd
+from stqdm import stqdm
 
 
 def cleansing(assets_data=pd.DataFrame(), alloc=list()):
@@ -33,7 +34,7 @@ def simulation(assets_data, allocation, date='1900-01-01', commission=0):
 
     last_alloc = allocation.iloc[0]
 
-    for i in range(0, len(portfolio)-1):
+    for i in stqdm(range(0, len(portfolio)-1)):
 
 
         if portfolio.index[i] in allocation.index:
