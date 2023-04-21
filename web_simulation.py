@@ -72,7 +72,7 @@ if file is not None:
 
         with col44:
 
-            st.write(" ")
+            st.write(" d")
 
             if st.checkbox('Quarterly', value=False):
                 rebal = 3
