@@ -12,18 +12,18 @@ def cleansing(assets_data=pd.DataFrame(), alloc=list(), rebal=2):
     allocation = pd.DataFrame(index=assets_data.index, columns=assets_data.columns)
     allocation[:] = alloc
 
-    if rebal==2:
+    if rebal=='Monthly':
         allocation = allocation[allocation.index.is_month_end == True]
 
-    if rebal==3:
+    if rebal=='Quarterly':
         allocation = allocation[allocation.index.is_quarter_end == True]
 
-    if rebal==4:
+    if rebal=='Yearly':
         allocation = allocation[allocation.index.is_year_end == True]
 
     return assets_data, allocation
 
-def simulation(assets_data, allocation, commission=0, rebal=2):
+def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
 
     if type(allocation)==list:
