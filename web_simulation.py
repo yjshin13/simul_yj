@@ -98,7 +98,7 @@ if file is not None:
             st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
 
 
-            col21, col22, col23 = st.columns([1, 1, 6])
+            col21, col22, col23 = st.columns([1, 1, 8])
             with col21:
                 st.dataframe(st.session_state.portfolio_port)
 
