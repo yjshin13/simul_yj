@@ -101,7 +101,7 @@ if file is not None:
 
         #########################[Graph Insert]#####################################
 
-        if st.button('Simulation') or ('slider' in st.session_state):
+        if st.button('Simulation'):
 
             st.session_state.slider = (slider * 0.01).tolist()
             st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
