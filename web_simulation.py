@@ -109,7 +109,7 @@ if file is not None:
 
         if 'slider' in st.session_state:
 
-            col21, col22, col23 = st.columns([1, 1, 7])
+            col21, col22, col23 = st.columns([0.8, 0.8, 7])
 
             with col21:
                 st.dataframe(st.session_state.portfolio_port)
