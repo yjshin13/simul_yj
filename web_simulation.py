@@ -108,7 +108,7 @@ if file is not None:
 
         if st.button('Simulation'):
             st.session_state.slider = (slider * 0.01).tolist()
-            st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider,0,rebal)
+            st.session_state.portfolio_port, st.session_state.allocation = backtest.simulation(st.session_state.input_price, st.session_state.slider,0,rebal)
 
             if monthly == True:
                 st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
@@ -117,7 +117,7 @@ if file is not None:
             st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
 
         if 'slider' in st.session_state:
-            col21, col22, col23 = st.columns([0.8, 0.8, 7])
+            col21, col22, col23, col24 = st.columns([0.8, 0.8, 6.2, 0.8])
 
             with col21:
                 st.dataframe(st.session_state.portfolio_port)
@@ -127,6 +127,9 @@ if file is not None:
 
             with col23:
                 st.dataframe(st.session_state.input_price)
+                
+            with col24:
+                st.dataframe(st.session_state.allocation)
 
             col31, col32 = st.columns([1, 1])
 
