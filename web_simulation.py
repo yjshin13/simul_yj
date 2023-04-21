@@ -119,18 +119,22 @@ if file is not None:
             st.session_state.allocation.index = st.session_state.allocation.index.date
 
         if 'slider' in st.session_state:
-            col21, col22, col23, col24 = st.columns([0.8, 0.8, 6.0, 1.0])
+            col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
 
             with col21:
+                st.write('NAV')
                 st.dataframe(st.session_state.portfolio_port)
 
             with col22:
+                st.write('MDD')
                 st.dataframe(st.session_state.drawdown)
 
             with col23:
+                st.write('Assets')
                 st.dataframe(st.session_state.input_price)
 
             with col24:
+                st.write('Allocation')
                 st.dataframe(st.session_state.allocation)
 
             col31, col32 = st.columns([1, 1])
