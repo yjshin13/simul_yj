@@ -1,7 +1,7 @@
 import pandas as pd
 from stqdm import stqdm
 import streamlit as st
-@st.cache
+
 def cleansing(assets_data=pd.DataFrame(), alloc=list()):
 
     alloc = pd.DataFrame(alloc).T
@@ -72,7 +72,7 @@ def simulation(assets_data, allocation, date='1900-01-01', commission=0):
     portfolio.index = portfolio.index.date
 
     return portfolio.astype('float64').round(3)
-@st.cache
+
 def drawdown(nav: pd.Series):
     """
     주어진 NAV 데이터로부터 Drawdown을 계산합니다.
