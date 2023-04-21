@@ -126,7 +126,7 @@ if file is not None:
 
 
 
-            col31, col32, col33 = st.columns([2,2,6])
+            col31, col32, col33 = st.columns([2,3,5])
 
             with col33:
 
