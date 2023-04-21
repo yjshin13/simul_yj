@@ -124,7 +124,7 @@ if file is not None:
             st.session_state.allocation.index = st.session_state.allocation.index.date
 
         if 'slider' in st.session_state:
-            col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
+            col21, col22, col23, col24 = st.columns([0.9, 0.9, 3.5, 3.5])
 
             with col21:
                 st.write('NAV')
