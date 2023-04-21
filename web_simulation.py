@@ -62,10 +62,10 @@ if file is not None:
 
             # st.write("Data Frequency")
 
-            if st.checkbox('Daily Rebalancing', value=True):
+            if st.checkbox('Daily Rebalancing', value=False):
                 rebal = 1
 
-            if st.checkbox('Monthly Rebalancing', value=False):
+            if st.checkbox('Monthly Rebalancing', value=True):
                 rebal = 2
 
 
@@ -121,7 +121,7 @@ if file is not None:
 
         if st.button('Simulation'):
             st.session_state.slider = (slider * 0.01).tolist()
-            st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider, rebal)
+            st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider, 0,rebal)
             st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
 
         if 'slider' in st.session_state:
