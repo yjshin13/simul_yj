@@ -191,7 +191,6 @@ if file is not None:
             with col_a:
                 st.write("Heat")
                 fig1 = plt.figure(figsize=(15, 8))
-                plt.hist(Daily_RET, label='bins=10')
                 plt.hist(Daily_RET, bins=30, label='bins=30')
                 plt.legend()
                 st.pyplot(fig1)
