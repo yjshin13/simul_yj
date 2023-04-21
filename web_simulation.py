@@ -126,6 +126,7 @@ if file is not None:
             if monthly == True:
                 st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
 
+            st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
             st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
 
         if 'slider' in st.session_state:
