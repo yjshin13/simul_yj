@@ -50,7 +50,7 @@ if file is not None:
 
         with col43:
 
-            rebal = st.selectbox('Rebalancing', ('Daily', 'Monthly', 'Quarterly', 'Yearly'))
+            rebal = st.selectbox('Rebalancing', ( 'Monthly', 'Daily', 'Quarterly', 'Yearly'))
 
 
         if option1 == 'Daily':
