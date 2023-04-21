@@ -68,19 +68,19 @@ if file is not None:
 
         for i, k in enumerate(st.session_state.input_list, start=0):
 
-            if i % 4 == 1:
+            if (i % 4 == 1) and (slider[k].isna()==True):
                 with col1:
                     slider[k] = st.slider(str(k), 0, 100, 0,1)
 
-            if i % 4 == 2:
+            if (i % 4 == 2) and (slider[k].isna()==True):
                 with col2:
                     slider[k] = st.slider(str(k), 0, 100, 0,1)
 
-            if i % 4 == 3:
+            if (i % 4 == 3) and (slider[k].isna()==True) :
                 with col3:
                     slider[k] = st.slider(str(k), 0, 100, 0,1)
 
-            if i % 4 == 0:
+            if (i % 4 == 0) and (slider[k].isna()==True):
                 with col4:
                     slider[k] = st.slider(str(k), 0, 100, 0,1)
 
