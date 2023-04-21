@@ -101,12 +101,11 @@ if file is not None:
 
         #########################[Graph Insert]#####################################
 
-        if st.button('Sumulation') or ('slider' in st.session_state):
+        if st.button('Simulation') or ('slider' in st.session_state):
 
             st.session_state.slider = (slider * 0.01).tolist()
             st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
             st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
-
 
             col21, col22, col23 = st.columns([1, 1, 7])
             with col21:
