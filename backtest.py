@@ -57,8 +57,6 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
             transaction_weight = abs(allocation.iloc[k] - last_alloc).sum()
             cost = (commission/100)* transaction_weight
 
-            print(transaction_weight)
-
             portfolio[i + 1] = portfolio[i_rebal]*(1-cost)*\
                                (assets_data.iloc[j]/assets_data.iloc[j_rebal] * allocation.iloc[k]).sum()
 
