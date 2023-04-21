@@ -27,8 +27,7 @@ if file is not None:
     input_price = price[input_list]
 
     if st.button('Summit') or ('input_list' in st.session_state):
-        st.session_state.input_list = input_list
-        st.session_state.input_price = input_price.dropna()
+
 
 
 
@@ -59,6 +58,17 @@ if file is not None:
                 monthly = True
                 annualization = 12
                 freq = "monthly"
+
+        st.session_state.input_list = input_list
+
+        if daily == True:
+            st.session_state.input_price = input_price[(input_price.index >= start_date) & (input_price.index <= end_date)]
+
+
+        if monthly == True:
+            st.session_state.input_price = input_price[(input_price.index >= start_date)
+                                                       & (input_price.index <= end_date)
+                                                       & (input_price.index.is_month_end == True)].dropna()
 
         col1, col2, col3 = st.columns([1, 1, 1])
 
