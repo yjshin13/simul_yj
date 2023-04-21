@@ -30,7 +30,7 @@ if file is not None:
 
         input_price = input_price.dropna()
 
-        col40, col41, col42, col43, col44, col45 = st.columns([1, 1, 1, 0.5, 0.5, 3])
+        col40, col41, col42, col43, col44, col45, col46, col47 = st.columns([1, 1, 1, 1 , 1, 1, 1, 3])
 
         with col40:
 
@@ -44,8 +44,7 @@ if file is not None:
 
         with col42:
 
-            st.write("Data Frequency")
-            st.write("Rebalancing")
+            st.write("Data Frequency: ")
 
         with col43:
 
@@ -63,16 +62,16 @@ if file is not None:
 
         with col44:
 
+            st.write("Rebalancing: ")
+
+        with col45:
 
             if st.checkbox('Daily', value=False):
                 rebal = 1
-
             if st.checkbox('Monthly', value=True):
                 rebal = 2
 
-
-
-        with col45:
+        with col46:
 
             if st.checkbox('Quarterly', value=False):
                 rebal = 3
