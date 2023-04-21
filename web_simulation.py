@@ -30,7 +30,7 @@ if file is not None:
 
         input_price = input_price.dropna()
 
-        col40, col41, col42, col43, col44, col45, col46, col47 = st.columns([1, 1, 1, 1 , 1, 1, 1, 3])
+        col40, col41, col42, col43, col44, col45, col46, col47 = st.columns([1, 1, 1.5, 1 , 1, 1, 1, 3])
 
         with col40:
 
@@ -42,16 +42,18 @@ if file is not None:
             end_date = st.date_input("End", value=input_price.index[-1])
             end_date = datetime.combine(end_date, datetime.min.time())
 
-        with col42:
+        with col43:
 
             option1 = st.selectbox(
                 'Data Frequency', ('Daily', 'Monthly'))
 
-
-        with col43:
+        with col44:
 
             rebal = st.selectbox('Rebalancing', ( 'Monthly', 'Daily', 'Quarterly', 'Yearly'))
 
+        with col45:
+
+            commission = st.number_input('Commission')
 
         if option1 == 'Daily':
             daily = True
@@ -108,7 +110,10 @@ if file is not None:
 
         if st.button('Simulation'):
             st.session_state.slider = (slider * 0.01).tolist()
-            st.session_state.portfolio_port, st.session_state.allocation = backtest.simulation(st.session_state.input_price, st.session_state.slider,0,rebal)
+            st.session_state.portfolio_port, st.session_state.allocation = backtest.simulation(st.session_state.input_price,
+                                                                                               st.session_state.slider,
+                                                                                               commission,
+                                                                                               rebal)
 
             if monthly == True:
                 st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
