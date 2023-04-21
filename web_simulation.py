@@ -5,7 +5,7 @@ import backtest_graph2
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 st.set_page_config(layout="wide")
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
@@ -68,33 +68,36 @@ if file is not None:
 
         for i, k in enumerate(st.session_state.input_list, start=0):
 
-            if i % 4 == 1:
+            if i % 4 == 1 and (st.session_state.slider[k] == slider[k]):
                 with col1:
                     slider[k] = st.slider(str(k), 0, 100, 0,1)
 
-            if i % 4 == 2:
+            if i % 4 == 2 and (st.session_state.slider[k] == slider[k]):
                 with col2:
                     slider[k] = st.slider(str(k), 0, 100, 0,1)
 
-            if i % 4 == 3:
+            if i % 4 == 3 and (st.session_state.slider[k] == slider[k]):
                 with col3:
                     slider[k] = st.slider(str(k), 0, 100, 0,1)
 
-            if i % 4 == 0:
+            if i % 4 == 0 and (st.session_state.slider[k] == slider[k]):
                 with col4:
                     slider[k] = st.slider(str(k), 0, 100, 0,1)
 
         st.write(str("Total Weight:   ")+str(slider.sum())+str("%"))
+        st.session_state.slider = slider
+        slider_final = st.session_state.slider
+
 
 
 
 
             #########################[Graph Insert]#####################################
 
-        if st.button('Sumulation') or ('slider' not in st.session_state):
+        if st.button('Sumulation') or ('slider_final' not in st.session_state):
 
-            st.session_state.slider = (slider*0.01).tolist()
-            st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider)
+            st.session_state.slider_final = (slider_final*0.01).tolist()
+            st.session_state.portfolio_port = backtest.simulation(st.session_state.input_price, st.session_state.slider_final)
             st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
 
 
