@@ -26,7 +26,7 @@ if file is not None:
     input_list = price.columns[price.columns.isin(select)]
     input_price = price[input_list]
 
-    if st.button('Summit') or ('input_list' not in st.session_state):
+    if st.button('Summit') or ('input_list' in st.session_state):
         st.session_state.input_list = input_list
         st.session_state.input_price = input_price.dropna()
 
