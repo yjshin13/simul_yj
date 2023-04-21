@@ -63,7 +63,6 @@ if file is not None:
 
         with col44:
 
-            st.write("Rebalancing")
 
             if st.checkbox('Daily', value=False):
                 rebal = 1
@@ -74,8 +73,6 @@ if file is not None:
 
 
         with col45:
-
-            st.write("")
 
             if st.checkbox('Quarterly', value=False):
                 rebal = 3
