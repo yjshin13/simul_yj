@@ -13,8 +13,13 @@ st.warning('Upload data.')
 
 if file is not None:
 
-    price = pd.read_excel(file, sheet_name="sheet1",
+    @st.cache
+    def load_data(file_path):
+        df = pd.read_excel(file_path, sheet_name="sheet1",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0)
+        return df
+
+    price = load_data(file)
 
     price_list = list(map(str, price.columns))
     select = st.multiselect('Input Assets', price_list, price_list)
