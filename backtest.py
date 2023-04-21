@@ -76,7 +76,7 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
     # portfolio.index = portfolio.index.date
 
-    return portfolio.astype('float64').round(3)
+    return portfolio.astype('float64').round(3), allocation
 
 def drawdown(nav: pd.Series):
     """
