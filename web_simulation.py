@@ -133,28 +133,6 @@ if file is not None:
             Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
             MDD  =round(float(min(st.session_state.drawdown) * 100), 2)
 
-            col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
-
-
-            with col50:
-                st.info("Period: " + str(START_DATE) + " ~ " + str(END_DATE))
-
-            with col51:
-                st.info("Annual Return: "+str(Anuuual_RET)+"%")
-
-            with col52:
-                st.info("Annual Volatility: " + str(Anuuual_Vol) +"%")
-
-            with col53:
-                
-                st.info("Annual Sharpe: " + str(Anuuual_Sharpe))
-            with col54:
-                
-                st.info("Maximum Drawdown: " + str(MDD) + "%")
-
-
-
-
 
             col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
 
@@ -173,6 +151,27 @@ if file is not None:
             with col24:
                 st.write('Allocation')
                 st.dataframe(st.session_state.allocation)
+                
+
+            col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
+
+
+            with col50:
+                st.info("Period: " + str(START_DATE) + " ~ " + str(END_DATE))
+
+            with col51:
+                st.info("Annual Return: "+str(Anuuual_RET)+"%")
+
+            with col52:
+                st.info("Annual Volatility: " + str(Anuuual_Vol) +"%")
+
+            with col53:
+
+                st.info("Annual Sharpe: " + str(Anuuual_Sharpe))
+            with col54:
+
+                st.info("Maximum Drawdown: " + str(MDD) + "%")
+
 
             col31, col32 = st.columns([1, 1])
 
