@@ -90,6 +90,6 @@ def drawdown(nav: pd.Series):
     # Drawdown 비율 계산
     drawdown_pct = drawdown / cummax
 
-    drawdown_pct.name = ['drawdown']
+    drawdown_pct.name = 'drawdown'
 
     return drawdown_pct
