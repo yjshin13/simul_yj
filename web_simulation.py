@@ -15,18 +15,16 @@ if file is not None:
 
     @st.cache
     def load_data(file_path):
-        price = pd.read_excel(file_path, sheet_name="sheet1",
+        df = pd.read_excel(file_path, sheet_name="sheet1",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0)
+        return df
 
-        price_list = list(map(str, price.columns))
-        select = st.multiselect('Input Assets', price_list, price_list)
-        input_list = price.columns[price.columns.isin(select)]
-        input_price = price[input_list]
+    price = load_data(file)
 
-        return input_price, input_list
-
-
-    input_price, input_list = load_data(file)
+    price_list = list(map(str, price.columns))
+    select = st.multiselect('Input Assets', price_list, price_list)
+    input_list = price.columns[price.columns.isin(select)]
+    input_price = price[input_list]
 
     if st.button('Summit') or ('input_list' in st.session_state):
         st.session_state.input_list = input_list
