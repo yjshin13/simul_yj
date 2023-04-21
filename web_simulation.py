@@ -133,7 +133,7 @@ if file is not None:
                 st.write("Correlation Heatmap")
 
                 # Increase the size of the heatmap.
-                fig = plt.figure(figsize=(10, 8))
+                fig = plt.figure(figsize=(15, 8))
                 # plt.rc('font', family='Malgun Gothic')
                 plt.rcParams['axes.unicode_minus'] = False
 
