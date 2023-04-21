@@ -132,6 +132,7 @@ if file is not None:
             Anuuual_Vol = round(float(np.std(st.session_state.portfolio_port.pct_change().dropna())*np.sqrt(annualization)*100),2)
             Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
             MDD  =round(float(min(st.session_state.drawdown) * 100), 2)
+            Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
 
 
             col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
@@ -151,7 +152,7 @@ if file is not None:
             with col24:
                 st.write('Allocation')
                 st.dataframe(st.session_state.allocation)
-                
+
 
             col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
 
@@ -168,6 +169,7 @@ if file is not None:
             with col53:
 
                 st.info("Annual Sharpe: " + str(Anuuual_Sharpe))
+
             with col54:
 
                 st.info("Maximum Drawdown: " + str(MDD) + "%")
@@ -183,13 +185,22 @@ if file is not None:
                 st.write("Portfolio MDD")
                 st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
 
-            col31, col32, col33 = st.columns([2, 3, 5])
+            col_a, col_b, = st.columns([1,1])
 
-            with col33:
+
+            with col_a:
+                st.write("Heat")
+                fig1 = plt.figure(figsize=(15, 8))
+                plt.hist(Daily_RET, label='bins=10')
+                plt.hist(Daily_RET, bins=30, label='bins=30')
+                plt.legend()
+                st.pyplot(fig1)
+
+            with col_b:
                 st.write("Correlation Heatmap")
 
                 # Increase the size of the heatmap.
-                fig = plt.figure(figsize=(15, 8))
+                fig2 = plt.figure(figsize=(15, 8))
                 # plt.rc('font', family='Malgun Gothic')
                 plt.rcParams['axes.unicode_minus'] = False
 
@@ -202,4 +213,4 @@ if file is not None:
 
                 # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
 
-                st.pyplot(fig)
+                st.pyplot(fig2)
