@@ -1,7 +1,7 @@
 import pandas as pd
 from stqdm import stqdm
 
-def cleansing(assets_data=pd.DataFrame(), alloc=list()):
+def cleansing(assets_data=pd.DataFrame(), alloc=list(), rebal=2):
 
     alloc = pd.DataFrame(alloc).T
 
@@ -11,16 +11,23 @@ def cleansing(assets_data=pd.DataFrame(), alloc=list()):
 
     allocation = pd.DataFrame(index=assets_data.index, columns=assets_data.columns)
     allocation[:] = alloc
-    allocation = allocation[allocation.index.is_month_end == True]
+    if rebal==2:
+        allocation = allocation[allocation.index.is_month_end == True]
+
+    if rebal==3:
+        allocation = allocation[allocation.index.is_quarter_end == True]
+
+    if rebal==4:
+        allocation = allocation[allocation.index.is_year_end == True]
 
     return assets_data, allocation
 
-def simulation(assets_data, allocation, date='1900-01-01', commission=0):
+def simulation(assets_data, allocation, date='1900-01-01', commission=0, rebal=2):
 
     assets_data = assets_data[assets_data.index>=date]
 
     if type(allocation)==list:
-        assets_data ,allocation = cleansing(assets_data, allocation)
+        assets_data ,allocation = cleansing(assets_data, allocation, rebal)
 
     portfolio = pd.DataFrame(index=assets_data.index, columns=['NAV']).squeeze()
     portfolio = portfolio[portfolio.index >= allocation.index[0]]
@@ -67,7 +74,7 @@ def simulation(assets_data, allocation, date='1900-01-01', commission=0):
 
             last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
 
-    portfolio.index = portfolio.index.date
+    #portfolio.index = portfolio.index.date
 
     return portfolio.astype('float64').round(3)
 
