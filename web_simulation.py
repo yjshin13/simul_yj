@@ -5,7 +5,7 @@ import backtest_graph2
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+import numpy as np
 st.set_page_config(layout="wide")
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 st.warning('Upload data.')
@@ -58,7 +58,7 @@ if file is not None:
         if option1 == 'Daily':
             daily = True
             monthly = False
-            annualization = 252
+            annualization = 365
             freq = 1
 
         if option1 == 'Monthly':
@@ -124,6 +124,34 @@ if file is not None:
             st.session_state.allocation.index = st.session_state.allocation.index.date
 
         if 'slider' in st.session_state:
+
+
+
+
+            START_DATE = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
+            END_DATE = st.session_state.input_price.index[-1].strftime("%Y-%m-%d")
+            Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (annualization / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
+            Anuuual_Vol = round(float(np.std(st.session_state.portfolio_port.prices.pct_change().dropna())*np.sqrt(annualization)*100),2)
+            Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
+            MDD  =round(float(min(st.session_state.drawdown) * 100), 2)
+
+            col50, col51, col52, col53 = st.columns([1, 1, 1, 1])
+
+
+            with col50:
+                st.info("Period: " + str(START_DATE) + " ~ " + str(END_DATE))
+
+            with col51:
+                st.info("Annual Return: "+str(Anuuual_RET)+"%")
+
+            with col52:
+                st.info("Annual Volatility: " + str(Anuuual_Vol) +"%")
+
+            with col53:
+                st.info("Maximum Drawdown: " + str(MDD) + "%")
+
+
+
             col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
 
             with col21:
