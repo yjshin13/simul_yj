@@ -23,9 +23,8 @@ def cleansing(assets_data=pd.DataFrame(), alloc=list(), rebal=2):
 
     return assets_data, allocation
 
-def simulation(assets_data, allocation, date='1900-01-01', commission=0, rebal=2):
+def simulation(assets_data, allocation, commission=0, rebal=2):
 
-    assets_data = assets_data[assets_data.index>=date]
 
     if type(allocation)==list:
         assets_data ,allocation = cleansing(assets_data, allocation, rebal)
