@@ -116,7 +116,7 @@ if file is not None:
             st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
             st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
             st.session_state.input_price.index.date = st.session_state.input_price.index.date
-            st.session_state.portfolio_port.allocation.index = st.session_state.portfolio_port.allocation.index.date
+            st.session_state.allocation.index = st.session_state.allocation.index.date
 
         if 'slider' in st.session_state:
             col21, col22, col23, col24 = st.columns([0.8, 0.8, 6.0, 1.0])
