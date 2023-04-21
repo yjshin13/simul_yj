@@ -136,7 +136,7 @@ if file is not None:
 
             with col23:
                 st.write('Assets')
-                st.dataframe(st.session_state.input_price.index.date)
+                st.dataframe(st.session_state.input_price)
 
             with col24:
                 st.write('Allocation')
