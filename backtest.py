@@ -75,7 +75,7 @@ def simulation(assets_data, allocation, date='1900-01-01', commission=0, rebal=2
 
             last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
 
-    #portfolio.index = portfolio.index.date
+    portfolio.index = portfolio.index.date
 
     return portfolio.astype('float64').round(3)
 
