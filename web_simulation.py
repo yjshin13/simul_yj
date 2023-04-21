@@ -44,7 +44,9 @@ if file is not None:
 
         with col42:
 
-            st.write("Data Frequency: ")
+            option1 = st.selectbox(
+                'Data Frequency', ('Daily', 'Monthly'))
+               
 
         with col43:
 
