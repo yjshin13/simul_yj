@@ -30,7 +30,7 @@ if file is not None:
 
         input_price = input_price.dropna()
 
-        col40, col41, col42, col43, col44, col45, col46, col47 = st.columns([1, 1, 0.2, 1 , 1, 1, 1, 2])
+        col40, col41, col42, col43, col44, col45, col46, col47 = st.columns([1, 1, 1, 1, 1, 1, 1, 1])
 
         with col40:
 
@@ -42,16 +42,16 @@ if file is not None:
             end_date = st.date_input("End", value=input_price.index[-1])
             end_date = datetime.combine(end_date, datetime.min.time())
 
-        with col43:
+        with col42:
 
             option1 = st.selectbox(
                 'Data Frequency', ('Daily', 'Monthly'))
 
-        with col44:
+        with col43:
 
             rebal = st.selectbox('Rebalancing', ( 'Monthly', 'Daily', 'Quarterly', 'Yearly'))
 
-        with col45:
+        with col44:
 
             commission = st.number_input('Commission')
 
