@@ -30,7 +30,7 @@ if file is not None:
 
         input_price = input_price.dropna()
 
-        col40, col41, col4_1, col42, col4_2, col43, col44, col45 = st.columns([1, 1, 0.3, 1, 0.3, 1, 1, 3])
+        col40, col41, col42, col43, col44, col45 = st.columns([1, 1, 1, 1, 1, 3])
 
         with col40:
 
