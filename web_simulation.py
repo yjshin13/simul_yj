@@ -45,6 +45,9 @@ if file is not None:
         with col42:
 
             st.write("Data Frequency")
+            st.write("Rebalancing")
+
+        with col43:
 
             if st.checkbox('Daily', value=True):
                 daily = True
@@ -58,7 +61,7 @@ if file is not None:
                 annualization = 12
                 freq = 2
 
-        with col43:
+        with col44:
 
             st.write("Rebalancing")
 
@@ -70,7 +73,7 @@ if file is not None:
 
 
 
-        with col44:
+        with col45:
 
             st.write("")
 
