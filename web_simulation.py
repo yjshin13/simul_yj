@@ -132,7 +132,7 @@ if file is not None:
 
             with col22:
                 st.write('MDD')
-                st.dataframe(st.session_state.drawdown.applymap(lambda x: '{:.2%}'.format(x)))
+                st.dataframe(st.session_state.drawdown)
 
             with col23:
                 st.write('Assets')
