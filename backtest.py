@@ -16,7 +16,6 @@ def cleansing(assets_data=pd.DataFrame(), alloc=list()):
 
     return assets_data, allocation
 
-@st.cache
 def simulation(assets_data, allocation, date='1900-01-01', commission=0):
 
     assets_data = assets_data[assets_data.index>=date]
