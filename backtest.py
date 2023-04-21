@@ -24,7 +24,7 @@ def simulation(assets_data, allocation, date='1900-01-01', commission=0):
     if type(allocation)==list:
         assets_data ,allocation = cleansing(assets_data, allocation)
 
-    portfolio = pd.DataFrame(index=assets_data.index, columns=['nav']).squeeze()
+    portfolio = pd.DataFrame(index=assets_data.index, columns=['NAV']).squeeze()
     portfolio = portfolio[portfolio.index >= allocation.index[0]]
     portfolio[0] = 100
 
@@ -91,6 +91,6 @@ def drawdown(nav: pd.Series):
     # Drawdown 비율 계산
     drawdown_pct = drawdown / cummax
 
-    drawdown_pct.name = 'drawdown'
+    drawdown_pct.name = 'MDD'
 
     return drawdown_pct
