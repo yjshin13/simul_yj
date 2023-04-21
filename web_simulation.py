@@ -118,12 +118,12 @@ if file is not None:
 
 
             with col31:
-                st.write("")
+                st.write("Portfolio NAV")
                 st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
 
 
             with col32:
-                st.write("")
+                st.write("Portfolio MDD")
                 st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
 
 
