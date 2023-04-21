@@ -28,19 +28,20 @@ if file is not None:
 
     if st.button('Summit') or ('input_list' in st.session_state):
 
-
+        input_price = input_price.dropna()
 
 
         col20, col21, col22, col23 = st.columns([1, 1, 1, 3])
 
+
         with col20:
 
-            start_date = st.date_input("Start", value=price.index[0])
+            start_date = st.date_input("Start", value=input_price.index[0])
             start_date = datetime.combine(start_date, datetime.min.time())
 
         with col21:
 
-            end_date = st.date_input("End", value=price.index[-1])
+            end_date = st.date_input("End", value=input_price.index[-1])
             end_date = datetime.combine(end_date, datetime.min.time())
 
         with col22:
