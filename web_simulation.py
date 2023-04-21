@@ -44,15 +44,15 @@ if file is not None:
 
         with col42:
 
-            # st.write("Data Frequency")
+            st.write("Data Frequency")
 
-            if st.checkbox('Daily Input', value=True):
+            if st.checkbox('Daily', value=True):
                 daily = True
                 monthly = False
                 annualization = 252
                 freq = 1
 
-            if st.checkbox('Monthly Input', value=False):
+            if st.checkbox('Monthly', value=False):
                 daily = False
                 monthly = True
                 annualization = 12
@@ -60,22 +60,24 @@ if file is not None:
 
         with col43:
 
-            # st.write("Data Frequency")
+            st.write("Rebalancing")
 
-            if st.checkbox('Daily Rebalancing', value=False):
+            if st.checkbox('Daily', value=False):
                 rebal = 1
 
-            if st.checkbox('Monthly Rebalancing', value=True):
+            if st.checkbox('Monthly', value=True):
                 rebal = 2
 
 
 
         with col44:
 
-            if st.checkbox('Quarterly Quarterly', value=False):
+            st.write("")
+
+            if st.checkbox('Quarterly', value=False):
                 rebal = 3
 
-            if st.checkbox('Yearly Quarterly', value=False):
+            if st.checkbox('Yearly', value=False):
                 rebal = 4
 
         st.session_state.input_list = input_list
