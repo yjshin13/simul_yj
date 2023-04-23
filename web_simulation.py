@@ -143,7 +143,7 @@ if file is not None:
 
             with col22:
                 st.write('MDD')
-                st.dataframe(st.session_state.drawdown.applymap('{:.6%}'.format))
+                st.dataframe(st.session_state.drawdown)
 
             with col23:
                 st.write('Assets')
@@ -151,7 +151,7 @@ if file is not None:
 
             with col24:
                 st.write('Allocation')
-                st.dataframe(st.session_state.allocation.applymap('{:.6%}'.format))
+                st.dataframe(st.session_state.allocation)
 
 
             col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
