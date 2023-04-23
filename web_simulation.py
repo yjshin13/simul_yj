@@ -198,13 +198,13 @@ if file is not None:
                 #
 
                 fig1 = plt.figure(figsize=(15, 8.8))
-                sns.histplot(data=Daily_RET, bins=100, color="blue", legend=None, stat="probability",
+                sns.histplot(data=Daily_RET, bins=20, color="blue", legend=None, stat="probability",
                              alpha=0.5)
 
                 plt.xlim([-0.05, 0.05])
                 plt.ylim([0, 0.5])
-                plt.xlabel("Grain weight (mg)", size=12)
-                plt.ylabel("Histogram_Freguency", size=12)
+                plt.xlabel("Daily Return", size=12)
+                plt.ylabel("Probability", size=12)
                 plt.grid(True, alpha=1, linestyle="--")
                 plt.rcParams["figure.figsize"] = [7, 5]
                 plt.rcParams["figure.dpi"] = 500
