@@ -199,7 +199,7 @@ if file is not None:
 
                 fig1 = plt.figure(figsize=(15, 8.8))
                 sns.histplot(data=Daily_RET, bins=100, color="salmon", legend=None, stat="probability",
-                             alpha=0.5, binwidth=0.005 )
+                             alpha=0.5, binwidth=0.001)
                 plt.xlim([-0.05, 0.05])
                 plt.ylim([0, 0.5])
                 plt.xlabel("Grain weight (mg)", size=12)
