@@ -201,7 +201,7 @@ if file is not None:
                 sns.histplot(data=Daily_RET, bins=50, color="blue", legend=None, stat="probability", alpha=0.5, kde=True)
 
 
-                plt.xlim([-0.05, 0.05])
+                plt.xlim([Daily_RET.min(), Daily_RET.max()])
                 plt.ylim([0, 0.5])
                 plt.xlabel("Daily Return", size=12)
                 plt.ylabel("Probability", size=12)
