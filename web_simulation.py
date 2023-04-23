@@ -198,7 +198,7 @@ if file is not None:
                 #
 
                 fig1 = plt.figure(figsize=(15, 8.8))
-                sns.histplot(data=Daily_RET, bins=100, binwidth=0.01, color="blue", legend=None, stat="probability",
+                sns.histplot(data=Daily_RET, bins=100,  color="blue", legend=None, stat="probability",
                              alpha=0.5)
 
                 plt.xlim([-0.05, 0.05])
@@ -208,7 +208,7 @@ if file is not None:
                 plt.grid(True, alpha=1, linestyle="--")
                 plt.rcParams["figure.figsize"] = [7, 5]
                 #plt.rcParams["figure.dpi"] = 500
-        
+
 
                 st.pyplot(fig1)
 
