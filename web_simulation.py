@@ -200,6 +200,14 @@ if file is not None:
                 fig1 = plt.figure(figsize=(15, 8.8))
                 sns.histplot(data=Daily_RET, bins=100, color="salmon", legend=None, stat="probability",
                              alpha=0.5, binwidth=0.002)
+
+                for bars in fig1:
+                    width = bars.get_width()
+                    posx = width + 0.5
+                    posy = bars.get_y() + bars.get_height() * 0.5
+                    plt.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
+
+
                 plt.xlim([-0.05, 0.05])
                 plt.ylim([0, 0.5])
                 plt.xlabel("Grain weight (mg)", size=12)
