@@ -200,10 +200,7 @@ if file is not None:
                 fig1 = plt.figure(figsize=(15, 8.8))
                 sns.histplot(data=Daily_RET, bins=100, color="salmon", legend=None, stat="probability",
                              alpha=0.5, binwidth=0.002)
-                for rect in plt.gca().patches:
-                    plt.gca().text(rect.get_x() + rect.get_width() / 2, rect.get_height() + 2,
-                                   int(rect.get_height()), ha="center", fontsize=8, color="black")
-
+                
                 plt.xlim([-0.05, 0.05])
                 plt.ylim([0, 0.5])
                 plt.xlabel("Grain weight (mg)", size=12)
