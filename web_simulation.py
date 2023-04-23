@@ -204,7 +204,7 @@ if file is not None:
                 plt.ylim([0, 0.5])
                 plt.xlabel("Grain weight (mg)", size=12)
                 plt.ylabel("Histogram_Freguency", size=12)
-                plt.grid(True, alpha=0.3, linestyle="--")
+                plt.grid(True, alpha=0.8, linestyle="--")
                 plt.rcParams["figure.figsize"] = [7, 5]
                 plt.rcParams["figure.dpi"] = 500
                 plt.show()
