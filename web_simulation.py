@@ -151,7 +151,7 @@ if file is not None:
 
             with col24:
                 st.write('Allocation')
-                st.dataframe(st.session_state.allocation.apply(lambda x: '{:.2%}'.format(x)))
+                st.dataframe(st.session_state.allocation.applymap('{:.6%}'.format))
 
 
             col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
