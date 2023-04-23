@@ -191,8 +191,9 @@ if file is not None:
             with col_a:
                 st.write("Heat Ratio")
                 fig1 = plt.figure(figsize=(15, 8))
-                plt.hist(Daily_RET, bins=50, label="Daily Return", density=True, color="salmon", rwidth=0.6)
+                plt.hist(Daily_RET, bins=50, label="Daily Return", density=True, color="salmon", rwidth=0.8)
                 plt.legend()
+                plt.xticks(np.arange(-10, 11, 2), ['{:.0%}'.format(x / 100) for x in np.arange(-10, 11, 2)])
                 st.pyplot(fig1)
 
             with col_b:
