@@ -191,7 +191,7 @@ if file is not None:
             with col_a:
                 st.write("Heat Ratio")
                 fig1 = plt.figure(figsize=(15, 8))
-                plt.hist(Daily_RET, bins=50, label="Daily Return", density=True, color="salmon", width=0.8)
+                plt.hist(Daily_RET, bins=50, label="Daily Return", density=True, color="salmon", rwidth=1)
                 plt.legend()
                 plt.xticks(np.arange(-0.1, 0.11,0.01), ['{:.1%}'.format(x) for x in np.arange(-0.1, 0.11,0.01)])
                 plt.margins(x=-0.1, y=0)
