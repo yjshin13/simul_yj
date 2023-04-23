@@ -191,7 +191,7 @@ if file is not None:
             with col_a:
                 st.write("Heat Ratio")
                 fig1 = plt.figure(figsize=(15, 8))
-                plt.hist(Daily_RET, bins=30, label="Daily Return", density=True)
+                plt.hist(Daily_RET, bins=30, label="Daily Return", density=True, color="salmon")
                 plt.legend()
                 st.pyplot(fig1)
 
