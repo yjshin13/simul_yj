@@ -197,16 +197,15 @@ if file is not None:
                 # plt.margins(x=-0.1, y=0)
                 # st.pyplot(fig1)
 
-                fig1, ax1 = sns.distplot(Daily_RET,
+                HearR= sns.distplot(Daily_RET,
                                   hist=True,
                                   kde=True,
                                   bins=100,
                                   color='blue',
                                   hist_kws={'edgecolor': 'gray'},
                                   kde_kws={'linewidth': 2})
-                ax1.set_xlabel('Daily_RET')
-                ax1.set_ylabel('Density')
-                st.pyplot(fig1)
+
+                st.pyplot(HearR)
 
             with col_b:
                 st.write("Correlation Heatmap")
