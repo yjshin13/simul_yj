@@ -194,6 +194,7 @@ if file is not None:
                 plt.hist(Daily_RET, bins=50, label="Daily Return", density=True, color="salmon", rwidth=0.8)
                 plt.legend()
                 plt.xticks(np.arange(-0.1, 0.11,0.01), ['{:.1%}'.format(x) for x in np.arange(-0.1, 0.11,0.01)])
+                plt.grid(axis='x')
                 st.pyplot(fig1)
 
             with col_b:
