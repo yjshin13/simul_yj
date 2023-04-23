@@ -189,23 +189,23 @@ if file is not None:
 
 
             with col_a:
-                # st.write("Heat Ratio")
-                #fig1, ax1 = plt.figure(figsize=(15, 8))
-                # plt.hist(Daily_RET, bins=50, label="Daily Return", density=True, color="salmon", rwidth=1)
-                # plt.legend()
-                # plt.xticks(np.arange(-0.1, 0.11,0.01), ['{:.1%}'.format(x) for x in np.arange(-0.1, 0.11,0.01)])
-                # plt.margins(x=-0.1, y=0)
-                # st.pyplot(fig1)
+                st.write("Heat Ratio")
+                fig1, ax1 = plt.figure(figsize=(15, 8))
+                plt.hist(Daily_RET, bins=50, label="Daily Return", density=True, color="salmon", rwidth=1)
+                plt.legend()
+                plt.xticks(np.arange(-0.1, 0.11,0.01), ['{:.1%}'.format(x) for x in np.arange(-0.1, 0.11,0.01)])
+                plt.margins(x=-0.1, y=0)
+                st.pyplot(fig1)
+                # 
+                # HearR= sns.distplot(Daily_RET,
+                #                   hist=True,
+                #                   kde=True,
+                #                   bins=100,
+                #                   color='blue',
+                #                   hist_kws={'edgecolor': 'gray'},
+                #                   kde_kws={'linewidth': 2})
 
-                HearR= sns.distplot(Daily_RET,
-                                  hist=True,
-                                  kde=True,
-                                  bins=100,
-                                  color='blue',
-                                  hist_kws={'edgecolor': 'gray'},
-                                  kde_kws={'linewidth': 2})
-
-                st.pyplot(HearR.figure)
+                st.pyplot(fig1)
 
             with col_b:
                 st.write("Correlation Heatmap")
