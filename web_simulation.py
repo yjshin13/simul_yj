@@ -143,7 +143,7 @@ if file is not None:
 
             with col22:
                 st.write('MDD')
-                st.dataframe(st.session_state.drawdown.applymap('{:.6%}'.format))
+                st.dataframe(st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)))
 
             with col23:
                 st.write('Assets')
