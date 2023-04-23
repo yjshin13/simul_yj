@@ -205,7 +205,7 @@ if file is not None:
                                   hist_kws={'edgecolor': 'gray'},
                                   kde_kws={'linewidth': 2})
 
-                st.pyplot(HearR)
+                st.pyplot(HearR.figure)
 
             with col_b:
                 st.write("Correlation Heatmap")
