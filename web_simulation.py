@@ -139,7 +139,7 @@ if file is not None:
 
             with col21:
                 st.write('NAV')
-                st.dataframe(st.session_state.portfolio_port)
+                st.dataframe(st.session_state.portfolio_port.round(2))
 
             with col22:
                 st.write('MDD')
@@ -147,7 +147,7 @@ if file is not None:
 
             with col23:
                 st.write('Assets')
-                st.dataframe(st.session_state.input_price)
+                st.dataframe(st.session_state.input_price.astype('float64').round(2))
 
             with col24:
                 st.write('Allocation')
