@@ -190,12 +190,28 @@ if file is not None:
 
             with col_a:
                 st.write("Return Distribution")
+
+                # plt.hist(Daily_RET, bins=100, label="Daily Return", color="salmon", rwidth=1, density=True)
+                # plt.legend()
+                # plt.xticks(np.arange(-0.1, 0.11,0.01), ['{:.1%}'.format(x) for x in np.arange(-0.1, 0.11,0.01)])
+                # plt.margins(x=-0.1, y=0)
+                #
+
                 fig1 = plt.figure(figsize=(15, 8))
-                plt.hist(Daily_RET, bins=100, label="Daily Return", color="salmon", rwidth=1, density=True)
-                plt.legend()
-                plt.xticks(np.arange(-0.1, 0.11,0.01), ['{:.1%}'.format(x) for x in np.arange(-0.1, 0.11,0.01)])
-                plt.margins(x=-0.1, y=0)
+                sns.histplot(data=Daily_RET, bins=100, color="Black", legend=None, stat="probability",
+                             alpha=0.5)
+                plt.xlim([30, 70])
+                plt.ylim([0, 0.05])
+                plt.xlabel("Grain weight (mg)", size=12)
+                plt.ylabel("Histogram_Freguency", size=12)
+                plt.grid(True, alpha=0.3, linestyle="--")
+                plt.rcParams["figure.figsize"] = [7, 5]
+                plt.rcParams["figure.dpi"] = 500
+                plt.show()
+
                 st.pyplot(fig1)
+
+
 
             with col_b:
                 st.write("Correlation Heatmap")
