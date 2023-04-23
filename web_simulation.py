@@ -193,7 +193,7 @@ if file is not None:
                 fig1 = plt.figure(figsize=(15, 8))
                 plt.hist(Daily_RET, bins=50, label="Daily Return", density=True, color="salmon", rwidth=0.8)
                 plt.legend()
-                #plt.xticks(np.arange(-0.11, 0.11,0.01), ['{:.2%}'.format(x / 100) for x in np.arange(-0.11, 0.11,0.01)])
+                #plt.xticks(np.arange(-0.1, 0.11,0.01), ['{:.1%}'.format(x / 100) for x in np.arange(-0.1, 0.11,0.01)])
                 st.pyplot(fig1)
 
             with col_b:
