@@ -143,7 +143,7 @@ if file is not None:
 
             with col22:
                 st.write('MDD')
-                st.dataframe(st.session_state.drawdown)
+                st.dataframe(st.session_state.drawdown.applymap('{:.6%}'.format))
 
             with col23:
                 st.write('Assets')
@@ -151,7 +151,7 @@ if file is not None:
 
             with col24:
                 st.write('Allocation')
-                st.dataframe(st.session_state.allocation)
+                st.dataframe(st.session_state.allocation.applymap('{:.6%}'.format))
 
 
             col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
@@ -178,18 +178,18 @@ if file is not None:
             col31, col32 = st.columns([1, 1])
 
             with col31:
-                st.write("Portfolio NAV")
+                st.write("Net Asset Value")
                 st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
 
             with col32:
-                st.write("Portfolio MDD")
+                st.write("Drawdown")
                 st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
 
             col_a, col_b, = st.columns([1,1])
 
 
             with col_a:
-                st.write("Heat")
+                st.write("Heat Ratio")
                 fig1 = plt.figure(figsize=(15, 8))
                 plt.hist(Daily_RET, bins=30, label="Daily Return", density=True)
                 plt.legend()
