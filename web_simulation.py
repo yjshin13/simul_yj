@@ -205,7 +205,7 @@ if file is not None:
                 plt.ylim([0, 0.5])
                 plt.xlabel("Daily Return", size=12)
                 plt.ylabel("Probability", size=12)
-                plt.xticks(np.arange(-0.05, 0.05, 0.01), fontsize=12)
+                plt.xticks(np.arange(Daily_RET.min(), Daily_RET.max(), (Daily_RET.max()-Daily_RET.min())/10), fontsize=12)
                 plt.grid(True, alpha=1, linestyle="--")
                 plt.rcParams["figure.figsize"] = [7, 5]
                 #plt.rcParams["figure.dpi"] = 500
