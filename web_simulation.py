@@ -198,7 +198,7 @@ if file is not None:
                 #
 
                 fig1 = plt.figure(figsize=(15, 9))
-                sns.histplot(data=Daily_RET, bins=100, color="Black", legend=None, stat="probability",
+                sns.histplot(data=Daily_RET, bins=100, color="salmon", legend=None, stat="probability",
                              alpha=0.5)
                 plt.xlim([-0.05, 0.05])
                 plt.ylim([0, 0.5])
