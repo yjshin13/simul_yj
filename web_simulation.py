@@ -207,8 +207,8 @@ if file is not None:
                 plt.ylabel("Probability", size=12)
                 plt.grid(True, alpha=1, linestyle="--")
                 plt.rcParams["figure.figsize"] = [7, 5]
-                plt.rcParams["figure.dpi"] = 500
-                plt.show()
+                #plt.rcParams["figure.dpi"] = 500
+        
 
                 st.pyplot(fig1)
 
