@@ -254,6 +254,6 @@ if file is not None:
 
             st.download_button(
                     label="Correlation Matrix",
-                    data=pd.DataFrame(st.session_state.corr).to_csv(index=True),
+                    data=st.session_state.corr.to_csv(index=True),
                     mime='text/csv',
-                    file_name='Correlation Matrix')
+                    file_name='Correlation Matrix.csv')
