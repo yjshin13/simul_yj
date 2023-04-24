@@ -179,7 +179,7 @@ if file is not None:
 
                 with col54:
 
-                    st.info("Maximum Drawdown: " + str(MDD) + "%")
+                    st.info("MDD: " + str(MDD) + "%")
 
 
                 col31, col32 = st.columns([1, 1])
@@ -189,7 +189,7 @@ if file is not None:
                     st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
 
                 with col32:
-                    st.write("Drawdown")
+                    st.write("MAX Drawdown")
                     st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
 
                 col_a, col_b, = st.columns([1,1])
