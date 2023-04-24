@@ -181,13 +181,6 @@ if file is not None:
                         file_name='Allocation.csv')
 
 
-                st.download_button(
-                    label="Assets",
-                    data=st.session_state.input_price.astype('float64').round(2).to_csv(index=True),
-                    mime='text/csv',
-                    file_name='Assets.csv')
-
-
                 col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
 
 
