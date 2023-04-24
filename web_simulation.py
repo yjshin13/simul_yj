@@ -243,6 +243,6 @@ if file is not None:
 
     st.download_button(
             label="Net Asset Value",
-            data=pd.DataFrame(st.session_state.portfolio_port).to_csv(index=False),
+            data=st.session_state.portfolio_port.to_csv(index=True),
             mime='text/csv',
             file_name='Net Asset Value.csv')
