@@ -240,215 +240,217 @@ if file is not None:
 
                         st.pyplot(fig2)
 
-    if (st.button('Summit2') or ('input_list' in st.session_state)) and (st.session_state.summit == 1):
+    if (st.session_state.summit == 1):
 
-        st.session_state.summit = 2
+        if (st.button('Summit2') or ('input_list' in st.session_state)):
 
-        with st.expander('Portfolio', expanded=False):
+            st.session_state.summit = 2
 
-            input_price = input_price.dropna()
+            with st.expander('Portfolio', expanded=False):
 
-            col40, col41, col42, col43, col44, col45, col46, col47 = st.columns([1, 1, 1, 1, 1, 1, 1, 1])
+                input_price = input_price.dropna()
 
-            with col40:
+                col40, col41, col42, col43, col44, col45, col46, col47 = st.columns([1, 1, 1, 1, 1, 1, 1, 1])
 
-                start_date = st.date_input("Start", value=input_price.index[0])
-                start_date = datetime.combine(start_date, datetime.min.time())
+                with col40:
 
-            with col41:
+                    start_date = st.date_input("Start", value=input_price.index[0])
+                    start_date = datetime.combine(start_date, datetime.min.time())
 
-                end_date = st.date_input("End", value=input_price.index[-1])
-                end_date = datetime.combine(end_date, datetime.min.time())
+                with col41:
 
-            with col42:
+                    end_date = st.date_input("End", value=input_price.index[-1])
+                    end_date = datetime.combine(end_date, datetime.min.time())
 
-                option1 = st.selectbox(
-                    'Data Frequency', ('Daily', 'Monthly'))
+                with col42:
 
-            with col43:
+                    option1 = st.selectbox(
+                        'Data Frequency', ('Daily', 'Monthly'))
 
-                rebal = st.selectbox('Rebalancing', ( 'Monthly', 'Daily', 'Quarterly', 'Yearly'))
+                with col43:
 
-            with col44:
+                    rebal = st.selectbox('Rebalancing', ( 'Monthly', 'Daily', 'Quarterly', 'Yearly'))
 
-                commission = st.number_input('Commission(%)')
+                with col44:
 
-            if option1 == 'Daily':
-                daily = True
-                monthly = False
-                annualization = 365
-                freq = 1
+                    commission = st.number_input('Commission(%)')
 
-            if option1 == 'Monthly':
-                daily = False
-                monthly = True
-                annualization = 12
-                freq = 2
+                if option1 == 'Daily':
+                    daily = True
+                    monthly = False
+                    annualization = 365
+                    freq = 1
 
-            st.session_state.input_list = input_list
+                if option1 == 'Monthly':
+                    daily = False
+                    monthly = True
+                    annualization = 12
+                    freq = 2
 
-            if daily == True:
-                st.session_state.input_price = input_price[
-                    (input_price.index >= start_date) & (input_price.index <= end_date)]
+                st.session_state.input_list = input_list
 
-            if monthly == True:
-                st.session_state.input_price = input_price[(input_price.index >= start_date)
-                                                           & (input_price.index <= end_date)
-                                                           & (input_price.index.is_month_end == True)].dropna()
-
-            col1, col2, col3 = st.columns([1, 1, 1])
-
-            slider = pd.Series()
-            #
-            # st.write(input_price.columns)
-
-            col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
-
-            for i, k in enumerate(st.session_state.input_list, start=0):
-
-                if i % 4 == 1:
-                    with col1:
-                        slider[k] = st.slider(str(k), 0, 100, 0, 1)
-
-                if i % 4 == 2:
-                    with col2:
-                        slider[k] = st.slider(str(k), 0, 100, 0, 1)
-
-                if i % 4 == 3:
-                    with col3:
-                        slider[k] = st.slider(str(k), 0, 100, 0, 1)
-
-                if i % 4 == 0:
-                    with col4:
-                        slider[k] = st.slider(str(k), 0, 100, 0, 1)
-
-            st.write(str("Total Weight:   ") + str(slider.sum()) + str("%"))
-
-            #########################[Graph Insert]#####################################
-
-            if st.button('Simulation'):
-
-
-                st.session_state.slider = (slider * 0.01).tolist()
-                st.session_state.portfolio_port, st.session_state.allocation = backtest.simulation(st.session_state.input_price,
-                                                                                                   st.session_state.slider,
-                                                                                                   commission,
-                                                                                                   rebal)
+                if daily == True:
+                    st.session_state.input_price = input_price[
+                        (input_price.index >= start_date) & (input_price.index <= end_date)]
 
                 if monthly == True:
-                    st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
+                    st.session_state.input_price = input_price[(input_price.index >= start_date)
+                                                               & (input_price.index <= end_date)
+                                                               & (input_price.index.is_month_end == True)].dropna()
 
-                st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
-                st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
-                st.session_state.input_price.index = st.session_state.input_price.index.date
-                st.session_state.allocation.index = st.session_state.allocation.index.date
+                col1, col2, col3 = st.columns([1, 1, 1])
 
-                if 'slider' in st.session_state:
+                slider = pd.Series()
+                #
+                # st.write(input_price.columns)
 
-                    START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
-                    END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
-                    Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (annualization / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
-                    Anuuual_Vol = round(float(np.std(st.session_state.portfolio_port.pct_change().dropna())*np.sqrt(annualization)*100),2)
-                    Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
-                    MDD  =round(float(min(st.session_state.drawdown) * 100), 2)
-                    Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
+                col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
+                for i, k in enumerate(st.session_state.input_list, start=0):
 
-                    col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
+                    if i % 4 == 1:
+                        with col1:
+                            slider[k] = st.slider(str(k), 0, 100, 0, 1)
 
-                    with col21:
-                        st.write('NAV')
-                        st.dataframe(st.session_state.portfolio_port.round(2))
+                    if i % 4 == 2:
+                        with col2:
+                            slider[k] = st.slider(str(k), 0, 100, 0, 1)
 
-                    with col22:
-                        st.write('MDD')
-                        st.dataframe(st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)))
+                    if i % 4 == 3:
+                        with col3:
+                            slider[k] = st.slider(str(k), 0, 100, 0, 1)
 
-                    with col23:
-                        st.write('Assets')
-                        st.dataframe(st.session_state.input_price.astype('float64').round(2))
+                    if i % 4 == 0:
+                        with col4:
+                            slider[k] = st.slider(str(k), 0, 100, 0, 1)
 
-                    with col24:
-                        st.write('Allocation')
-                        st.dataframe(st.session_state.allocation.applymap('{:.2%}'.format))
+                st.write(str("Total Weight:   ") + str(slider.sum()) + str("%"))
 
+                #########################[Graph Insert]#####################################
 
-                    col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
+                if st.button('Simulation'):
 
 
-                    with col50:
-                        st.info("Period: " + str(START_DATE) + " ~ " + str(END_DATE))
+                    st.session_state.slider = (slider * 0.01).tolist()
+                    st.session_state.portfolio_port, st.session_state.allocation = backtest.simulation(st.session_state.input_price,
+                                                                                                       st.session_state.slider,
+                                                                                                       commission,
+                                                                                                       rebal)
 
-                    with col51:
-                        st.info("Annual Return: "+str(Anuuual_RET)+"%")
+                    if monthly == True:
+                        st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
 
-                    with col52:
-                        st.info("Annual Volatility: " + str(Anuuual_Vol) +"%")
+                    st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
+                    st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
+                    st.session_state.input_price.index = st.session_state.input_price.index.date
+                    st.session_state.allocation.index = st.session_state.allocation.index.date
 
-                    with col53:
+                    if 'slider' in st.session_state:
 
-                        st.info("Annual Sharpe: " + str(Anuuual_Sharpe))
-
-                    with col54:
-
-                        st.info("Maximum Drawdown: " + str(MDD) + "%")
-
-
-                    col31, col32 = st.columns([1, 1])
-
-                    with col31:
-                        st.write("Net Asset Value")
-                        st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
-
-                    with col32:
-                        st.write("Drawdown")
-                        st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
-
-                    col_a, col_b, = st.columns([1,1])
+                        START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
+                        END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
+                        Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (annualization / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
+                        Anuuual_Vol = round(float(np.std(st.session_state.portfolio_port.pct_change().dropna())*np.sqrt(annualization)*100),2)
+                        Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
+                        MDD  =round(float(min(st.session_state.drawdown) * 100), 2)
+                        Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
 
 
-                    with col_a:
-                        st.write("Return Distribution")
+                        col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
 
-                        # plt.hist(Daily_RET, bins=100, label="Daily Return", color="salmon", rwidth=1, density=True)
-                        # plt.legend()
-                        # plt.xticks(np.arange(-0.1, 0.11,0.01), ['{:.1%}'.format(x) for x in np.arange(-0.1, 0.11,0.01)])
-                        # plt.margins(x=-0.1, y=0)
-                        #
+                        with col21:
+                            st.write('NAV')
+                            st.dataframe(st.session_state.portfolio_port.round(2))
 
-                        fig1 = plt.figure(figsize=(15, 8.8))
-                        sns.histplot(data=Daily_RET, bins=50, color="blue", legend=None, stat="probability", alpha=0.5, kde=True)
+                        with col22:
+                            st.write('MDD')
+                            st.dataframe(st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)))
 
+                        with col23:
+                            st.write('Assets')
+                            st.dataframe(st.session_state.input_price.astype('float64').round(2))
 
-                        plt.xlim([Daily_RET.min(), Daily_RET.max()])
-                        plt.ylim([0, 0.5])
-                        plt.xlabel("Daily Return", size=12)
-                        plt.ylabel("Probability", size=12)
-                        plt.xticks(np.arange(Daily_RET.min().round(2), Daily_RET.max().round(2), (Daily_RET.max().round(2)-Daily_RET.min().round(2))/10), fontsize=12)
-                        plt.grid(True, alpha=1, linestyle="--")
-                        plt.rcParams["figure.figsize"] = [7, 5]
-                        #plt.rcParams["figure.dpi"] = 500
+                        with col24:
+                            st.write('Allocation')
+                            st.dataframe(st.session_state.allocation.applymap('{:.2%}'.format))
 
 
-                        st.pyplot(fig1)
+                        col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
+
+
+                        with col50:
+                            st.info("Period: " + str(START_DATE) + " ~ " + str(END_DATE))
+
+                        with col51:
+                            st.info("Annual Return: "+str(Anuuual_RET)+"%")
+
+                        with col52:
+                            st.info("Annual Volatility: " + str(Anuuual_Vol) +"%")
+
+                        with col53:
+
+                            st.info("Annual Sharpe: " + str(Anuuual_Sharpe))
+
+                        with col54:
+
+                            st.info("Maximum Drawdown: " + str(MDD) + "%")
+
+
+                        col31, col32 = st.columns([1, 1])
+
+                        with col31:
+                            st.write("Net Asset Value")
+                            st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
+
+                        with col32:
+                            st.write("Drawdown")
+                            st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
+
+                        col_a, col_b, = st.columns([1,1])
+
+
+                        with col_a:
+                            st.write("Return Distribution")
+
+                            # plt.hist(Daily_RET, bins=100, label="Daily Return", color="salmon", rwidth=1, density=True)
+                            # plt.legend()
+                            # plt.xticks(np.arange(-0.1, 0.11,0.01), ['{:.1%}'.format(x) for x in np.arange(-0.1, 0.11,0.01)])
+                            # plt.margins(x=-0.1, y=0)
+                            #
+
+                            fig1 = plt.figure(figsize=(15, 8.8))
+                            sns.histplot(data=Daily_RET, bins=50, color="blue", legend=None, stat="probability", alpha=0.5, kde=True)
+
+
+                            plt.xlim([Daily_RET.min(), Daily_RET.max()])
+                            plt.ylim([0, 0.5])
+                            plt.xlabel("Daily Return", size=12)
+                            plt.ylabel("Probability", size=12)
+                            plt.xticks(np.arange(Daily_RET.min().round(2), Daily_RET.max().round(2), (Daily_RET.max().round(2)-Daily_RET.min().round(2))/10), fontsize=12)
+                            plt.grid(True, alpha=1, linestyle="--")
+                            plt.rcParams["figure.figsize"] = [7, 5]
+                            #plt.rcParams["figure.dpi"] = 500
+
+
+                            st.pyplot(fig1)
 
 
 
-                    with col_b:
-                        st.write("Correlation Heatmap")
+                        with col_b:
+                            st.write("Correlation Heatmap")
 
-                        # Increase the size of the heatmap.
-                        fig2 = plt.figure(figsize=(15, 8))
-                        # plt.rc('font', family='Malgun Gothic')
-                        plt.rcParams['axes.unicode_minus'] = False
+                            # Increase the size of the heatmap.
+                            fig2 = plt.figure(figsize=(15, 8))
+                            # plt.rc('font', family='Malgun Gothic')
+                            plt.rcParams['axes.unicode_minus'] = False
 
-                        st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)
-                        st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
-                        st.session_state.corr.columns = st.session_state.corr.index
-                        # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
+                            st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)
+                            st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
+                            st.session_state.corr.columns = st.session_state.corr.index
+                            # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
 
-                        heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True, cmap='BrBG')
+                            heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True, cmap='BrBG')
 
-                        # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
+                            # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
 
-                        st.pyplot(fig2)
+                            st.pyplot(fig2)
