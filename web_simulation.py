@@ -237,7 +237,7 @@ if file is not None:
 
                         st.pyplot(fig2)
 
-    if (st.button('Summit2') or ('input_list' in st.session_state)):
+    if (st.button('Summit ') or ('input_list' in st.session_state)):
 
         with st.expander('Portfolio2', expanded=False):
 
@@ -247,12 +247,12 @@ if file is not None:
 
             with col40:
 
-                start_date = st.date_input("Start2", value=input_price.index[0])
+                start_date = st.date_input("Start ", value=input_price.index[0])
                 start_date = datetime.combine(start_date, datetime.min.time())
 
             with col41:
 
-                end_date = st.date_input("End2", value=input_price.index[-1])
+                end_date = st.date_input("End ", value=input_price.index[-1])
                 end_date = datetime.combine(end_date, datetime.min.time())
 
             with col42:
@@ -262,11 +262,11 @@ if file is not None:
 
             with col43:
 
-                rebal = st.selectbox('Rebalancing2', ('Monthly', 'Daily', 'Quarterly', 'Yearly'))
+                rebal = st.selectbox('Rebalancing ', ('Monthly', 'Daily', 'Quarterly', 'Yearly'))
 
             with col44:
 
-                commission = st.number_input('Commission(%)2')
+                commission = st.number_input('Commission(%) ')
 
             if option1 == 'Daily':
                 daily = True
