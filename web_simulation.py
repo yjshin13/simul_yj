@@ -134,8 +134,6 @@ if file is not None:
                     st.session_state.input_price.index = st.session_state.input_price.index.date
                     st.session_state.allocation.index = st.session_state.allocation.index.date
 
-                if 'slider' in st.session_state:
-
                     START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
                     END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
                     Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (annualization / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
