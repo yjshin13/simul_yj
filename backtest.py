@@ -32,7 +32,7 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
     portfolio = pd.DataFrame(index=assets_data.index, columns=['NAV']).squeeze()
     portfolio = portfolio[portfolio.index >= allocation.index[0]]
-    alloc_float = pd.DataFrame(portfolio)
+    alloc_float = pd.DataFrame(index=assets_data.index, columns=assets_data.columns)
     portfolio[0] = 100
 
 
