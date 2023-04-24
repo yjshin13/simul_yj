@@ -27,7 +27,7 @@ if file is not None:
     input_price = price[input_list]
     summit = 0
 
-    if (st.button('Summit') or ('input_list' in st.session_state)) and 'summit' not in st.session_state:
+    if (st.button('Summit') or ('input_list' in st.session_state)) and ('summit' not in st.session_state):
 
         st.session_state.summit = 1
 
@@ -240,7 +240,7 @@ if file is not None:
 
                         st.pyplot(fig2)
 
-    if (st.button('Summit') or ('input_list' in st.session_state)) and st.session_state.summit == 1:
+    if (st.button('Summit') or ('input_list' in st.session_state)) and (st.session_state.summit == 1):
 
         st.session_state.summit = 2
 
