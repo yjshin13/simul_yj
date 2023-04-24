@@ -28,7 +28,7 @@ if file is not None:
 
     if st.button('Summit') or ('input_list' in st.session_state):
 
-        with st.expander('Portfolio', expanded=True):
+        with st.expander('Portfolio', expanded=False):
 
             input_price = input_price.dropna()
 
@@ -48,7 +48,7 @@ if file is not None:
 
                 option1 = st.selectbox(
                     'Data Frequency', ('Daily', 'Monthly'))
-    
+
             with col43:
 
                 rebal = st.selectbox('Rebalancing', ( 'Monthly', 'Daily', 'Quarterly', 'Yearly'))
