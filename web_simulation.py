@@ -25,7 +25,7 @@ if file is not None:
     select = st.multiselect('Input Assets', price_list, price_list)
     input_list = price.columns[price.columns.isin(select)]
     input_price = price[input_list]
-    summit = 0
+    st.session_state.summit = 0
 
     if (st.button('Summit') or ('input_list' in st.session_state)) and ('summit' not in st.session_state):
 
