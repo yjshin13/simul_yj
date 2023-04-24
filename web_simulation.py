@@ -241,8 +241,16 @@ if file is not None:
 
                     st.pyplot(fig2)
 
+    st.session_state.result = pd.concat(st.session_state.portfolio_port, st.session_state.drawdown)
+
     st.download_button(
             label="Net Asset Value",
-            data=st.session_state.portfolio_port.to_csv(index=True),
+            data=st.session_state.result.to_csv(index=True),
             mime='text/csv',
             file_name='Net Asset Value.csv')
+
+    st.download_button(
+            label="Correlation Matrix",
+            data=st.session_state.corr.to_csv(index=True),
+            mime='text/csv',
+            file_name='Correlation Matrix')
