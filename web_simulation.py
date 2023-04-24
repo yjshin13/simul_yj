@@ -241,7 +241,7 @@ if file is not None:
 
                     st.pyplot(fig2)
 
-    st.session_state.result = pd.concat(st.session_state.portfolio_port, st.session_state.drawdown)
+    st.session_state.result = pd.concat([st.session_state.portfolio_port, st.session_state.drawdown], axis=1)
 
     st.download_button(
             label="Net Asset Value",
