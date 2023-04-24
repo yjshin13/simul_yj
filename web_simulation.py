@@ -157,7 +157,7 @@ if file is not None:
                     st.dataframe(st.session_state.input_price.astype('float64').round(2))
 
                 with col24:
-                    st.write('Allocation')
+                    st.write('Allocation(floating)')
                     st.dataframe(st.session_state.allocation.applymap('{:.2%}'.format))
 
 
