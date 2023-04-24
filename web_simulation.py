@@ -258,7 +258,7 @@ if file is not None:
             with col42:
 
                 option1 = st.selectbox(
-                    'Data Frequency', ('Daily', 'Monthly'))
+                    'Data Frequency2', ('Daily', 'Monthly'))
 
             with col43:
 
@@ -266,7 +266,7 @@ if file is not None:
 
             with col44:
 
-                commission = st.number_input('Commission(%)')
+                commission = st.number_input('Commission(%)2')
 
             if option1 == 'Daily':
                 daily = True
