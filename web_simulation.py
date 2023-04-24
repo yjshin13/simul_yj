@@ -114,7 +114,7 @@ if file is not None:
 
             #########################[Graph Insert]#####################################
 
-            if st.button('Simulation') and (('slider' not in st.session_state) or (slider != st.session_state.slider)):
+            if st.button('Simulation'):
 
 
                 st.session_state.slider = (slider * 0.01).tolist()
