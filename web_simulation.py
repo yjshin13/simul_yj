@@ -26,7 +26,11 @@ if file is not None:
     input_list = price.columns[price.columns.isin(select)]
     input_price = price[input_list]
 
+    summit = 0
+
     if (st.button('Summit') or ('input_list' in st.session_state)):
+
+        st.session_state.summit = 1
 
         with st.expander('Portfolio', expanded=False):
 
@@ -237,7 +241,7 @@ if file is not None:
 
                         st.pyplot(fig2)
 
-    if (st.button('Summit ') or ('input_list' in st.session_state)):
+    if (st.button('Summit ') or ('input_list' in st.session_state)) and st.session_state.summit==1:
 
         with st.expander('Portfolio2', expanded=False):
 
