@@ -204,7 +204,7 @@ if file is not None:
                         # plt.margins(x=-0.1, y=0)
                         #
 
-                        fig1 = plt.figure(figsize=(15, 8.8))
+                        st.session_state.fig1 = plt.figure(figsize=(15, 8.8))
                         sns.histplot(data=Daily_RET, bins=50, color="blue", legend=None, stat="probability", alpha=0.5, kde=True)
 
 
@@ -218,7 +218,7 @@ if file is not None:
                         #plt.rcParams["figure.dpi"] = 500
 
 
-                        st.pyplot(fig1)
+                        st.pyplot(st.session_state.fig1)
 
 
 
