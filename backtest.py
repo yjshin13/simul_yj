@@ -32,7 +32,10 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
     portfolio = pd.DataFrame(index=assets_data.index, columns=['NAV']).squeeze()
     portfolio = portfolio[portfolio.index >= allocation.index[0]]
+    alloc_float = portfolio
     portfolio[0] = 100
+
+
 
     k = 0
     j_rebal = 0
@@ -62,7 +65,7 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
 
             last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
-
+            alloc_float[i] = last_alloc
         else:
 
             j = assets_data.index.get_loc(portfolio.index[i + 1])
@@ -72,10 +75,11 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
 
             last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
+            alloc_float[i] = last_alloc
 
     # portfolio.index = portfolio.index.date
 
-    return portfolio.astype('float64').round(3), allocation
+    return portfolio.astype('float64').round(3), last_alloc
 
 def drawdown(nav: pd.Series):
     """
