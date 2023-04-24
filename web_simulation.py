@@ -240,3 +240,9 @@ if file is not None:
                     # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
 
                     st.pyplot(fig2)
+
+                    st.download_button(
+                            label="Net Asset Value",
+                            data=st.session_state.portfolio_port.to_csv(index=False),
+                            mime='text/csv',
+                            file_name='Net Asset Value.csv')
