@@ -25,8 +25,7 @@ if file is not None:
     select = st.multiselect('Input Assets', price_list, price_list)
     input_list = price.columns[price.columns.isin(select)]
     input_price = price[input_list]
-    st.session_state.summit = 0
-
+    
     if (st.button('Summit') or ('input_list' in st.session_state)) and ('summit' not in st.session_state):
 
         st.session_state.summit = 1
@@ -240,7 +239,7 @@ if file is not None:
 
                         st.pyplot(fig2)
 
-    if (st.session_state.summit == 1):
+    if ('summit' in st.session_state):
 
         if (st.button('Summit2') or ('input_list' in st.session_state)):
 
