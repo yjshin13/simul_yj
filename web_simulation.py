@@ -243,16 +243,16 @@ if file is not None:
 
                     st.pyplot(fig2)
 
-   
 
-    st.download_button(
-            label="Net Asset Value",
-            data=st.session_state.result.to_csv(index=True),
-            mime='text/csv',
-            file_name='Net Asset Value.csv')
-
-    st.download_button(
-            label="Correlation Matrix",
-            data=st.session_state.corr.to_csv(index=True),
-            mime='text/csv',
-            file_name='Correlation Matrix')
+        if 'result' in st.session_state:
+            st.download_button(
+                    label="Net Asset Value",
+                    data=st.session_state.result.to_csv(index=True),
+                    mime='text/csv',
+                    file_name='Net Asset Value.csv')
+        
+            st.download_button(
+                    label="Correlation Matrix",
+                    data=st.session_state.corr.to_csv(index=True),
+                    mime='text/csv',
+                    file_name='Correlation Matrix')
