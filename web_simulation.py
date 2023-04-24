@@ -164,9 +164,28 @@ if file is not None:
                     st.write('Assets')
                     st.dataframe(st.session_state.input_price.astype('float64').round(2))
 
+                    st.download_button(
+                        label="Assets",
+                        data=st.session_state.input_price.astype('float64').round(2).to_csv(index=True),
+                        mime='text/csv',
+                        file_name='Assets.csv')
+
                 with col24:
                     st.write('Allocation(floating)')
                     st.dataframe(st.session_state.allocation.applymap('{:.2%}'.format))
+
+                    st.download_button(
+                        label="Allocation",
+                        data=st.session_state.allocation.applymap('{:.2%}'.format).to_csv(index=True),
+                        mime='text/csv',
+                        file_name='Allocation.csv')
+
+
+                st.download_button(
+                    label="Assets",
+                    data=st.session_state.input_price.astype('float64').round(2).to_csv(index=True),
+                    mime='text/csv',
+                    file_name='Assets.csv')
 
 
                 col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
@@ -251,13 +270,13 @@ if file is not None:
 
 
         # if 'result' in st.session_state:
-        # 
+        #
         #     st.download_button(
         #             label="Net Asset Value",
         #             data=st.session_state.result.to_csv(index=True),
         #             mime='text/csv',
         #             file_name='Net Asset Value.csv')
-        # 
+        #
         #     st.download_button(
         #             label="Correlation Matrix",
         #             data=st.session_state.input_price.pct_change().dropna().corr().round(2).to_csv(index=True),
