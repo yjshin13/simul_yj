@@ -225,7 +225,7 @@ if file is not None:
 
 
                 with col_b:
-                    st.write("Correlation Heatmap")
+                    st.write("Correlation Matrix")
 
                     # Increase the size of the heatmap.
                     fig2 = plt.figure(figsize=(15, 8))
