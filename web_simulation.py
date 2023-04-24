@@ -262,7 +262,7 @@ if file is not None:
 
             with col43:
 
-                rebal = st.selectbox('Rebalancing', ('Monthly', 'Daily', 'Quarterly', 'Yearly'))
+                rebal = st.selectbox('Rebalancing2', ('Monthly', 'Daily', 'Quarterly', 'Yearly'))
 
             with col44:
 
