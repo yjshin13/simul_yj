@@ -114,25 +114,24 @@ if file is not None:
 
             #########################[Graph Insert]#####################################
 
-            if 'slider' in st.session_state:
-
-                if st.button('Simulation'):
+            if st.button('Simulation'):
 
 
-                    st.session_state.slider = (slider * 0.01).tolist()
+                st.session_state.slider = (slider * 0.01).tolist()
+                st.session_state.portfolio_port, st.session_state.allocation = backtest.simulation(st.session_state.input_price,
+                                                                                                   st.session_state.slider,
+                                                                                                   commission,
+                                                                                                   rebal)
 
-                    st.session_state.portfolio_port, st.session_state.allocation = backtest.simulation(st.session_state.input_price,
-                                                                                                       st.session_state.slider,
-                                                                                                       commission,
-                                                                                                       rebal)
+                if monthly == True:
+                    st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
 
-                    if monthly == True:
-                        st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
+                st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
+                st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
+                st.session_state.input_price.index = st.session_state.input_price.index.date
+                st.session_state.allocation.index = st.session_state.allocation.index.date
 
-                    st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
-                    st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
-                    st.session_state.input_price.index = st.session_state.input_price.index.date
-                    st.session_state.allocation.index = st.session_state.allocation.index.date
+                if 'slider' in st.session_state:
 
                     START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
                     END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
