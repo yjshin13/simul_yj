@@ -150,6 +150,12 @@ if file is not None:
                     st.write('NAV')
                     st.dataframe(st.session_state.portfolio_port.round(2))
 
+                    st.download_button(
+                        label="Net Asset Value",
+                        data=st.session_state.result.to_csv(index=True),
+                        mime='text/csv',
+                        file_name='Net Asset Value.csv')
+
                 with col22:
                     st.write('MDD')
                     st.dataframe(st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)))
