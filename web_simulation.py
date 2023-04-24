@@ -152,13 +152,19 @@ if file is not None:
 
                     st.download_button(
                         label="NAV",
-                        data=st.session_state.result.to_csv(index=True),
+                        data=st.session_state.portfolio_port.to_csv(index=True),
                         mime='text/csv',
                         file_name='Net Asset Value.csv')
 
                 with col22:
                     st.write('MDD')
                     st.dataframe(st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)))
+
+                    st.download_button(
+                        label="MDD",
+                        data=st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)).to_csv(index=True),
+                        mime='text/csv',
+                        file_name='MAX Drawdown.csv')
 
                 with col23:
                     st.write('Assets')
