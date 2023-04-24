@@ -205,7 +205,7 @@ if file is not None:
                         # plt.margins(x=-0.1, y=0)
                         #
 
-                        fig1 = plt.figure(figsize=(15, 8.8))
+                        st.session_state.fig1 = plt.figure(figsize=(15, 8.8))
                         sns.histplot(data=Daily_RET, bins=50, color="blue", legend=None, stat="probability", alpha=0.5, kde=True)
 
 
@@ -219,7 +219,7 @@ if file is not None:
                         #plt.rcParams["figure.dpi"] = 500
 
 
-                        st.pyplot(fig1)
+                        st.pyplot(st.session_state.fig1)
 
 
 
@@ -227,7 +227,7 @@ if file is not None:
                         st.write("Correlation Heatmap")
 
                         # Increase the size of the heatmap.
-                        fig2 = plt.figure(figsize=(15, 8))
+                        st.session_state.fig2 = plt.figure(figsize=(15, 8))
                         # plt.rc('font', family='Malgun Gothic')
                         plt.rcParams['axes.unicode_minus'] = False
 
@@ -240,4 +240,4 @@ if file is not None:
 
                         # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
 
-                        st.pyplot(fig2)
+                        st.pyplot(st.session_state.fig2)
