@@ -32,7 +32,7 @@ if file is not None:
 
         st.session_state.summit = 1
 
-        with st.expander('Portfolio', expanded=False):
+        with st.expander('Portfolio', expanded=True):
 
             input_price = input_price.dropna()
 
