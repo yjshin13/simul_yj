@@ -92,8 +92,11 @@ if file is not None:
             slider = pd.Series()
             #
             # st.write(input_price.columns)
-
+            st.write(str("Total Weight:   ") + str((slider.sum())) + str("%"))
+            
             col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+
+
 
             for i, k in enumerate(st.session_state.input_list, start=0):
 
@@ -113,7 +116,7 @@ if file is not None:
                     with col4:
                         slider[k] = st.slider(str(k), 0, 100, int(weight[k]*100), 1)
 
-            st.write(str("Total Weight:   ") + str((slider.sum())) + str("%"))
+
 
             #########################[Graph Insert]#####################################
 
