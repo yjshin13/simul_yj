@@ -120,7 +120,7 @@ if file is not None:
             if st.button('Simulation'):
 
 
-                st.session_state.slider = (slider * 0.01).tolist()
+                st.session_state.slider = (slider).tolist()
                 st.session_state.portfolio_port, st.session_state.allocation = backtest.simulation(st.session_state.input_price,
                                                                                                    st.session_state.slider,
                                                                                                    commission,
