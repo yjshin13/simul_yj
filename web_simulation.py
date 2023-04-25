@@ -273,6 +273,7 @@ if file is not None:
 
                         st.pyplot(fig2)
 
+                        
 
             # if 'result' in st.session_state:
             #
