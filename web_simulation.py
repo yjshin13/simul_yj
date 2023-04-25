@@ -107,11 +107,11 @@ if file is not None:
 
                 if i % 4 == 3:
                     with col3:
-                        slider[k] = st.slider(str(k), 0, 100, float(weight[k]), 0.1)
+                        slider[k] = st.slider(str(k), float(0), float(100), float(weight[k]), 0.1)
 
                 if i % 4 == 0:
                     with col4:
-                        slider[k] = st.slider(str(k), 0, 100, float(weight[k]), 0.1)
+                        slider[k] = st.slider(str(k), float(0), float(100), float(weight[k]), 0.1)
 
             st.write(str("Total Weight:   ") + str(slider.sum()) + str("%"))
 
