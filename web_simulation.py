@@ -16,10 +16,13 @@ if file is not None:
     def load_data(file_path):
         df = pd.read_excel(file_path, sheet_name="sheet1",
                            names=None, dtype={'Date': datetime}, index_col=0, header=0)
-        return df
+
+        df2 = pd.read_excel(file_path, sheet_name="sheet2",
+                           names=None, dtype={'Date': datetime}, index_col=0, header=0)
+        return df, df2
 
 
-    price = load_data(file)
+    price, weight = load_data(file)
 
     price_list = list(map(str, price.columns))
     select = st.multiselect('Input Assets', price_list, price_list)
@@ -96,19 +99,19 @@ if file is not None:
 
                 if i % 4 == 1:
                     with col1:
-                        slider[k] = st.slider(str(k), 0, 100, 0, 1)
+                        slider[k] = st.slider(str(k), 0, 100, weight[k], 1)
 
                 if i % 4 == 2:
                     with col2:
-                        slider[k] = st.slider(str(k), 0, 100, 0, 1)
+                        slider[k] = st.slider(str(k), 0, 100, weight[k], 1)
 
                 if i % 4 == 3:
                     with col3:
-                        slider[k] = st.slider(str(k), 0, 100, 0, 1)
+                        slider[k] = st.slider(str(k), 0, 100, weight[k], 1)
 
                 if i % 4 == 0:
                     with col4:
-                        slider[k] = st.slider(str(k), 0, 100, 0, 1)
+                        slider[k] = st.slider(str(k), 0, 100, weight[k], 1)
 
             st.write(str("Total Weight:   ") + str(slider.sum()) + str("%"))
 
