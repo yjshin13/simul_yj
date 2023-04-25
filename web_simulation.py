@@ -113,7 +113,7 @@ if file is not None:
                     with col4:
                         slider[k] = st.slider(str(k), 0.0, 1.0, float(weight[k]), 0.01)
 
-            st.write(str("Total Weight:   ") + str(slider.sum()) + str("%"))
+            st.write(str("Total Weight:   ") + str((slider.sum())*100) + str("%"))
 
             #########################[Graph Insert]#####################################
 
