@@ -99,28 +99,28 @@ if file is not None:
 
                 if i % 4 == 1:
                     with col1:
-                        slider[k] = st.slider(str(k), 0.0, 1.0, float(weight[k]), 0.01)
+                        slider[k] = st.slider(str(k), 0, 100, float(weight[k]), 0.1)
 
                 if i % 4 == 2:
                     with col2:
-                        slider[k] = st.slider(str(k), 0.0, 1.0, float(weight[k]), 0.01)
+                        slider[k] = st.slider(str(k), 0, 100, float(weight[k]), 0.1)
 
                 if i % 4 == 3:
                     with col3:
-                        slider[k] = st.slider(str(k), 0.0, 1.0, float(weight[k]), 0.01)
+                        slider[k] = st.slider(str(k), 0, 100, float(weight[k]), 0.1)
 
                 if i % 4 == 0:
                     with col4:
-                        slider[k] = st.slider(str(k), 0.0, 1.0, float(weight[k]), 0.01)
+                        slider[k] = st.slider(str(k), 0, 100, float(weight[k]), 0.1)
 
-            st.write(str("Total Weight:   ") + str((slider.sum())*100) + str("%"))
+            st.write(str("Total Weight:   ") + str((slider.sum())) + str("%"))
 
             #########################[Graph Insert]#####################################
 
             if st.button('Simulation'):
 
 
-                st.session_state.slider = (slider).tolist()
+                st.session_state.slider = (slider*0.01).tolist()
                 st.session_state.portfolio_port, st.session_state.allocation = backtest.simulation(st.session_state.input_price,
                                                                                                    st.session_state.slider,
                                                                                                    commission,
