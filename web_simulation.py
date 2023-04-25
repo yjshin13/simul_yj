@@ -29,7 +29,7 @@ if file is not None:
     input_list = price.columns[price.columns.isin(select)]
     input_price = price[input_list]
 
-    summit = 0
+    st.write(weight)
 
     if (st.button('Summit') or ('input_list' in st.session_state)):
 
