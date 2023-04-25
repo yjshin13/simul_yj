@@ -113,8 +113,6 @@ if file is not None:
             st.write(str("Total Weight:   ") + str(slider.sum()) + str("%"))
 
             #########################[Graph Insert]#####################################
-            
-        with st.expander('Portfolio', expanded=True):
 
             if st.button('Simulation'):
 
