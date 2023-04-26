@@ -125,13 +125,10 @@ if file is not None:
                                                                                                    commission,
                                                                                                    rebal)
 
-                st.session_state.NAV_2= pd.concat([st.session_state.portfolio_port[
-                               st.session_state.portfolio_port.index.is_month_end == True].pct_change().dropna()]
-                             * len(st.session_state.input_list), axis=1)
+                st.session_state.asset_ret= st.session_state.input_price[
+                               st.session_state.input_price.index.is_month_end == True].pct_change().dropna()
 
-
-                st.session_state.NAV_2.columns = st.session_state.input_list
-                st.write((st.session_state.NAV_2*
+                st.write((st.session_state.asset_ret*
                           st.session_state.alloc[st.session_state.alloc.index.is_month_end == True].
                           shift(1).dropna()).sum(axis=0))
 
