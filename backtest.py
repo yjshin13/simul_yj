@@ -67,7 +67,7 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
 
             last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
-            alloc_float.iloc[i+1,:] = last_alloc
+            alloc_float.iloc[i+1,:] = last_alloc/last_alloc.sum()
 
         else:
 
@@ -78,11 +78,11 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
 
             last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
-            alloc_float.iloc[i+1,:] = last_alloc
+            alloc_float.iloc[i+1,:] = last_alloc/last_alloc.sum()
 
     # portfolio.index = portfolio.index.date
 
-    return portfolio.astype('float64').round(3), alloc_float.dropna()
+    return portfolio.astype('float64').round(3), alloc_float.dropna(), allocation
 
 def drawdown(nav: pd.Series):
     """
