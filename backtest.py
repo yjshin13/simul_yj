@@ -43,6 +43,7 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
     i_rebal=0
 
     last_alloc = allocation.iloc[0]
+    alloc_float.iloc[0,:] = last_alloc
 
     for i in stqdm(range(0, len(portfolio)-1)):
 
@@ -66,7 +67,7 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
 
             last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
-            alloc_float.iloc[i,:] = last_alloc
+            alloc_float.iloc[i+1,:] = last_alloc
 
         else:
 
@@ -77,7 +78,7 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
 
             last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
-            alloc_float.iloc[i,:] = last_alloc
+            alloc_float.iloc[i+1,:] = last_alloc
 
     # portfolio.index = portfolio.index.date
 
