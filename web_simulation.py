@@ -124,13 +124,10 @@ if file is not None:
                     st.session_state.alloc= backtest.simulation(st.session_state.input_price,st.session_state.slider,
                                                                                                    commission,
                                                                                                    rebal)
-
-                st.session_state.asset_ret= st.session_state.input_price[
-                               st.session_state.input_price.index.is_month_end == True].pct_change().dropna()
-
-                st.write((st.session_state.asset_ret*
+                st.session_state.contribution = ((st.session_state.input_price[
+                               st.session_state.input_price.index.is_month_end == True].pct_change().dropna())*
                           st.session_state.alloc[st.session_state.alloc.index.is_month_end == True].
-                          shift(1).dropna()).sum(axis=0).apply(lambda x: '{:.2%}'.format(x)))
+                          shift(1).dropna()).sum(axis=0).apply(lambda x: '{:.2%}'.format(x))
 
                 if monthly == True:
                     st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
@@ -238,29 +235,52 @@ if file is not None:
 
 
                 with col_a:
-                    st.write("Return Distribution")
 
-                    # plt.hist(Daily_RET, bins=100, label="Daily Return", color="salmon", rwidth=1, density=True)
-                    # plt.legend()
-                    # plt.xticks(np.arange(-0.1, 0.11,0.01), ['{:.1%}'.format(x) for x in np.arange(-0.1, 0.11,0.01)])
-                    # plt.margins(x=-0.1, y=0)
+                    st.write("Contribution")
+                    x = (st.session_state.contribution * 100).values.round(2)
+                    y = st.session_state.contribution.index
+
+                    fig_bar, ax_bar = plt.subplots(figsize=(20, 10.8))
+                    width = 0.75  # the width of the bars
+                    bar = ax_bar.barh(y, x, color="lightblue", height=0.8, )
+
+                    for bars in bar:
+                        width = bars.get_width()
+                        posx = width + 0.5
+                        posy = bars.get_y() + bars.get_height() * 0.5
+                        ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
+
+                    plt.xticks(fontsize=15)
+                    plt.yticks(fontsize=15)
+                    plt.xlabel('Contribution(%)', fontsize=15, labelpad=20)
+                    plt.ylabel('Assets', fontsize=15, labelpad=15)
+                    ax_bar.margins(x=0.04, y=0.01)
+
+                    st.pyplot(fig_bar)
+
+                    # st.write("Return Distribution")
                     #
-
-                    fig1 = plt.figure(figsize=(15, 8.8))
-                    sns.histplot(data=Daily_RET, bins=50, color="blue", legend=None, stat="probability", alpha=0.5, kde=True)
-
-
-                    plt.xlim([Daily_RET.min(), Daily_RET.max()])
-                    plt.ylim([0, 0.5])
-                    plt.xlabel("Daily Return", size=12)
-                    plt.ylabel("Probability", size=12)
-                    plt.xticks(np.arange(Daily_RET.min().round(2), Daily_RET.max().round(2), (Daily_RET.max().round(2)-Daily_RET.min().round(2))/10), fontsize=12)
-                    plt.grid(True, alpha=1, linestyle="--")
-                    plt.rcParams["figure.figsize"] = [7, 5]
-                    #plt.rcParams["figure.dpi"] = 500
-
-
-                    st.pyplot(fig1)
+                    # # plt.hist(Daily_RET, bins=100, label="Daily Return", color="salmon", rwidth=1, density=True)
+                    # # plt.legend()
+                    # # plt.xticks(np.arange(-0.1, 0.11,0.01), ['{:.1%}'.format(x) for x in np.arange(-0.1, 0.11,0.01)])
+                    # # plt.margins(x=-0.1, y=0)
+                    # #
+                    #
+                    # fig1 = plt.figure(figsize=(15, 8.8))
+                    # sns.histplot(data=Daily_RET, bins=50, color="blue", legend=None, stat="probability", alpha=0.5, kde=True)
+                    #
+                    #
+                    # plt.xlim([Daily_RET.min(), Daily_RET.max()])
+                    # plt.ylim([0, 0.5])
+                    # plt.xlabel("Daily Return", size=12)
+                    # plt.ylabel("Probability", size=12)
+                    # plt.xticks(np.arange(Daily_RET.min().round(2), Daily_RET.max().round(2), (Daily_RET.max().round(2)-Daily_RET.min().round(2))/10), fontsize=12)
+                    # plt.grid(True, alpha=1, linestyle="--")
+                    # plt.rcParams["figure.figsize"] = [7, 5]
+                    # #plt.rcParams["figure.dpi"] = 500
+                    #
+                    #
+                    # st.pyplot(fig1)
 
 
 
