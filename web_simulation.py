@@ -17,7 +17,7 @@ if file is not None:
         df = pd.read_excel(file_path, sheet_name="data",
                            names=None, dtype={'Date': datetime}, index_col=0, header=2)
 
-        df2 = pd.read_excel(file_path, sheet_name="sheet1",
+        df2 = pd.read_excel(file_path, sheet_name="data",
                            names=None, index_col=0, header=1, nrows=2)
 
         return df, df2
