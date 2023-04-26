@@ -127,9 +127,8 @@ if file is not None:
                                                                                                    rebal)
 
                 st.write(st.session_state.portfolio_port[
-                             st.session_state.portfolio_port.index.is_month_end == True].pct_change().dropna())
-
-                st.write(st.session_state.alloc[st.session_state.alloc.index.is_month_end == True])
+                             st.session_state.portfolio_port.index.is_month_end == True].pct_change().dropna()*
+                         st.session_state.alloc[st.session_state.alloc.index.is_month_end == True].shift(1).dropna())
 
                 if monthly == True:
                     st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
