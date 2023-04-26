@@ -237,7 +237,7 @@ if file is not None:
                 with col_a:
 
                     st.write("Contribution")
-                    x = (st.session_state.contribution * 100).values.round(2)
+                    x = (st.session_state.contribution * 100.00).values.round(2)
                     y = st.session_state.contribution.index
 
                     fig_bar, ax_bar = plt.subplots(figsize=(20, 10.8))
