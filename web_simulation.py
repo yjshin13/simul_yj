@@ -126,8 +126,7 @@ if file is not None:
                                                                                                    rebal)
 
                 st.write(st.session_state.portfolio_port[
-                             st.session_state.portfolio_port.index.is_month_end == True].pct_change().shift(
-                    -1).dropna())
+                             st.session_state.portfolio_port.index.is_month_end == True].pct_change().dropna())
 
                 st.write(st.session_state.allocation[st.session_state.allocation.index.is_month_end == True])
 
