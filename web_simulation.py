@@ -120,7 +120,8 @@ if file is not None:
 
 
                 st.session_state.slider = (slider*0.01).tolist()
-                st.session_state.portfolio_port, st.session_state.allocation = backtest.simulation(st.session_state.input_price,
+                st.session_state.portfolio_port, st.session_state.allocation,\
+                    st.session_state.alloc= backtest.simulation(st.session_state.input_price,
                                                                                                    st.session_state.slider,
                                                                                                    commission,
                                                                                                    rebal)
@@ -128,7 +129,7 @@ if file is not None:
                 st.write(st.session_state.portfolio_port[
                              st.session_state.portfolio_port.index.is_month_end == True].pct_change().dropna())
 
-                st.write(st.session_state.allocation[st.session_state.allocation.index.is_month_end == True])
+                st.write(st.session_state.alloc[st.session_state.alloc.index.is_month_end == True])
 
                 if monthly == True:
                     st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
