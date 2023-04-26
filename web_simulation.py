@@ -125,9 +125,13 @@ if file is not None:
                                                                                                    commission,
                                                                                                    rebal)
 
-
-                st.write(pd.concat([st.session_state.portfolio_port[
-                             st.session_state.portfolio_port.index.is_month_end == True].pct_change().dropna()]*5, axis=1))
+                a= pd.concat([st.session_state.portfolio_port[
+                               st.session_state.portfolio_port.index.is_month_end == True].pct_change().dropna()] 
+                             * len(st.session_state.input_list), axis=1)
+                          
+                
+                a.columns = st.session_state.input_list
+                st.write(a)
 
 
                 st.write(st.session_state.alloc[st.session_state.alloc.index.is_month_end == True].shift(1).dropna())
