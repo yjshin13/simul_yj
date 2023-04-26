@@ -138,6 +138,12 @@ if file is not None:
                                                      st.session_state.allocation],
                                                     axis=1)
 
+                st.write(st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True].pct_change().shift(-1).dropna())
+
+                st.write(st.session_state.allocation[st.session_state.allocation.index.is_month_end==True])
+
+
+
             if 'slider' in st.session_state:
 
                 START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
