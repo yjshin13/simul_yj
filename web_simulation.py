@@ -14,11 +14,11 @@ if file is not None:
 
     @st.cache
     def load_data(file_path):
-        df = pd.read_excel(file_path, sheet_name="sheet1",
-                           names=None, dtype={'Date': datetime}, index_col=0, header=0)
+        df = pd.read_excel(file_path, sheet_name="data",
+                           names=None, dtype={'Date': datetime}, index_col=0, header=2)
 
-        df2 = pd.read_excel(file_path, sheet_name="sheet2",
-                           names=None, dtype={'Date': datetime}, index_col=0, header=0)
+        df2 = pd.read_excel(file_path, sheet_name="sheet1", header=1, nrows=2)
+
         return df, df2
 
 
