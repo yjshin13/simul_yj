@@ -127,7 +127,7 @@ if file is not None:
                 st.session_state.contribution = ((st.session_state.input_price[
                                st.session_state.input_price.index.is_month_end == True].pct_change().dropna())*
                           st.session_state.alloc[st.session_state.alloc.index.is_month_end == True].
-                          shift(1).dropna()).sum(axis=0).apply(lambda x: '{:.2%}'.format(x))
+                          shift(1).dropna()).sum(axis=0)
 
                 if monthly == True:
                     st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
