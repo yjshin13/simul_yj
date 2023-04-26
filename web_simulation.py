@@ -18,7 +18,7 @@ if file is not None:
                            names=None, dtype={'Date': datetime}, index_col=0, header=2)
 
         df2 = pd.read_excel(file_path, sheet_name="data",
-                           names=None, index_col=0, header=0, nrows=2)
+                           names=None, index_col=0, header=0, nrows=1)
 
         return df, df2
 
