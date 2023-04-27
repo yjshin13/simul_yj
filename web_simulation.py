@@ -125,8 +125,8 @@ if file is not None:
                                                                                                    commission,
                                                                                                    rebal)
 
-                st.session_state.contribution = st.session_state.alloc_amount.iloc[-1,:].values \
-                                                / st.session_state.alloc_amount.iloc[0,:].values
+                st.session_state.contribution = st.session_state.alloc_amount.iloc[-1,:]/st.session_state.alloc_amount.iloc[0,:]
+
 
 
                 if monthly == True:
@@ -242,7 +242,7 @@ if file is not None:
                     st.write(st.session_state.contribution.sum())
 
                     x = (st.session_state.contribution * 100)
-                    y = st.session_state.input_price.index
+                    y = st.session_state.contribution.index
 
                     fig_bar, ax_bar = plt.subplots(figsize=(18, 10.8))
                     width = 0.75  # the width of the bars
