@@ -307,7 +307,8 @@ if file is not None:
 
                     st.pyplot(fig2)
 
-                st.write(st.session_state.alloc_amount.iloc[-1]/st.session_state.portfolio_port[-1])
+                st.write(st.session_state.alloc_amount.iloc[-1]/st.session_state.portfolio_port[-1] - 
+                         st.session_state.alloc_amount.iloc[0]/st.session_state.portfolio_port[0])
 
 
         # if 'result' in st.session_state:
