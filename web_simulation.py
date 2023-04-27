@@ -306,6 +306,8 @@ if file is not None:
                     # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
 
                     st.pyplot(fig2)
+                    
+                st.write(st.session_state.contribution)
 
 
         # if 'result' in st.session_state:
