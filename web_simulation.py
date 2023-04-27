@@ -258,7 +258,7 @@ if file is not None:
                     plt.yticks(fontsize=15)
                     plt.xlabel('Contribution(%)', fontsize=15, labelpad=20)
                     plt.ylabel('Assets', fontsize=15, labelpad=15)
-                    ax_bar.margins(x=0.0, y=0.0)
+                    ax_bar.margins(x=min(x), y=min(y))
 
                     st.pyplot(fig_bar)
 
