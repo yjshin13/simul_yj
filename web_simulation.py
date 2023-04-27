@@ -125,7 +125,7 @@ if file is not None:
                                                                                                    commission,
                                                                                                    rebal)
 
-                st.session_state.contribution = (st.session_state.alloc_amount.iloc[-1])
+                st.session_state.contribution = (st.session_state.alloc_amount.iloc[-1]/st.session_state.alloc_amount.iloc[0])
 
 
 
