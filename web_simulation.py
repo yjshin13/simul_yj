@@ -240,7 +240,7 @@ if file is not None:
                 with col_a:
 
                     st.write("Contribution")
-                    st.write(((st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True])))
+                    st.write(((st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True]/st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_frist==True])))
 
 
                     x = (st.session_state.contribution * 100)
