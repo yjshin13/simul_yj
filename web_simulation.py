@@ -309,7 +309,7 @@ if file is not None:
 
                 st.write(st.session_state.alloc_amount.iloc[-1])
                 st.write(st.session_state.alloc_amount.iloc[0])
-                st.write(st.session_state.alloc_amount.iloc[-1].div()st.session_state.alloc_amount.iloc[0])
+                st.write(st.session_state.alloc_amount.iloc[-1].div(st.session_state.alloc_amount.iloc[0]))
 
 
         # if 'result' in st.session_state:
