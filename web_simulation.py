@@ -246,7 +246,7 @@ if file is not None:
 
                     for bars in bar:
                         width = bars.get_width()
-                        posx = width + 0.5
+                        posx = width + 0.1
                         posy = bars.get_y() + bars.get_height() * 0.5
                         ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
 
