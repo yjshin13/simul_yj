@@ -70,7 +70,7 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
             last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
             alloc_float.iloc[i+1,:] = last_alloc/last_alloc.sum()
-            alloc_amount = portfolio[i_rebal]*(1-cost)*\
+            alloc_amount[i+1,:] = portfolio[i_rebal]*(1-cost)*\
                                (assets_data.iloc[j]/assets_data.iloc[j_rebal] * allocation.iloc[k])
 
         else:
@@ -83,7 +83,7 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
             last_alloc = assets_data.iloc[j] / assets_data.iloc[j_rebal] * allocation.iloc[k]
             alloc_float.iloc[i+1,:] = last_alloc/last_alloc.sum()
-            alloc_amount = portfolio[i_rebal]*(1-cost)*\
+            alloc_amount[i+1,:] = portfolio[i_rebal]*(1-cost)*\
                                (assets_data.iloc[j]/assets_data.iloc[j_rebal] * allocation.iloc[k])
 
     # portfolio.index = portfolio.index.date
