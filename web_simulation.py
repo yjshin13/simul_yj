@@ -241,7 +241,7 @@ if file is not None:
                     st.write("Contribution")
 
                     st.write((st.session_state.contribution * 100).sum())
-                    st.write((st.session_state.contribution * 100).min().round(2))
+                    st.write((st.session_state.contribution * 100).min())
                     x = (st.session_state.contribution * 100)
                     y = st.session_state.contribution.index
 
@@ -259,7 +259,7 @@ if file is not None:
                     plt.yticks(fontsize=15)
                     plt.xlabel('Contribution(%)', fontsize=15, labelpad=20)
                     plt.ylabel('Assets', fontsize=15, labelpad=15)
-                    ax_bar.margins(x=0, y=0)
+                    ax_bar.margins(x=(st.session_state.contribution * 100).min(), y=0)
 
                     st.pyplot(fig_bar)
 
