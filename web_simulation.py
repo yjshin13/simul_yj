@@ -241,7 +241,7 @@ if file is not None:
                     st.write("Contribution")
 
                     st.write((st.session_state.contribution * 100).sum())
-                    st.write((st.session_state.contribution * 100).min())
+                    st.write((st.session_state.contribution * 100).min().round(2))
                     x = (st.session_state.contribution * 100)
                     y = st.session_state.contribution.index
 
