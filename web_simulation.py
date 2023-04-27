@@ -240,7 +240,7 @@ if file is not None:
                 with col_a:
 
                     st.write("Contribution")
-                    st.write((st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].shift/
+                    st.write((st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True]/
                              st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].shift(-1)).dropna().sum(axis=0).sum())
 
 
