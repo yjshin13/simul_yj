@@ -241,7 +241,7 @@ if file is not None:
 
                     st.write("Contribution")
                     st.write(((st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True]/
-                             st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].shift(-1))-1).dropna().sum(axis=0).sum())
+                             st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True])))
 
 
                     x = (st.session_state.contribution * 100)
