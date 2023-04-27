@@ -181,7 +181,7 @@ if file is not None:
 
                 with col23:
                     st.write('Assets')
-                    st.dataframe(st.session_state.input_price.astype('float64').round(2))
+                    st.dataframe((st.session_state.input_price/st.session_state.input_price[0]).astype('float64').round(2))
 
                     st.download_button(
                         label="Assets",
