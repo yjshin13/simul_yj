@@ -312,7 +312,7 @@ if file is not None:
 
                     st.pyplot(fig2)
 
-                st.write(st.session_state.alloc_amount)
+                st.write(st.session_state.alloc_amount.sum())
 
 
         # if 'result' in st.session_state:
