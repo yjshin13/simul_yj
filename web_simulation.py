@@ -126,7 +126,7 @@ if file is not None:
                                                                                                    rebal)
 
                 st.session_state.contribution = st.session_state.alloc_amount.iloc[-1,:]\
-                                                /st.session_state.alloc_amount.iloc[0,:]
+                                                /st.session_state.alloc_amount.iloc[0,:] -1 
 
 
 
