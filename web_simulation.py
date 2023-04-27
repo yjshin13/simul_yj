@@ -239,7 +239,7 @@ if file is not None:
                 with col_a:
 
                     st.write("Contribution")
-                    st.write(st.session_state.contribution.sum(axis=1))
+                    st.write(st.session_state.contribution.sum())
 
                     x = (st.session_state.contribution * 100)
                     y = st.session_state.contribution.index
