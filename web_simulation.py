@@ -242,7 +242,7 @@ if file is not None:
                     st.write(st.session_state.contribution.sum())
 
                     x = (st.session_state.contribution * 100)
-                    y = st.session_state.contribution.index
+                    y = st.session_state.input_price.index
 
                     fig_bar, ax_bar = plt.subplots(figsize=(18, 10.8))
                     width = 0.75  # the width of the bars
