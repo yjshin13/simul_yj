@@ -125,10 +125,9 @@ if file is not None:
                                                                                                    commission,
                                                                                                    rebal)
                 st.session_state.contribution = (((np.log(st.session_state.
-                                                          input_price[st.session_state.
-                                                          input_price.index.is_month_end==True]).diff().dropna())*
-                          st.session_state.alloc[st.session_state.alloc.index.is_month_end == True].
-                          shift(1).dropna())).sum(axis=0)
+                                                          input_price).diff().dropna())*
+                          st.session_state.alloc.shift(1).dropna())).sum(axis=0)
+                          
 
                 if monthly == True:
                     st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
