@@ -125,7 +125,8 @@ if file is not None:
                                                                                                    commission,
                                                                                                    rebal)
 
-                st.session_state.contribution = (st.session_state.alloc_amount.iloc[-1]/st.session_state.alloc_amount.iloc[0])
+                st.session_state.contribution = np.log(st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].iloc[1:]\
+                                                /st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].iloc[:-1]).sum(axis=0)
 
 
 
@@ -307,8 +308,6 @@ if file is not None:
 
                     st.pyplot(fig2)
 
-                st.write(st.session_state.alloc_amount.iloc[-1]/st.session_state.portfolio_port[-1] - 
-                         st.session_state.alloc_amount.iloc[0]/st.session_state.portfolio_port[0])
 
 
         # if 'result' in st.session_state:
