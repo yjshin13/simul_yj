@@ -124,8 +124,9 @@ if file is not None:
                     st.session_state.alloc= backtest.simulation(st.session_state.input_price,st.session_state.slider,
                                                                                                    commission,
                                                                                                    rebal)
-                st.session_state.contribution = (((st.session_state.input_price[
-                               st.session_state.input_price.index.is_month_end == True].pct_change().dropna())*
+                st.session_state.contribution = (((np.log(st.session_state.
+                                                          input_price[st.session_state.
+                                                          input_price.index.is_month_end==True]).diff().dropna())*
                           st.session_state.alloc[st.session_state.alloc.index.is_month_end == True].
                           shift(1).dropna())).sum(axis=0)
 
