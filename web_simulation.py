@@ -125,13 +125,7 @@ if file is not None:
                                                                                                    commission,
                                                                                                    rebal)
 
-                # st.session_state.contribution = (((np.log(st.session_state.
-                #                                           input_price).diff().dropna())*
-                #           st.session_state.alloc_amount.shift(1).dropna()))
-                #
-                # st.session_state.contribution = (((np.log(st.session_state.
-                #                                           input_price).diff().dropna())*
-                #           st.session_state.alloc.shift(1).dropna())).sum(axis=0)
+                #st.session_state.contribution = st.session_state.alloc_amount / st.session_state.alloc_amount[0]
 
 
                 if monthly == True:
@@ -312,7 +306,7 @@ if file is not None:
 
                     st.pyplot(fig2)
 
-                st.write(st.session_state.alloc_amount.sum())
+                st.write(st.session_state.alloc_amount.iloc[0])
 
 
         # if 'result' in st.session_state:
