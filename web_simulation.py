@@ -74,8 +74,8 @@ if file is not None:
                 monthly = True
                 annualization = 12
                 freq = 2
-
-            st.session_state.input_list = input_list.append(pd.Index(['Cash']))
+            # 
+            # st.session_state.input_list = input_list.append(pd.Index(['Cash']))
 
             if daily == True:
                 st.session_state.input_price = input_price[
@@ -111,6 +111,8 @@ if file is not None:
                 if i % 4 == 0:
                     with col4:
                         slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.1)
+
+                
 
                 slider['Cash'] = 1-slider.sum()
 
