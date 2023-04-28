@@ -124,7 +124,7 @@ if file is not None:
                     st.session_state.alloc_amount= backtest.simulation(st.session_state.input_price,st.session_state.slider,
                                                                                                    commission,
                                                                                                    rebal)
-  
+
 
 
                 st.session_state.contribution = (-1)*(st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].shift(1).dropna()\
@@ -196,7 +196,7 @@ if file is not None:
 
                 with col24:
                     st.write('Allocation(floating)')
-                    st.dataframe((st.session_state.allocation))
+                    st.write((st.session_state.allocation))
 
                     st.download_button(
                         label="Allocation",
