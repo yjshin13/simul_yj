@@ -125,7 +125,7 @@ if file is not None:
                                                                                                    commission,
                                                                                                    rebal)
 
-                st.session_state.contribution = (st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].iloc[1:]\
+                st.session_state.contribution = (st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].shift(1).dropna()\
                                                 /st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].iloc[:-1]-1).sum(axis=0)
 
 
