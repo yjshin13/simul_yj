@@ -98,23 +98,20 @@ if file is not None:
 
                 if i % 4 == 1:
                     with col1:
-                        slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.1)
+                        slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.01)
 
                 if i % 4 == 2:
                     with col2:
-                        slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.1)
+                        slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.01)
 
                 if i % 4 == 3:
                     with col3:
-                        slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.1)
+                        slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.01)
 
                 if i % 4 == 0:
                     with col4:
-                        slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.1)
+                        slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.01)
 
-                # 
-                # 
-                # slider.loc['Cash'] = 1-slider.sum()
 
 
 
