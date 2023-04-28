@@ -75,7 +75,7 @@ if file is not None:
                 annualization = 12
                 freq = 2
             #
-            # st.session_state.input_list = input_list.append(pd.Index(['Cash']))
+            st.session_state.input_list = input_list
 
             if daily == True:
                 st.session_state.input_price = input_price[
