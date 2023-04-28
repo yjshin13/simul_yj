@@ -34,7 +34,7 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
     portfolio = portfolio[portfolio.index >= allocation.index[0]]
     alloc_float = pd.DataFrame(index=assets_data.index, columns=assets_data.columns)
     alloc_float = alloc_float[alloc_float.index>=portfolio.index[0]]
-    alloc_amount = alloc_float
+    alloc_amount = alloc_float.copy()
     portfolio[0] = 100
 
 
