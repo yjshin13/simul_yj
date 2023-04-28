@@ -112,9 +112,9 @@ if file is not None:
                     with col4:
                         slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.1)
 
-
-
-                slider.loc['Cash'] = 1-slider.sum()
+                # 
+                # 
+                # slider.loc['Cash'] = 1-slider.sum()
 
 
 
