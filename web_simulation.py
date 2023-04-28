@@ -245,7 +245,7 @@ if file is not None:
                 with col_a:
 
                     st.write("Contribution")
-                    st.write((st.session_state.contribution).sum())
+                    st.write((st.session_state.contribution))
 
 
 
