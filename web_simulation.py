@@ -125,8 +125,7 @@ if file is not None:
                                                                                                    commission,
                                                                                                    rebal)
 
-
-
+                st.dataframe((st.session_state.allocation))
                 st.session_state.contribution = (-1)*(st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].shift(1).dropna()\
                                                 /st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].iloc[:-1]-1).sum(axis=0)
 
@@ -138,7 +137,7 @@ if file is not None:
                 st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
                 st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
                 st.session_state.input_price.index = st.session_state.input_price.index.date
-                #st.session_state.allocation.index = st.session_state.allocation.index.date
+                st.session_state.allocation.index = st.session_state.allocation.index.date
                 st.session_state.result = pd.concat([st.session_state.portfolio_port,
                                                      st.session_state.drawdown,
                                                      st.session_state.input_price,
