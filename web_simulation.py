@@ -98,19 +98,19 @@ if file is not None:
 
                 if i % 4 == 1:
                     with col1:
-                        slider[k] = st.slider(str(k), 0.0, 100.0,  round(float(weight[k]*100),1), float(0.01))
+                        slider[k] = st.slider(str(k), 0.0, 100.0,  round(float(weight[k]*100),1), 0.1)
 
                 if i % 4 == 2:
                     with col2:
-                        slider[k] = st.slider(str(k), 0.0, 100.0,  round(float(weight[k]*100),1), float(0.01))
+                        slider[k] = st.slider(str(k), 0.0, 100.0,  round(float(weight[k]*100),1), 0.1)
 
                 if i % 4 == 3:
                     with col3:
-                        slider[k] = st.slider(str(k), 0.0, 100.0,  round(float(weight[k]*100),1), float(0.01))
+                        slider[k] = st.slider(str(k), 0.0, 100.0,  round(float(weight[k]*100),1), 0.1)
 
                 if i % 4 == 0:
                     with col4:
-                        slider[k] = st.slider(str(k), 0.0, 100.0, round(float(weight[k]*100),1), float(1.01))
+                        slider[k] = st.slider(str(k), 0.0, 100.0, round(float(weight[k]*100),1), 0.1)
 
             st.write(str("Total Weight:   ") + str((slider.sum())) + str("%"))
 
