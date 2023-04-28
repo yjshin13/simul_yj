@@ -98,19 +98,19 @@ if file is not None:
 
                 if i % 4 == 1:
                     with col1:
-                        slider[k] = st.slider(str(k), 0.0, 100.0,  round(float(weight[k]*100),1), 0.1)
+                        slider[k] = st.slider(str(k), 0, 100,  weight[k]*100, 1)
 
                 if i % 4 == 2:
                     with col2:
-                        slider[k] = st.slider(str(k), 0.0, 100.0,  round(float(weight[k]*100),1), 0.1)
+                        slider[k] = st.slider(str(k), 0, 100, weight[k] * 100, 1)
 
                 if i % 4 == 3:
                     with col3:
-                        slider[k] = st.slider(str(k), 0.0, 100.0,  round(float(weight[k]*100),1), 0.1)
+                        slider[k] = st.slider(str(k), 0, 100, weight[k] * 100, 1)
 
                 if i % 4 == 0:
                     with col4:
-                        slider[k] = st.slider(str(k), 0.0, 100.0, round(float(weight[k]*100),1), 0.1)
+                        slider[k] = st.slider(str(k), 0, 100, weight[k] * 100, 1)
 
             st.write(str("Total Weight:   ") + str((slider.sum().round(2))) + str("%"))
 
@@ -125,7 +125,8 @@ if file is not None:
                                                                                                    commission,
                                                                                                    rebal)
 
-                st.write((st.session_state.allocation))
+
+
                 st.session_state.contribution = (-1)*(st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].shift(1).dropna()\
                                                 /st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].iloc[:-1]-1).sum(axis=0)
 
