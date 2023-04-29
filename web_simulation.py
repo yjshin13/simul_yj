@@ -189,7 +189,7 @@ if file is not None:
                     #     file_name='MAX Drawdown.csv')
 
                 with col23:
-                    st.write('Assets')
+                    st.write('Assets(normalized)')
                     st.dataframe((100*st.session_state.input_price/st.session_state.input_price.iloc[0,:]).
                                   astype('float64').round(2))
                     #
