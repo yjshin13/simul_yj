@@ -242,6 +242,7 @@ if file is not None:
                 with col_a:
 
                     st.write("Contribution(total "+str(round(100*(st.session_state.contribution).sum(),2))+"%)")
+                    st.session_state.contribution.index = pd.Index(st.session_state.contribution.index.map(lambda x: str(x)[:7]))
 
 
 
