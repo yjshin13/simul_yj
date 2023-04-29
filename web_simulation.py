@@ -262,34 +262,11 @@ if file is not None:
                     plt.xticks(fontsize=15)
                     plt.yticks(fontsize=15)
                     plt.xlabel('Contribution(%)', fontsize=15, labelpad=20)
-                    plt.ylabel('Assets', fontsize=15, labelpad=15)
                     #ax_bar.margins(x=0, y=0)
 
                     st.pyplot(fig_bar)
 
-                    # st.write("Return Distribution")
-                    #
-                    # # plt.hist(Daily_RET, bins=100, label="Daily Return", color="salmon", rwidth=1, density=True)
-                    # # plt.legend()
-                    # # plt.xticks(np.arange(-0.1, 0.11,0.01), ['{:.1%}'.format(x) for x in np.arange(-0.1, 0.11,0.01)])
-                    # # plt.margins(x=-0.1, y=0)
-                    # #
-                    #
-                    # fig1 = plt.figure(figsize=(15, 8.8))
-                    # sns.histplot(data=Daily_RET, bins=50, color="blue", legend=None, stat="probability", alpha=0.5, kde=True)
-                    #
-                    #
-                    # plt.xlim([Daily_RET.min(), Daily_RET.max()])
-                    # plt.ylim([0, 0.5])
-                    # plt.xlabel("Daily Return", size=12)
-                    # plt.ylabel("Probability", size=12)
-                    # plt.xticks(np.arange(Daily_RET.min().round(2), Daily_RET.max().round(2), (Daily_RET.max().round(2)-Daily_RET.min().round(2))/10), fontsize=12)
-                    # plt.grid(True, alpha=1, linestyle="--")
-                    # plt.rcParams["figure.figsize"] = [7, 5]
-                    # #plt.rcParams["figure.dpi"] = 500
-                    #
-                    #
-                    # st.pyplot(fig1)
+  
 
 
 
@@ -312,18 +289,3 @@ if file is not None:
 
                     st.pyplot(fig2)
 
-
-
-        # if 'result' in st.session_state:
-        #
-        #     st.download_button(
-        #             label="Net Asset Value",
-        #             data=st.session_state.result.to_csv(index=True),
-        #             mime='text/csv',
-        #             file_name='Net Asset Value.csv')
-        #
-        #     st.download_button(
-        #             label="Correlation Matrix",
-        #             data=st.session_state.input_price.pct_change().dropna().corr().round(2).to_csv(index=True),
-        #             mime='text/csv',
-        #             file_name='Correlation Matrix.csv')
