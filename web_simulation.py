@@ -98,19 +98,19 @@ if file is not None:
 
                 if i % 4 == 1:
                     with col1:
-                        slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.01)
+                        slider[k] = st.number_input(str(k), float(0), float(100),  float(weight[k]*100), 0.01)
 
                 if i % 4 == 2:
                     with col2:
-                        slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.01)
+                        slider[k] = st.number_input(str(k), float(0), float(100),  float(weight[k]*100), 0.01)
 
                 if i % 4 == 3:
                     with col3:
-                        slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.01)
+                        slider[k] = st.number_input(str(k), float(0), float(100),  float(weight[k]*100), 0.01)
 
                 if i % 4 == 0:
                     with col4:
-                        slider[k] = st.slider(str(k), float(0), float(100),  float(weight[k]*100), 0.01)
+                        slider[k] = st.number_input(str(k), float(0), float(100),  float(weight[k]*100), 0.01)
 
 
 
@@ -131,7 +131,7 @@ if file is not None:
                 st.session_state.alloc =  st.session_state.allocation.copy()
                 st.session_state.alloc[st.session_state.alloc.index.is_month_end==True] = st.session_state.allocation.iloc[0]
                 st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()-1)
-                                                
+
                 st.session_state.contribution = (st.session_state.ret* (st.session_state.alloc.shift(1).dropna())).dropna().sum(axis=0)
 
                 if monthly == True:
