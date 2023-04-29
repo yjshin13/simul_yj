@@ -128,6 +128,10 @@ if file is not None:
                                                                                                    commission,
                                                                                                    rebal)
 
+                st.session_state.alloc =  st.session_state.allocation.copy()
+                st.session_state.alloc[st.session_state.alloc.index.is_month_end==True] = st.session_state.allocation.iloc[0]
+                st.write(st.session_state.alloc)
+
 
 
                 st.session_state.contribution = (((st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].iloc[1:])/
@@ -145,9 +149,6 @@ if file is not None:
                                                      st.session_state.input_price,
                                                      st.session_state.allocation],
                                                     axis=1)
-                
-
-
 
 
 
