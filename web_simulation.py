@@ -130,9 +130,9 @@ if file is not None:
 
                 st.session_state.alloc =  st.session_state.allocation.copy()
                 st.session_state.alloc[st.session_state.alloc.index.is_month_end==True] = st.session_state.allocation.iloc[0]
-                st.session_state.contribution = ((st.session_state.input_price.iloc[1:] /
-                                                 st.session_state.input_price.shift(1).dropna()-1)*\
-                                                (st.session_state.alloc.shift(1).dropna())).dropna()
+                st.session_state.log_ret = np.log((st.session_state.input_price.iloc[1:] /
+                                                 st.session_state.input_price.shift(1).dropna()))
+                st.session_state.contribution = (st.session_state.log_ret* (st.session_state.alloc.shift(1).dropna())).dropna()
 
                 if monthly == True:
                     st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
