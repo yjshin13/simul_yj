@@ -124,12 +124,12 @@ if file is not None:
 
                 st.session_state.slider = (slider*0.01).tolist()
                 st.session_state.portfolio_port, st.session_state.allocation,\
-                    st.session_state.alloc_amount= backtest.simulation(st.session_state.input_price,st.session_state.slider,
+                    st.session_state.allocation= backtest.simulation(st.session_state.input_price,st.session_state.slider,
                                                                                                    commission,
                                                                                                    rebal)
 
                 st.session_state.alloc =  st.session_state.allocation.copy()
-                st.session_state.alloc[st.session_state.alloc.index.is_month_end==True] = pd.DataFrame(st.session_state.slider).T
+                st.session_state.alloc[st.session_state.alloc.index.is_month_end==True] = st.session_state.allocation.iloc[0]
                 st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()-1)
 
                 st.session_state.contribution = (st.session_state.ret* (st.session_state.alloc.shift(1).dropna())).dropna().sum(axis=0)
@@ -196,7 +196,7 @@ if file is not None:
 
                 with col24:
                     st.write('Allocation(floating)')
-                    st.dataframe(st.session_state.alloc.applymap('{:.2%}'.format))
+                    st.dataframe(st.session_state.allocation.applymap('{:.2%}'.format))
 
                     st.download_button(
                         label="Allocation",
