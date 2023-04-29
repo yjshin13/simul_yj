@@ -196,11 +196,11 @@ if file is not None:
 
                 with col24:
                     st.write('Allocation(floating)')
-                    st.dataframe(st.session_state.allocation.applymap('{:.2%}'.format))
+                    st.dataframe(st.session_state.alloc.applymap('{:.2%}'.format))
 
                     st.download_button(
                         label="Allocation",
-                        data=st.session_state.allocation.applymap('{:.2%}'.format).to_csv(index=True),
+                        data=st.session_state.alloc.applymap('{:.2%}'.format).to_csv(index=True),
                         mime='text/csv',
                         file_name='Allocation.csv')
 
