@@ -142,7 +142,7 @@ if file is not None:
                 st.session_state.result = pd.concat([st.session_state.portfolio_port,
                                                      st.session_state.drawdown,
                                                      st.session_state.input_price,
-                                                     st.session_state.alloc.applymap('{:.4%}'.format)],
+                                                     st.session_state.alloc],
                                                     axis=1)
                 # st.session_state.result = st.session_state.result[(st.session_state.result.index>=st.session_state.portfolio_port.index[0]) &
                 #                                                   (st.session_state.result.index<=st.session_state.portfolio_port.index[-1])]
@@ -202,7 +202,7 @@ if file is not None:
                 with col24:
                     st.write('Allocation(floating)')
                     st.dataframe(st.session_state.alloc.applymap('{:.2%}'.format))
-                    # 
+                    #
                     # st.download_button(
                     #     label="Allocation",
                     #     data=st.session_state.alloc.applymap('{:.2%}'.format).to_csv(index=True),
