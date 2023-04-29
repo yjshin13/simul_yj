@@ -142,13 +142,14 @@ if file is not None:
                 st.session_state.result = pd.concat([st.session_state.portfolio_port,
                                                      st.session_state.drawdown,
                                                      st.session_state.input_price,
-                                                     st.session_state.allocation],
+                                                     st.session_state.alloc],
                                                     axis=1)
-                st.session_state.result = st.session_state.result[(st.session_state.result.index>=st.session_state.portfolio_port.index[0]) &
-                                                                  (st.session_state.result.index<=st.session_state.portfolio_port.index[-1])]
+                # st.session_state.result = st.session_state.result[(st.session_state.result.index>=st.session_state.portfolio_port.index[0]) &
+                #                                                   (st.session_state.result.index<=st.session_state.portfolio_port.index[-1])]
+
                 st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
                 st.session_state.input_price.index = st.session_state.input_price.index.date
-                st.session_state.allocation.index = st.session_state.allocation.index.date
+                st.session_state.alloc.index = st.session_state.alloc.index.date
 
 
 
