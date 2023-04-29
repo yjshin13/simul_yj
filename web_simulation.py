@@ -131,7 +131,7 @@ if file is not None:
 
 
                 st.session_state.contribution = (((st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].iloc[1:])/
-                                                 (st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].shift(1).dropna()))-1).sum(axis=0)
+                                                 (st.session_state.alloc_amount[st.session_state.alloc_amount.index.is_month_end==True].shift(1).dropna()))).sum(axis=0)
 
                 if monthly == True:
                     st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
@@ -169,7 +169,7 @@ if file is not None:
 
                     st.download_button(
                         label="NAV",
-                        data=st.session_state.portfolio_port.to_csv(index=True),
+                        data=st.result.portfolio_port.to_csv(index=True),
                         mime='text/csv',
                         file_name='Net Asset Value.csv')
 
