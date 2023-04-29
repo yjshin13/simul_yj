@@ -46,7 +46,7 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
     last_alloc = allocation.iloc[0].copy()
     alloc_float.iloc[0,:] = last_alloc.copy()
-    alloc_amount.iloc[0,:] = last_alloc.copy * 100
+    alloc_amount.iloc[0,:] = last_alloc.copy() * 100
 
     for i in stqdm(range(0, len(portfolio)-1)):
 
