@@ -123,12 +123,12 @@ if file is not None:
 
 
                 st.session_state.slider = (slider*0.01).tolist()
-                st.session_state.portfolio_port, st.session_state.allocation,\
+                st.session_state.portfolio_port, st.session_state.allocation_f,\
                     st.session_state.allocation= backtest.simulation(st.session_state.input_price,st.session_state.slider,
                                                                                                    commission,
                                                                                                    rebal)
 
-                st.session_state.alloc =  st.session_state.allocation.copy()
+                st.session_state.alloc =  st.session_state.allocation_f.copy()
                 st.session_state.alloc[st.session_state.alloc.index.is_month_end==True] = st.session_state.allocation.iloc[0]
                 st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()-1)
 
