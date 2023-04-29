@@ -61,7 +61,7 @@ if file is not None:
 
             with col44:
 
-                commission = st.number_input('Commission(%)')
+                commission = st.slider('Commission(%)')
 
             if option1 == 'Daily':
                 daily = True
