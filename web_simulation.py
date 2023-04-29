@@ -300,7 +300,7 @@ if file is not None:
                     # plt.rc('font', family='Malgun Gothic')
                     plt.rcParams['axes.unicode_minus'] = False
 
-                    st.session_state.corr = st.session_state.input_price.dropna(['Cash']).pct_change().dropna().corr().round(2)
+                    st.session_state.corr = st.session_state.input_price.drop(['Cash'], axis=1).pct_change().dropna().corr().round(2)
                     st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
                     st.session_state.corr.columns = st.session_state.corr.index
                     # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
