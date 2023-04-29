@@ -44,9 +44,9 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
     j_rebal = 0
     i_rebal=0
 
-    last_alloc = allocation.iloc[0]
-    alloc_float.iloc[0,:] = last_alloc
-    alloc_amount.iloc[0,:] = last_alloc * 100
+    last_alloc = allocation.iloc[0].copy()
+    alloc_float.iloc[0,:] = last_alloc.copy()
+    alloc_amount.iloc[0,:] = last_alloc.copy * 100
 
     for i in stqdm(range(0, len(portfolio)-1)):
 
@@ -89,7 +89,7 @@ def simulation(assets_data, allocation, commission=0, rebal='Monthly'):
 
     # portfolio.index = portfolio.index.date
 
-    return portfolio.astype('float64').round(3), alloc_float.dropna(), alloc_amount
+    return portfolio.astype('float64').round(3), alloc_float.dropna(), allocation
 
 def drawdown(nav: pd.Series):
     """
