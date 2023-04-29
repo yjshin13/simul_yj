@@ -149,6 +149,7 @@ if file is not None:
 
                 st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
                 st.session_state.input_price.index = st.session_state.input_price.index.date
+                st.session_state.drawdown.index = st.session_state.drawdown.index.date
                 st.session_state.alloc.index = st.session_state.alloc.index.date
 
 
