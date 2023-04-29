@@ -169,7 +169,7 @@ if file is not None:
 
                     st.download_button(
                         label="NAV",
-                        data=st.result.portfolio_port.to_csv(index=True),
+                        data=st.session_state.result.to_csv(index=True),
                         mime='text/csv',
                         file_name='Net Asset Value.csv')
 
