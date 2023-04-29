@@ -241,8 +241,7 @@ if file is not None:
 
                 with col_a:
 
-                    st.write("Contribution")
-                    st.write("Total: "+str(round(100*(st.session_state.contribution).sum(),2))+"%")
+                    st.write("Contribution(total "+str(round(100*(st.session_state.contribution).sum(),2))+"%)")
 
 
 
