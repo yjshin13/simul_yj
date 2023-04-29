@@ -168,46 +168,46 @@ if file is not None:
                 col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
 
                 with col21:
-                    st.write('NAV')
+                    st.write('Result')
                     st.dataframe(st.session_state.portfolio_port.round(2))
 
                     st.download_button(
-                        label="NAV",
+                        label="Result",
                         data=st.session_state.result.to_csv(index=True),
                         mime='text/csv',
-                        file_name='Net Asset Value.csv')
+                        file_name='Result.csv')
 
                 with col22:
                     st.write('MDD')
                     st.dataframe(st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)))
 
-                    st.download_button(
-                        label="MDD",
-                        data=st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)).to_csv(index=True),
-                        mime='text/csv',
-                        file_name='MAX Drawdown.csv')
+                    # st.download_button(
+                    #     label="MDD",
+                    #     data=st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)).to_csv(index=True),
+                    #     mime='text/csv',
+                    #     file_name='MAX Drawdown.csv')
 
                 with col23:
                     st.write('Assets')
                     st.dataframe((100*st.session_state.input_price/st.session_state.input_price.iloc[0,:]).
                                   astype('float64').round(2))
-
-                    st.download_button(
-                        label="Assets",
-                        data=(100*st.session_state.input_price/st.session_state.input_price.iloc[0,:]).
-                                  astype('float64').round(2).to_csv(index=True),
-                        mime='text/csv',
-                        file_name='Assets.csv')
+                    #
+                    # st.download_button(
+                    #     label="Assets",
+                    #     data=(100*st.session_state.input_price/st.session_state.input_price.iloc[0,:]).
+                    #               astype('float64').round(2).to_csv(index=True),
+                    #     mime='text/csv',
+                    #     file_name='Assets.csv')
 
                 with col24:
                     st.write('Allocation(floating)')
                     st.dataframe(st.session_state.alloc.applymap('{:.2%}'.format))
-
-                    st.download_button(
-                        label="Allocation",
-                        data=st.session_state.alloc.applymap('{:.2%}'.format).to_csv(index=True),
-                        mime='text/csv',
-                        file_name='Allocation.csv')
+                    # 
+                    # st.download_button(
+                    #     label="Allocation",
+                    #     data=st.session_state.alloc.applymap('{:.2%}'.format).to_csv(index=True),
+                    #     mime='text/csv',
+                    #     file_name='Allocation.csv')
 
 
                 col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
