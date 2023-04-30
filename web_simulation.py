@@ -181,7 +181,7 @@ if file is not None:
 
                 with col53:
 
-                    st.info("Annual Sharpe: " + str(Anuuual_Sharpe))
+                    st.info("Sharpe Ratio: " + str(Anuuual_Sharpe))
 
                 with col54:
 
