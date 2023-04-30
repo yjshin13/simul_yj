@@ -167,6 +167,26 @@ if file is not None:
                 MDD  =round(float(min(st.session_state.drawdown) * 100), 2)
                 Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
 
+                col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
+
+
+                with col50:
+                    st.info("Period: " + str(START_DATE) + " ~ " + str(END_DATE))
+
+                with col51:
+                    st.info("Annual Return: "+str(Anuuual_RET)+"%")
+
+                with col52:
+                    st.info("Annual Volatility: " + str(Anuuual_Vol) +"%")
+
+                with col53:
+
+                    st.info("Annual Sharpe: " + str(Anuuual_Sharpe))
+
+                with col54:
+
+                    st.info("MDD: " + str(MDD) + "%")
+
 
                 col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
 
@@ -212,26 +232,6 @@ if file is not None:
                     #     mime='text/csv',
                     #     file_name='Allocation.csv')
 
-
-                col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
-
-
-                with col50:
-                    st.info("Period: " + str(START_DATE) + " ~ " + str(END_DATE))
-
-                with col51:
-                    st.info("Annual Return: "+str(Anuuual_RET)+"%")
-
-                with col52:
-                    st.info("Annual Volatility: " + str(Anuuual_Vol) +"%")
-
-                with col53:
-
-                    st.info("Annual Sharpe: " + str(Anuuual_Sharpe))
-
-                with col54:
-
-                    st.info("MDD: " + str(MDD) + "%")
 
 
                 col31, col32 = st.columns([1, 1])
