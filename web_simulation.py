@@ -139,11 +139,11 @@ if file is not None:
 
 
                 st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
-                st.session_state.input_price = st.session_state.input_price[(st.session_state.input_price.index>=st.session_state.portfolio_port.index[0]) &
+                st.session_state.input_price_o = st.session_state.input_price[(st.session_state.input_price.index>=st.session_state.portfolio_port.index[0]) &
                                                                             (st.session_state.input_price.index<=st.session_state.portfolio_port.index[-1])]
                 st.session_state.result = pd.concat([st.session_state.portfolio_port,
                                                      st.session_state.drawdown,
-                                                     st.session_state.input_price,
+                                                     st.session_state.input_price_o,
                                                      st.session_state.alloc],
                                                     axis=1)
                 # st.session_state.result = st.session_state.result[(st.session_state.result.index>=st.session_state.portfolio_port.index[0]) &
@@ -212,7 +212,7 @@ if file is not None:
 
                 with col23:
                     st.write('Normalized Price')
-                    st.dataframe((100*st.session_state.input_price/st.session_state.input_price.iloc[0,:]).
+                    st.dataframe((100*st.session_state.input_price_o/st.session_state.input_price_o.iloc[0,:]).
                                   astype('float64').round(2))
                     #
                     # st.download_button(
