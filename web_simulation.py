@@ -200,7 +200,7 @@ if file is not None:
                     st.dataframe(st.session_state.portfolio_port.round(2))
 
                     st.download_button(
-                        label="Result",
+                        label="Download",
                         data=st.session_state.result.to_csv(index=True),
                         mime='text/csv',
                         file_name='Result.csv')
@@ -301,4 +301,11 @@ if file is not None:
                     # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
 
                     st.pyplot(fig2)
+                    
+                    st.download_button(
+                        label="Download",
+                        data=st.session_state.corr.to_csv(index=True),
+                        mime='text/csv',
+                        file_name='Result.csv')
+
 
