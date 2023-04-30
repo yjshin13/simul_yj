@@ -262,7 +262,7 @@ if file is not None:
                     x = (st.session_state.contribution * 100)
                     y = st.session_state.contribution.index
 
-                    fig_bar, ax_bar = plt.subplots(figsize=(18, 11.5))
+                    fig_bar, ax_bar = plt.subplots(figsize=(18, 11.3))
                     width = 0.75  # the width of the bars
                     bar = ax_bar.barh(y, x, color="lightblue", height=0.8, )
 
@@ -294,7 +294,7 @@ if file is not None:
                     st.write("Correlation Matrix")
 
                     # Increase the size of the heatmap.
-                    fig2 = plt.figure(figsize=(18, 11.5))
+                    fig2 = plt.figure(figsize=(15, 8.3))
                     # plt.rc('font', family='Malgun Gothic')
                     plt.rcParams['axes.unicode_minus'] = False
 
