@@ -143,7 +143,9 @@ if file is not None:
                                                                             (st.session_state.input_price.index<=st.session_state.portfolio_port.index[-1])]
                 st.session_state.result = pd.concat([st.session_state.portfolio_port,
                                                      st.session_state.drawdown,
+                                                     pd.DataFrame(),
                                                      st.session_state.input_price_o,
+                                                     pd.DataFrame(),
                                                      st.session_state.alloc],
                                                     axis=1)
                 # st.session_state.result = st.session_state.result[(st.session_state.result.index>=st.session_state.portfolio_port.index[0]) &
