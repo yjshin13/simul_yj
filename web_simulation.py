@@ -190,8 +190,10 @@ if file is not None:
 
                 with col23:
                     st.write('Normalized Price')
-                    st.dataframe((100*st.session_state.input_price/st.session_state.input_price.iloc[0,:]).
-                                  astype('float64').round(2))
+                    st.dataframe((100*st.session_state.input_price[(st.session_state.input_price.index>=st.session_state.portfolio_port.index[0])
+                                                                   & (st.session_state.input_price.index<=st.session_state.portfolio_port.index[-1])]
+                                                                   /st.session_state.input_price[(st.session_state.input_price.index>=st.session_state.portfolio_port.index[0])
+                                                                   & (st.session_state.input_price.index<=st.session_state.portfolio_port.index[-1])].iloc[0,:]).astype('float64').round(2))
                     #
                     # st.download_button(
                     #     label="Assets",
