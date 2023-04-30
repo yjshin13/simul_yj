@@ -281,7 +281,7 @@ if file is not None:
 
                     st.download_button(
                         label="Download",
-                        data=st.session_state.contribution.to_csv(index=True),
+                        data=(st.session_state.ret* (st.session_state.alloc.shift(1).dropna())).dropna().to_csv(index=True),
                         mime='text/csv',
                         file_name='Contribution.csv')
 
