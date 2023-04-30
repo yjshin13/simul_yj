@@ -96,19 +96,19 @@ if file is not None:
 
             for i, k in enumerate(st.session_state.input_list, start=0):
 
-                if i % 4 == 1:
+                if i % 4 == 0:
                     with col1:
                         slider[k] = st.number_input(str(k), float(0), float(100),  float(weight[k]*100), 0.5)
 
-                if i % 4 == 2:
+                if i % 4 == 1:
                     with col2:
                         slider[k] = st.number_input(str(k), float(0), float(100),  float(weight[k]*100), 0.5)
 
-                if i % 4 == 3:
+                if i % 4 == 2:
                     with col3:
                         slider[k] = st.number_input(str(k), float(0), float(100),  float(weight[k]*100), 0.5)
 
-                if i % 4 == 0:
+                if i % 4 == 3:
                     with col4:
                         slider[k] = st.number_input(str(k), float(0), float(100),  float(weight[k]*100), 0.5)
 
