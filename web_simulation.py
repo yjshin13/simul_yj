@@ -169,7 +169,7 @@ if file is not None:
                     col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
 
                     with col21:
-                        st.write('Net Asset Value')
+                        st.write('NAV')
                         st.dataframe(st.session_state.portfolio_port.round(2))
 
                         st.download_button(
@@ -179,7 +179,7 @@ if file is not None:
                             file_name='Result.csv')
 
                     with col22:
-                        st.write('Maximum Drawdown')
+                        st.write('MDD')
                         st.dataframe(st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)))
 
                         # st.download_button(
