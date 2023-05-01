@@ -320,7 +320,7 @@ if file is not None:
                             data=st.session_state.corr.to_csv(index=True),
                             mime='text/csv',
                             file_name='Correlation.csv')
-            st.session_state.summit = 2
+                    st.session_state.summit = 2
 
         else:
             with st.expander('Portfolio2', expanded=False):
