@@ -39,7 +39,7 @@ if file is not None:
 
     if (st.button('Summit') or ('input_list' in st.session_state)):
 
-        if 'summit' in st.session_state == 1:
+        if 'summit' in st.session_state:
             with st.expander('Portfolio', expanded=False):
 
                 input_price = input_price.dropna()
