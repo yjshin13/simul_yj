@@ -254,7 +254,7 @@ if file is not None:
 
                 with col_a:
 
-                    st.write("Contribution")
+                    st.write("Performance Contribution")
                     st.session_state.contribution.index = pd.Index(st.session_state.contribution.index.map(lambda x: str(x)[:7]))
 
 
