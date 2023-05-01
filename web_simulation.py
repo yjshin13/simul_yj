@@ -39,7 +39,7 @@ if file is not None:
 
     if (st.button('Summit') or ('input_list' in st.session_state)):
 
-        if summit == 1:
+        if 'summit' in st.session_state == 1:
             with st.expander('Portfolio', expanded=False):
 
                 input_price = input_price.dropna()
@@ -320,13 +320,13 @@ if file is not None:
                             data=st.session_state.corr.to_csv(index=True),
                             mime='text/csv',
                             file_name='Correlation.csv')
-            summit = 2
+            st.session_state.summit = 2
 
         else:
             with st.expander('Portfolio ', expanded=False):
 
                 a=1
-                
+
 
 
 
