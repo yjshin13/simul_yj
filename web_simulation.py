@@ -323,7 +323,7 @@ if file is not None:
             st.session_state.summit = 2
 
         else:
-            with st.expander('Portfolio ', expanded=False):
+            with st.expander('Portfolio2', expanded=False):
 
                 a=1
 
