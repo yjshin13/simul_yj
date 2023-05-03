@@ -39,7 +39,7 @@ if file is not None:
 
     if (st.button('Summit') or ('input_list' in st.session_state)):
 
-        with st.expander('Portfolio', expanded=False):
+        with st.expander('Portfolio', expanded=True):
 
             input_price = input_price.dropna()
 
@@ -267,7 +267,7 @@ if file is not None:
                     x = (st.session_state.contribution * 100)
                     y = st.session_state.contribution.index
 
-                    fig_bar, ax_bar = plt.subplots(figsize=(18, 11.32))
+                    fig_bar, ax_bar = plt.subplots(figsize=(18, 10))
                     width = 0.75  # the width of the bars
                     bar = ax_bar.barh(y, x, color="lightblue", height=0.8, )
 
