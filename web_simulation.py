@@ -267,7 +267,7 @@ if file is not None:
                     x = (st.session_state.contribution * 100)
                     y = st.session_state.contribution.index
 
-                    fig_bar, ax_bar = plt.subplots(figsize=(18, 10))
+                    fig_bar, ax_bar = plt.subplots(figsize=(18, 10.5))
                     width = 0.75  # the width of the bars
                     bar = ax_bar.barh(y, x, color="lightblue", height=0.8, )
 
