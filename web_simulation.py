@@ -290,6 +290,24 @@ if file is not None:
 
                     st.pyplot(fig_bar)
 
+                col61, col62 = st.columns([1, 1])
+
+                with col61:
+
+                    st.download_button(
+                        label="Download",
+                        data=st.session_state.portfolio_port.to_csv(index=True),
+                        mime='text/csv',
+                        file_name='Contribution.csv')
+
+                with col62:
+
+                    st.download_button(
+                        label="Download",
+                        data=st.session_state.drawdown.to_csv(index=True),
+                        mime='text/csv',
+                        file_name='Correlation.csv')
+
 
 
                 with col_b:
@@ -311,9 +329,9 @@ if file is not None:
 
                     st.pyplot(fig2)
 
-                col61, col62 = st.columns([1, 1])
+                col71, col72 = st.columns([1, 1])
 
-                with col61:
+                with col71:
 
                     st.download_button(
                         label="Download",
@@ -321,7 +339,7 @@ if file is not None:
                         mime='text/csv',
                         file_name='Contribution.csv')
 
-                with col62:
+                with col72:
 
                     st.download_button(
                         label="Download",
