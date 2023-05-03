@@ -259,10 +259,33 @@ if file is not None:
                 with col32:
                     st.write("MAX Drawdown")
                     st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
+                    
+                    
+                    
+                col61, col62 = st.columns([1, 1])
+
+                with col61:
+
+                    st.download_button(
+                        label="Download",
+                        data=st.session_state.portfolio_port.to_csv(index=True),
+                        mime='text/csv',
+                        file_name='Contribution.csv')
+
+                with col62:
+
+                    st.download_button(
+                        label="Download",
+                        data=st.session_state.drawdown.to_csv(index=True),
+                        mime='text/csv',
+                        file_name='Correlation.csv')
+
+
+
 
                 col_a, col_b, = st.columns([1,1])
-
-
+                
+                
                 with col_a:
 
                     st.write("Performance Contribution")
@@ -290,23 +313,6 @@ if file is not None:
 
                     st.pyplot(fig_bar)
 
-                col61, col62 = st.columns([1, 1])
-
-                with col61:
-
-                    st.download_button(
-                        label="Download",
-                        data=st.session_state.portfolio_port.to_csv(index=True),
-                        mime='text/csv',
-                        file_name='Contribution.csv')
-
-                with col62:
-
-                    st.download_button(
-                        label="Download",
-                        data=st.session_state.drawdown.to_csv(index=True),
-                        mime='text/csv',
-                        file_name='Correlation.csv')
 
 
 
