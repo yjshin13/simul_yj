@@ -261,11 +261,6 @@ if file is not None:
                     st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
 
 
-                st.write(" ")
-
-
-
-
                 col61, col62 = st.columns([1, 1])
 
                 with col61:
@@ -284,6 +279,9 @@ if file is not None:
                         mime='text/csv',
                         file_name='Correlation.csv')
 
+
+
+                st.write(" ")
 
 
 
