@@ -102,6 +102,8 @@ if file is not None:
             #
             # st.write(input_price.columns)
 
+            st.write("Allocation(%)")
+
             col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
             for i, k in enumerate(st.session_state.input_list, start=0):
