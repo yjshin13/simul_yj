@@ -182,6 +182,8 @@ if file is not None:
                 Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
                 MDD  =round(float(min(st.session_state.drawdown) * 100), 2)
                 Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
+                
+                st.write(" ")
 
                 col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
 
