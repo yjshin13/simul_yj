@@ -248,6 +248,7 @@ if file is not None:
                     #     mime='text/csv',
                     #     file_name='Allocation.csv')
 
+                st.write(" ")
 
 
                 col31, col32 = st.columns([1, 1])
@@ -281,7 +282,6 @@ if file is not None:
 
 
 
-                st.write(" ")
                 st.write(" ")
 
 
