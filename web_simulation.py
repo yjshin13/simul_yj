@@ -93,7 +93,7 @@ if file is not None:
 
 
             st.session_state.input_price = pd.concat([st.session_state.input_price,
-                                                      pd.DataFrame({'Cash': [1]*len(st.session_state.input_price)}, 
+                                                      pd.DataFrame({'Cash': [1]*len(st.session_state.input_price)},
                                                       index=st.session_state.input_price.index)], axis=1)
 
             col1, col2, col3 = st.columns([1, 1, 1])
@@ -290,15 +290,6 @@ if file is not None:
 
                     st.pyplot(fig_bar)
 
-                    st.download_button(
-                        label="Download",
-                        data=(st.session_state.ret* (st.session_state.alloc.shift(1).dropna())).dropna().to_csv(index=True),
-                        mime='text/csv',
-                        file_name='Contribution.csv')
-
-
-
-
 
 
                 with col_b:
@@ -319,6 +310,18 @@ if file is not None:
                     # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
 
                     st.pyplot(fig2)
+
+                col61, col62 = st.columns([1, 1])
+
+                with col61:
+
+                    st.download_button(
+                        label="Download",
+                        data=(st.session_state.ret* (st.session_state.alloc.shift(1).dropna())).dropna().to_csv(index=True),
+                        mime='text/csv',
+                        file_name='Contribution.csv')
+
+                with col62:
 
                     st.download_button(
                         label="Download",
