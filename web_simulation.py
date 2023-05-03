@@ -121,8 +121,8 @@ if file is not None:
 
 
             slider['Cash'] = 1 - slider.sum()
-            
-            st.wriet(slider)
+
+            st.write(slider)
 
 
             st.write(str("Total Weight:   ") + str(slider.sum().round(2)) + str("%"))
