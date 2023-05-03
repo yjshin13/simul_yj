@@ -121,11 +121,7 @@ if file is not None:
 
 
             slider['Cash'] = 100 - slider.sum()
-
-            st.write(slider)
-
-
-            st.write(str("Total Weight:   ") + str(slider.sum().round(2)) + str("%"))
+            st.write(str("Total Weight:   ") + str(slider.sum().round(2)-slider['Cash']) + str("%"))
 
             #########################[Graph Insert]#####################################
 
