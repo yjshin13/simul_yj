@@ -79,8 +79,8 @@ if file is not None:
                 monthly = True
                 annualization = 12
                 freq = 2
-
-            st.session_state.input_list = pd.concat([input_list, pd.DataFrame({'Cash' : [1]*len(input_list)})], axis=1)
+            #
+            st.session_state.input_list = input_list
 
             if daily == True:
                 st.session_state.input_price = input_price[
@@ -90,6 +90,9 @@ if file is not None:
                 st.session_state.input_price = input_price[(input_price.index >= start_date)
                                                            & (input_price.index <= end_date)
                                                            & (input_price.index.is_month_end == True)].dropna()
+
+            st.session_state.input_price = pd.concat([st.session_state.input_price,
+                                                      pd.DataFrame({'Cash': [1]*len(st.session_state.input_price)})], axis=1)
 
             col1, col2, col3 = st.columns([1, 1, 1])
 
