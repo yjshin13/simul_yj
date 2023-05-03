@@ -120,7 +120,7 @@ if file is not None:
 
 
 
-            slider['Cash'] = 1 - slider.sum()
+            st.write(1-slider.sum())
 
             st.write(slider)
 
