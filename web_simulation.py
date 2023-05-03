@@ -117,7 +117,7 @@ if file is not None:
                     with col4:
                         slider[k] = st.number_input(str(k), float(0), float(100),  float(weight[k]*100), 0.5)
 
-            st.write(slider.sum())
+            slider['Cash'] = 1 - slider.sum()
 
 
 
