@@ -79,8 +79,8 @@ if file is not None:
                 monthly = True
                 annualization = 12
                 freq = 2
-            #
-            st.session_state.input_list = input_list
+
+            st.session_state.input_list = pd.concat([input_list, pd.DataFrame({'Cash' : [1]*len(input_list)})], axis=1)
 
             if daily == True:
                 st.session_state.input_price = input_price[
@@ -121,7 +121,7 @@ if file is not None:
 
 
             slider['Cash'] = 100 - slider.sum()
-            st.write(str("Total Weight:   ") + str(slider.sum().round(2)-slider['Cash']) + str("%"))
+            st.write(str("Total Weight:   ") + str((slider.sum()-slider['Cash']).round(2)) + str("%"))
 
             #########################[Graph Insert]#####################################
 
