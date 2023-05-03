@@ -259,13 +259,13 @@ if file is not None:
                 with col32:
                     st.write("MAX Drawdown")
                     st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
-                    
-                    
-                st.write("")
+
+
+                st.write(" ")
 
 
 
-                    
+
                 col61, col62 = st.columns([1, 1])
 
                 with col61:
