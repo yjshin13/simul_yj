@@ -274,7 +274,7 @@ if file is not None:
                         label="Download",
                         data=st.session_state.portfolio_port.to_csv(index=True),
                         mime='text/csv',
-                        file_name='Contribution.csv')
+                        file_name='Daily Contribution.csv')
 
                 with col62:
 
