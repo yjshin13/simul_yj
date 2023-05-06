@@ -9,7 +9,7 @@ def cleansing(assets_data=pd.DataFrame(), alloc=list(), rebal=2, freq='Daily'):
                            index=pd.date_range(start=assets_data.index[0],
                                                 end=assets_data.index[-1], freq='D')).fillna(method='ffill')
 
-    if freq=='Monthly':
+    if freq==2:
         assets_data = assets_data[assets_data.index.is_month_end==True]
 
     allocation = pd.DataFrame(index=assets_data.index, columns=assets_data.columns)
@@ -29,7 +29,7 @@ def cleansing(assets_data=pd.DataFrame(), alloc=list(), rebal=2, freq='Daily'):
 def simulation(assets_data, allocation, commission=0, rebal='Monthly', freq='Daily'):
 
     ''' commission is percent(%) scale '''
-    # 
+    #
     # if type(allocation)==list:
     assets_data ,allocation = cleansing(assets_data, allocation, rebal, freq)
 
