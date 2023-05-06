@@ -168,7 +168,7 @@ if file is not None:
 
         if 'Result1' not in st.session_state:
 
-            st.session_state.Result1 = 1
+            
 
             with st.expander('Result', expanded=True):
 
@@ -338,8 +338,10 @@ if file is not None:
                             mime='text/csv',
                             file_name='Correlation.csv')
 
+                    st.session_state.Result1 = 1
+
         else:
-            
+
             with st.expander('Result2', expanded=True):
 
                 if 'slider' in st.session_state:
