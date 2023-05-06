@@ -178,9 +178,8 @@ if file is not None:
             MDD = round(float(min(st.session_state.drawdown) * 100), 2)
             Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
 
-        if 'result_expander1' not in st.session_state:
-            st.session_state.result_expander1 = st.expander('Result', expanded=True)
-            with st.session_state.result_expander1:
+        st.session_state.result_expander1 = st.expander('Result', expanded=True)
+        with st.session_state.result_expander1:
 
                 if 'slider' in st.session_state:
 
@@ -341,7 +340,7 @@ if file is not None:
                             file_name='Correlation.csv')
 
         if 'result_expander1' in st.session_state:
-            st.session_state.result2 = st.expander('Result2', expanded=True)
+            st.session_state.result_expander2 = st.expander('Result2', expanded=True)
             with st.session_state.result_expander2:
 
                 if 'slider' in st.session_state:
