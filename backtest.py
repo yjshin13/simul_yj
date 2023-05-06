@@ -29,9 +29,9 @@ def cleansing(assets_data=pd.DataFrame(), alloc=list(), rebal=2, freq='Daily'):
 def simulation(assets_data, allocation, commission=0, rebal='Monthly', freq='Daily'):
 
     ''' commission is percent(%) scale '''
-
-    if type(allocation)==list:
-        assets_data ,allocation = cleansing(assets_data, allocation, rebal, freq)
+    # 
+    # if type(allocation)==list:
+    assets_data ,allocation = cleansing(assets_data, allocation, rebal, freq)
 
     portfolio = pd.DataFrame(index=assets_data.index, columns=['NAV']).squeeze()
     portfolio = portfolio[portfolio.index >= allocation.index[0]]
