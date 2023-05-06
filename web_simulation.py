@@ -48,6 +48,7 @@ def data_freq():
     st.session_state.input_price = pd.concat([st.session_state.input_price,
                                               pd.DataFrame({'Cash': [1] * len(st.session_state.input_price)},
                                                            index=st.session_state.input_price.index)], axis=1)
+    return st.session_state.input_price
 
 if file is not None:
 
@@ -90,8 +91,6 @@ if file is not None:
 
                 commission = st.number_input('Commission(%)')
 
-            data_freq()
-
             # if option1 == 'Daily':
             #     daily = True
             #     monthly = False
@@ -119,7 +118,8 @@ if file is not None:
             #                                           pd.DataFrame({'Cash': [1]*len(st.session_state.input_price)},
             #                                           index=st.session_state.input_price.index)], axis=1)
             #
-            # st.session_state.input_list = input_list
+            st.session_state.input_list = input_list
+            st.session_state.input_price = data_freq()
 
 
             col1, col2, col3 = st.columns([1, 1, 1])
