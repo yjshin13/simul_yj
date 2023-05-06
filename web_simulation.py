@@ -21,34 +21,6 @@ def load_data(file_path):
 
     return df, df2
 
-@st.cache
-def data_freq():
-    if option1 == 'Daily':
-        daily = True
-        monthly = False
-        annualization = 365
-        freq = 1
-
-    if option1 == 'Monthly':
-        daily = False
-        monthly = True
-        annualization = 12
-        freq = 2
-    #
-
-    if daily == True:
-        st.session_state.input_price = input_price[
-            (input_price.index >= start_date) & (input_price.index <= end_date)]
-
-    if monthly == True:
-        st.session_state.input_price = input_price[(input_price.index >= start_date)
-                                                   & (input_price.index <= end_date)
-                                                   & (input_price.index.is_month_end == True)].dropna()
-
-    st.session_state.input_price = pd.concat([st.session_state.input_price,
-                                              pd.DataFrame({'Cash': [1] * len(st.session_state.input_price)},
-                                                           index=st.session_state.input_price.index)], axis=1)
-    return st.session_state.input_price
 
 if file is not None:
 
@@ -91,36 +63,33 @@ if file is not None:
 
                 commission = st.number_input('Commission(%)')
 
-            # if option1 == 'Daily':
-            #     daily = True
-            #     monthly = False
-            #     annualization = 365
-            #     freq = 1
-            #
-            # if option1 == 'Monthly':
-            #     daily = False
-            #     monthly = True
-            #     annualization = 12
-            #     freq = 2
-            # #
-            #
-            #
-            # if daily == True:
-            #     st.session_state.input_price = input_price[
-            #         (input_price.index >= start_date) & (input_price.index <= end_date)]
-            #
-            # if monthly == True:
-            #     st.session_state.input_price = input_price[(input_price.index >= start_date)
-            #                                                & (input_price.index <= end_date)
-            #                                                & (input_price.index.is_month_end == True)].dropna()
-            #
-            # st.session_state.input_price = pd.concat([st.session_state.input_price,
-            #                                           pd.DataFrame({'Cash': [1]*len(st.session_state.input_price)},
-            #                                           index=st.session_state.input_price.index)], axis=1)
-            #
-            st.session_state.input_list = input_list
-            st.session_state.input_price = data_freq()
+            if option1 == 'Daily':
+                daily = True
+                monthly = False
+                annualization = 365
+                freq = 1
 
+            if option1 == 'Monthly':
+                daily = False
+                monthly = True
+                annualization = 12
+                freq = 2
+            #
+
+
+            if daily == True:
+                st.session_state.input_price = input_price[
+                    (input_price.index >= start_date) & (input_price.index <= end_date)]
+
+            if monthly == True:
+                st.session_state.input_price = input_price[(input_price.index >= start_date)
+                                                           & (input_price.index <= end_date)
+                                                           & (input_price.index.is_month_end == True)].dropna()
+
+            st.session_state.input_list = input_list
+            st.session_state.input_price = pd.concat([st.session_state.input_price,
+                                                      pd.DataFrame({'Cash': [1]*len(st.session_state.input_price)},
+                                                      index=st.session_state.input_price.index)], axis=1)
 
             col1, col2, col3 = st.columns([1, 1, 1])
 
