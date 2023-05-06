@@ -176,7 +176,10 @@ if file is not None:
             MDD = round(float(min(st.session_state.drawdown) * 100), 2)
             Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
 
-        with st.expander('Result', expanded=True):
+        result_expander1 = st.expander('Result', expanded=True)
+        result_expander1_empty = result_expander1.empty()
+
+        with result_expander1_empty:
 
             if 'slider' in st.session_state:
 
