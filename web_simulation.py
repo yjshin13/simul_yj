@@ -52,7 +52,7 @@ if file is not None:
 
             with col42:
 
-                option1 = st.selectbox(
+                freq = st.selectbox(
                     'Data Frequency', ('Daily', 'Monthly'))
 
             with col43:
@@ -63,18 +63,17 @@ if file is not None:
 
                 commission = st.number_input('Commission(%)')
 
-            if option1 == 'Daily':
+            if freq == 'Daily':
                 daily = True
                 monthly = False
                 annualization = 365
                 freq = 1
 
-            if option1 == 'Monthly':
+            if freq == 'Monthly':
                 daily = False
                 monthly = True
                 annualization = 12
                 freq = 2
-            #
 
 
             if daily == True:
@@ -85,11 +84,15 @@ if file is not None:
                 st.session_state.input_price = input_price[(input_price.index >= start_date)
                                                            & (input_price.index <= end_date)
                                                            & (input_price.index.is_month_end == True)].dropna()
+                
+            
 
             st.session_state.input_list = input_list
             st.session_state.input_price = pd.concat([st.session_state.input_price,
                                                       pd.DataFrame({'Cash': [1]*len(st.session_state.input_price)},
                                                       index=st.session_state.input_price.index)], axis=1)
+
+            st.write(st.session_state.input_price)
 
             col1, col2, col3 = st.columns([1, 1, 1])
 
