@@ -84,15 +84,27 @@ if file is not None:
                 st.session_state.input_price = input_price[(input_price.index >= start_date)
                                                            & (input_price.index <= end_date)
                                                            & (input_price.index.is_month_end == True)].dropna()
-                
-            
+
+
 
             st.session_state.input_list = input_list
             st.session_state.input_price = pd.concat([st.session_state.input_price,
-                                                      pd.DataFrame({'Cash': [1]*len(st.session_state.input_price)},
+                                                      pd.DataFrame({'Cash': [100]*len(st.session_state.input_price)},
                                                       index=st.session_state.input_price.index)], axis=1)
 
-            st.write(st.session_state.input_price)
+            st.session_state.allocation = pd.DataFrame(index=st.session_state.input_price.index,
+                                                       columns=st.session_state.input_price.columns)
+
+            col80, col81 = st.columns([1,1])
+            with col80:
+
+                st.write("Input Data")
+                st.dataframe(st.session_state.input_price)
+
+            with col81:
+
+                st.write("Input Data")
+                st.dataframe(st.session_state.allocation)
 
             col1, col2, col3 = st.columns([1, 1, 1])
 
@@ -132,10 +144,8 @@ if file is not None:
 
 
                 st.session_state.slider = (slider*0.01).tolist()
-                st.session_state.portfolio_port, st.session_state.allocation_f,\
-                    st.session_state.allocation= backtest.simulation(st.session_state.input_price,st.session_state.slider,
-                                                                                                   commission,
-                                                                                                   rebal)
+                st.session_state.portfolio_port, st.session_state.allocation_f = \
+                    backtest.simulation(st.session_state.input_price,st.session_state.slider,commission,rebal,freq)
 
                 st.session_state.alloc =  st.session_state.allocation_f.copy()
                 st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()-1)
