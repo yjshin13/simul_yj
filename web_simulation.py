@@ -10,18 +10,19 @@ st.set_page_config(layout="wide")
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
 st.warning('Upload data.')
 
+
+@st.cache
+def load_data(file_path):
+    df = pd.read_excel(file_path, sheet_name="data",
+                       names=None, dtype={'Date': datetime}, index_col=0, header=2)
+
+    df2 = pd.read_excel(file_path, sheet_name="data",
+                        names=None, index_col=0, header=0, nrows=1)
+
+    return df, df2
+
+
 if file is not None:
-
-    @st.cache
-    def load_data(file_path):
-        df = pd.read_excel(file_path, sheet_name="data",
-                           names=None, dtype={'Date': datetime}, index_col=0, header=2)
-
-        df2 = pd.read_excel(file_path, sheet_name="data",
-                           names=None, index_col=0, header=0, nrows=1)
-
-        return df, df2
-
 
     price, weight = load_data(file)
 
@@ -99,8 +100,6 @@ if file is not None:
             col1, col2, col3 = st.columns([1, 1, 1])
 
             slider = pd.Series()
-            #
-            # st.write(input_price.columns)
 
             st.write("Allocation(%)")
 
@@ -142,7 +141,6 @@ if file is not None:
                                                                                                    rebal)
 
                 st.session_state.alloc =  st.session_state.allocation_f.copy()
-                #st.session_state.alloc[st.session_state.alloc.index.is_month_end==True] = st.session_state.allocation_f.iloc[0]
                 st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()-1)
 
                 st.session_state.contribution = (st.session_state.ret* (st.session_state.alloc.shift(1).dropna())).dropna().sum(axis=0)
@@ -169,9 +167,6 @@ if file is not None:
                                                      st.session_state.input_price_N,
                                                      st.session_state.alloc],
                                                     axis=1)
-                # st.session_state.result = st.session_state.result[(st.session_state.result.index>=st.session_state.portfolio_port.index[0]) &
-                #                                                   (st.session_state.result.index<=st.session_state.portfolio_port.index[-1])]
-
 
 
 
@@ -224,33 +219,14 @@ if file is not None:
                     st.write('MDD')
                     st.dataframe(st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)))
 
-                    # st.download_button(
-                    #     label="MDD",
-                    #     data=st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)).to_csv(index=True),
-                    #     mime='text/csv',
-                    #     file_name='MAX Drawdown.csv')
-
                 with col23:
                     st.write('Normalized Price')
                     st.dataframe((st.session_state.input_price_N).
                                   astype('float64').round(2))
-                    #
-                    # st.download_button(
-                    #     label="Assets",
-                    #     data=(100*st.session_state.input_price/st.session_state.input_price.iloc[0,:]).
-                    #               astype('float64').round(2).to_csv(index=True),
-                    #     mime='text/csv',
-                    #     file_name='Assets.csv')
 
                 with col24:
                     st.write('Floating Weight')
                     st.dataframe(st.session_state.alloc.applymap('{:.2%}'.format))
-                    #
-                    # st.download_button(
-                    #     label="Allocation",
-                    #     data=st.session_state.alloc.applymap('{:.2%}'.format).to_csv(index=True),
-                    #     mime='text/csv',
-                    #     file_name='Allocation.csv')
 
                 st.write(" ")
 
