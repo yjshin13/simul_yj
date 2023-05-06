@@ -158,7 +158,7 @@ if file is not None:
                                                  st.session_state.alloc],
                                                 axis=1)
 
-
+        
         st.session_state.result_expander1 = st.expander('Result', expanded=True)
         with st.session_state.result_expander1:
 
