@@ -143,7 +143,7 @@ if file is not None:
             st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna())-1
             st.session_state.contribution = ((st.session_state.ret* (st.session_state.alloc.shift(1).dropna())).dropna()+1).cumprod(axis=0)-1
             st.session_state.contribution_total = st.session_state.contribution.iloc[-1,:]
-            st.write(st.session_state.contribution_total)
+
             if monthly == True:
                 st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
 
