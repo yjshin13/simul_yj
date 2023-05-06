@@ -340,7 +340,8 @@ if file is not None:
                             file_name='Correlation.csv')
 
                     st.session_state.r1 =1
-        else:
+                    
+        if 'r1' in st.session_state:
 
             st.session_state.result_expander2 = st.expander('Result2', expanded=True)
 
