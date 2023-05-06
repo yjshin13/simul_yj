@@ -140,8 +140,8 @@ if file is not None:
                 backtest.simulation(st.session_state.input_price,st.session_state.slider,commission,rebal,freq)
 
             st.session_state.alloc =  st.session_state.allocation_f.copy()
-            st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()-1)
-            st.session_state.contribution = ((st.session_state.ret* (st.session_state.alloc.shift(1).dropna())).dropna()+1).mul(axis=0)
+            st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna())
+            st.session_state.contribution = ((st.session_state.ret* (st.session_state.alloc.shift(1).dropna())).dropna()+1).multiply(axis=0)-1
 
             if monthly == True:
                 st.session_state.portfolio_port = st.session_state.portfolio_port[st.session_state.portfolio_port.index.is_month_end==True]
