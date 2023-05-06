@@ -9,7 +9,7 @@ def cleansing(assets_data=pd.DataFrame(), alloc=list(), rebal=2, freq='Daily'):
                            index=pd.date_range(start=assets_data.index[0],
                                                 end=assets_data.index[-1], freq='D')).fillna(method='ffill')
 
-    if freq=='Daily':
+    if freq=='Monthly':
         assets_data = assets_data[assets_data.index.is_month_end==True]
 
     allocation = pd.DataFrame(index=assets_data.index, columns=assets_data.columns)
