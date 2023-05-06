@@ -92,19 +92,10 @@ if file is not None:
                                                       pd.DataFrame({'Cash': [100]*len(st.session_state.input_price)},
                                                       index=st.session_state.input_price.index)], axis=1)
 
-            st.session_state.allocation = pd.DataFrame(index=st.session_state.input_price.index,
-                                                       columns=st.session_state.input_price.columns)
 
-            col80, col81 = st.columns([1,1])
-            with col80:
+            st.write("Input Data")
+            st.dataframe(st.session_state.input_price)
 
-                st.write("Input Data")
-                st.dataframe(st.session_state.input_price)
-
-            with col81:
-
-                st.write("Input Data")
-                st.dataframe(st.session_state.allocation)
 
             col1, col2, col3 = st.columns([1, 1, 1])
 
