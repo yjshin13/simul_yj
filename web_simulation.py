@@ -140,7 +140,7 @@ if file is not None:
                 backtest.simulation(st.session_state.input_price,st.session_state.slider,commission,rebal,freq)
 
             st.session_state.alloc =  st.session_state.allocation_f.copy()
-            st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna())
+            st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna())-1
             st.session_state.contribution = ((st.session_state.ret* (st.session_state.alloc.shift(1).dropna())).dropna()+1).cumprod(axis=0)-1
             st.session_state.contribution_total = st.session_state.contribution.iloc[-1,:]
             st.write(st.session_state.contribution_total)
