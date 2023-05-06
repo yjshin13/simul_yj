@@ -158,7 +158,9 @@ if file is not None:
                                                  st.session_state.alloc],
                                                 axis=1)
 
-        with st.expander('Result', expanded=True):
+
+        st.session_state.result_expander1 = st.expander('Result', expanded=True)
+        with st.session_state.Result_expander1.result_expander1:
 
             if 'slider' in st.session_state:
 
