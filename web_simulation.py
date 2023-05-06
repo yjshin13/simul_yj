@@ -165,19 +165,21 @@ if file is not None:
                                                  st.session_state.input_price_N,
                                                  st.session_state.alloc],
                                                 axis=1)
-        
+
+            START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
+            END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
+            Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (
+                        annualization / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
+            Anuuual_Vol = round(
+                float(np.std(st.session_state.portfolio_port.pct_change().dropna()) * np.sqrt(annualization) * 100), 2)
+            Anuuual_Sharpe = round(Anuuual_RET / Anuuual_Vol, 2)
+            MDD = round(float(min(st.session_state.drawdown) * 100), 2)
+            Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
+
         with st.expander('Result', expanded=True):
 
             if 'slider' in st.session_state:
 
-                START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
-                END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
-                Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (annualization / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
-                Anuuual_Vol = round(float(np.std(st.session_state.portfolio_port.pct_change().dropna())*np.sqrt(annualization)*100),2)
-                Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
-                MDD  =round(float(min(st.session_state.drawdown) * 100), 2)
-                Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
-                
                 st.write(" ")
 
                 col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
