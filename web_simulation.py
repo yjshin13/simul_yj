@@ -31,7 +31,7 @@ if file is not None:
     input_list = price.columns[price.columns.isin(select)]
     input_price = price[input_list]
 
-    st.session_state.result1 = st.expander('Result', expanded=True)
+    
 
 
     if (st.button('Summit') or ('input_list' in st.session_state)):
@@ -178,6 +178,7 @@ if file is not None:
             MDD = round(float(min(st.session_state.drawdown) * 100), 2)
             Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
 
+        st.session_state.result1 = st.expander('Result', expanded=True)
         with st.session_state.result1:
 
             if 'slider' in st.session_state:
