@@ -158,43 +158,42 @@ if file is not None:
                                                  st.session_state.alloc],
                                                 axis=1)
 
-            st.session_state.START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
-            st.session_state.END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
-            st.session_state.Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (
-                    annualization / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
-            st.session_state.Anuuual_Vol = round(
-                float(np.std(st.session_state.portfolio_port.pct_change().dropna()) * np.sqrt(annualization) * 100),
-                2)
-            st.session_state.Anuuual_Sharpe = round(st.session_state.Anuuual_RET / st.session_state.Anuuual_Vol, 2)
-            st.session_state.MDD = round(float(min(st.session_state.drawdown) * 100), 2)
-            st.session_state.Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
-
         st.session_state.result_expander1 = st.expander('Result', expanded=True)
-
         with st.session_state.result_expander1:
 
             if 'slider' in st.session_state:
+
+                START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
+                END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
+                Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (
+                            annualization / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
+                Anuuual_Vol = round(
+                    float(np.std(st.session_state.portfolio_port.pct_change().dropna()) * np.sqrt(annualization) * 100),
+                    2)
+                Anuuual_Sharpe = round(Anuuual_RET / Anuuual_Vol, 2)
+                MDD = round(float(min(st.session_state.drawdown) * 100), 2)
+                Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
 
                 st.write(" ")
 
                 col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
 
                 with col50:
-                    st.info("Period: " + str(st.session_state.START_DATE) + " ~ " + str(st.session_state.END_DATE))
+                    st.info("Period: " + str(START_DATE) + " ~ " + str(END_DATE))
 
                 with col51:
-                    st.info("Annual Return: " + str(st.session_state.Anuuual_RET) + "%")
+                    st.info("Annual Return: " + str(Anuuual_RET) + "%")
 
                 with col52:
-                    st.info("Annual Volatility: " + str(st.session_state.Anuuual_Vol) + "%")
+                    st.info("Annual Volatility: " + str(Anuuual_Vol) + "%")
 
                 with col53:
 
-                    st.info("Sharpe Ratio: " + str(st.session_state.Anuuual_Sharpe))
+                    st.info("Sharpe Ratio: " + str(Anuuual_Sharpe))
 
                 with col54:
 
-                    st.info("MDD: " + str(st.session_state.MDD) + "%")
+                    st.info("MDD: " + str(MDD) + "%")
 
                 col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
 
