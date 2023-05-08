@@ -41,7 +41,7 @@ if file is not None:
             if weight[:].empty:
                 weight[:] = float(5)
 
-            st.write(weight)
+            st.write(weight[:].empty)
             input_price = input_price.dropna()
 
             col40, col41, col42, col43, col44, col45, col46, col47 = st.columns([1, 1, 1, 1, 1, 1, 1, 1])
