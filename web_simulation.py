@@ -38,7 +38,7 @@ if file is not None:
 
         with st.expander('Portfolio', expanded=True):
 
-            if weight.empty:
+            if weight[:].empty:
                 weight[:] = float(5)
 
             st.write(weight)
