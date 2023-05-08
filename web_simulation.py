@@ -20,8 +20,7 @@ def load_data(file_path):
     df2 = pd.read_excel(file_path, sheet_name="data",
                         names=None, index_col=0, header=0, nrows=1)
 
-    if df2.empty:
-        df2[:] = 0
+
 
     return df, df2
 
@@ -39,8 +38,10 @@ if file is not None:
 
         with st.expander('Portfolio', expanded=True):
 
-            st.write(weight)
+            if weight.empty:
+                weight[:] = float(5)
 
+            st.write(weight)
             input_price = input_price.dropna()
 
             col40, col41, col42, col43, col44, col45, col46, col47 = st.columns([1, 1, 1, 1, 1, 1, 1, 1])
