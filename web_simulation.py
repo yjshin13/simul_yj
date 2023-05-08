@@ -32,6 +32,15 @@ if file is not None:
     input_list = price.columns[price.columns.isin(select)]
     input_price = price[input_list]
 
+    # 중복된 라벨 확인
+    duplicate_labels = input_price.columns[input_price.columns.duplicated()]
+    if len(duplicate_labels) > 0:
+        st.error(f"Duplicate labels found in input_price: {', '.join(duplicate_labels)}")
+        st.stop()
+
+    # 중복된 라벨 제거
+    input_price = input_price.loc[:, ~input_price.columns.duplicated()]
+
     if (st.button('Summit') or ('input_list' in st.session_state)):
 
         with st.expander('Portfolio', expanded=True):
