@@ -88,9 +88,9 @@ if file is not None:
             st.session_state.input_price = pd.concat([st.session_state.input_price,
                                                       pd.DataFrame({'Cash': [100] * len(st.session_state.input_price)},
                                                                    index=st.session_state.input_price.index)], axis=1)
-
-            duplicate_index = st.session_state.input_price.index.duplicated()
-            st.session_state.input_price = st.session_state.input_price[~duplicate_index]
+            
+            st.write(st.session_state.input_price.index.duplicated())
+            # st.session_state.input_price = st.session_state.input_price[~st.session_state.input_price.index.duplicated()]
 
             st.session_state.input_price = pd.DataFrame(st.session_state.input_price,
                                        index=pd.date_range(start=st.session_state.input_price.index[0],
