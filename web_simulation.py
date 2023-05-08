@@ -21,7 +21,7 @@ def load_data(file_path):
                         names=None, index_col=0, header=0, nrows=1)
 
     if df2.empty:
-        df2.iloc[:] = 0
+        df2.iloc[:] = 0.0
 
     return df, df2
 
