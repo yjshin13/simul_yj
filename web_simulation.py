@@ -21,7 +21,7 @@ def load_data(file_path):
                         names=None, index_col=0, header=0, nrows=1)
 
     if df2.empty:
-        df2.iloc[:] = float(0)
+        df2[:] = float(0)
 
     return df, df2
 
@@ -38,7 +38,7 @@ if file is not None:
     if (st.button('Summit') or ('input_list' in st.session_state)):
 
         with st.expander('Portfolio', expanded=True):
-            
+
             st.write(weight)
 
             input_price = input_price.dropna()
