@@ -38,6 +38,8 @@ if file is not None:
     if (st.button('Summit') or ('input_list' in st.session_state)):
 
         with st.expander('Portfolio', expanded=True):
+            
+            st.write(weight)
 
             input_price = input_price.dropna()
 
