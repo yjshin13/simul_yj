@@ -89,7 +89,7 @@ if file is not None:
                                                       pd.DataFrame({'Cash': [100] * len(st.session_state.input_price)},
                                                                    index=st.session_state.input_price.index)], axis=1)
 
-            st.write(st.session_state.input_price.index)
+            st.write(st.session_state.input_price)
             # st.session_state.input_price = st.session_state.input_price[~st.session_state.input_price.index.duplicated()]
 
             st.session_state.input_price = pd.DataFrame(st.session_state.input_price,
