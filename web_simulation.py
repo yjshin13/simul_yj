@@ -91,9 +91,6 @@ if file is not None:
 
             st.session_state.input_price = st.session_state.input_price[~st.session_state.input_price.index.duplicated()]
 
-            st.session_state.input_price = pd.DataFrame(st.session_state.input_price,
-                                       index=pd.date_range(start=st.session_state.input_price.index[0],
-                                                           end=st.session_state.input_price.index[-1], freq='D')).fillna(method='ffill')
 
             st.write(" ")
             st.write("Input Data")
