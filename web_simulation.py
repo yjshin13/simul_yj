@@ -195,10 +195,10 @@ if file is not None:
 
                 with col52:
                     st.info("Annual Volatility: " + str(st.session_state.Anuuual_Vol) + "%")
-
-                with col53:
-
-                    st.info("Sharpe Ratio: " + str(st.session_state.Anuuual_Sharpe))
+                # 
+                # with col53:
+                # 
+                #     st.info("Sharpe Ratio: " + str(st.session_state.Anuuual_Sharpe))
 
                 with col54:
 
