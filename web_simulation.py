@@ -191,7 +191,7 @@ if file is not None:
                     st.info("Period: " + str(st.session_state.START_DATE) + " ~ " + str(st.session_state.END_DATE))
 
                 with col51:
-                    st.info("Annual Return: " + str(st.session_state.Total_RET) + "%")
+                    st.info("Total Return: " + str(st.session_state.Total_RET) + "%")
 
 
                 with col52:
