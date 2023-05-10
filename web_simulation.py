@@ -213,7 +213,7 @@ if file is not None:
 
                     st.download_button(
                         label="Download",
-                        data=st.session_state.result.to_csv(index=True),
+                        data=st.session_state.input_price_N.to_csv(index=True),
                         mime='text/csv',
                         file_name='Result.csv')
 
