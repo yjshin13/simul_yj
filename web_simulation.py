@@ -211,8 +211,6 @@ if file is not None:
                     st.write('NAV')
                     st.dataframe(st.session_state.portfolio_port.round(2))
 
-                    st.session_state.result.columns = st.session_state.input_price.columns
-
                     st.download_button(
                         label="Download",
                         data=st.session_state.result.to_csv(index=True),
