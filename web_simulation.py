@@ -213,7 +213,7 @@ if file is not None:
 
                     st.download_button(
                         label="Download",
-                        data=st.session_state.input_price.to_csv(index=True),
+                        data=st.session_state.result.to_csv(index=True),
                         mime='text/csv',
                         file_name='Result.csv')
 
@@ -223,7 +223,8 @@ if file is not None:
 
                 with col23:
                     st.write('Normalized Price')
-                    st.dataframe((st.session_state.input_price_N.columns).
+                    st.write(st.session_state.input_price_N.columns)
+                    st.dataframe((st.session_state.input_price_N).
                                  astype('float64').round(2))
 
                 with col24:
