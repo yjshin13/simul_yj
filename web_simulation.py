@@ -87,7 +87,7 @@ if file is not None:
                                                            & (input_price.index <= end_date)
                                                            & (input_price.index.is_month_end == True)].dropna()
 
-            st.session_state.input_list = input_list.append('Cash')
+            st.session_state.input_list = input_list
             st.session_state.input_price = pd.concat([st.session_state.input_price,
                                                       pd.DataFrame({'Cash': [100] * len(st.session_state.input_price)},
                                                                    index=st.session_state.input_price.index)], axis=1)
