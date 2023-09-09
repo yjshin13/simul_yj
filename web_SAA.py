@@ -96,8 +96,6 @@ if file is not None:
                                                            & (input_price.index<=end_date)
                                                            & (input_price.index.is_month_end==True)]
 
-
-
             st.session_state.input_universe = input_universe
             st.session_state.nPort = nPort
             st.session_state.nSim = nSim
@@ -111,8 +109,9 @@ if file is not None:
             A = st.session_state.input_universe.copy()
             A.index = st.session_state.input_universe['symbol']
             Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
-            new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
-            st.session_state.Result = Result[new_col]
+            # new_col = Result.columns[-2:].to_list() + Result.columns[:-2].to_list()
+            # st.session_state.Result = Result[new_col]
+            st.session_state.Result = Result
             st.session_state.freq_input = freq
 
 
@@ -220,8 +219,8 @@ if file is not None:
 
                 st.pyplot(fig_4)
 
-
             with col_d:
+
                 st.write("Weight vs Volatility")
                 fig_3, ax_3 = plt.subplots(figsize=(20,10))
                 ax_3.stackplot(st.session_state.EF['STDEV']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
