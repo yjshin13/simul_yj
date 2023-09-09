@@ -2,10 +2,7 @@ import streamlit as st
 import pandas as pd
 import resampled_mvo
 from datetime import datetime
-import backtest_graph
-import seaborn as sns
 import matplotlib.pyplot as plt
-#import bt
 import numpy as np
 
 st.set_page_config(layout="wide")
@@ -47,10 +44,8 @@ if file is not None:
             end_date = st.date_input("End", value = input_price.index[-1])
             end_date = datetime.combine(end_date, datetime.min.time())
 
-
         with col22:
 
-            #st.write("Data Frequency")
 
             if st.checkbox('Daily', value=True):
 
@@ -149,84 +144,9 @@ if file is not None:
 
             Target_Weight = st.session_state.EF.loc[Target_index]\
                             .drop(["EXP_RET", "STDEV"])
-            #
-            # Target_Weight_T = pd.DataFrame(Target_Weight).T
 
-            # st.session_state.Rebalancing_Wegiht =  pd.DataFrame(Target_Weight_T,
-            #                         index=pd.date_range(start=st.session_state.input_price.index[0],
-            #                         end=st.session_state.input_price.index[-1], freq='D')).fillna(method='bfill')
-            #
-            # st.session_state.Rebalancing_Wegiht.iloc[:,:] = Target_Weight_T
-            #
-            # SAA_strategy = bt.Strategy('s1', [bt.algos.RunMonthly(run_on_first_date=True),
-            #                                   # bt.algos.RunAfterDate('2000-01-01'),
-            #                                   bt.algos.SelectAll(),
-            #                                   bt.algos.WeighTarget( st.session_state.Rebalancing_Wegiht),
-            #                                   bt.algos.Rebalance()])
-            #
-            # bt_SAA = bt.Backtest(SAA_strategy, st.session_state.input_price)
-            # res = bt.run(bt_SAA)
-            #
-            # st.session_state.Result2 = pd.concat([res.prices.iloc[1:], res.backtests['s1'].stats.drawdown.iloc[1:]], axis=1)
-            # st.session_state.Result2.columns = ['NAV', 'Drawdown']
-            #
-            #
-            # st.write("Backtest" + " (" + freq + ")")
-            #
-            # START_DATE = st.session_state.input_price.index[0].strftime("%Y-%m-%d")
-            # END_DATE = st.session_state.input_price.index[-1].strftime("%Y-%m-%d")
-            # Anuuual_RET = round(float(((res.prices.iloc[-1] / 100) ** (annualization / (len(res.prices) - 1)) - 1) * 100), 2)
-            # Anuuual_Vol = round(float(np.std(res.prices.pct_change().dropna())*np.sqrt(annualization)*100),2)
-            # Anuuual_Sharpe = round(Anuuual_RET/Anuuual_Vol,2)
-            # MDD = round(float(res.stats[res.stats.index == 'max_drawdown'].values * 100), 2)
-            # Total_Return = round(float(res.stats[res.stats.index == 'total_return'].values * 100), 2)
-            # best_year = round(float(res.stats[res.stats.index == 'best_year'].values * 100), 2)
-            # worst_year = round(float(res.stats[res.stats.index == 'worst_year'].values * 100), 2)
-
-            #
-            # col10, col11, col12, col13 = st.columns([1, 1, 1, 1])
-            #
-            #
-            # with col10:
-            #     st.info("Period: " + str(START_DATE) + " ~ " + str(END_DATE))
-            #
-            # with col11:
-            #     st.info("Total Return: "+str(Total_Return)+"%")
-            #
-            # with col12:
-            #     st.info("Sharpe: " + str(Anuuual_Sharpe))
-            #
-            # with col13:
-            #     st.info("Best Year: " + str(best_year) + "%")
-            #
-            #
-            # col6, col7, col8, col9 = st.columns([1, 1, 1, 1])
-            #
-            # with col6:
-            #     st.info("Annual Return: " + str(Anuuual_RET) + "%")
-            #
-            # with col7:
-            #     st.info("Annual vol: " + str(Anuuual_Vol)+"%")
-            #
-            # with col8:
-            #     st.info("Max Drawdown: "+str(MDD) + "%")
-            #
-            # with col9:
-            #     st.info("Worst Year: " + str(worst_year) + "%")
 
             st.subheader("")
-
-            # col4, col5 = st.columns([1, 1])
-            #
-            # with col4:
-            #     st.write("Net Asset Value")
-            #     st.pyplot(backtest_graph.line_chart(res.prices, ""))
-            #
-            # with col5:
-            #     st.write("Drawdown")
-            #     st.pyplot(backtest_graph.line_chart(
-            #     res.backtests['s1'].stats.drawdown, ""))
-
             st.empty()
 
 
@@ -326,29 +246,3 @@ if file is not None:
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
 
-        #
-        # st.download_button(
-        #         label="Simulation Result",
-        #         data=st.session_state.Result2.to_csv(index=True),
-        #         mime='text/csv',
-        #         file_name='Simulation Result.csv')
-        #
-        # st.download_button(
-        #         label="Correlation Matrix (A)",
-        #         data=st.session_state.input_price.pct_change().dropna().corr().to_csv(index=True),
-        #         mime='text/csv',
-        #         file_name='Correlation Matrix (A).csv')
-        #
-        # F = st.session_state.input_universe['asset_category'].rename(st.session_state.input_universe['symbol'])
-        # corr_factor = pd.DataFrame()
-        # factor_list = list(F.unique())
-        # for factor in factor_list:
-        #     B = st.session_state.input_price[F.index[F == factor]].pct_change().dropna().mean(axis=1)
-        #     corr_factor = pd.concat([corr_factor, B], axis=1)
-        # corr_factor.columns = factor_list
-        #
-        # st.download_button(
-        #         label="Correlation Matrix (F)",
-        #         data=corr_factor.corr().to_csv(index=True),
-        #         mime='text/csv',
-        #         file_name='Correlation Matrix (F).csv')
