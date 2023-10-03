@@ -13,7 +13,10 @@ st.warning('Upload data.')
 if file is not None:
 
     price = pd.read_excel(file, sheet_name="price",
-                           names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
+                           names=None, dtype={'Date': "datetime64"}, index_col=0, header=0).dropna()
+    # price = pd.read_excel(file, sheet_name="price",
+    #                    names=None, dtype={'Date': datetime}, index_col=0, header=0).dropna()
+    # price = pd.read_excel(file, sheet_name="price", dtype={"your_date_column": "datetime64"})
 
 
     universe = pd.read_excel(file, sheet_name="universe",
