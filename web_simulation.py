@@ -12,19 +12,31 @@ file = st.file_uploader("Upload investment universe & price data", type=['xlsx',
 st.warning('Upload data.')
 
 
+# @st.cache
+# def load_data(file_path):
+#     df = pd.read_excel(file_path, sheet_name="data",
+#                        names=None, dtype={'Date': datetime}, index_col=0, header=2)
+
+#     df2 = pd.read_excel(file_path, sheet_name="data",
+#                         names=None, index_col=0, header=0, nrows=1)
+#     if df2.empty:
+#         df2 = pd.Series(float(0), index=df2.columns)
+
+
+#     return df, df2
+
 @st.cache
 def load_data(file_path):
-    df = pd.read_excel(file_path, sheet_name="data",
-                       names=None, dtype={'Date': datetime}, index_col=0, header=2)
+    df = pd.read_excel(file_path, sheet_name="data", names=None, index_col=0, header=2)
+    
+    # Convert 'Date' column to datetime type
+    df['Date'] = pd.to_datetime(df['Date'])
 
-    df2 = pd.read_excel(file_path, sheet_name="data",
-                        names=None, index_col=0, header=0, nrows=1)
+    df2 = pd.read_excel(file_path, sheet_name="data", names=None, index_col=0, header=0, nrows=1)
     if df2.empty:
         df2 = pd.Series(float(0), index=df2.columns)
 
-
     return df, df2
-
 
 if file is not None:
 
