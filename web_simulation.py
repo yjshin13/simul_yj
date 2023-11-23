@@ -27,10 +27,10 @@ st.warning('Upload data.')
 
 @st.cache
 def load_data(file_path):
-    df = pd.read_excel(file_path, sheet_name="data", names=None, index_col=0, header=2)
-    
-    # Convert 'Date' column to datetime type
-    df['Date'] = pd.to_datetime(df['Date'])
+    df = pd.read_excel(file_path, sheet_name="data", index_col=0, header=2)
+
+    # Convert index to datetime type
+    df.index = pd.to_datetime(df.index)
 
     df2 = pd.read_excel(file_path, sheet_name="data", names=None, index_col=0, header=0, nrows=1)
     if df2.empty:
