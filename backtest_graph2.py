@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import sns
 
 def line_chart(x, title):
     x = pd.DataFrame(x)
