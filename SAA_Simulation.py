@@ -33,6 +33,8 @@ if file is not None:
     input_universe = universe[universe['symbol'].isin(list(assets))].drop(['key'], axis=1)
     input_universe = input_universe.reset_index(drop=True) #index 깨지면 Optimization 배열 범위 초과 오류 발생
 
+    key = np.random.uniform(0.0, 2.0)
+
 
     with st.form("Resampling Parameters", clear_on_submit=False):
 
@@ -107,11 +109,16 @@ if file is not None:
             st.session_state.nSim = nSim
             st.session_state.constraint_range = constraint_range
 
+
+
             st.session_state.EF = resampled_mvo.simulation(st.session_state.input_price,
                                                            st.session_state.nSim, st.session_state.nPort,
                                                            st.session_state.input_universe,
                                                            st.session_state.constraint_range,
                                                            annualization)
+
+            st.session_state.key = key
+
             A = st.session_state.input_universe.copy()
             A.index = st.session_state.input_universe['symbol']
             Result = pd.concat([A.drop(['symbol'], axis=1).T, st.session_state.EF.applymap('{:.6%}'.format)], axis=0, join='outer')
@@ -256,9 +263,7 @@ if file is not None:
                 file_name='Efficient Frontier.csv')
 
         #if st.button('Simulation'):
-        if ('input_simul_price' not in st.session_state) or ([st.session_state.nPort, st.session_state.nSim,
-                       st.session_state.constraint_range, list(st.session_state.input_price.columns)] \
-                       != [nPort, nSim, constraint_range, list(input_price.columns)]):
+        if ('input_simul_price' not in st.session_state) or (st.session_state.key == key):
 
 
         #################################################################################################
