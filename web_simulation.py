@@ -270,7 +270,7 @@ if file is not None:
                         label="Download",
                         data=st.session_state.drawdown.to_csv(index=True),
                         mime='text/csv',
-                        file_name='Correlation.csv')
+                        file_name='Maximum Drawdown.csv')
 
                 st.write(" ")
 
