@@ -319,7 +319,7 @@ if file is not None:
 
         with st.session_state.result_expander1:
 
-            if 'slider' in st.session_state:
+            if 'Target' in st.session_state:
 
 
                 st.write(" ")
