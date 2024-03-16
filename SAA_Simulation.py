@@ -275,6 +275,8 @@ if file is not None:
                                                                         len(st.session_state.input_price)},
                                                                index=st.session_state.input_price.index)], axis=1)
 
+        st.dataframe(st.session_state.Target_alloc)
+
         st.session_state.portfolio_port, st.session_state.allocation_f = \
             backtest.simulation(st.session_state.input_price, st.session_state.Target_alloc, 0, 'Monthly', 'Daily')
 
