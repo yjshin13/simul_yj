@@ -254,220 +254,220 @@ if file is not None:
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
 
-        if st.button('Simulation'):
-
-            #################################################################################################
-
-            st.session_state.Target = Target
-
-            st.session_state.Target_alloc = st.session_state.EF[abs(st.session_state.EF['EXP_RET'] - Target) ==
-                                                                min(abs(st.session_state.EF['EXP_RET'] - Target))].drop(columns=['EXP_RET', 'STDEV'])
-
-            st.session_state.Target_alloc['Cash'] = 1 - st.session_state.Target_alloc.sum().sum()
-
-            st.session_state.Target_alloc = st.session_state.Target_alloc.squeeze().tolist()
-            # st.session_state.Target_alloc_input = st.session_state.Target_alloc.values.tolist()
-
-
-
-            st.session_state.input_price = pd.concat([st.session_state.input_price,
-                                                      pd.DataFrame({'Cash': [100] *
-                                                                            len(st.session_state.input_price)},
-                                                                   index=st.session_state.input_price.index)], axis=1)
-
-            st.session_state.portfolio_port, st.session_state.allocation_f = \
-                backtest.simulation(st.session_state.input_price, st.session_state.Target_alloc, 0, 'Monthly', freq)
-
-            st.session_state.alloc = st.session_state.allocation_f.copy()
-            st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()) - 1
-
-            st.session_state.contribution = ((st.session_state.ret * (
-                st.session_state.alloc.shift(1).dropna())).dropna() + 1).prod(axis=0) - 1
-
-            if monthly == True:
-                st.session_state.portfolio_port = st.session_state.portfolio_port[
-                    st.session_state.portfolio_port.index.is_month_end == True]
-
-            st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
-            st.session_state.input_price_N = st.session_state.input_price[
-                (st.session_state.input_price.index >= st.session_state.portfolio_port.index[0]) &
-                (st.session_state.input_price.index <= st.session_state.portfolio_port.index[-1])]
-            st.session_state.input_price_N = 100 * st.session_state.input_price_N / st.session_state.input_price_N.iloc[0, :]
-
-            st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
-            st.session_state.drawdown.index = st.session_state.drawdown.index.date
-            st.session_state.input_price_N.index = st.session_state.input_price_N.index.date
-            st.session_state.alloc.index = st.session_state.alloc.index.date
-
-            st.session_state.result = pd.concat([st.session_state.portfolio_port,
-                                                 st.session_state.drawdown,
-                                                 st.session_state.input_price_N,
-                                                 st.session_state.alloc], axis=1)
-
-            st.session_state.START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
-            st.session_state.END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
-            st.session_state.Total_RET = round(float(st.session_state.portfolio_port[-1] / 100 - 1) * 100, 2)
-            st.session_state.Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (
-                    annualization / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
-            st.session_state.Anuuual_Vol = round(
-                float(np.std(st.session_state.portfolio_port.pct_change().dropna())
-                      * np.sqrt(annualization) * 100), 2)
-
-            st.session_state.MDD = round(float(min(st.session_state.drawdown) * 100), 2)
-            st.session_state.Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
+        # if st.button('Simulation'):
 
         #################################################################################################
 
-        st.session_state.result_expander1 = st.expander('Result', expanded=True)
+        st.session_state.Target = Target
 
-        with st.session_state.result_expander1:
+        st.session_state.Target_alloc = st.session_state.EF[abs(st.session_state.EF['EXP_RET'] - Target) ==
+                                                            min(abs(st.session_state.EF['EXP_RET'] - Target))].drop(columns=['EXP_RET', 'STDEV'])
 
-            if 'Target' in st.session_state:
+        st.session_state.Target_alloc['Cash'] = 1 - st.session_state.Target_alloc.sum().sum()
 
-                st.write(" ")
-
-                col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
-
-                with col50:
-                    st.info("Period: " + str(st.session_state.START_DATE) + " ~ " + str(st.session_state.END_DATE))
-
-                with col51:
-                    st.info("Total Return: " + str(st.session_state.Total_RET) + "%")
+        st.session_state.Target_alloc = st.session_state.Target_alloc.squeeze().tolist()
+        # st.session_state.Target_alloc_input = st.session_state.Target_alloc.values.tolist()
 
 
-                with col52:
-                    st.info("Annual Return: " + str(st.session_state.Anuuual_RET) + "%")
+
+        st.session_state.input_price = pd.concat([st.session_state.input_price,
+                                                  pd.DataFrame({'Cash': [100] *
+                                                                        len(st.session_state.input_price)},
+                                                               index=st.session_state.input_price.index)], axis=1)
+
+        st.session_state.portfolio_port, st.session_state.allocation_f = \
+            backtest.simulation(st.session_state.input_price, st.session_state.Target_alloc, 0, 'Monthly', freq)
+
+        st.session_state.alloc = st.session_state.allocation_f.copy()
+        st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()) - 1
+
+        st.session_state.contribution = ((st.session_state.ret * (
+            st.session_state.alloc.shift(1).dropna())).dropna() + 1).prod(axis=0) - 1
+
+        if monthly == True:
+            st.session_state.portfolio_port = st.session_state.portfolio_port[
+                st.session_state.portfolio_port.index.is_month_end == True]
+
+        st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
+        st.session_state.input_price_N = st.session_state.input_price[
+            (st.session_state.input_price.index >= st.session_state.portfolio_port.index[0]) &
+            (st.session_state.input_price.index <= st.session_state.portfolio_port.index[-1])]
+        st.session_state.input_price_N = 100 * st.session_state.input_price_N / st.session_state.input_price_N.iloc[0, :]
+
+        st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
+        st.session_state.drawdown.index = st.session_state.drawdown.index.date
+        st.session_state.input_price_N.index = st.session_state.input_price_N.index.date
+        st.session_state.alloc.index = st.session_state.alloc.index.date
+
+        st.session_state.result = pd.concat([st.session_state.portfolio_port,
+                                             st.session_state.drawdown,
+                                             st.session_state.input_price_N,
+                                             st.session_state.alloc], axis=1)
+
+        st.session_state.START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
+        st.session_state.END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
+        st.session_state.Total_RET = round(float(st.session_state.portfolio_port[-1] / 100 - 1) * 100, 2)
+        st.session_state.Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (
+                annualization / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
+        st.session_state.Anuuual_Vol = round(
+            float(np.std(st.session_state.portfolio_port.pct_change().dropna())
+                  * np.sqrt(annualization) * 100), 2)
+
+        st.session_state.MDD = round(float(min(st.session_state.drawdown) * 100), 2)
+        st.session_state.Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
+
+    #################################################################################################
+
+    st.session_state.result_expander1 = st.expander('Result', expanded=True)
+
+    with st.session_state.result_expander1:
+
+        if 'Target' in st.session_state:
+
+            st.write(" ")
+
+            col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
+
+            with col50:
+                st.info("Period: " + str(st.session_state.START_DATE) + " ~ " + str(st.session_state.END_DATE))
+
+            with col51:
+                st.info("Total Return: " + str(st.session_state.Total_RET) + "%")
 
 
-                with col53:
-                    st.info("Annual Volatility: " + str(st.session_state.Anuuual_Vol) + "%")
+            with col52:
+                st.info("Annual Return: " + str(st.session_state.Anuuual_RET) + "%")
 
-                with col54:
 
-                    st.info("MDD: " + str(st.session_state.MDD) + "%")
+            with col53:
+                st.info("Annual Volatility: " + str(st.session_state.Anuuual_Vol) + "%")
 
-                col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
+            with col54:
 
-                with col21:
-                    st.write('NAV')
-                    st.dataframe(st.session_state.portfolio_port.round(2))
+                st.info("MDD: " + str(st.session_state.MDD) + "%")
 
-                    st.download_button(
-                        label="Download",
-                        data=st.session_state.result.to_csv(index=True),
-                        mime='text/csv',
-                        file_name='Result.csv')
+            col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
 
-                with col22:
-                    st.write('MDD')
-                    st.dataframe(st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)))
+            with col21:
+                st.write('NAV')
+                st.dataframe(st.session_state.portfolio_port.round(2))
 
-                with col23:
-                    st.write('Normalized Price')
-                    st.dataframe((st.session_state.input_price_N).
-                                 astype('float64').round(2))
+                st.download_button(
+                    label="Download",
+                    data=st.session_state.result.to_csv(index=True),
+                    mime='text/csv',
+                    file_name='Result.csv')
 
-                with col24:
-                    st.write('Floating Weight')
-                    st.dataframe(st.session_state.alloc.applymap('{:.2%}'.format))
+            with col22:
+                st.write('MDD')
+                st.dataframe(st.session_state.drawdown.apply(lambda x: '{:.2%}'.format(x)))
 
-                st.write(" ")
+            with col23:
+                st.write('Normalized Price')
+                st.dataframe((st.session_state.input_price_N).
+                             astype('float64').round(2))
 
-                col31, col32 = st.columns([1, 1])
+            with col24:
+                st.write('Floating Weight')
+                st.dataframe(st.session_state.alloc.applymap('{:.2%}'.format))
 
-                with col31:
-                    st.write("Net Asset Value")
-                    st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
+            st.write(" ")
 
-                with col32:
-                    st.write("MAX Drawdown")
-                    st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
+            col31, col32 = st.columns([1, 1])
 
-                col61, col62 = st.columns([1, 1])
+            with col31:
+                st.write("Net Asset Value")
+                st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
 
-                with col61:
+            with col32:
+                st.write("MAX Drawdown")
+                st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
 
-                    st.download_button(
-                        label="Download",
-                        data=st.session_state.portfolio_port.to_csv(index=True),
-                        mime='text/csv',
-                        file_name='Net Asset Value.csv')
+            col61, col62 = st.columns([1, 1])
 
-                with col62:
+            with col61:
 
-                    st.download_button(
-                        label="Download",
-                        data=st.session_state.drawdown.to_csv(index=True),
-                        mime='text/csv',
-                        file_name='Maximum Drawdown.csv')
+                st.download_button(
+                    label="Download",
+                    data=st.session_state.portfolio_port.to_csv(index=True),
+                    mime='text/csv',
+                    file_name='Net Asset Value.csv')
 
-                st.write(" ")
+            with col62:
 
-                col_a, col_b, = st.columns([1, 1])
+                st.download_button(
+                    label="Download",
+                    data=st.session_state.drawdown.to_csv(index=True),
+                    mime='text/csv',
+                    file_name='Maximum Drawdown.csv')
 
-                with col_a:
+            st.write(" ")
 
-                    st.write("Performance Contribution")
-                    st.session_state.contribution.index = pd.Index(
-                        st.session_state.contribution.index.map(lambda x: str(x)[:7]))
+            col_a, col_b, = st.columns([1, 1])
 
-                    x = (st.session_state.contribution * 100)
-                    y = st.session_state.contribution.index
+            with col_a:
 
-                    fig_bar, ax_bar = plt.subplots(figsize=(18, 11))
-                    width = 0.75  # the width of the bars
-                    bar = ax_bar.barh(y, x, color="lightblue", height=0.8, )
+                st.write("Performance Contribution")
+                st.session_state.contribution.index = pd.Index(
+                    st.session_state.contribution.index.map(lambda x: str(x)[:7]))
 
-                    for bars in bar:
-                        width = bars.get_width()
-                        posx = width + 0.01
-                        posy = bars.get_y() + bars.get_height() * 0.5
-                        ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
+                x = (st.session_state.contribution * 100)
+                y = st.session_state.contribution.index
 
-                    plt.xticks(fontsize=15)
-                    plt.yticks(fontsize=15)
-                    plt.xlabel('Contribution(%)', fontsize=15, labelpad=20)
-                    # ax_bar.margins(x=0, y=0)
+                fig_bar, ax_bar = plt.subplots(figsize=(18, 11))
+                width = 0.75  # the width of the bars
+                bar = ax_bar.barh(y, x, color="lightblue", height=0.8, )
 
-                    st.pyplot(fig_bar)
+                for bars in bar:
+                    width = bars.get_width()
+                    posx = width + 0.01
+                    posy = bars.get_y() + bars.get_height() * 0.5
+                    ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
 
-                with col_b:
-                    st.write("Correlation Matrix")
+                plt.xticks(fontsize=15)
+                plt.yticks(fontsize=15)
+                plt.xlabel('Contribution(%)', fontsize=15, labelpad=20)
+                # ax_bar.margins(x=0, y=0)
 
-                    # Increase the size of the heatmap.
-                    fig2 = plt.figure(figsize=(15, 8.3))
-                    # plt.rc('font', family='Malgun Gothic')
-                    plt.rcParams['axes.unicode_minus'] = False
+                st.pyplot(fig_bar)
 
-                    st.session_state.corr = st.session_state.input_price.drop(['Cash'],
-                                                                              axis=1).pct_change().dropna().corr().round(2)
+            with col_b:
+                st.write("Correlation Matrix")
 
-                    st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
-                    st.session_state.corr.columns = st.session_state.corr.index
-                    # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
+                # Increase the size of the heatmap.
+                fig2 = plt.figure(figsize=(15, 8.3))
+                # plt.rc('font', family='Malgun Gothic')
+                plt.rcParams['axes.unicode_minus'] = False
 
-                    heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True, cmap='coolwarm')
+                st.session_state.corr = st.session_state.input_price.drop(['Cash'],
+                                                                          axis=1).pct_change().dropna().corr().round(2)
 
-                    # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
+                st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
+                st.session_state.corr.columns = st.session_state.corr.index
+                # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
 
-                    st.pyplot(fig2)
+                heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True, cmap='coolwarm')
 
-                col71, col72 = st.columns([1, 1])
+                # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
 
-                with col71:
+                st.pyplot(fig2)
 
-                    st.download_button(
-                        label="Download",
-                        data=((st.session_state.ret * (st.session_state.alloc.shift(1).dropna())).dropna()).to_csv(
-                            index=True),
-                        mime='text/csv',
-                        file_name='Contribution.csv')
+            col71, col72 = st.columns([1, 1])
 
-                with col72:
+            with col71:
 
-                    st.download_button(
-                        label="Download",
-                        data=st.session_state.corr.to_csv(index=True),
-                        mime='text/csv',
-                        file_name='Correlation.csv')
+                st.download_button(
+                    label="Download",
+                    data=((st.session_state.ret * (st.session_state.alloc.shift(1).dropna())).dropna()).to_csv(
+                        index=True),
+                    mime='text/csv',
+                    file_name='Contribution.csv')
+
+            with col72:
+
+                st.download_button(
+                    label="Download",
+                    data=st.session_state.corr.to_csv(index=True),
+                    mime='text/csv',
+                    file_name='Correlation.csv')
 
