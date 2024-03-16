@@ -120,7 +120,8 @@ if file is not None:
 
 
 
-            """############################################################"""
+            #################################################################################################
+
             st.session_state.Target = Target
 
             st.session_state.Target_alloc = st.session_state.EF[abs(st.session_state.EF['EXP_RET'] - Target) ==
@@ -179,7 +180,9 @@ if file is not None:
             st.session_state.MDD = round(float(min(st.session_state.drawdown) * 100), 2)
             st.session_state.Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
 
-            """############################################################"""
+        #################################################################################################
+
+
 
 
 
