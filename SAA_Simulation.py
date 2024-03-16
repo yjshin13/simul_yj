@@ -159,33 +159,33 @@ if file is not None:
             st.empty()
 
 
-            #col_a, col_b = st.columns([1, 1])
+            col_a, col_b = st.columns([1, 0])
 
-            #with col_a:
-
-            st.write("Efficient Frontier")
-            EF_point = plt.figure(figsize=(20, 10))
-
-            Point = np.full(len(st.session_state.EF),0)
-            Point[Target_index] =2
-
-            plt.scatter(st.session_state.EF['STDEV']*100, (st.session_state.EF['EXP_RET']*100).T,
-                        marker='o',
-                        s=130,
-                        c=Point,
-                       # alpha=0.7,
-                        cmap='Paired',
-                        alpha = 1,
-                        linewidths=2,
-                        edgecolors='lightblue')
-            plt.xticks(fontsize=15)
-            plt.yticks(fontsize=15)
-
-            plt.xlabel('Expected Risk(%)', fontsize=15, labelpad=20)
-            plt.ylabel('Expected Return(%)', fontsize=15, labelpad=20)
-
-            st.pyplot(EF_point)
-        
+            with col_a:
+    
+                st.write("Efficient Frontier")
+                EF_point = plt.figure(figsize=(20, 10))
+    
+                Point = np.full(len(st.session_state.EF),0)
+                Point[Target_index] =2
+    
+                plt.scatter(st.session_state.EF['STDEV']*100, (st.session_state.EF['EXP_RET']*100).T,
+                            marker='o',
+                            s=130,
+                            c=Point,
+                           # alpha=0.7,
+                            cmap='Paired',
+                            alpha = 1,
+                            linewidths=2,
+                            edgecolors='lightblue')
+                plt.xticks(fontsize=15)
+                plt.yticks(fontsize=15)
+    
+                plt.xlabel('Expected Risk(%)', fontsize=15, labelpad=20)
+                plt.ylabel('Expected Return(%)', fontsize=15, labelpad=20)
+    
+                st.pyplot(EF_point)
+            
             # with col_b:
             #
             #     st.write("Weight")
