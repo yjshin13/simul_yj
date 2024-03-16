@@ -276,7 +276,7 @@ if file is not None:
                                                                index=st.session_state.input_price.index)], axis=1)
 
         st.session_state.portfolio_port, st.session_state.allocation_f = \
-            backtest.simulation(st.session_state.input_price, st.session_state.Target_alloc, 0, 'Monthly', freq)
+            backtest.simulation(st.session_state.input_price, st.session_state.Target_alloc, 0, 'Monthly', freq==1)
 
         st.session_state.alloc = st.session_state.allocation_f.copy()
         st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()) - 1
