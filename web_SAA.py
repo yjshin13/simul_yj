@@ -48,14 +48,14 @@ if file is not None:
         with col22:
 
 
-            if st.checkbox('Daily', value=True):
+            if st.checkbox('Daily', value=False):
 
                 daily = True
                 monthly = False
                 annualization = 252
                 freq = "daily"
 
-            if st.checkbox('Monthly', value=False):
+            if st.checkbox('Monthly', value=True):
 
                 daily = False
                 monthly = True
