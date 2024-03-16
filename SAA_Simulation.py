@@ -29,6 +29,7 @@ if file is not None:
     assets = universe['symbol'][universe['key'].isin(select)]
 
     input_price = price[list(assets)]
+    input_simul_price = price[list(assets)]
     input_universe = universe[universe['symbol'].isin(list(assets))].drop(['key'], axis=1)
     input_universe = input_universe.reset_index(drop=True) #index 깨지면 Optimization 배열 범위 초과 오류 발생
 
@@ -271,18 +272,22 @@ if file is not None:
 
         st.dataframe(st.session_state.Target_alloc)
 
-        st.session_state.input_price = pd.concat([st.session_state.input_price,
+        st.session_state.input_simul_price = input_simul_price
+
+
+
+        st.session_state.input_simul_price = pd.concat([st.session_state.input_simul_price,
                                                   pd.DataFrame({'Cash': [100] *
-                                                                        len(st.session_state.input_price)},
-                                                               index=st.session_state.input_price.index)], axis=1)
+                                                                        len(st.session_state.input_simul_price)},
+                                                               index=st.session_state.input_simul_price.index)], axis=1)
 
 
 
         st.session_state.portfolio_port, st.session_state.allocation_f = \
-            backtest.simulation(st.session_state.input_price, st.session_state.Target_alloc, 0, 'Monthly', 'Daily')
+            backtest.simulation(st.session_state.input_simul_price, st.session_state.Target_alloc, 0, 'Monthly', 'Daily')
 
         st.session_state.alloc = st.session_state.allocation_f.copy()
-        st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()) - 1
+        st.session_state.ret = (st.session_state.input_simul_price.iloc[1:] / st.session_state.input_simul_price.shift(1).dropna()) - 1
 
         st.session_state.contribution = ((st.session_state.ret * (
             st.session_state.alloc.shift(1).dropna())).dropna() + 1).prod(axis=0) - 1
@@ -292,9 +297,9 @@ if file is not None:
         #         st.session_state.portfolio_port.index.is_month_end == True]
 
         st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
-        st.session_state.input_price_N = st.session_state.input_price[
-            (st.session_state.input_price.index >= st.session_state.portfolio_port.index[0]) &
-            (st.session_state.input_price.index <= st.session_state.portfolio_port.index[-1])]
+        st.session_state.input_price_N = st.session_state.input_simul_price[
+            (st.session_state.input_simul_price.index >= st.session_state.portfolio_port.index[0]) &
+            (st.session_state.input_simul_price.index <= st.session_state.portfolio_port.index[-1])]
         st.session_state.input_price_N = 100 * st.session_state.input_price_N / st.session_state.input_price_N.iloc[0, :]
 
         st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
