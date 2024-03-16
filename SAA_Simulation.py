@@ -264,13 +264,13 @@ if file is not None:
                                                             min(abs(st.session_state.EF['EXP_RET'] - Target))].drop(columns=['EXP_RET', 'STDEV']).iloc[0]
 
 
-        st.dataframe(st.session_state.Target_alloc)
+
         st.session_state.Target_alloc['Cash'] = 1 - st.session_state.Target_alloc.sum().sum()
 
         # st.session_state.Target_alloc = st.session_state.Target_alloc.squeeze()
         # st.session_state.Target_alloc_input = st.session_state.Target_alloc.values.tolist()
 
-
+        st.dataframe(st.session_state.Target_alloc)
 
         st.session_state.input_price = pd.concat([st.session_state.input_price,
                                                   pd.DataFrame({'Cash': [100] *
