@@ -265,7 +265,7 @@ if file is not None:
 
         st.session_state.Target_alloc['Cash'] = 1 - st.session_state.Target_alloc.sum().sum()
 
-        st.session_state.Target_alloc = st.session_state.Target_alloc.squeeze().tolist()
+        st.session_state.Target_alloc = st.session_state.Target_alloc.squeeze()
         # st.session_state.Target_alloc_input = st.session_state.Target_alloc.values.tolist()
 
 
