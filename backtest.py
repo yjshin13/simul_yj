@@ -1,9 +1,9 @@
 import pandas as pd
 from stqdm import stqdm
 
-def cleansing(assets_data=pd.DataFrame(), alloc=pd.Series(), rebal=2, freq='Daily'):
+def cleansing(assets_data=pd.DataFrame(), alloc=list(), rebal=2, freq='Daily'):
 
-    alloc = pd.DataFrame(alloc)
+    alloc = pd.DataFrame(alloc).T
 
     assets_data = pd.DataFrame(assets_data,
                             index=pd.date_range(start=assets_data.index[0],
