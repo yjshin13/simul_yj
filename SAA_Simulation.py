@@ -284,9 +284,9 @@ if file is not None:
         st.session_state.contribution = ((st.session_state.ret * (
             st.session_state.alloc.shift(1).dropna())).dropna() + 1).prod(axis=0) - 1
 
-        if monthly == True:
-            st.session_state.portfolio_port = st.session_state.portfolio_port[
-                st.session_state.portfolio_port.index.is_month_end == True]
+        # if monthly == True:
+        #     st.session_state.portfolio_port = st.session_state.portfolio_port[
+        #         st.session_state.portfolio_port.index.is_month_end == True]
 
         st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
         st.session_state.input_price_N = st.session_state.input_price[
