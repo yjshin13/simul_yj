@@ -395,7 +395,7 @@ if file is not None:
                         label="Download",
                         data=st.session_state.drawdown.to_csv(index=True),
                         mime='text/csv',
-                        file_name='Correlation.csv')
+                        file_name='Maximum Drawdown.csv')
 
                 st.write(" ")
 
@@ -453,7 +453,7 @@ if file is not None:
                 with col71:
 
                     st.download_button(
-                        label="Download  ",
+                        label="Download",
                         data=((st.session_state.ret * (st.session_state.alloc.shift(1).dropna())).dropna()).to_csv(
                             index=True),
                         mime='text/csv',
@@ -462,7 +462,7 @@ if file is not None:
                 with col72:
 
                     st.download_button(
-                        label="Download  ",
+                        label="Download",
                         data=st.session_state.corr.to_csv(index=True),
                         mime='text/csv',
                         file_name='Correlation.csv')
