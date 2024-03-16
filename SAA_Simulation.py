@@ -318,29 +318,29 @@ if file is not None:
 
         with st.session_state.result_expander1:
 
+            if 'Target' in st.session_state:
+
+                st.write(" ")
+
+                col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
+
+                with col50:
+                    st.info("Period: " + str(st.session_state.START_DATE) + " ~ " + str(st.session_state.END_DATE))
+
+                with col51:
+                    st.info("Total Return: " + str(st.session_state.Total_RET) + "%")
 
 
-            st.write(" ")
-
-            col50, col51, col52, col53, col54 = st.columns([1, 1, 1, 1, 1])
-
-            with col50:
-                st.info("Period: " + str(st.session_state.START_DATE) + " ~ " + str(st.session_state.END_DATE))
-
-            with col51:
-                st.info("Total Return: " + str(st.session_state.Total_RET) + "%")
+                with col52:
+                    st.info("Annual Return: " + str(st.session_state.Anuuual_RET) + "%")
 
 
-            with col52:
-                st.info("Annual Return: " + str(st.session_state.Anuuual_RET) + "%")
+                with col53:
+                    st.info("Annual Volatility: " + str(st.session_state.Anuuual_Vol) + "%")
 
+                with col54:
 
-            with col53:
-                st.info("Annual Volatility: " + str(st.session_state.Anuuual_Vol) + "%")
-
-            with col54:
-
-                st.info("MDD: " + str(st.session_state.MDD) + "%")
+                    st.info("MDD: " + str(st.session_state.MDD) + "%")
                 #
                 # col21, col22, col23, col24 = st.columns([0.8, 0.8, 3.5, 3.5])
                 #
