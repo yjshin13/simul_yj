@@ -270,8 +270,6 @@ if file is not None:
 
         st.session_state.Target_alloc_input = st.session_state.Target_alloc.values.tolist()
 
-        st.dataframe(st.session_state.Target_alloc)
-
         st.session_state.input_simul_price = input_simul_price
 
 
