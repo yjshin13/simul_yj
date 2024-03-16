@@ -159,7 +159,7 @@ if file is not None:
             st.empty()
 
 
-            col_a, col_b = st.columns([1, 0])
+            #col_a, col_b = st.columns([1, 1])
 
             #with col_a:
 
