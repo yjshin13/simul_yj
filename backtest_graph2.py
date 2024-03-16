@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 def line_chart(x, title):
     x = pd.DataFrame(x)
@@ -10,8 +9,7 @@ def line_chart(x, title):
     columns = x.columns
 
     # Draw Plot
-    #plt.style.use('seaborn-whitegrid')
-    
+    plt.style.use('seaborn-whitegrid')
     fig, ax = plt.subplots(1, 1, figsize=(20,10), dpi=100)
     # length = np.arange(after_nav.index[0],after_nav.index[-1] + pd.DateOffset(years=1),
     #                         dtype='datetime64[Y]')
