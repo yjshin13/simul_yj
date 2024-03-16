@@ -264,7 +264,7 @@ if file is not None:
                                                                 min(abs(st.session_state.EF['EXP_RET'] - Target))].drop(columns=['EXP_RET', 'STDEV'])
 
             st.session_state.Target_alloc['Cash'] = 1 - st.session_state.Target_alloc.sum().sum()
-            st.session_state.Target_alloc = st.session_state.Target_alloc.T.squeeze().tolist()
+            st.session_state.Target_alloc_T = st.session_state.Target_alloc.T.squeeze().tolist()
 
             st.session_state.input_price = pd.concat([st.session_state.input_price,
                                                       pd.DataFrame({'Cash': [100] *
@@ -272,7 +272,7 @@ if file is not None:
                                                                    index=st.session_state.input_price.index)], axis=1)
 
             st.session_state.portfolio_port, st.session_state.allocation_f = \
-                backtest.simulation(st.session_state.input_price, st.session_state.Target_alloc, 0, 'Monthly', freq)
+                backtest.simulation(st.session_state.input_price, st.session_state.Target_alloc_T, 0, 'Monthly', freq)
 
             st.session_state.alloc = st.session_state.allocation_f.copy()
             st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()) - 1
