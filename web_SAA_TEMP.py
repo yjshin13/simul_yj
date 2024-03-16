@@ -120,68 +120,6 @@ if file is not None:
 
 
 
-            #################################################################################################
-
-            st.session_state.Target = Target
-
-            st.session_state.Target_alloc = st.session_state.EF[abs(st.session_state.EF['EXP_RET'] - Target) ==
-                            min(abs(st.session_state.EF['EXP_RET'] - Target))].drop(columns=['EXP_RET', 'STDEV'])
-
-
-            st.session_state.Target_alloc['Cash'] = 1 - st.session_state.Target_alloc.sum().sum()
-            st.session_state.Target_alloc = st.session_state.Target_alloc.T.squeeze().tolist()
-
-            st.session_state.input_price = pd.concat([st.session_state.input_price,
-                                                      pd.DataFrame({'Cash': [100] *
-                                                                    len(st.session_state.input_price)},
-                                                                   index=st.session_state.input_price.index)], axis=1)
-
-            st.session_state.portfolio_port, st.session_state.allocation_f = \
-                backtest.simulation(st.session_state.input_price, st.session_state.Target_alloc, 0, 'Monthly', freq)
-
-            st.session_state.alloc = st.session_state.allocation_f.copy()
-            st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()) - 1
-
-            st.session_state.contribution = ((st.session_state.ret * (
-                st.session_state.alloc.shift(1).dropna())).dropna() + 1).prod(axis=0) - 1
-
-            if monthly == True:
-                st.session_state.portfolio_port = st.session_state.portfolio_port[
-                    st.session_state.portfolio_port.index.is_month_end == True]
-
-
-            st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
-            st.session_state.input_price_N = st.session_state.input_price[
-                (st.session_state.input_price.index >= st.session_state.portfolio_port.index[0]) &
-                (st.session_state.input_price.index <= st.session_state.portfolio_port.index[-1])]
-            st.session_state.input_price_N = 100 * st.session_state.input_price_N / st.session_state.input_price_N.iloc[0, :]
-
-
-            st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
-            st.session_state.drawdown.index = st.session_state.drawdown.index.date
-            st.session_state.input_price_N.index = st.session_state.input_price_N.index.date
-            st.session_state.alloc.index = st.session_state.alloc.index.date
-
-            st.session_state.result = pd.concat([st.session_state.portfolio_port,
-                                                 st.session_state.drawdown,
-                                                 st.session_state.input_price_N,
-                                                 st.session_state.alloc],axis=1)
-
-
-            st.session_state.START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
-            st.session_state.END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
-            st.session_state.Total_RET = round(float(st.session_state.portfolio_port[-1] / 100-1)*100, 2)
-            st.session_state.Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (
-                    annualization / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
-            st.session_state.Anuuual_Vol = round(
-                                            float(np.std(st.session_state.portfolio_port.pct_change().dropna())
-                                                  * np.sqrt(annualization) * 100),2)
-
-            st.session_state.MDD = round(float(min(st.session_state.drawdown) * 100), 2)
-            st.session_state.Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
-
-        #################################################################################################
-
 
 
 
@@ -315,6 +253,66 @@ if file is not None:
                 data=st.session_state.Result.to_csv(index=False),
                 mime='text/csv',
                 file_name='Efficient Frontier.csv')
+
+        if st.button('Simulation'):
+
+            #################################################################################################
+
+            st.session_state.Target = Target
+
+            st.session_state.Target_alloc = st.session_state.EF[abs(st.session_state.EF['EXP_RET'] - Target) ==
+                                                                min(abs(st.session_state.EF['EXP_RET'] - Target))].drop(columns=['EXP_RET', 'STDEV'])
+
+            st.session_state.Target_alloc['Cash'] = 1 - st.session_state.Target_alloc.sum().sum()
+            st.session_state.Target_alloc = st.session_state.Target_alloc.T.squeeze().tolist()
+
+            st.session_state.input_price = pd.concat([st.session_state.input_price,
+                                                      pd.DataFrame({'Cash': [100] *
+                                                                            len(st.session_state.input_price)},
+                                                                   index=st.session_state.input_price.index)], axis=1)
+
+            st.session_state.portfolio_port, st.session_state.allocation_f = \
+                backtest.simulation(st.session_state.input_price, st.session_state.Target_alloc, 0, 'Monthly', freq)
+
+            st.session_state.alloc = st.session_state.allocation_f.copy()
+            st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()) - 1
+
+            st.session_state.contribution = ((st.session_state.ret * (
+                st.session_state.alloc.shift(1).dropna())).dropna() + 1).prod(axis=0) - 1
+
+            if monthly == True:
+                st.session_state.portfolio_port = st.session_state.portfolio_port[
+                    st.session_state.portfolio_port.index.is_month_end == True]
+
+            st.session_state.drawdown = backtest.drawdown(st.session_state.portfolio_port)
+            st.session_state.input_price_N = st.session_state.input_price[
+                (st.session_state.input_price.index >= st.session_state.portfolio_port.index[0]) &
+                (st.session_state.input_price.index <= st.session_state.portfolio_port.index[-1])]
+            st.session_state.input_price_N = 100 * st.session_state.input_price_N / st.session_state.input_price_N.iloc[0, :]
+
+            st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
+            st.session_state.drawdown.index = st.session_state.drawdown.index.date
+            st.session_state.input_price_N.index = st.session_state.input_price_N.index.date
+            st.session_state.alloc.index = st.session_state.alloc.index.date
+
+            st.session_state.result = pd.concat([st.session_state.portfolio_port,
+                                                 st.session_state.drawdown,
+                                                 st.session_state.input_price_N,
+                                                 st.session_state.alloc], axis=1)
+
+            st.session_state.START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
+            st.session_state.END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
+            st.session_state.Total_RET = round(float(st.session_state.portfolio_port[-1] / 100 - 1) * 100, 2)
+            st.session_state.Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (
+                    annualization / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
+            st.session_state.Anuuual_Vol = round(
+                float(np.std(st.session_state.portfolio_port.pct_change().dropna())
+                      * np.sqrt(annualization) * 100), 2)
+
+            st.session_state.MDD = round(float(min(st.session_state.drawdown) * 100), 2)
+            st.session_state.Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
+
+        #################################################################################################
 
 
 
