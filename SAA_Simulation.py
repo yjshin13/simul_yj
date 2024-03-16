@@ -265,8 +265,8 @@ if file is not None:
 
             st.session_state.Target_alloc['Cash'] = 1 - st.session_state.Target_alloc.sum().sum()
 
-            st.session_state.Target_alloc = st.session_state.Target_alloc.T.squeeze()
-            st.session_state.Target_alloc_input = st.session_state.Target_alloc.values.tolist()
+            st.session_state.Target_alloc = st.session_state.Target_alloc.squeeze().tolist()
+            # st.session_state.Target_alloc_input = st.session_state.Target_alloc.values.tolist()
 
 
 
@@ -276,7 +276,7 @@ if file is not None:
                                                                    index=st.session_state.input_price.index)], axis=1)
 
             st.session_state.portfolio_port, st.session_state.allocation_f = \
-                backtest.simulation(st.session_state.input_price, st.session_state.Target_alloc_input, 0, 'Monthly', freq)
+                backtest.simulation(st.session_state.input_price, st.session_state.Target_alloc, 0, 'Monthly', freq)
 
             st.session_state.alloc = st.session_state.allocation_f.copy()
             st.session_state.ret = (st.session_state.input_price.iloc[1:] / st.session_state.input_price.shift(1).dropna()) - 1
