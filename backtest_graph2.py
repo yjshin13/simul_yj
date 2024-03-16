@@ -3,30 +3,30 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def line_chart(x, title):
+
     x = pd.DataFrame(x)
     mycolors = ['tab:red', 'tab:blue', 'tab:green', 'tab:orange', 'tab:brown', 'tab:grey', 'tab:pink',
                 'tab:olive', 'tab:purple']
     columns = x.columns
 
     # Draw Plot
-    plt.style.use('ggplot')
-    fig, ax = plt.subplots(1, 1, figsize=(20,10), dpi=100)
+    plt.style.use('darkgrid')
+    fig, ax = plt.subplots(1, 1, figsize=(20, 10), dpi=100)
     # length = np.arange(after_nav.index[0],after_nav.index[-1] + pd.DateOffset(years=1),
     #                         dtype='datetime64[Y]')
     length = np.arange(x.index[0], x.index[-1] + pd.DateOffset(years=1),
                        dtype='datetime64[Y]')
-    # if len(x.columns) >= 2:
-    #
-    #     ax.fill_between(x.index, y1=x.iloc[:, 0].squeeze().values, y2=0, label=columns[0], alpha=0.3,
-    #                     color=mycolors[1], linewidth=2)
-    #     ax.fill_between(x.index, y1=x.iloc[:, 1].squeeze().values, y2=0, label=columns[1], alpha=0.3,
-    #                     color=mycolors[0], linewidth=2)
-    #
-    # else:
-    #     ax.fill_between(x.index, y1=x.squeeze().values, y2=0, label=columns, alpha=0.3, color=mycolors[1],
-    #                     linewidth=2)
+    if len(x.columns) >= 2:
 
-    ax.plot(x.index, x.squeeze().values, label=columns, color=mycolors[1], linewidth=2)
+        ax.fill_between(x.index, y1=x.iloc[:, 0].squeeze().values, y2=0, label=columns[0], alpha=0.3,
+                        color=mycolors[1], linewidth=2)
+        ax.fill_between(x.index, y1=x.iloc[:, 1].squeeze().values, y2=0, label=columns[1], alpha=0.3,
+                        color=mycolors[0], linewidth=2)
+
+    else:
+        ax.fill_between(x.index, y1=x.squeeze().values, y2=0, label=columns, alpha=0.3, color=mycolors[1],
+                        linewidth=2)
+    # ax=x.plot(x.index, y1=x.iloc[:, 0].squeeze().values, y2=0, label=columns[0], color=mycolors[1], linewidth=2)
     # ax.set_title('Portfolio NAV', fontsize=18)
     ax.set_xlabel('Time', size=15, labelpad=20)
     ax.set_ylabel('Index', size=15, labelpad=20)
