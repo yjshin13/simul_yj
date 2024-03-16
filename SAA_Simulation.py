@@ -164,7 +164,7 @@ if file is not None:
             with col_a:
 
                 st.write("Efficient Frontier")
-                EF_point = plt.figure(figsize=(20, 5))
+                EF_point = plt.figure(figsize=(20, 10))
 
                 Point = np.full(len(st.session_state.EF),0)
                 Point[Target_index] =2
