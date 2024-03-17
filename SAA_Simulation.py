@@ -198,7 +198,7 @@ if file is not None:
                 # st.pyplot(EF_point)
 
                 fig_EF = px.scatter([st.session_state.EF['STDEV']*100,st.session_state.EF['EXP_RET']*100])
-                fig_EF.show()
+                st.plotly_chart(fig_EF)
 
             with col_b:
 
