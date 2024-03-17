@@ -407,12 +407,10 @@ if file is not None:
                 with col31:
                     st.write("Net Asset Value")
                     # st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
-                    #
-
-                    st.session_state.portfolio_port.round(2).rename_axis('Time')
+                    
 
 
-                    fig = px.line(st.session_state.portfolio_port.round(2), y='NAV', x='')
+                    fig = px.line(st.session_state.portfolio_port.round(2), y='NAV', x=st.session_state.portfolio_port.round(2).index)
                     st.plotly_chart(fig)
 
                 with col32:
