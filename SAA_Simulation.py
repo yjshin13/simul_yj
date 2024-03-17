@@ -173,7 +173,7 @@ if file is not None:
 
             with col_a:
 
-                #st.write("Efficient Frontier")
+                st.write("Efficient Frontier")
                 # EF_point = plt.figure(figsize=(20, 10))
                 #
                 #
@@ -208,7 +208,7 @@ if file is not None:
 
             with col_b:
 
-                #st.write("Optimal Weight")
+                st.write("Optimal Weight")
                 # x = (Target_Weight*100).values.round(2)
                 # y = Target_Weight.index
                 #
@@ -255,7 +255,7 @@ if file is not None:
             col_c, col_d = st.columns([1, 1])
 
             with col_c:
-                #st.write("Weight vs Return")
+                st.write("Weight vs Return")
 
                 # fig_4, ax_4 = plt.subplots(figsize=(20,10))
                 # ax_4.stackplot(st.session_state.EF['EXP_RET']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
@@ -293,7 +293,7 @@ if file is not None:
 
 
             with col_d:
-                #st.write("Weight vs Return")
+                st.write("Weight vs STDEV")
 
                 # fig_4, ax_4 = plt.subplots(figsize=(20,10))
                 # ax_4.stackplot(st.session_state.EF['EXP_RET']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
