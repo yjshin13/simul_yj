@@ -410,7 +410,7 @@ if file is not None:
                     #
 
 
-                    fig = px.line(st.session_state.portfolio_port.round(2))
+                    fig = px.line(st.session_state.portfolio_port.round(2), y='NAV')
                     st.plotly_chart(fig)
 
                 with col32:
