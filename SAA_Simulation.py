@@ -410,9 +410,9 @@ if file is not None:
 
                     fig = px.line(st.session_state.portfolio_port.round(2))
 
-                    fig.update_xaxes(title_text='New X Axis Name')
-                    fig.update_yaxes(title_text='New Y Axis Name')
-                    
+                    fig.update_xaxes(title_text='')
+                    fig.update_yaxes(title_text='')
+
                     st.plotly_chart(fig)
 
                 with col32:
