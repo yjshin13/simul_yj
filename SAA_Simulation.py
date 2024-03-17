@@ -548,8 +548,10 @@ if file is not None:
                     fig_pie2 = px.sunburst(st.session_state.pie_data2, path=['asset_category', 'name'], values=st.session_state.pie_data2.columns[-1])
                     fig_pie2.update_traces(textinfo='label+percent entry')
 
+                    fig_bar = px.bar(st.session_state.attribution)
 
-                    st.plotly_chart(fig_pie2)
+
+                    st.plotly_chart(fig_bar)
 
                     st.dataframe(st.session_state.attribution)
 
@@ -574,6 +576,8 @@ if file is not None:
                     # # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
                     #
                     # st.pyplot(fig2)
+
+                    
 
                     st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)        
                     fig_corr = px.imshow(st.session_state.corr,text_auto=True, aspect="auto")
