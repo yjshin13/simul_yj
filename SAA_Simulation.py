@@ -410,8 +410,8 @@ if file is not None:
 
                     fig = px.line(st.session_state.portfolio_port.round(2))
 
-                    fig.update_xaxes(title_text='NAV')
-                    fig.update_yaxes(title_text='Time')
+                    fig.update_xaxes(title_text='Time')
+                    fig.update_yaxes(title_text='NAV')
                     fig.update_layout(showlegend=False)
 
                     st.plotly_chart(fig)
@@ -422,8 +422,8 @@ if file is not None:
 
                     fig_MDD = px.line(st.session_state.drawdown)
 
-                    fig_MDD.update_xaxes(title_text='MDD')
-                    fig_MDD.update_yaxes(title_text='Time')
+                    fig_MDD.update_xaxes(title_text='Time')
+                    fig_MDD.update_yaxes(title_text='MDD')
                     fig_MDD.update_layout(showlegend=False)
                     st.plotly_chart(fig_MDD)
 
