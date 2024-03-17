@@ -200,7 +200,7 @@ if file is not None:
                 fig_EF = px.scatter(y=st.session_state.EF['EXP_RET'] * 100, x =st.session_state.EF['STDEV'] * 100)
                 fig_EF.update_xaxes(title_text='Standard Deviation',showgrid=True)
                 fig_EF.update_yaxes(title_text='Expected Return',showgrid=True)
-                fig_EF.update_layout(showlegend=False,template='plotly_dark')
+                #fig_EF.update_layout(showlegend=False,template='plotly_dark')
 
                 st.plotly_chart(fig_EF)
 
