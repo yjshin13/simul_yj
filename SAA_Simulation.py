@@ -539,7 +539,7 @@ if file is not None:
 
                     st.dataframe(st.session_state.attribution)
 
-                    fig_pie2 = px.sunburst(st.session_state.attribution, path=st.session_state.attribution.index, values=st.session_state.pie_data.columns[-1])
+                    fig_pie2 = px.sunburst(st.session_state.attribution, values=st.session_state.pie_data.columns[-1])
                     fig_pie2.update_traces(textinfo='label+percent entry')
 
                     st.plotly_chart(fig_pie)
