@@ -9,3 +9,4 @@ stqdm
 matplotlib
 seaborn
 bt
+plotly
