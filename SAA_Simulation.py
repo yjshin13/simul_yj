@@ -276,17 +276,11 @@ if file is not None:
                 fig_WE.update_layout(
                     legend=dict(
                         x=0.0,
-                        y=0.0,
-                        traceorder='normal',
-                        bgcolor='rgba(255, 255, 255, 0.5)',
-                        bordercolor='rgba(0, 0, 0, 0.5)',
-                        borderwidth=1
-                    )
-                )
+                        y=0.0))
 
 
-                # fig_WE.update_xaxes(title_text='Time', showgrid=True)
-                # fig.update_yaxes(title_text='NAV', showgrid=True)
+                fig_WE.update_xaxes(title_text='Expected Return', showgrid=True)
+                fig_WE.update_yaxes(title_text='Weight', showgrid=True)
                 #fig_WE.update_layout(showlegend=False)
 
                 st.plotly_chart(fig_WE)
