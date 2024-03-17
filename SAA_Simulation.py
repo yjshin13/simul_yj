@@ -250,6 +250,7 @@ if file is not None:
 
 
                 st.plotly_chart(fig_pie)
+                st.dataframe(st.session_state.pie_data)
 
 
             col_c, col_d = st.columns([1, 1])
