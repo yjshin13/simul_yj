@@ -197,7 +197,7 @@ if file is not None:
                 #
                 # st.pyplot(EF_point)
 
-                fig_EF = px.scatter([st.session_state.EF['STDEV']*100,st.session_state.EF['EXP_RET']*100], x='STDEV', y='EXP_RET')
+                fig_EF = px.scatter([st.session_state.EF['STDEV']*100,st.session_state.EF['EXP_RET']*100])
                 fig_EF.show()
 
             with col_b:
