@@ -548,7 +548,7 @@ if file is not None:
                     fig_pie2 = px.sunburst(st.session_state.pie_data2, path=['asset_category', 'name'], values=st.session_state.pie_data2.columns[-1])
                     fig_pie2.update_traces(textinfo='label+percent entry')
 
-                    st.plotly_chart(fig_pie2)
+                    #st.plotly_chart(fig_pie2)
                     st.dataframe(st.session_state.pie_data2)
 
 
