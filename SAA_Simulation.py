@@ -570,6 +570,7 @@ if file is not None:
                     # st.pyplot(fig2)
 
                     fig_corr = px.imshow(st.session_state.corr,text_auto=True, aspect="auto")
+                    fig_corr.update_layout(coloraxis_colorbar=None)
 
                     st.plotly_chart(fig_corr)
 
