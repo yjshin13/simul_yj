@@ -231,8 +231,10 @@ if file is not None:
                 #
                 # st.pyplot(fig_bar)
                 #
+                
+                st.session_state.Result2 = st.session_state.Result.drop(st.session_state.Result.columns[[0, 1]], axis=1, inplace=False).T
 
-                st.dataframe(st.session_state.Result.drop(st.session_state.Result.columns[[0, 1]], axis=1, inplace=False))
+                st.dataframe(st.session_state.Result2)
 
 
                 # fig_pie = px.sunburst(st.session_state.Result.drop(['EXP_RET', 'STDEV']))
