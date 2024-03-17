@@ -201,6 +201,7 @@ if file is not None:
                 fig_EF.update_xaxes(title_text='Standard Deviation',showgrid=True)
                 fig_EF.update_yaxes(title_text='Expected Return',showgrid=True)
                 fig_EF.update_layout(showlegend=False)
+                fig_EF.update_traces(marker=dict(color=['red' if i == Target_index else 'blue' for i in range(len(st.session_state.EF))]))
 
                 st.plotly_chart(fig_EF)
 
