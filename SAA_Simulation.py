@@ -549,7 +549,7 @@ if file is not None:
                     fig_pie2.update_traces(textinfo='label+percent entry')
 
                     st.plotly_chart(fig_pie2)
-                    #st.dataframe(st.session_state.pie_data2)
+                    st.dataframe(st.session_state.pie_data2)
 
 
                 with col_b:
