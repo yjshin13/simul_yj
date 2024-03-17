@@ -513,7 +513,7 @@ if file is not None:
 
                 with col_a:
 
-                    # st.write("Performance Attribution")
+                    st.write("Performance Attribution")
                     # st.session_state.attribution.index = pd.Index(
                     #     st.session_state.attribution.index.map(lambda x: str(x)[:7]))
                     #
