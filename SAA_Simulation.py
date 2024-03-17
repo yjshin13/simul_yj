@@ -409,8 +409,10 @@ if file is not None:
                     # st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
                     #
 
+                    st.session_state.portfolio_port.round(2).rename_axis('Time')
 
-                    fig = px.line(st.session_state.portfolio_port.round(2), y='NAV')
+
+                    fig = px.line(st.session_state.portfolio_port.round(2), y='NAV', x='Time')
                     st.plotly_chart(fig)
 
                 with col32:
