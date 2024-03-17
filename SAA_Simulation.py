@@ -410,8 +410,9 @@ if file is not None:
 
                     fig = px.line(st.session_state.portfolio_port.round(2))
 
-                    fig.update_xaxes(title_text='')
-                    fig.update_yaxes(title_text='')
+                    fig.update_xaxes(title_text='NAV')
+                    fig.update_yaxes(title_text='Time')
+                    fig.update_layout(showlegend=False)
 
                     st.plotly_chart(fig)
 
