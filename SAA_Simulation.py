@@ -556,7 +556,7 @@ if file is not None:
 
                     st.plotly_chart(fig_bar)
 
-                    st.dataframe(st.session_state.attribution)
+                    #st.dataframe(st.session_state.attribution)
 
 
 
