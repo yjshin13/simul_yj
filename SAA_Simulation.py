@@ -269,15 +269,15 @@ if file is not None:
                 ax_4.margins(x=0, y=0)
 
                 st.image(fig_4, use_column_width=True)
-
-                st.pyplot(fig_4)
                 # 
+                # st.pyplot(fig_4)
+                #
                 # fig_WE = px.area(x=st.session_state.EF['EXP_RET']*100, y=(st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1))
-                # 
+                #
                 # # fig_WE.update_xaxes(title_text='Time', showgrid=True)
                 # # fig.update_yaxes(title_text='NAV', showgrid=True)
                 # # fig.update_layout(showlegend=False)
-                # 
+                #
                 # st.plotly_chart(fig_WE)
 
 
