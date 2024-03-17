@@ -256,6 +256,7 @@ if file is not None:
 
             with col_c:
                 st.write("Weight vs Return")
+
                 # fig_4, ax_4 = plt.subplots(figsize=(20,10))
                 # ax_4.stackplot(st.session_state.EF['EXP_RET']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
                 #                labels = Target_Weight.index, alpha = 0.4, edgecolors="face", linewidths=2)
@@ -269,14 +270,14 @@ if file is not None:
                 # ax_4.margins(x=0, y=0)
                 #
                 # st.pyplot(fig_4)
-
-                fig_WE = px.area(st.session_state.EF,x=st.session_state.EF['EXP_RET'])
+                # 
+                # fig_WE = px.area(st.session_state.EF,x=st.session_state.EF['EXP_RET'])
 
                 # fig_WE.update_xaxes(title_text='Time', showgrid=True)
                 # fig.update_yaxes(title_text='NAV', showgrid=True)
                 # fig.update_layout(showlegend=False)
-
-                st.plotly_chart(fig_WE)
+                # 
+                # st.plotly_chart(fig_WE)
 
 
             with col_d:
