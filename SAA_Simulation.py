@@ -230,7 +230,7 @@ if file is not None:
             #
             #     st.pyplot(fig_bar)
             #
-            # col_c, col_d = st.columns([1, 1])
+            col_c, col_d = st.columns([1, 1])
 
             with col_c:
                 st.write("Weight vs Return")
