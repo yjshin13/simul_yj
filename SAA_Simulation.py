@@ -539,23 +539,27 @@ if file is not None:
 
                 with col_b:
                     st.write("Correlation Matrix")
+                    #
+                    # # Increase the size of the heatmap.
+                    # fig2 = plt.figure(figsize=(15, 8.3))
+                    # # plt.rc('font', family='Malgun Gothic')
+                    # plt.rcParams['axes.unicode_minus'] = False
+                    #
+                    # st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)
+                    #
+                    # st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
+                    # st.session_state.corr.columns = st.session_state.corr.index
+                    # # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
+                    #
+                    # heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True, cmap='coolwarm')
+                    #
+                    # # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
+                    #
+                    # st.pyplot(fig2)
 
-                    # Increase the size of the heatmap.
-                    fig2 = plt.figure(figsize=(15, 8.3))
-                    # plt.rc('font', family='Malgun Gothic')
-                    plt.rcParams['axes.unicode_minus'] = False
+                    fig_corr = px.imshow(st.session_state.corr, zmin=15, zmax=35)
 
-                    st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)
-
-                    st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
-                    st.session_state.corr.columns = st.session_state.corr.index
-                    # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
-
-                    heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True, cmap='coolwarm')
-
-                    # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
-
-                    st.pyplot(fig2)
+                    st.plotly_chart(fig_corr)
 
                 col71, col72 = st.columns([1, 1])
 
