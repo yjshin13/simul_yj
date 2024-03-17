@@ -401,7 +401,7 @@ if file is not None:
                     #
 
 
-                    fig = px.line(st.session_state.portfolio_port.round(2),x="Date", y="Value")
+                    fig = px.line(st.session_state.portfolio_port.round(2),x="NAV", y="Date")
                     st.plotly_chart(fig)
 
                 with col32:
