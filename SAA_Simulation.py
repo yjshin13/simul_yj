@@ -242,8 +242,9 @@ if file is not None:
                 #
                 # st.dataframe(pd.concat([st.session_state.Result.iloc[1:3],st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).iloc[Target_index]], axis=0))
 
-                st.dataframe(st.session_state.Result.iloc[1:3].drop(['EXP_RET', 'STDEV'], axis=1).T)
-                st.dataframe(st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).iloc[Target_index].T)
+                st.dataframe(pd.concat([st.session_state.Result.iloc[1:3].drop(['EXP_RET', 'STDEV'], axis=1).T,
+                                        st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).iloc[Target_index].T],axis=1))
+                # st.dataframe(st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).iloc[Target_index].T)
 
 
 
