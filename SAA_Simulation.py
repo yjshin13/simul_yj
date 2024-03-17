@@ -230,13 +230,13 @@ if file is not None:
                 # ax_bar.margins(x=0.04, y=0.01)
                 #
                 # st.pyplot(fig_bar)
-
-                a = st.session_state.Result.drop(['EXP_RET', 'STDEV'])
-                st.dataframe(a)
-                
-                
-                # fig_pie = px.sunburst(st.session_state.Result.drop(['EXP_RET', 'STDEV']))
                 # 
+                # a = st.session_state.Result.drop(['EXP_RET', 'STDEV'])
+                st.dataframe(st.session_state.Result)
+
+
+                # fig_pie = px.sunburst(st.session_state.Result.drop(['EXP_RET', 'STDEV']))
+                #
                 # st.plotly_chart(fig_pie)
 
             col_c, col_d = st.columns([1, 1])
