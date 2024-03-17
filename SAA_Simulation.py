@@ -208,28 +208,36 @@ if file is not None:
 
             with col_b:
 
-                st.write("Weight")
-                x = (Target_Weight*100).values.round(2)
-                y = Target_Weight.index
+                # st.write("Weight")
+                # x = (Target_Weight*100).values.round(2)
+                # y = Target_Weight.index
+                #
+                # fig_bar, ax_bar = plt.subplots(figsize=(20,10.8))
+                # width = 0.75  # the width of the bars
+                # bar = ax_bar.barh(y, x, color="lightblue", height= 0.8, )
+                #
+                # for bars in bar:
+                #     width = bars.get_width()
+                #     posx = width + 0.5
+                #     posy = bars.get_y() + bars.get_height() * 0.5
+                #     ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
+                #
+                #
+                # plt.xticks(fontsize=15)
+                # plt.yticks(fontsize=15)
+                # plt.xlabel('Weight(%)', fontsize=15, labelpad=20)
+                # plt.ylabel('Assets', fontsize=15, labelpad=15)
+                # ax_bar.margins(x=0.04, y=0.01)
+                #
+                # st.pyplot(fig_bar)
 
-                fig_bar, ax_bar = plt.subplots(figsize=(20,10.8))
-                width = 0.75  # the width of the bars
-                bar = ax_bar.barh(y, x, color="lightblue", height= 0.8, )
-
-                for bars in bar:
-                    width = bars.get_width()
-                    posx = width + 0.5
-                    posy = bars.get_y() + bars.get_height() * 0.5
-                    ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
-
-
-                plt.xticks(fontsize=15)
-                plt.yticks(fontsize=15)
-                plt.xlabel('Weight(%)', fontsize=15, labelpad=20)
-                plt.ylabel('Assets', fontsize=15, labelpad=15)
-                ax_bar.margins(x=0.04, y=0.01)
-
-                st.pyplot(fig_bar)
+                a = st.session_state.Result.drop(['EXP_RET', 'STDEV'])
+                st.dataframe(a)
+                
+                
+                # fig_pie = px.sunburst(st.session_state.Result.drop(['EXP_RET', 'STDEV']))
+                # 
+                # st.plotly_chart(fig_pie)
 
             col_c, col_d = st.columns([1, 1])
 
