@@ -270,13 +270,24 @@ if file is not None:
                 # ax_4.margins(x=0, y=0)
                 #
                 # st.pyplot(fig_4)
-                st.write(st.session_state.EF.iloc[:,2:].columns)
-                fig_WE = px.area(st.session_state.EF,x='EXP_RET', y=st.session_state.EF.iloc[:,1:].columns)
+                #st.write(st.session_state.EF.iloc[:,2:].columns)
+                fig_WE = px.area(st.session_state.EF,x='EXP_RET', y=st.session_state.EF.iloc[:,2:].columns)
+
+                fig_WE.update_layout(
+                    legend=dict(
+                        x=0.5,
+                        y=0.5,
+                        traceorder='normal',
+                        bgcolor='rgba(255, 255, 255, 0.5)',
+                        bordercolor='rgba(0, 0, 0, 0.5)',
+                        borderwidth=1
+                    )
+                )
 
 
                 # fig_WE.update_xaxes(title_text='Time', showgrid=True)
                 # fig.update_yaxes(title_text='NAV', showgrid=True)
-                fig_WE.update_layout(showlegend=False)
+                #fig_WE.update_layout(showlegend=False)
 
                 st.plotly_chart(fig_WE)
 
