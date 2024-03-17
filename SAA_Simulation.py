@@ -424,7 +424,7 @@ if file is not None:
 
                 with col_a:
 
-                    st.write("Performance Contribution")
+                    st.write("Performance Attribution")
                     st.session_state.contribution.index = pd.Index(
                         st.session_state.contribution.index.map(lambda x: str(x)[:7]))
 
@@ -443,7 +443,7 @@ if file is not None:
 
                     plt.xticks(fontsize=15)
                     plt.yticks(fontsize=15)
-                    plt.xlabel('Contribution(%)', fontsize=15, labelpad=20)
+                    plt.xlabel('Attribution(%)', fontsize=15, labelpad=20)
                     # ax_bar.margins(x=0, y=0)
 
                     st.pyplot(fig_bar)
@@ -477,7 +477,7 @@ if file is not None:
                         data=((st.session_state.ret * (st.session_state.alloc.shift(1).dropna())).dropna()).to_csv(
                             index=True),
                         mime='text/csv',
-                        file_name='Contribution.csv')
+                        file_name='Attribution.csv')
 
                 with col72:
 
