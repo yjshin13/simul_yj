@@ -538,10 +538,12 @@ if file is not None:
                     # st.pyplot(fig_bar)
                     #
                     #
+
+                    
                     st.session_state.attribution2 = st.session_state.attribution.drop(st.session_state.attribution.index[-1],axis=0).copy()
                     st.session_state.pie_data2 = st.session_state.pie_data.copy()
                     st.session_state.pie_data2.iloc[:, -1] = (st.session_state.attribution2*100).round(1)
-
+                    st.dataframe(st.session_state.attribution)
 
                     fig_pie2 = px.sunburst(st.session_state.pie_data2, path=['asset_category', 'name'], values=st.session_state.pie_data2.columns[-1])
                     fig_pie2.update_traces(textinfo='label+percent entry')
