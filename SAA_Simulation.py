@@ -537,9 +537,8 @@ if file is not None:
                     #
                     # st.pyplot(fig_bar)
                     #
-                    # 
+                    #
                     st.session_state.attribution = st.session_state.attribution.drop(st.session_state.attribution.index[-1],axis=0)
-                    st.dataframe(st.session_state.attribution)
                     st.session_state.pie_data2 = st.session_state.pie_data.copy()
                     st.session_state.pie_data2.iloc[:, -1] = (st.session_state.attribution*100).round(1)
 
