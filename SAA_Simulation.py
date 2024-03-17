@@ -230,9 +230,9 @@ if file is not None:
                 # ax_bar.margins(x=0.04, y=0.01)
                 #
                 # st.pyplot(fig_bar)
-                # 
-                # a = st.session_state.Result.drop(['EXP_RET', 'STDEV'])
-                st.dataframe(st.session_state.Result)
+                #
+                
+                st.dataframe(st.session_state.Result.drop(['EXP_RET', 'STDEV']))
 
 
                 # fig_pie = px.sunburst(st.session_state.Result.drop(['EXP_RET', 'STDEV']))
