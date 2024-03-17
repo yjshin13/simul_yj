@@ -372,7 +372,7 @@ if file is not None:
                     st.write('NAV')
                     #st.dataframe(st.session_state.portfolio_port.round(2))
 
-                    fig = px.line(st.session_state.portfolio_port.round(2), x="Date", y="price")
+                    fig = px.line(st.session_state.portfolio_port.round(2))
                     st.plotly_chart(fig)
 
                     st.download_button(
