@@ -270,7 +270,7 @@ if file is not None:
                 #
                 # st.pyplot(fig_4)
 
-                fig_WE = px.area(x=st.session_state.EF['EXP_RET']*100, y=(st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1))
+                fig_WE = px.area(x=st.session_state.EF['EXP_RET']*100, y=(st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T)
 
                 # fig_WE.update_xaxes(title_text='Time', showgrid=True)
                 # fig.update_yaxes(title_text='NAV', showgrid=True)
