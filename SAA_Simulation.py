@@ -7,6 +7,9 @@ import numpy as np
 import backtest
 import seaborn as sns
 import backtest_graph2
+import plotly.express as px
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 
 st.set_page_config(layout="wide")
 
@@ -395,7 +398,7 @@ if file is not None:
                 with col31:
                     st.write("Net Asset Value")
                     st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
-
+                    st.line_chart
                 with col32:
                     st.write("MAX Drawdown")
                     st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
