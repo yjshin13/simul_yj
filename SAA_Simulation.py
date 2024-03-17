@@ -277,7 +277,7 @@ if file is not None:
                     legend=dict(
                         x=0.5,
                         y=0.5,
-                        traceorder='normal',
+                        traceorder='left',
                         bgcolor='rgba(255, 255, 255, 0.5)',
                         bordercolor='rgba(0, 0, 0, 0.5)',
                         borderwidth=1
