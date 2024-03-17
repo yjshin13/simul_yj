@@ -270,7 +270,7 @@ if file is not None:
                 # ax_4.margins(x=0, y=0)
                 #
                 # st.pyplot(fig_4)
-                st.write(st.session_state.EF.iloc[:,1:].columns)
+                st.write(st.session_state.EF.iloc[:,2:].columns)
                 fig_WE = px.area(st.session_state.EF,x='EXP_RET', y=st.session_state.EF.iloc[:,1:].columns)
 
 
