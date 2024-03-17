@@ -539,16 +539,19 @@ if file is not None:
                     #
 
 
-                    st.session_state.attribution2 = st.session_state.attribution.drop(st.session_state.attribution.index[-1],axis=0).copy()
-                    st.session_state.pie_data2 = st.session_state.pie_data
-                    st.session_state.pie_data2.iloc[:, -1] = (st.session_state.attribution2)
-                    st.session_state.pie_data2.iloc[:, -1] = (st.session_state.pie_data2.iloc[:, -1]*100).round(1)
+                    # st.session_state.attribution2 = st.session_state.attribution.drop(st.session_state.attribution.index[-1],axis=0).copy()
+                    # st.session_state.pie_data2 = st.session_state.pie_data
+                    # st.session_state.pie_data2.iloc[:, -1] = (st.session_state.attribution2)
+                    # st.session_state.pie_data2.iloc[:, -1] = (st.session_state.pie_data2.iloc[:, -1]*100).round(1)
                     
 
-                    fig_pie2 = px.sunburst(st.session_state.pie_data2, path=['asset_category', 'name'], values=st.session_state.pie_data2.columns[-1])
-                    fig_pie2.update_traces(textinfo='label+percent entry')
+                    # fig_pie2 = px.sunburst(st.session_state.pie_data2, path=['asset_category', 'name'], values=st.session_state.pie_data2.columns[-1])
+                    # fig_pie2.update_traces(textinfo='label+percent entry')
 
-                    fig_bar = px.bar(x=st.session_state.attribution.index, y=st.session_state.attribution)
+                    fig_bar = px.bar(x=st.session_state.attribution.index, y=st.session_state.attribution*100)
+                    fig_bar.update_xaxes(title_text='Asset', showgrid=True)
+                    fig_bar.update_yaxes(title_text='Attribution', showgrid=True)
+                    
 
 
                     st.plotly_chart(fig_bar)
