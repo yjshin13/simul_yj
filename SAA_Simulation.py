@@ -197,12 +197,12 @@ if file is not None:
                 #
                 # st.pyplot(EF_point)
 
-                EF_G = pd.DataFrame({
-                    'EXP_RET': st.session_state.EF['EXP_RET'] * 100,
-                    'STDEV': st.session_state.EF['STDEV'] * 100
-                })
 
-                fig_EF = px.scatter(EF_G,y='EXP_RET', x = 'STDEV')
+                fig_EF = px.scatter(y=st.session_state.EF['EXP_RET'] * 100, x =st.session_state.EF['STDEV'] * 100)
+                fig_EF.update_xaxes(title_text='Standard Deviation')
+                fig_EF.update_yaxes(title_text='Expected Return')
+                fig_EF.update_layout(showlegend=False)
+
                 st.plotly_chart(fig_EF)
 
             with col_b:
