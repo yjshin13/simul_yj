@@ -259,7 +259,7 @@ if file is not None:
                 # fig_4, ax_4 = plt.subplots(figsize=(20,10))
                 # ax_4.stackplot(st.session_state.EF['EXP_RET']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
                 #                labels = Target_Weight.index, alpha = 0.4, edgecolors="face", linewidths=2)
-                # 
+                #
                 # handles, labels = ax_4.get_legend_handles_labels()
                 # ax_4.legend(reversed(handles), reversed(labels),loc='lower left', fontsize=14)
                 # plt.xticks(fontsize=15)
@@ -267,10 +267,10 @@ if file is not None:
                 # plt.xlabel('Return(%)', fontsize=15, labelpad=20)
                 # plt.ylabel('Weight(%)', fontsize=15, labelpad=15)
                 # ax_4.margins(x=0, y=0)
-                # 
+                #
                 # st.pyplot(fig_4)
 
-                fig_WE = px.area(st.session_state.EF,x=st.session_state.EF['EXP_RET'])
+                fig_WE = px.area(st.session_state.EF,x=st.session_state.EF['EXP_RET'], y=st.session_state.EF.drop(['EPX_RET']))
 
                 # fig_WE.update_xaxes(title_text='Time', showgrid=True)
                 # fig.update_yaxes(title_text='NAV', showgrid=True)
