@@ -372,7 +372,7 @@ if file is not None:
             st.session_state.alloc = st.session_state.allocation_f.copy()
             st.session_state.ret = (st.session_state.input_simul_price.iloc[1:] / st.session_state.input_simul_price.shift(1).dropna()) - 1
 
-            st.session_state.contribution = ((st.session_state.ret * (
+            st.session_state.attribution = ((st.session_state.ret * (
                 st.session_state.alloc.shift(1).dropna())).dropna() + 1).prod(axis=0) - 1
 
             # if monthly == True:
@@ -513,29 +513,37 @@ if file is not None:
 
                 with col_a:
 
-                    st.write("Performance Attribution")
-                    st.session_state.contribution.index = pd.Index(
-                        st.session_state.contribution.index.map(lambda x: str(x)[:7]))
+                    # st.write("Performance Attribution")
+                    # st.session_state.attribution.index = pd.Index(
+                    #     st.session_state.attribution.index.map(lambda x: str(x)[:7]))
+                    #
+                    # x = (st.session_state.attribution * 100)
+                    # y = st.session_state.attribution.index
+                    #
+                    # fig_bar, ax_bar = plt.subplots(figsize=(18, 11))
+                    # width = 0.75  # the width of the bars
+                    # bar = ax_bar.barh(y, x, color="lightblue", height=0.8, )
+                    #
+                    # for bars in bar:
+                    #     width = bars.get_width()
+                    #     posx = width + 0.01
+                    #     posy = bars.get_y() + bars.get_height() * 0.5
+                    #     ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
+                    #
+                    # plt.xticks(fontsize=15)
+                    # plt.yticks(fontsize=15)
+                    # plt.xlabel('Attribution(%)', fontsize=15, labelpad=20)
+                    # # ax_bar.margins(x=0, y=0)
+                    #
+                    # st.pyplot(fig_bar)
+                
+                    st.dataframe(st.session_state.attribution)
 
-                    x = (st.session_state.contribution * 100)
-                    y = st.session_state.contribution.index
+                    # fig_pie = px.sunburst(st.session_state.attribution, path=['asset_category', 'name'], values=st.session_state.pie_data.columns[-1])
+                    # fig_pie.update_traces(textinfo='label+percent entry')
+                    # 
+                    # st.plotly_chart(fig_pie)
 
-                    fig_bar, ax_bar = plt.subplots(figsize=(18, 11))
-                    width = 0.75  # the width of the bars
-                    bar = ax_bar.barh(y, x, color="lightblue", height=0.8, )
-
-                    for bars in bar:
-                        width = bars.get_width()
-                        posx = width + 0.01
-                        posy = bars.get_y() + bars.get_height() * 0.5
-                        ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
-
-                    plt.xticks(fontsize=15)
-                    plt.yticks(fontsize=15)
-                    plt.xlabel('Attribution(%)', fontsize=15, labelpad=20)
-                    # ax_bar.margins(x=0, y=0)
-
-                    st.pyplot(fig_bar)
 
                 with col_b:
                     st.write("Correlation Matrix")
