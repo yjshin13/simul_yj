@@ -557,7 +557,7 @@ if file is not None:
                     #
                     # st.pyplot(fig2)
 
-                    fig_corr = px.imshow(st.session_state.corr, zmin=15, zmax=35)
+                    fig_corr = px.imshow(st.session_state.corr)
 
                     st.plotly_chart(fig_corr)
 
