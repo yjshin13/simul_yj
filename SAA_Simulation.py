@@ -268,9 +268,7 @@ if file is not None:
                 plt.ylabel('Weight(%)', fontsize=15, labelpad=15)
                 ax_4.margins(x=0, y=0)
 
-                st.image(fig_4, use_column_width=True)
-                # 
-                # st.pyplot(fig_4)
+                st.pyplot(fig_4)
                 #
                 # fig_WE = px.area(x=st.session_state.EF['EXP_RET']*100, y=(st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1))
                 #
