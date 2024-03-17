@@ -245,6 +245,7 @@ if file is not None:
                                         st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).iloc[Target_index].T],axis=1)
 
                 fig_pie = px.sunburst(st.session_state.pie_data, path=['asset_category','name'], values=st.session_state.pie_data.columns[-1])
+                fig_pie.update_traces(textinfo='label+value')
 
 
                 st.plotly_chart(fig_pie)
