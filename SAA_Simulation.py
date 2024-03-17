@@ -324,7 +324,7 @@ if file is not None:
 
                 fig_WV.update_xaxes(title_text='Standard Deviation', showgrid=True)
                 fig_WV.update_yaxes(title_text='Weight', showgrid=True)
-                # fig_WE.update_layout(showlegend=False)
+                fig_WE.update_layout(height=600)
 
                 st.plotly_chart(fig_WV)
 
