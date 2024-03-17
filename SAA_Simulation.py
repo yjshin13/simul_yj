@@ -270,8 +270,9 @@ if file is not None:
                 # ax_4.margins(x=0, y=0)
                 #
                 # st.pyplot(fig_4)
-                #
+                st.session_state.write(st.session_state.EF.iloc[:,1:].columns)
                 fig_WE = px.area(st.session_state.EF,x='EXP_RET', y=st.session_state.EF.iloc[:,1:].columns)
+            
 
                 # fig_WE.update_xaxes(title_text='Time', showgrid=True)
                 # fig.update_yaxes(title_text='NAV', showgrid=True)
