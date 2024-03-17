@@ -401,14 +401,14 @@ if file is not None:
                     #
 
 
-                    fig = px.area(st.session_state.portfolio_port.round(2))
+                    fig = px.line(st.session_state.portfolio_port.round(2))
                     st.plotly_chart(fig)
 
                 with col32:
                     st.write("MAX Drawdown")
                     #st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
 
-                    fig2 = px.area(st.session_state.drawdown)
+                    fig2 = px.line(st.session_state.drawdown)
                     st.plotly_chart(fig2)
 
                 col61, col62 = st.columns([1, 1])
