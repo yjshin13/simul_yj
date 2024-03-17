@@ -370,10 +370,7 @@ if file is not None:
 
                 with col21:
                     st.write('NAV')
-                    #st.dataframe(st.session_state.portfolio_port.round(2))
-
-                    fig = px.line(st.session_state.portfolio_port.round(2))
-                    st.plotly_chart(fig)
+                    st.dataframe(st.session_state.portfolio_port.round(2))
 
                     st.download_button(
                         label="Download",
@@ -400,8 +397,12 @@ if file is not None:
 
                 with col31:
                     st.write("Net Asset Value")
-                    st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
-                    st.line_chart
+                    # st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
+                    # 
+                    
+                    
+                    fig = px.line(st.session_state.portfolio_port.round(2))
+                    st.plotly_chart(fig)
                 with col32:
                     st.write("MAX Drawdown")
                     st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
