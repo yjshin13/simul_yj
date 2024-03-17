@@ -405,7 +405,7 @@ if file is not None:
                     st.plotly_chart(fig)
 
                 with col32:
-                    st.write("MAX Drawdown")
+                    st.write("Maximum Drawdown")
                     #st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
 
                     fig2 = px.line(st.session_state.drawdown)
