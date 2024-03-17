@@ -232,7 +232,7 @@ if file is not None:
                 # st.pyplot(fig_bar)
                 #
 
-                st.dataframe(st.session_state.Result)
+                st.dataframe(st.session_state.Result.drop(st.session_state.Result.columns[[0, 1]], axis=1, inplace=True).copy())
 
 
                 # fig_pie = px.sunburst(st.session_state.Result.drop(['EXP_RET', 'STDEV']))
