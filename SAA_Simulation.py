@@ -202,7 +202,7 @@ if file is not None:
                     'STDEV': st.session_state.EF['STDEV'] * 100
                 })
 
-                fig_EF = px.scatter(EF_G)
+                fig_EF = px.scatter(EF_G,y='EXP_RET', x = 'STDEV')
                 st.plotly_chart(fig_EF)
 
             with col_b:
