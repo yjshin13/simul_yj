@@ -293,23 +293,40 @@ if file is not None:
 
 
             with col_d:
+                st.write("Weight vs Return")
 
-                st.write("Weight vs Volatility")
-                fig_3, ax_3 = plt.subplots(figsize=(20,10))
-                ax_3.stackplot(st.session_state.EF['STDEV']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
-                               labels = Target_Weight.index, alpha = 0.4, edgecolors="face", linewidths=2)
+                # fig_4, ax_4 = plt.subplots(figsize=(20,10))
+                # ax_4.stackplot(st.session_state.EF['EXP_RET']*100, (st.session_state.EF*100).drop(['EXP_RET', 'STDEV'], axis=1).T,
+                #                labels = Target_Weight.index, alpha = 0.4, edgecolors="face", linewidths=2)
+                #
+                # handles, labels = ax_4.get_legend_handles_labels()
+                # ax_4.legend(reversed(handles), reversed(labels),loc='lower left', fontsize=14)
+                # plt.xticks(fontsize=15)
+                # plt.yticks(fontsize=15)
+                # plt.xlabel('Return(%)', fontsize=15, labelpad=20)
+                # plt.ylabel('Weight(%)', fontsize=15, labelpad=15)
+                # ax_4.margins(x=0, y=0)
+                #
+                # st.pyplot(fig_4)
+                # st.write(st.session_state.EF.iloc[:,2:].columns)
+                fig_WV = px.area(st.session_state.EF, x='STDEV', y=st.session_state.EF.iloc[:, 2:].columns)
 
-                handles, labels = ax_3.get_legend_handles_labels()
-                ax_3.legend(reversed(handles), reversed(labels),loc='lower left', fontsize=14)
+                fig_WV.update_layout(
+                    legend=dict(
+                        x=0.0,
+                        y=0.0,
+                        traceorder='normal',
+                        bgcolor='rgba(255, 255, 255, 0.5)',
+                        bordercolor='rgba(0, 0, 0, 0.5)',
+                        borderwidth=1
+                    )
+                )
 
-                plt.xticks(fontsize=15)
-                plt.yticks(fontsize=15)
-                plt.xlabel('Volatility(%)', fontsize=15, labelpad=20)
-                plt.ylabel('Weight(%)', fontsize=15, labelpad=15)
-                ax_3.margins(x=0, y=0)
+                fig_WV.update_xaxes(title_text='Standard Deviation', showgrid=True)
+                fig_WV.update_yaxes(title_text='Weight', showgrid=True)
+                # fig_WE.update_layout(showlegend=False)
 
-                st.pyplot(fig_3)
-
+                st.plotly_chart(fig_WV)
 
 
         st.download_button(
