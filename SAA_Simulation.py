@@ -246,7 +246,7 @@ if file is not None:
                 st.session_state.pie_data.iloc[:, -1] = (st.session_state.pie_data.iloc[:, -1]*100).round(1)
 
                 fig_pie = px.sunburst(st.session_state.pie_data, path=['asset_category','name'], values=st.session_state.pie_data.columns[-1])
-                fig_pie.update_traces(textinfo='label+value')
+                fig_pie.update_traces(textinfo='label+percent entry')
 
 
                 st.plotly_chart(fig_pie)
