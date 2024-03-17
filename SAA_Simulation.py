@@ -408,8 +408,11 @@ if file is not None:
                     st.write("Net Asset Value")
                     # st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
 
-                    st.session_state.portfolio_port.round(2).index.rename('Time')
-                    fig = px.line(st.session_state.portfolio_port.round(2), y='NAV', x=st.session_state.portfolio_port.round(2).index)
+                    fig = px.line(st.session_state.portfolio_port.round(2))
+
+                    fig.update_xaxes(title_text='New X Axis Name')
+                    fig.update_yaxes(title_text='New Y Axis Name')
+                    
                     st.plotly_chart(fig)
 
                 with col32:
