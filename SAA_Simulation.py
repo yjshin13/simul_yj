@@ -410,7 +410,7 @@ if file is not None:
                     
 
 
-                    fig = px.line(st.session_state.portfolio_port.round(2), y='NAV', x=st.session_state.portfolio_port.round(2).index)
+                    fig = px.line(st.session_state.portfolio_port.round(2), y='NAV', x=st.session_state.portfolio_port.round(2).index.rename('Time'))
                     st.plotly_chart(fig)
 
                 with col32:
