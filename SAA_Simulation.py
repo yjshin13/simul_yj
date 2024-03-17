@@ -275,7 +275,7 @@ if file is not None:
 
                 # fig_WE.update_xaxes(title_text='Time', showgrid=True)
                 # fig.update_yaxes(title_text='NAV', showgrid=True)
-                # fig.update_layout(showlegend=False)
+                fig_WE.update_layout(showlegend=False)
 
                 st.plotly_chart(fig_WE)
 
