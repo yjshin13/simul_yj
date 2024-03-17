@@ -541,7 +541,7 @@ if file is not None:
 
                     
                     st.session_state.attribution2 = st.session_state.attribution.drop(st.session_state.attribution.index[-1],axis=0).copy()
-                    st.session_state.pie_data2 = st.session_state.pie_data.copy()
+                    st.session_state.pie_data2 = st.session_state.pie_data
                     st.session_state.pie_data2.iloc[:, -1] = (st.session_state.attribution2*100).round(1)
                     
 
