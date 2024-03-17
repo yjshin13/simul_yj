@@ -244,9 +244,13 @@ if file is not None:
                 st.session_state.pie_data = pd.concat([st.session_state.Result.iloc[0:3].drop(['EXP_RET', 'STDEV'], axis=1).T,
                                         st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).iloc[Target_index].T],axis=1)
 
-                fig_pie = px.sunburst(st.session_state.pie_data, path=st.session_state.pie_data.columns[0:2], values=st.session_state.pie_data.columns[-1])
+                fig_pie = px.sunburst(st.session_state.pie_data, path=['asset_category','name'], values=st.session_state.pie_data.columns[-1])
+                
 
                 st.plotly_chart(fig_pie)
+                
+                st.dataframe(st.session_state.pie_data)
+                
 
             col_c, col_d = st.columns([1, 1])
 
