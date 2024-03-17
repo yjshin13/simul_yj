@@ -248,9 +248,7 @@ if file is not None:
                 fig_pie = px.sunburst(st.session_state.pie_data, path=['asset_category','name'], values=st.session_state.pie_data.columns[-1])
                 fig_pie.update_traces(textinfo='label+percent entry')
 
-
                 st.plotly_chart(fig_pie)
-                st.dataframe(st.session_state.pie_data)
 
 
             col_c, col_d = st.columns([1, 1])
@@ -540,17 +538,18 @@ if file is not None:
                     #
                     #
 
-                    
+
                     st.session_state.attribution2 = st.session_state.attribution.drop(st.session_state.attribution.index[-1],axis=0).copy()
                     st.session_state.pie_data2 = st.session_state.pie_data
-                    st.session_state.pie_data2.iloc[:, -1] = (st.session_state.attribution2*100).round(1)
+                    st.session_state.pie_data2.iloc[:, -1] = (st.session_state.attribution2)
+                    st.session_state.pie_data2.iloc[:, -1] = (st.session_state.pie_data2.iloc[:, -1]*100).round(1)
                     
 
                     fig_pie2 = px.sunburst(st.session_state.pie_data2, path=['asset_category', 'name'], values=st.session_state.pie_data2.columns[-1])
                     fig_pie2.update_traces(textinfo='label+percent entry')
 
                     st.plotly_chart(fig_pie2)
-                    st.dataframe(st.session_state.pie_data2)
+
 
 
                 with col_b:
