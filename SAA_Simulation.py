@@ -238,7 +238,9 @@ if file is not None:
                 #
                 # st.session_state.Result
 
-                st.dataframe(st.session_state.EF.drop(['EXP_RET','STDEV'], axis=1).iloc[Target_index])
+
+
+                st.dataframe(pd.concat(st.session_state.Result.iloc[1:3],st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).iloc[Target_index], axis=0))
 
 
                 # fig_pie = px.sunburst(st.session_state.Result.drop(['EXP_RET', 'STDEV']))
