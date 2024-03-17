@@ -287,7 +287,7 @@ if file is not None:
 
                 fig_WE.update_xaxes(title_text='Expected Return', showgrid=True)
                 fig_WE.update_yaxes(title_text='Weight', showgrid=True)
-                fig_WE.update_layout(height=600)
+                fig_WE.update_layout(height=400)
                 #fig_WE.update_layout(showlegend=False)
 
                 st.plotly_chart(fig_WE)
@@ -325,7 +325,7 @@ if file is not None:
 
                 fig_WV.update_xaxes(title_text='Standard Deviation', showgrid=True)
                 fig_WV.update_yaxes(title_text='Weight', showgrid=True)
-                fig_WV.update_layout(height=600)
+                fig_WV.update_layout(height=400)
 
                 st.plotly_chart(fig_WV)
 
