@@ -551,7 +551,7 @@ if file is not None:
 
                     st.plotly_chart(fig_pie2)
 
-                    st.dataframe(st.session_state.pie_data2)
+                    st.dataframe(st.session_state.attribution)
 
 
 
