@@ -613,5 +613,4 @@ if file is not None:
                         mime='text/csv',
                         file_name='Correlation.csv')
 
-                    st.write(st.session_state.Target_alloc)
 
