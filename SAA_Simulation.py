@@ -62,14 +62,14 @@ if file is not None:
 
                 daily = True
                 monthly = False
-                annualization = 365
+                annualization = 1
                 freq = "daily"
 
             if st.checkbox('Monthly', value=True):
 
                 daily = False
                 monthly = True
-                annualization = 12
+                annualization = 1
                 freq = "monthly"
 
 
