@@ -62,7 +62,7 @@ if file is not None:
 
                 daily = True
                 monthly = False
-                annualization = 365
+                annualization = 252
                 freq = "daily"
 
             if st.checkbox('Monthly', value=True):
@@ -400,10 +400,10 @@ if file is not None:
             st.session_state.END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
             st.session_state.Total_RET = round(float(st.session_state.portfolio_port[-1] / 100 - 1) * 100, 2)
             st.session_state.Anuuual_RET = round(float(((st.session_state.portfolio_port[-1] / 100) ** (
-                    365 / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
+                    252 / (len(st.session_state.portfolio_port) - 1)) - 1) * 100), 2)
             st.session_state.Anuuual_Vol = round(
                 float(np.std(st.session_state.portfolio_port.pct_change().dropna())
-                      * np.sqrt(365) * 100), 2)
+                      * np.sqrt(252) * 100), 2)
 
             st.session_state.MDD = round(float(min(st.session_state.drawdown) * 100), 2)
             st.session_state.Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
