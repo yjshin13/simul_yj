@@ -587,7 +587,7 @@ if file is not None:
 
                     st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)        
                     fig_corr = px.imshow(st.session_state.corr,text_auto=True, aspect="auto")
-                    fig_corr.update_layout(width=500)
+                    fig_corr.update_layout(width=900)
                     st.plotly_chart(fig_corr)
 
                 col71, col72 = st.columns([1, 1])
