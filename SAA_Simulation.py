@@ -46,9 +46,6 @@ if file is not None:
 
     with st.form("Resampling Parameters", clear_on_submit=False):
 
-        st.write("Input data")
-        st.dataframe(input_price)
-
 
         st.subheader("Resampling Parameters:")
 
@@ -99,6 +96,19 @@ if file is not None:
             constraint_range = [Growth_range,Inflation_range,Fixed_Income_range]
 
         summit = st.form_submit_button("Summit")
+
+        if daily==True:
+
+            input_price = input_price[(input_price.index>=start_date) & (input_price.index<=end_date)]
+
+        if monthly==True:
+
+            input_price = input_price[(input_price.index>=start_date)
+                                       & (input_price.index<=end_date)
+                                       & (input_price.index.is_month_end==True)]
+
+            st.write("Input data")
+            st.dataframe(input_price)
 
 
 
