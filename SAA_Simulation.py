@@ -347,7 +347,7 @@ if file is not None:
 
 
 
-            st.session_state.Target_alloc = st.session_state.Target_Weight
+            st.session_state.Target_alloc = Target_Weight
 
 
             #st.session_state.Target_alloc = st.session_state.EF.iloc[st.session_state.Target_index,:].drop(columns=['EXP_RET', 'STDEV'])
