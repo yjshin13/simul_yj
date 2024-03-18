@@ -612,7 +612,7 @@ if file is not None:
                         mime='text/csv',
                         file_name='Correlation.csv')
 
-                    st.write(st.session_state.EF.iloc[Target_index,0])
+                    st.write(st.session_state.EF.iloc[Target_index,:])
 
 
                     st.dataframe(st.session_state.EF.iloc[:,st.session_state.Target_index])
