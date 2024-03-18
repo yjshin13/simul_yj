@@ -613,5 +613,5 @@ if file is not None:
                         file_name='Correlation.csv')
 
 
-                    st.dataframe(st.session_state.EF)
+                    st.dataframe(st.session_state.EF.iloc[:,st.session_state.Target_index])
 
