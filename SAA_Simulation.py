@@ -24,12 +24,6 @@ if file is not None:
     
     price = pd.read_excel(file, sheet_name="price", parse_dates=["Date"], index_col=0, header=0).dropna()
     price = price[universe['symbol'].tolist()]
-    
-    
-
-
-
-
 
     universe['key'] = universe['symbol'] + " - " + universe['name']
 
@@ -95,24 +89,10 @@ if file is not None:
 
             constraint_range = [Growth_range,Inflation_range,Fixed_Income_range]
 
-        if daily==True:
 
-            input_price = input_price[(input_price.index>=start_date) & (input_price.index<=end_date)]
-
-        if monthly==True:
-
-            input_price = input_price[(input_price.index>=start_date)
-                                       & (input_price.index<=end_date)
-                                       & (input_price.index.is_month_end==True)]
-
-            st.write("Input data")
-            st.dataframe(input_price)
-
+        
+        
         summit = st.form_submit_button("Summit")
-
-
-
-
 
         if summit and (('EF' not in st.session_state) or ([st.session_state.nPort, st.session_state.nSim,
                        st.session_state.constraint_range, list(st.session_state.input_price.columns)] \
