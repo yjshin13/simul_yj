@@ -47,7 +47,7 @@ if file is not None:
     with st.form("Resampling Parameters", clear_on_submit=False):
 
         st.write("Input data")
-        st.dataframe(price)
+        st.dataframe(input_price)
 
 
         st.subheader("Resampling Parameters:")
