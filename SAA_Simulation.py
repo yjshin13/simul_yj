@@ -69,7 +69,7 @@ if file is not None:
 
                 daily = False
                 monthly = True
-                annualization = 12
+                annualization = 12*365/252
                 freq = "monthly"
 
 
