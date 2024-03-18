@@ -292,7 +292,7 @@ if file is not None:
                 fig_WE.update_xaxes(title_text='Expected Return', showgrid=True)
                 fig_WE.update_yaxes(title_text='Weight', showgrid=True)
                 fig_WE.update_layout(height=500)
-                fig_WE.add_vline(x=Target, line_dash="dash", line_color="red", annotation_text="Target", annotation_position="top right")
+                fig_WE.add_vline(x=Target/100, line_dash="dash", line_color="red", annotation_text="Target", annotation_position="top right")
         
                 st.plotly_chart(fig_WE)
 
