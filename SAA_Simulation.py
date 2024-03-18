@@ -552,7 +552,7 @@ if file is not None:
 
                     fig_bar = px.bar(x=st.session_state.attribution.index, y=st.session_state.attribution*100)
                     fig_bar.update_xaxes(title_text='Asset', showgrid=True)
-                    fig_bar.update_yaxes(title_text='Attribution', showgrid=True, )
+                    fig_bar.update_yaxes(title_text='Attribution(%)', showgrid=True, )
                     
                     
 
