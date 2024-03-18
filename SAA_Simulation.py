@@ -611,5 +611,5 @@ if file is not None:
                         mime='text/csv',
                         file_name='Correlation.csv')
 
-                    st.write(st.session_state.EF.iloc[Target_index,:])
+                    st.write(st.session_state.EF.iloc[st.session_state.Target_index,:].drop(columns=['EXP_RET', 'STDEV'],axis=1).iloc[0])
 
