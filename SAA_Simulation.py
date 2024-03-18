@@ -95,8 +95,6 @@ if file is not None:
 
             constraint_range = [Growth_range,Inflation_range,Fixed_Income_range]
 
-        summit = st.form_submit_button("Summit")
-
         if daily==True:
 
             input_price = input_price[(input_price.index>=start_date) & (input_price.index<=end_date)]
@@ -109,6 +107,10 @@ if file is not None:
 
             st.write("Input data")
             st.dataframe(input_price)
+
+        summit = st.form_submit_button("Summit")
+
+
 
 
 
