@@ -24,8 +24,6 @@ if file is not None:
     
     price = pd.read_excel(file, sheet_name="price", parse_dates=["Date"], index_col=0, header=0).dropna()
 
-    st.dataframe(price)
-
 
 
 
