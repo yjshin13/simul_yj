@@ -247,7 +247,7 @@ if file is not None:
 
                 fig_pie = px.sunburst(st.session_state.pie_data, path=['asset_category',st.session_state.pie_data.index], values=st.session_state.pie_data.columns[-1])
                 fig_pie.update_traces(textinfo='label+percent entry')
-                fig_pie.update_layout(width=500,height = 500)
+                fig_pie.update_layout(width=500,height=400)
                 st.plotly_chart(fig_pie)
                 #st.dataframe(st.session_state.pie_data)
 
