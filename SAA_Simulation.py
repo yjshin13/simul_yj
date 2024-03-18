@@ -350,9 +350,6 @@ if file is not None:
             st.session_state.Target_Weight = Target_Weight
 
 
-
-
-
             st.session_state.Target_alloc = st.session_state.Target_Weight
 
 
@@ -421,7 +418,7 @@ if file is not None:
 
         with st.session_state.result_expander1:
 
-            if 'Target' in st.session_state:
+            if 'Target_Weight' in st.session_state:
 
                 st.write(" ")
 
