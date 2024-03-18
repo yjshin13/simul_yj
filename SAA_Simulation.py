@@ -552,7 +552,8 @@ if file is not None:
 
                     fig_bar = px.bar(x=st.session_state.attribution.index, y=st.session_state.attribution*100)
                     fig_bar.update_xaxes(title_text='Asset', showgrid=True)
-                    fig_bar.update_yaxes(title_text='Attribution', showgrid=True)
+                    fig_bar.update_yaxes(title_text='Attribution', showgrid=True, )
+                    
                     
 
 
@@ -586,6 +587,7 @@ if file is not None:
 
                     st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)        
                     fig_corr = px.imshow(st.session_state.corr,text_auto=True, aspect="auto")
+                    fig_corr.update_layout(width=500)
                     st.plotly_chart(fig_corr)
 
                 col71, col72 = st.columns([1, 1])
