@@ -23,6 +23,8 @@ if file is not None:
                          names=None, dtype={'Date': datetime}, header=0)
     
     price = pd.read_excel(file, sheet_name="price", parse_dates=["Date"], index_col=0, header=0).dropna()
+    price = price[universe['symbol'].tolist()]
+    
     
 
 
@@ -44,7 +46,6 @@ if file is not None:
 
     with st.form("Resampling Parameters", clear_on_submit=False):
 
-        st.dataframe(price[universe['symbol'].tolist()])
 
         st.subheader("Resampling Parameters:")
 
