@@ -351,6 +351,8 @@ if file is not None:
             st.session_state.Target_alloc = st.session_state.EF[abs(st.session_state.EF['EXP_RET'] - Target) ==
                                                                 min(abs(st.session_state.EF['EXP_RET'] - Target))].drop(columns=['EXP_RET', 'STDEV']).iloc[0]
 
+            st.dataframe(st.session_state.EF)
+
             #st.session_state.Target_alloc = st.session_state.EF.iloc[st.session_state.Target_index,:].drop(columns=['EXP_RET', 'STDEV'])
 
 
