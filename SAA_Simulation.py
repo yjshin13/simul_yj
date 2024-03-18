@@ -291,11 +291,10 @@ if file is not None:
 
                 fig_WE.update_xaxes(title_text='Expected Return', showgrid=True)
                 fig_WE.update_yaxes(title_text='Weight', showgrid=True)
-                fig_WE.update_layout(height=500,legend=dict(x=1.05,y=1,font=dict(size=5)))
-        
-  
-       
-                fig_WE.add_vline(x=Target/100, line_color="red", annotation_text="Target", annotation_position="top")
+                #fig_WE.update_layout(height=500,legend=dict(x=1.05,y=1,font=dict(size=5)))
+
+                fig_WE.update_layout(height=500)       
+                fig_WE.add_vline(x=st.session_state.EF.loc[Target_index]["EXP_RET"], line_color="red", annotation_text="Target", annotation_position="top")
         
                 st.plotly_chart(fig_WE)
 
@@ -333,6 +332,7 @@ if file is not None:
                 fig_WV.update_xaxes(title_text='Standard Deviation', showgrid=True)
                 fig_WV.update_yaxes(title_text='Weight', showgrid=True)
                 fig_WV.update_layout(height=500)
+                fig_WV.add_vline(x=st.session_state.EF.loc[Target_index]["STDEV"], line_color="red", annotation_text="Target", annotation_position="top")
 
                 st.plotly_chart(fig_WV)
 
