@@ -44,7 +44,7 @@ if file is not None:
 
     with st.form("Resampling Parameters", clear_on_submit=False):
 
-        st.dataframe(universe['symbol'])
+        st.dataframe(price[universe['symbol'].tolist()])
 
         st.subheader("Resampling Parameters:")
 
