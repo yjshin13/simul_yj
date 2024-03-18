@@ -164,8 +164,7 @@ if file is not None:
             Target_Weight = st.session_state.EF.loc[Target_index]\
                             .drop(["EXP_RET", "STDEV"])
 
-            st.session_state.Target_Weight = Target_Weight
-
+            
 
             st.subheader("")
             st.empty()
@@ -341,10 +340,15 @@ if file is not None:
                 file_name='Efficient Frontier.csv')
 
         #if st.button('Simulation'):
+
+        
         if ('input_simul_price' not in st.session_state) or (st.session_state.key == key):
 
 
         #################################################################################################
+
+            st.session_state.Target_Weight = Target_Weight
+
 
 
 
