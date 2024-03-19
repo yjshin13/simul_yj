@@ -248,7 +248,7 @@ if file is not None:
                                         st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).iloc[Target_index].T],axis=1)
                 st.session_state.pie_data.iloc[:, -1] = (st.session_state.pie_data.iloc[:, -1]*100).round(1)
 
-                fig_pie = px.sunburst(st.session_state.pie_data, path=['asset_category',st.session_state.pie_data.index], values=st.session_state.pie_data.columns[-1])
+                fig_pie = px.sunburst(st.session_state.pie_data, path=[st.session_state.pie_data.index,'asset_category',"name"], values=st.session_state.pie_data.columns[-1])
                 fig_pie.update_traces(textinfo='label+percent entry')
                 fig_pie.update_layout(height=500)
                 st.plotly_chart(fig_pie)
