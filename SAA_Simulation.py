@@ -291,7 +291,7 @@ if file is not None:
 
                 fig_WE.update_xaxes(title_text='Expected Return', showgrid=True)
                 fig_WE.update_yaxes(title_text='Weight', showgrid=True)
-                fig_WE.update_layout(height=500,legend=dict(x=0.76,y=1))
+                fig_WE.update_layout(height=500,legend=dict(x=0.76))
        
 
                 #fig_WE.update_layout(height=500)       
