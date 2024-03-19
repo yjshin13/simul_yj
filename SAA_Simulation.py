@@ -347,7 +347,9 @@ if file is not None:
         #if st.button('Simulation'):
 
         
-        if ('input_simul_price' not in st.session_state) or (st.session_state.key == key):
+        if ('input_simul_price' not in st.session_state) or (st.session_state.key == key) or ([st.session_state.nPort, st.session_state.nSim,
+                       st.session_state.constraint_range, list(st.session_state.input_price.columns)] \
+                       != [nPort, nSim, constraint_range, list(input_price.columns)]):
 
 
         #################################################################################################
