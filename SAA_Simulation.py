@@ -332,7 +332,7 @@ if file is not None:
 
                 fig_WV.update_xaxes(title_text='Standard Deviation', showgrid=True)
                 fig_WV.update_yaxes(title_text='Weight', showgrid=True)
-                fig_WV.update_layout(height=500,legend=dict(x=0.76,y=1))
+                fig_WV.update_layout(height=500,legend=dict(x=0.76))
                 fig_WV.add_vline(x=st.session_state.EF.loc[Target_index]["STDEV"], line_color="red", annotation_text="Target", annotation_position="top")
 
                 st.plotly_chart(fig_WV)
