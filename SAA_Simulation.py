@@ -58,14 +58,14 @@ if file is not None:
         with col22:
 
 
-            if st.checkbox('Daily', value=False):
+            if st.checkbox('Daily', value=True):
 
                 daily = True
                 monthly = False
                 annualization = 252
                 freq = "daily"
 
-            if st.checkbox('Monthly', value=True):
+            if st.checkbox('Monthly', value=False):
 
                 daily = False
                 monthly = True
@@ -76,16 +76,16 @@ if file is not None:
         col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:
-            Growth_range = st.slider('Equity Weight Constraint', 0, 100, (0, 40), 1)
+            Growth_range = st.slider('Equity Weight Constraint', 0, 100, (0, 100), 1)
             nPort = st.number_input('Efficient Frontier Points', value=200)
 
         with col2:
-            Inflation_range = st.slider('Inflation Weight Constraint', 0, 100, (0, 30), 1)
+            Inflation_range = st.slider('Inflation Weight Constraint', 0, 100, (0, 100), 1)
             nSim = st.number_input('Number of Simulations', value=200)
 
         with col3:
-            Fixed_Income_range = st.slider('Fixed_Income Weight Constraint', 0, 100, (50, 100), 1)
-            Target = st.number_input('Select Target Return(%)', value=4.00)
+            Fixed_Income_range = st.slider('Fixed_Income Weight Constraint', 0, 100, (0, 100), 1)
+            Target = st.number_input('Select Target Return(%)', value=8.00)
 
             constraint_range = [Growth_range,Inflation_range,Fixed_Income_range]
 
