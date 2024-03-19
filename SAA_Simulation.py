@@ -122,6 +122,7 @@ if file is not None:
                                                            annualization)
 
             st.session_state.key = key
+            st.session_state.Target= Target
 
             A = st.session_state.input_universe.copy()
             A.index = st.session_state.input_universe['symbol']
@@ -146,9 +147,9 @@ if file is not None:
                                                        & (input_price.index <= end_date)
                                                        & (input_price.index.is_month_end == True)]
 
-        with st.expander("Optimization (Target: " + str(Target) + "%, " + st.session_state.freq_input + ")", expanded=True) :
+        with st.expander("Optimization (Target: " + str(st.session_state.Target) + "%, " + st.session_state.freq_input + ")", expanded=True) :
 
-            Target_index = (st.session_state.EF['EXP_RET'] - Target / 100).abs().idxmin()
+            Target_index = (st.session_state.EF['EXP_RET'] - st.session_state.Target / 100).abs().idxmin()
 
             col_x, col_y, col_z = st.columns([1, 1, 2])
 
