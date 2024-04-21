@@ -12,19 +12,31 @@ file = st.file_uploader("Upload investment universe & price data", type=['xlsx',
 st.warning('Upload data.')
 
 
+# @st.cache
+# def load_data(file_path):
+#     df = pd.read_excel(file_path, sheet_name="data",
+#                        names=None, dtype={'Date': datetime}, index_col=0, header=2)
+
+#     df2 = pd.read_excel(file_path, sheet_name="data",
+#                         names=None, index_col=0, header=0, nrows=1)
+#     if df2.empty:
+#         df2 = pd.Series(float(0), index=df2.columns)
+
+
+#     return df, df2
+
 @st.cache
 def load_data(file_path):
-    df = pd.read_excel(file_path, sheet_name="data",
-                       names=None, dtype={'Date': datetime}, index_col=0, header=2)
+    df = pd.read_excel(file_path, sheet_name="data", index_col=0, header=2)
 
-    df2 = pd.read_excel(file_path, sheet_name="data",
-                        names=None, index_col=0, header=0, nrows=1)
+    # Convert index to datetime type
+    df.index = pd.to_datetime(df.index)
+
+    df2 = pd.read_excel(file_path, sheet_name="data", names=None, index_col=0, header=0, nrows=1)
     if df2.empty:
         df2 = pd.Series(float(0), index=df2.columns)
 
-
     return df, df2
-
 
 if file is not None:
 
@@ -150,8 +162,8 @@ if file is not None:
             st.session_state.input_price_N = st.session_state.input_price[
                 (st.session_state.input_price.index >= st.session_state.portfolio_port.index[0]) &
                 (st.session_state.input_price.index <= st.session_state.portfolio_port.index[-1])]
-            st.session_state.input_price_N = 100 * st.session_state.input_price_N / st.session_state.input_price_N.iloc[0, :]
-
+            st.session_state.input_price_N = 100 * st.session_state.input_price_N / st.session_state.input_price_N.iloc[
+                                                                                    0, :]
 
             st.session_state.portfolio_port.index = st.session_state.portfolio_port.index.date
             st.session_state.drawdown.index = st.session_state.drawdown.index.date
@@ -161,8 +173,8 @@ if file is not None:
             st.session_state.result = pd.concat([st.session_state.portfolio_port,
                                                  st.session_state.drawdown,
                                                  st.session_state.input_price_N,
-                                                 st.session_state.alloc],axis=1)
-
+                                                 st.session_state.alloc],
+                                                axis=1)
 
             st.session_state.START_DATE = st.session_state.portfolio_port.index[0].strftime("%Y-%m-%d")
             st.session_state.END_DATE = st.session_state.portfolio_port.index[-1].strftime("%Y-%m-%d")
@@ -177,10 +189,10 @@ if file is not None:
             st.session_state.Daily_RET = st.session_state.portfolio_port.pct_change().dropna()
 
         st.session_state.result_expander1 = st.expander('Result', expanded=True)
-
         with st.session_state.result_expander1:
 
             if 'slider' in st.session_state:
+
 
 
                 st.write(" ")
@@ -258,7 +270,7 @@ if file is not None:
                         label="Download",
                         data=st.session_state.drawdown.to_csv(index=True),
                         mime='text/csv',
-                        file_name='Correlation.csv')
+                        file_name='Maximum Drawdown.csv')
 
                 st.write(" ")
 
@@ -299,8 +311,8 @@ if file is not None:
                     plt.rcParams['axes.unicode_minus'] = False
 
                     st.session_state.corr = st.session_state.input_price.drop(['Cash'],
-                                                                              axis=1).pct_change().dropna().corr().round(2)
-
+                                                                              axis=1).pct_change().dropna().corr().round(
+                        2)
                     st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
                     st.session_state.corr.columns = st.session_state.corr.index
                     # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
