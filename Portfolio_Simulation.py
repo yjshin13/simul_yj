@@ -6,6 +6,10 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+import plotly.express as px
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+
 
 st.set_page_config(layout="wide")
 file = st.file_uploader("Upload investment universe & price data", type=['xlsx', 'xls', 'csv'])
@@ -248,11 +252,19 @@ if file is not None:
 
                 with col31:
                     st.write("Net Asset Value")
-                    st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
+                    fig = px.line(st.session_state.portfolio_port.round(2))
+                    fig.update_xaxes(title_text='Time', showgrid=True)
+                    fig.update_yaxes(title_text='NAV', showgrid=True)
+                    fig.update_layout(showlegend=False)
+                    st.plotly_chart(fig)
 
                 with col32:
                     st.write("MAX Drawdown")
-                    st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
+                    fig_MDD = px.line(st.session_state.drawdown)
+                    fig_MDD.update_xaxes(title_text='Time', showgrid=True)
+                    fig_MDD.update_yaxes(title_text='MDD', showgrid=True)
+                    fig_MDD.update_layout(showlegend=False)
+                    st.plotly_chart(fig_MDD)
 
                 col61, col62 = st.columns([1, 1])
 
