@@ -259,9 +259,14 @@ if file is not None:
                     st.plotly_chart(fig)
 
                 with col32:
-                    st.write("MAX Drawdown")
-                    st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
-
+                    st.write("Maximum Drawdown")
+                    fig_MDD = px.line(st.session_state.drawdown)
+                    fig_MDD.update_xaxes(title_text='Time', showgrid=True)
+                    fig_MDD.update_yaxes(title_text='MDD', showgrid=True)
+                    fig_MDD.update_layout(showlegend=False)
+                    st.plotly_chart(fig_MDD)
+                    
+                    
                 col61, col62 = st.columns([1, 1])
 
                 with col61:
