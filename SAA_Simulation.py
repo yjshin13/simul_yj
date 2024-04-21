@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import backtest
 import seaborn as sns
-import backtest_graph2
+#import backtest_graph2
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
