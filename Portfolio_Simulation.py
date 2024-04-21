@@ -252,7 +252,11 @@ if file is not None:
 
                 with col31:
                     st.write("Net Asset Value")
-                    st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
+                    fig = px.line(st.session_state.portfolio_port.round(2))
+                    fig.update_xaxes(title_text='Time', showgrid=True)
+                    fig.update_yaxes(title_text='NAV', showgrid=True)
+                    fig.update_layout(showlegend=False)
+                    st.plotly_chart(fig)
 
                 with col32:
                     st.write("MAX Drawdown")
