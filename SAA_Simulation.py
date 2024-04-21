@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import backtest
 import seaborn as sns
-#import backtest_graph2
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
@@ -177,29 +176,6 @@ if file is not None:
             with col_a:
 
                 st.write("Efficient Frontier")
-                # EF_point = plt.figure(figsize=(20, 10))
-                #
-                #
-                # Point = np.full(len(st.session_state.EF),0)
-                # Point[Target_index] =2
-                #
-                # plt.scatter(st.session_state.EF['STDEV']*100, (st.session_state.EF['EXP_RET']*100).T,
-                #             marker='o',
-                #             s=130,
-                #             c=Point,
-                #            # alpha=0.7,
-                #             cmap='Paired',
-                #             alpha = 1,
-                #             linewidths=2,
-                #             edgecolors='lightblue')
-                # plt.xticks(fontsize=15)
-                # plt.yticks(fontsize=15)
-                #
-                # plt.xlabel('Expected Risk(%)', fontsize=15, labelpad=20)
-                # plt.ylabel('Expected Return(%)', fontsize=15, labelpad=20)
-                #
-                # st.pyplot(EF_point)
-
                 fig_EF = px.scatter(y=st.session_state.EF['EXP_RET'] * 100, x =st.session_state.EF['STDEV'] * 100)
                 fig_EF.update_xaxes(title_text='Standard Deviation',showgrid=True, tickmode='linear', dtick=1)
                 fig_EF.update_yaxes(title_text='Expected Return',showgrid=True)
@@ -212,38 +188,6 @@ if file is not None:
             with col_b:
 
                 st.write("Optimal Weight")
-                # x = (Target_Weight*100).values.round(2)
-                # y = Target_Weight.index
-                #
-                # fig_bar, ax_bar = plt.subplots(figsize=(20,10.8))
-                # width = 0.75  # the width of the bars
-                # bar = ax_bar.barh(y, x, color="lightblue", height= 0.8, )
-                #
-                # for bars in bar:
-                #     width = bars.get_width()
-                #     posx = width + 0.5
-                #     posy = bars.get_y() + bars.get_height() * 0.5
-                #     ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
-                #
-                #
-                # plt.xticks(fontsize=15)
-                # plt.yticks(fontsize=15)
-                # plt.xlabel('Weight(%)', fontsize=15, labelpad=20)
-                # plt.ylabel('Assets', fontsize=15, labelpad=15)
-                # ax_bar.margins(x=0.04, y=0.01)
-                #
-                # st.pyplot(fig_bar)
-                #
-
-                # st.session_state.Result2 = st.session_state.Result.drop(st.session_state.Result.columns[[0, 1]], axis=1, inplace=False).T
-                #
-                # st.session_state.EF.iloc[Target_index]
-                #
-                # st.session_state.Result
-
-
-                # st.dataframe(pd.concat([st.session_state.Result.iloc[1:3].drop(['EXP_RET', 'STDEV'], axis=1).T,
-                #                         st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).iloc[Target_index].T],axis=1))
                 st.session_state.pie_data = pd.concat([st.session_state.Result.iloc[0:3].drop(['EXP_RET', 'STDEV'], axis=1).T,
                                         st.session_state.EF.drop(['EXP_RET', 'STDEV'], axis=1).iloc[Target_index].T],axis=1)
                 st.session_state.pie_data.iloc[:, -1] = (st.session_state.pie_data.iloc[:, -1]*100).round(1)
@@ -479,22 +423,15 @@ if file is not None:
 
                 with col31:
                     st.write("Net Asset Value")
-                    # st.pyplot(backtest_graph2.line_chart(st.session_state.portfolio_port, ""))
-
                     fig = px.line(st.session_state.portfolio_port.round(2))
-
                     fig.update_xaxes(title_text='Time',showgrid=True)
                     fig.update_yaxes(title_text='NAV',showgrid=True)
                     fig.update_layout(showlegend=False)
-
                     st.plotly_chart(fig)
 
                 with col32:
                     st.write("Maximum Drawdown")
-                    #st.pyplot(backtest_graph2.line_chart(st.session_state.drawdown, ""))
-
                     fig_MDD = px.line(st.session_state.drawdown)
-
                     fig_MDD.update_xaxes(title_text='Time',showgrid=True)
                     fig_MDD.update_yaxes(title_text='MDD',showgrid=True)
                     fig_MDD.update_layout(showlegend=False)
@@ -524,77 +461,19 @@ if file is not None:
 
                 with col_a:
 
-                    st.write("Performance Attribution")
-                    # st.session_state.attribution.index = pd.Index(
-                    #     st.session_state.attribution.index.map(lambda x: str(x)[:7]))
-                    #
-                    # x = (st.session_state.attribution * 100)
-                    # y = st.session_state.attribution.index
-                    #
-                    # fig_bar, ax_bar = plt.subplots(figsize=(18, 11))
-                    # width = 0.75  # the width of the bars
-                    # bar = ax_bar.barh(y, x, color="lightblue", height=0.8, )
-                    #
-                    # for bars in bar:
-                    #     width = bars.get_width()
-                    #     posx = width + 0.01
-                    #     posy = bars.get_y() + bars.get_height() * 0.5
-                    #     ax_bar.text(posx, posy, '%.1f' % width, rotation=0, ha='left', va='center', fontsize=13)
-                    #
-                    # plt.xticks(fontsize=15)
-                    # plt.yticks(fontsize=15)
-                    # plt.xlabel('Attribution(%)', fontsize=15, labelpad=20)
-                    # # ax_bar.margins(x=0, y=0)
-                    #
-                    # st.pyplot(fig_bar)
-                    #
-                    #
-
-
-                    # st.session_state.attribution2 = st.session_state.attribution.drop(st.session_state.attribution.index[-1],axis=0).copy()
-                    # st.session_state.pie_data2 = st.session_state.pie_data
-                    # st.session_state.pie_data2.iloc[:, -1] = (st.session_state.attribution2)
-                    # st.session_state.pie_data2.iloc[:, -1] = (st.session_state.pie_data2.iloc[:, -1]*100).round(1)
-                    
-
-                    # fig_pie2 = px.sunburst(st.session_state.pie_data2, path=['asset_category', 'name'], values=st.session_state.pie_data2.columns[-1])
-                    # fig_pie2.update_traces(textinfo='label+percent entry')
-
+                    st.write("Performance Attribution")           
                     fig_bar = px.bar(x=st.session_state.attribution.index, y=st.session_state.attribution*100)
                     fig_bar.update_xaxes(title_text='Asset', showgrid=True)
                     fig_bar.update_yaxes(title_text='Attribution(%)', showgrid=True, )
-                    
-                    
-
 
                     st.plotly_chart(fig_bar)
 
                     #st.dataframe(st.session_state.attribution)
 
 
-
                 with col_b:
-                    st.write("Correlation Matrix")
-                    #
-                    # # Increase the size of the heatmap.
-                    # fig2 = plt.figure(figsize=(15, 8.3))
-                    # # plt.rc('font', family='Malgun Gothic')
-                    # plt.rcParams['axes.unicode_minus'] = False
-                    #
-                    # st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)
-                    #
-                    # st.session_state.corr.index = pd.Index(st.session_state.corr.index.map(lambda x: str(x)[:7]))
-                    # st.session_state.corr.columns = st.session_state.corr.index
-                    # # st.session_state.corr.columns = pd.MultiIndex.from_tuples([tuple(map(lambda x: str(x)[:7], col)) for col in st.session_state.corr.columns])
-                    #
-                    # heatmap = sns.heatmap(st.session_state.corr, vmin=-1, vmax=1, annot=True, cmap='coolwarm')
-                    #
-                    # # heatmap.set_title('Correlation Heatmap', fontdict={'fontsize': 20}, pad=12)
-                    #
-                    # st.pyplot(fig2)
-
                     
-
+                    st.write("Correlation Matrix")                  
                     st.session_state.corr = st.session_state.input_price.pct_change().dropna().corr().round(2)        
                     fig_corr = px.imshow(st.session_state.corr,text_auto=True, aspect="auto")
                     fig_corr.update_layout(width=820)
